@@ -1,13 +1,10 @@
-import styles from './RegisterForm.module.css';
+import styles from './RegisterEspecialistForm.module.css';
 import { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import { auth } from '../../utils/firebaseConfig';
-import googleIcon from "../../icons/Google_Icon.svg";
-import facebIcon from "../../icons/cib_facebook.svg";
-import twitterIcon from "../../icons/twitter_icon.svg";
 
-function RegisterForm() {
+function RegisterEspecialistForm() {
   const history = useHistory();
   const { createUser } = useContext(UserContext);
 
@@ -16,6 +13,7 @@ function RegisterForm() {
     name: '',
     email: '',
     date: '',
+    credentials: '',
     password: '',
   });
 
@@ -41,7 +39,7 @@ function RegisterForm() {
         name: values.name,
         email: values.email,
         date: values.date,
-        role: 'pacient',
+        role: 'pending',
       },
       response.user.uid // Se saca de response el uid
     );
@@ -53,7 +51,7 @@ function RegisterForm() {
   return (
     <div className={styles.container}>
       <div className={styles.register}>
-        <h1>Registro paciente</h1>
+        <h1>Registro especialista</h1>
         <form onSubmit={handleSubmit}>
           <div className={styles.inputGroup}>
             <label htmlFor="name">Nombre y apellido</label>
@@ -100,6 +98,18 @@ function RegisterForm() {
           </div>
 
           <div className={styles.inputGroup}>
+            <label htmlFor="credentials">Cargar credenciales</label>
+            <input
+              name="credentials"
+              id="credentials"
+              type="file"
+              multiple="multiple"
+              value={values.credentials}
+              onChange={handleOnChange}
+            />
+          </div>
+
+          <div className={styles.inputGroup}>
             <label htmlFor="conditions">Acepto los términos y condiciones</label>
             <input
               name="conditions"
@@ -115,20 +125,9 @@ function RegisterForm() {
             Confirmar
           </button>
         </form>
-        <p>O regístrate a través de: </p>
-        <button type="button" onClick={handleGoogleLogin}>
-          <img src={googleIcon} alt=""/>
-        </button>
-        <button type="button" onClick={handleGoogleLogin}>
-          <img src={facebIcon} alt=""/> 
-        </button>
-        <button type="button" onClick={handleGoogleLogin}>
-          <img src={twitterIcon} alt=""/>
-        </button>
-        <p>¿Ya estás registrado? <a href="/login">Inicia sesión</a></p>
       </div>
     </div>
   );
 }
 
-export default RegisterForm;
+export default RegisterEspecialistForm;

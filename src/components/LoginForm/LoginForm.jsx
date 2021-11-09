@@ -4,9 +4,9 @@ import styles from './LoginForm.module.css';
 import { auth, googleProvider, facebookProvider } from '../../utils/firebaseConfig';
 import { UserContext } from '../../context/UserContext';
 import { useState } from 'react';
-import googleIcon from '../../icons/Google_Icon.svg'
-import facebIcon from "../../icons/cib_facebook.svg"
-import twitterIcon from "../../icons/twitter_icon.svg"
+import googleIcon from "../../icons/Google_Icon.svg";
+import facebIcon from "../../icons/cib_facebook.svg";
+import twitterIcon from "../../icons/twitter_icon.svg";
 
 function LoginForm() {
   const { setUser } = useContext(UserContext); // Lo que nos permite cambiar el estado
