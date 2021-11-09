@@ -4,7 +4,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 
 const PrivateRoute = ({ component: View, ...args }) => {
-  const { user } = useContext(UserContext);
+  const { user } = useContext(UserContext); // Para saber si hay un usuario logeado o no.
 
   const isLoggedIn = !!user;
 
@@ -12,6 +12,7 @@ const PrivateRoute = ({ component: View, ...args }) => {
     return <Route {...args} render={() => <View />} />;
   }
 
+  // Si no hay usuario, se redirige al login
   return (
     <Route
       {...args}

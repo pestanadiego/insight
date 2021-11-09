@@ -9,8 +9,8 @@ import facebIcon from "../../icons/cib_facebook.svg"
 import twitterIcon from "../../icons/twitter_icon.svg"
 
 function LoginForm() {
-  const { setUser } = useContext(UserContext);
-  const history = useHistory();
+  const { setUser } = useContext(UserContext); // Lo que nos permite cambiar el estado
+  const history = useHistory(); // Se utiliza para redirigir al usuario
   const [values, setValues] = useState({
     email: '',
     password: '',
@@ -24,13 +24,17 @@ function LoginForm() {
 
   // Inicio de sesión con Google
   const handleGoogleLogin = async () => {
-    await auth.signInWithPopup(googleProvider);
+    const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
+    setUser({
+      name: response.user.displayName,
+      email: response.user.email
+    });
     history.push('/');
   };
 
   //Inicio de sesion con Facebook
   const handleFacebookLogin = async () => {
-    await auth.signInWithPopup(facebookProvider);
+    await auth.signInWithPopup(facebookProvider);  //Se le envia al proveedor de Facebook
     history.push('/');
   };
 
@@ -47,13 +51,13 @@ function LoginForm() {
       <div className={styles.mainContainer}>
         <div className={styles.container}>
           <ul>
-          <li><button type="button" onClick={handleGoogleLogin}>
+          <li><button type="button" onClick={handleGoogleLogin}> {/* Acción cuando se le da clic */}
             <img src={googleIcon} alt=""/> <span>Iniciar Sesión con Google</span>
           </button></li>
-          <li><button type="button" onClick={handleFacebookLogin}>
+          <li><button type="button" onClick={handleFacebookLogin}> {/* Acción cuando se le da clic */}
             <img src={facebIcon} alt=""/> <span>Iniciar Sesión con Facebook</span>
           </button></li>
-          <li><button type="button" onClick={handleFacebookLogin}>
+          <li><button type="button" onClick={handleFacebookLogin}> {/* Acción cuando se le da clic */}
             <img src={twitterIcon} alt=""/> <span>Iniciar Sesión con Twitter</span>
           </button></li>
           </ul>
@@ -98,5 +102,4 @@ function LoginForm() {
     </div>
   );
 }
-
 export default LoginForm;

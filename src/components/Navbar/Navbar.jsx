@@ -3,11 +3,13 @@ import { Link, useHistory } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import { auth } from '../../utils/firebaseConfig';
 import styles from './Navbar.module.css';
+import logo from '../../images/logo.svg';
 
 function Navbar() {
   const history = useHistory();
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext); // Para poder acceder al estado global del sistema
 
+  // Función para cerrar sesión. Se coloca el user en null y se devuelve al home page
   const handleLogout = async () => {
     await auth.signOut();
     setUser(null);
@@ -18,43 +20,41 @@ function Navbar() {
     <ul className={styles.navbarContainer}>
       <li>
         <Link to="/" className={styles.link}>
-          Insight
+          <img src={logo} alt="logo" />
         </Link>
       </li>
-
-      {/*!!user && (
-        <li>
-          <Link to="/favorites" className={styles.link}>
-            Favorites
-          </Link>
-        </li>
-      )*/}
 
       <li className={styles.rightSide}>
         {!!user ? (
           <div className={styles.container}>
-            <button type="button" onClick={handleLogout}>
-              Logout, {user.name}
+            <button type="button" className={styles.logoutBtn}onClick={handleLogout}>
+              CERRAR SESIÓN
             </button>
           </div>
         ) : (
           <>
             <div className={styles.container}>
               <Link to="/register" className={styles.link}>
-                ¿Eres paciente?
+                <button className={styles.register}>
+                  PACIENTE
+                </button>
               </Link>
             </div>
 
             <div className={styles.container}>
               <Link to="/register" className={styles.link}>
-                ¿Eres especialista?
+                <button className={styles.register}>
+                  ESPECIALISTA
+                </button>
               </Link>
             </div>
 
             <div className={styles.container}>
-              <Link to="/login" className={styles.link}>
-                Iniciar Sesión
-              </Link>
+                <Link to="/login" className={styles.link}>
+                  <button className={styles.login}>
+                    INICIAR SESIÓN
+                  </button>
+                </Link>
             </div>
           </>
         )}
