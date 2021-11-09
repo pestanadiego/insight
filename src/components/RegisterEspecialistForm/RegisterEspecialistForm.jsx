@@ -2,12 +2,12 @@ import styles from './RegisterEspecialistForm.module.css';
 import { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
-import { auth } from '../../utils/firebaseConfig';
+import { auth, storage } from '../../utils/firebaseConfig';
 
 function RegisterEspecialistForm() {
   const history = useHistory();
   const { createUser } = useContext(UserContext);
-
+  const [file, setFile] = useState();
   // Para almacenar los valores del input (c/u de los nuevos renders)
   const [values, setValues] = useState({
     name: '',
@@ -17,18 +17,43 @@ function RegisterEspecialistForm() {
     password: '',
   });
 
-  const handleGoogleLogin = async () => {
-    console.log('Google login');
-  };
+  const uploadFile = (file) => {
+    const uploadTask = storage.ref(`credentials/${file.name}`).put(file);
+    uploadTask.on('state_changed', 
+    (snapshot) => {
+      //
+    }, 
+    (error) => console.log(error),
+    () => {
+      storage
+        .ref('credentials')
+        .child(file.name)
+        .getDownloadURL().
+        then((url) => {
+        console.log(url);
+        values.credentials = url;
+        });
+      }
+    );
+  }
 
   const handleOnChange = (event) => {
     const { value, name: inputName } = event.target; // Se está escribiendo en n input, n value
     setValues({ ...values, [inputName]: value }); // Copia de los estados anteriores. Se le coloca a n input, n value
   };
 
+  const handlePick = (event) => {
+    let pickedFile;
+    if(event.target.files && event.target.files.length === 1) {
+      pickedFile = event.target.files[0];
+      setFile(pickedFile);
+    }
+  }
+
   // Función del submit del botón
   const handleSubmit = async (e) => {
     e.preventDefault();
+    uploadFile(file);
     const response = await auth.createUserWithEmailAndPassword(
       values.email,
       values.password
@@ -39,6 +64,7 @@ function RegisterEspecialistForm() {
         name: values.name,
         email: values.email,
         date: values.date,
+        credentials: values.credentials,
         role: 'pending',
       },
       response.user.uid // Se saca de response el uid
@@ -103,9 +129,8 @@ function RegisterEspecialistForm() {
               name="credentials"
               id="credentials"
               type="file"
-              multiple="multiple"
-              value={values.credentials}
-              onChange={handleOnChange}
+              onChange={handlePick}
+              //multiple="multiple"
             />
           </div>
 
