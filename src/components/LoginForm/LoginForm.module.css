@@ -21,20 +21,9 @@
   background-color: white;
 }
 
-<<<<<<< HEAD
 .container ul li{
     list-style: none;
     margin: 10px 165px;
-=======
-.container ul li {
-  list-style: none;
-  margin: 10px 160px;
->>>>>>> a3d25ad61a8a3816570b0d881bf0455b7d25f612
-}
-
-.container ul li img,
-.container ul li span {
-  align-self: center;
 }
 
 .container ul li img {
@@ -48,7 +37,6 @@
   align-items: center;
 }
 
-<<<<<<< HEAD
 .container h1{
     margin-top:20px;
     margin-left: 175px;
@@ -65,22 +53,6 @@
 .inputGroup{
     margin: 20px 0px;
     margin-left: 22px;
-=======
-.container h1 {
-  margin-top: 20px;
-  font-size: 2.2em;
-  color: var(--main-letters-color);
-  align-self: center;
-  justify-content: center;
-}
-.container form,
-h1 {
-  margin: 10px 170px;
-}
-
-.inputGroup {
-  margin: 20px 0px;
->>>>>>> a3d25ad61a8a3816570b0d881bf0455b7d25f612
 }
 
 .inputGroup label {
