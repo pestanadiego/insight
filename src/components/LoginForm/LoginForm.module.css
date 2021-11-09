@@ -15,7 +15,7 @@
 
 .container {
   width: 45vw;
-  height: 90vh;
+  height: 135vh;
   padding: 30px 0px;
   margin: 20px 340px;
   background-color: white;
@@ -33,6 +33,7 @@
 .container button {
   width: 20vw;
   height: 7.8vh;
+  margin-bottom: 20px;
   cursor: pointer;
   align-items: center;
 }
@@ -76,44 +77,48 @@
   font-weight: bold;
   font-size: 1.1em;
   border-radius: 5px;
+  margin-top: 10px;
+  border-color: var(--main-button-color);
 }
 
 .registration{
-    margin-left: 222px;
-    color:var(--main-letters-color);
+  margin-left: 222px;
+  color:var(--main-letters-color);
 }
 
 .pacient, .specialist{
-    color: #0163E0;
-    cursor: pointer;
+  color: #0163E0;
+  cursor: pointer;
 }
 
 .pacient{
-    margin-left:-10px;
+  margin-left:-10px;
+  margin-top: -35px;
 }
 
 .specialist{
-    margin-left:-17px;
+  margin-left:-17px;
+  margin-top: -21px;
 }
 
 .specialist:hover{
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .pacient:hover{
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .btnimage{
-    position:absolute;
-    cursor: pointer;
-    width: 5vw;
-    height: 7.8vh;
-    padding: 0px 10px;
-    margin-bottom:5px;
+  position:absolute;
+  cursor: pointer;
+  width: 5vw;
+  height: 7.8vh;
+  padding: 0px 10px;
+  margin-bottom:5px;
 
 }
 
 .letter{
-    margin-left:20%;
+  margin-left:20%;
 }

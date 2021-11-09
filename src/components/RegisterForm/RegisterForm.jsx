@@ -6,8 +6,10 @@ import { auth } from '../../utils/firebaseConfig';
 import googleIcon from "../../icons/Google_Icon.svg";
 import facebIcon from "../../icons/cib_facebook.svg";
 import twitterIcon from "../../icons/twitter_icon.svg";
+import { googleProvider, facebookProvider} from '../../utils/firebaseConfig';
 
 function RegisterForm() {
+  const { setUser } = useContext(UserContext);
   const history = useHistory();
   const { createUser } = useContext(UserContext);
 
@@ -19,8 +21,20 @@ function RegisterForm() {
     password: '',
   });
 
+  // Registro con Google
   const handleGoogleLogin = async () => {
-    console.log('Google login');
+    const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
+    setUser({
+      name: response.user.displayName,
+      email: response.user.email
+    });
+    history.push('/');
+  };
+
+  //Inicio de sesion con Facebook
+  const handleFacebookLogin = async () => {
+    await auth.signInWithPopup(facebookProvider);  //Se le envia al proveedor de Facebook
+    history.push('/');
   };
 
   const handleOnChange = (event) => {
@@ -56,7 +70,7 @@ function RegisterForm() {
         <h1>Registro paciente</h1>
         <form onSubmit={handleSubmit}>
           <div className={styles.inputGroup}>
-            <label htmlFor="name">Nombre y apellido</label>
+            <label htmlFor="name">Nombre y apellido</label><br/>
             <input
               name="name"
               id="name"
@@ -67,7 +81,7 @@ function RegisterForm() {
           </div>
 
           <div className={styles.inputGroup}>
-            <label htmlFor="email">Correo electrónico</label>
+            <label htmlFor="email">Correo electrónico</label><br/>
             <input
               name="email"
               id="email"
@@ -78,7 +92,7 @@ function RegisterForm() {
           </div>
 
           <div className={styles.inputGroup}>
-            <label htmlFor="date">Fecha de nacimiento</label>
+            <label htmlFor="date">Fecha de nacimiento</label><br/>
             <input
               name="date"
               id="date"
@@ -89,7 +103,7 @@ function RegisterForm() {
           </div>
 
           <div className={styles.inputGroup}>
-            <label htmlFor="password">Contraseña</label>
+            <label htmlFor="password">Contraseña</label><br/>
             <input
               name="password"
               id="password"
@@ -99,8 +113,7 @@ function RegisterForm() {
             />
           </div>
 
-          <div className={styles.inputGroup}>
-            <label htmlFor="conditions">Acepto los términos y condiciones</label>
+          <div className={styles.checkboxGroup}>
             <input
               name="conditions"
               id="conditions"
@@ -109,6 +122,7 @@ function RegisterForm() {
               onChange={handleOnChange}
               required
             />
+            <label htmlFor="conditions">Acepto los términos y condiciones</label>
           </div>
 
           <button type="submit" onClick={handleSubmit}>
@@ -116,16 +130,18 @@ function RegisterForm() {
           </button>
         </form>
         <p>O regístrate a través de: </p>
-        <button type="button" onClick={handleGoogleLogin}>
+        <div className={styles.containerAlternatives}>
+        <div className={styles.alternative} onClick={handleGoogleLogin}>
           <img src={googleIcon} alt=""/>
-        </button>
-        <button type="button" onClick={handleGoogleLogin}>
+        </div>
+        <div className={styles.alternative} onClick={handleFacebookLogin}>
           <img src={facebIcon} alt=""/> 
-        </button>
-        <button type="button" onClick={handleGoogleLogin}>
+        </div>
+        <div className={styles.alternative} onClick={handleGoogleLogin}>
           <img src={twitterIcon} alt=""/>
-        </button>
-        <p>¿Ya estás registrado? <a href="/login">Inicia sesión</a></p>
+        </div>
+        </div>
+        <p className={styles.question}>¿Ya estás registrado? <br/><a href="/login">Inicia sesión</a></p>
       </div>
     </div>
   );
