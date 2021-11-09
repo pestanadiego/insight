@@ -34,7 +34,7 @@ function Navbar() {
         ) : (
           <>
             <div className={styles.container}>
-              <Link to="/register" className={styles.link}>
+              <Link to="/register_pacient" className={styles.link}>
                 <button className={styles.register}>
                   PACIENTE
                 </button>
@@ -42,7 +42,7 @@ function Navbar() {
             </div>
 
             <div className={styles.container}>
-              <Link to="/register" className={styles.link}>
+              <Link to="/register_especialist" className={styles.link}>
                 <button className={styles.register}>
                   ESPECIALISTA
                 </button>
