@@ -1,13 +1,15 @@
+
 .navbarContainer {
   display: flex;
   align-items: center;
-  height: 60px;
+  height: 10vh;
   padding: 0 40px;
   margin-left: auto;
   list-style: none;
-  background: blue;
+  background: rgb(87,118,234);
+  background: linear-gradient( rgba(67,88,207,1) 0%, 90deg, rgba(87,118,234,1) 100%);
   color: #fff;
-  margin-bottom: 60px;
+  font-size: 0.5rem;
 }
 
 .navbarContainer li {
@@ -34,7 +36,32 @@
   color: #fff;
   border: none;
   padding: 10px 1rem;
-  border-radius: 4px;
+  border-radius: 50px;
   font-size: 1rem;
   cursor: pointer;
+}
+
+.login {
+  padding: 0.7rem;
+  cursor: pointer;
+  background-color: #FCE58E;
+  color: #287BC6;
+  border: none;
+  border-radius: 50px;
+  transition: all 500ms ease;
+}
+
+.register {
+  padding: 0.7rem;
+  cursor: pointer;
+  background-color: transparent;
+  color: white;
+  border-width: 1px;
+  border-style: solid;
+  border-color: white;
+  border-radius: 50px;
+}
+
+img {
+  padding-top: 5px;
 }
