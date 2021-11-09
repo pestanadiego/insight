@@ -17,11 +17,12 @@ function RegisterEspecialistForm() {
   });
   let credentialsArray = [];
 
+  // Esta función se encarga de subir los archivos al storage y guardar la dirección
+  // de esos archivos en la base de datos. 
   const uploadFile = (file) => {
     const uploadTask = storage.ref(`credentials/${file.name}`).put(file);
     uploadTask.on('state_changed', 
     (snapshot) => {
-      //
     }, 
     (error) => console.log(error),
     () => {
@@ -42,6 +43,7 @@ function RegisterEspecialistForm() {
     setValues({ ...values, [inputName]: value }); // Copia de los estados anteriores. Se le coloca a n input, n value
   };
 
+  // Función que maneja los archivos subidos por el usuario
   const handlePick = (event) => {
     let pickedFile;
     let allFiles = [];
@@ -66,6 +68,7 @@ function RegisterEspecialistForm() {
       uploadFile(file);
     }
     credentialsArray = [];
+
     const response = await auth.createUserWithEmailAndPassword(
       values.email,
       values.password
