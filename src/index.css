@@ -7,18 +7,22 @@
   box-sizing: border-box;
 }
 
+:root{
+  --main-bg-color: #455CD1;
+  --main-letters-color: #415B72;
+  --main-input-color: #5788EA;
+  --main-button-color:#5788EA; 
+}
+
 body {
   font-family: 'Poppins';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 a {
   text-decoration: none;
   color: inherit;
   cursor: pointer;
-}
-
-.container {
-  padding: 0 120px;
 }
