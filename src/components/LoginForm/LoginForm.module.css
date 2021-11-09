@@ -45,17 +45,20 @@
 
 .container h1{
     margin-top:20px;
+    margin-left: 175px;
     font-size: 2.2em;
     color: var(--main-letters-color);
     align-self:center;
     justify-content: center;
 }
+
 .container form, h1{
     margin:10px 170px;
 }
 
 .inputGroup{
     margin: 20px 0px;
+    margin-left: 22px;
 }
 
 .inputGroup label{
@@ -82,11 +85,39 @@
 }
 
 .registration{
-    margin:10px 170px;
+    margin-left: 222px;
     color:var(--main-letters-color);
 }
 
 .pacient, .specialist{
     color: #0163E0;
-    cursor:pointer;
+    cursor: pointer;
+}
+
+.pacient{
+    margin-left:-10px;
+}
+
+.specialist{
+    margin-left:-17px;
+}
+
+.specialist:hover{
+    text-decoration: underline;
+}
+
+.pacient:hover{
+    text-decoration: underline;
+}
+
+.btnimage{
+    position:absolute;
+    cursor: pointer;
+    width: 5vw;
+    height: 7.8vh;
+    padding: 5px 10px;
+}
+
+.letter{
+    margin-left:20%;
 }

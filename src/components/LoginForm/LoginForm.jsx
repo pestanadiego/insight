@@ -47,15 +47,23 @@ function LoginForm() {
       <div className={styles.mainContainer}>
         <div className={styles.container}>
           <ul>
-          <li><button type="button" onClick={handleGoogleLogin}>
-            <img src={googleIcon} alt=""/> <span>Iniciar Sesión con Google</span>
-          </button></li>
-          <li><button type="button" onClick={handleFacebookLogin}>
-            <img src={facebIcon} alt=""/> <span>Iniciar Sesión con Facebook</span>
-          </button></li>
-          <li><button type="button" onClick={handleFacebookLogin}>
-            <img src={twitterIcon} alt=""/> <span>Iniciar Sesión con Twitter</span>
-          </button></li>
+
+          <li>
+            <div className={styles.btnimage}><img src={googleIcon} alt=""/></div>
+            <div className={styles.btnlogin}><button type="button" onClick={handleGoogleLogin}>
+             <span>Iniciar Sesión con Google</span></button></div></li>
+
+          <li>
+            <div className={styles.btnimage}><img src={facebIcon} alt=""/></div>
+            <div className={styles.btnlogin}><button type="button" onClick={handleFacebookLogin}>
+             <span>Iniciar Sesión con Facebook</span>
+          </button></div></li>
+
+          <li>
+            <div className={styles.btnimage}><img src={twitterIcon} alt=""/></div>
+            <div className={styles.btnlogin}><button type="button" onClick={handleFacebookLogin}>
+             <span>Iniciar Sesión con Twitter</span></button></div>
+          </li>
           </ul>
           <h1>Inicia Sesión</h1>
           <form onSubmit={handleSubmit}>
@@ -90,7 +98,7 @@ function LoginForm() {
           <div className={styles.registration}>
             <h5>¿No estas registrado?</h5>
             <br/>
-            <Link to="/register"><h5 className={styles.pacient}>Regístrate como Paciente</h5></Link><h5>o</h5>
+            <Link to="/register"><h5 className={styles.pacient}>Regístrate como Paciente</h5></Link><h5 className={styles.letter}>o</h5>
             <Link to="/register"><h5 className={styles.specialist}>Regístrate como Especialista</h5></Link>
           </div>
         </div>
