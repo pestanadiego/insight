@@ -7,15 +7,15 @@ import { auth, storage } from '../../utils/firebaseConfig';
 function RegisterEspecialistForm() {
   const history = useHistory();
   const { createUser } = useContext(UserContext);
-  const [file, setFile] = useState();
+  const [files, setFiles] = useState();
   // Para almacenar los valores del input (c/u de los nuevos renders)
   const [values, setValues] = useState({
     name: '',
     email: '',
     date: '',
-    credentials: '',
-    password: '',
+    password: ''
   });
+  let credentialsArray = [];
 
   const uploadFile = (file) => {
     const uploadTask = storage.ref(`credentials/${file.name}`).put(file);
@@ -31,7 +31,7 @@ function RegisterEspecialistForm() {
         .getDownloadURL().
         then((url) => {
         console.log(url);
-        values.credentials = url;
+        credentialsArray.push(url);
         });
       }
     );
@@ -44,16 +44,28 @@ function RegisterEspecialistForm() {
 
   const handlePick = (event) => {
     let pickedFile;
-    if(event.target.files && event.target.files.length === 1) {
-      pickedFile = event.target.files[0];
-      setFile(pickedFile);
+    let allFiles = [];
+    console.log(event.target.files.length);
+    if(event.target.files) {
+      for (let i = 0; i < event.target.files.length; i++) {
+        pickedFile = event.target.files[i];
+        allFiles.push(pickedFile);
+      }
+      setFiles(allFiles);
     }
   }
 
   // Función del submit del botón
   const handleSubmit = async (e) => {
     e.preventDefault();
-    uploadFile(file);
+    // Se sube al storage cada archivo
+    let file;
+    console.log(files);
+    for (let i = 0; i < files.length; i++) {
+      file = files[i];
+      uploadFile(file);
+    }
+    credentialsArray = [];
     const response = await auth.createUserWithEmailAndPassword(
       values.email,
       values.password
@@ -64,7 +76,7 @@ function RegisterEspecialistForm() {
         name: values.name,
         email: values.email,
         date: values.date,
-        credentials: values.credentials,
+        credentials: credentialsArray,
         role: 'pending',
       },
       response.user.uid // Se saca de response el uid
@@ -130,7 +142,7 @@ function RegisterEspecialistForm() {
               id="credentials"
               type="file"
               onChange={handlePick}
-              //multiple="multiple"
+              multiple="multiple"
             />
           </div>
 
