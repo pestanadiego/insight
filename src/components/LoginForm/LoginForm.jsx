@@ -7,8 +7,8 @@ import { UserContext } from '../../context/UserContext';
 import { useState } from 'react';
 
 function LoginForm() {
-  const { setUser } = useContext(UserContext);
-  const history = useHistory();
+  const { setUser } = useContext(UserContext); // Lo que nos permite cambiar el estado
+  const history = useHistory(); // Se utiliza para redirigir al usuario
   const [values, setValues] = useState({
     email: '',
     password: '',
@@ -22,7 +22,11 @@ function LoginForm() {
 
   // Inicio de sesión con Google
   const handleGoogleLogin = async () => {
-    await auth.signInWithPopup(googleProvider);
+    const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
+    setUser({
+      name: response.user.displayName,
+      email: response.user.email
+    });
     history.push('/');
   };
 
@@ -63,7 +67,7 @@ function LoginForm() {
           Send
         </button>
       </form>
-      <button type="button" onClick={handleGoogleLogin}>
+      <button type="button" onClick={handleGoogleLogin}> {/* Acción cuando se le da clic */}
         Login with Google
       </button>
     </div>

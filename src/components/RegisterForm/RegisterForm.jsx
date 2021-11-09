@@ -1,13 +1,14 @@
 import styles from './RegisterForm.module.css';
 import { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { auth } from '../../utils/firebaseConfig';
 import { UserContext } from '../../context/UserContext';
+import { auth } from '../../utils/firebaseConfig';
 
 function RegisterForm() {
   const history = useHistory();
   const { createUser } = useContext(UserContext);
 
+  // Para almacenar los valores del input (c/u de los nuevos renders)
   const [values, setValues] = useState({
     name: '',
     email: '',
@@ -15,32 +16,31 @@ function RegisterForm() {
   });
 
   const handleGoogleLogin = async () => {
-    console.log('GOOGLE_LOGIN');
+    console.log('Google login');
   };
 
   const handleOnChange = (event) => {
-    const { value, name: inputName } = event.target;
-    console.log({ inputName, value });
-    setValues({ ...values, [inputName]: value });
+    const { value, name: inputName } = event.target; // Se está escribiendo en n input, n value
+    setValues({ ...values, [inputName]: value }); // Copia de los estados anteriores. Se le coloca a n input, n value
   };
 
+  // Función del submit del botón
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await auth.createUserWithEmailAndPassword(
       values.email,
       values.password
     );
-
+    // Para que se almacene en la base de datos y no sólo en el módulo de autenticación
     await createUser(
       {
         name: values.name,
         email: values.email,
-        favorites: [],
         role: 'admin',
       },
-      response.user.uid
+      response.user.uid // Se saca de response el uid
     );
-    history.push('/');
+    history.push('/'); // Devuelve al home
 
     console.log(response.user.uid);
   };
@@ -56,7 +56,7 @@ function RegisterForm() {
             type="text"
             placeholder="Enter your name"
             value={values.name}
-            onChange={handleOnChange}
+            onChange={handleOnChange} // Evento que "escucha" cada vez que el input cambia
           />
         </div>
 
