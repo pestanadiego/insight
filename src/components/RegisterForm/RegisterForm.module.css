@@ -3,33 +3,48 @@
   padding: 0;
 }
 
-body {
-  background: var(--main-bg-color);
+body{
+  background-color: var(--main-bg-color);
+}
+
+.mainContainer {
+  margin: 20px 0px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register {
+  width: 45vw;
+  height: 105vh;
+  align-items: center;
+  background-color: white;
 }
 
 .container {
   width: 45vw;
-  height: 135vh;
-  padding: 30px 103.5px;
-  margin: 20px 340px;
+  height: 120vh;
+  align-items: center;
   background-color: white;
 }
 
 h1{
   color: var(--main-letters-color);
-  margin: 10px 106px;
+  text-align: center;
+
   font-size: 2.2em;
-  margin-bottom: 25px;
+  margin: 25px 0px;
 }
 
-.tituloPaciente{
-  margin-left: -4px;
-  margin-bottom: 20px;
+.formDiv{
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
 .inputGroup{
   margin: 20px 0px;
-  margin-left: 12px;
 }
 
 .inputGroup label {
@@ -38,8 +53,8 @@ h1{
 }
 
 .inputGroup input{
-  width:360px;
-  height:34px;
+  width:30vw;
+  height:6.5vh;
   outline: none;
   padding: 5px;
   border-radius: 4px;
@@ -53,31 +68,40 @@ h1{
 .checkboxGroup label{
   color: var(--main-letters-color);
   font-size: 0.875em;
-  margin: 10px 10px;
 }
 
 .checkboxGroup{
-  margin: 20px 0px;
-  margin-left: 12px;
+  margin-bottom: 20px;
 }
 
 .container button{
   background-color: var(--main-button-color);
-  margin: 10px 75px;
   color: white;
-  width: 216px;
-  height:46px; 
+  width: 17vw;
+  height:8vh; 
   outline: none;
   font-weight: bold;
   font-size: 1.1em;
   border-radius: 5px;
-  border-color: var(--main-button-color);
+  border: none;
   cursor:pointer;
+  margin-bottom: 20px;
+}
+
+.btn_div{
+  text-align:center;
+  align-items:center;
+}
+
+.alternatives_div{
+  text-align:center;
+  align-items:center;
 }
 
 .containerAlternatives{
   display: flex;
   justify-content: space-evenly;
+  
 }
 
 .alternative{
@@ -87,19 +111,10 @@ h1{
 a{
   color: #0163E0;
   cursor: pointer;
-  margin-left: 38px;
 }
 
 a:hover{
   text-decoration: underline;
 }
 
-p{
-  margin: 10px 0px;
-  margin-left: 88px;
-}
-
-.question{
-  margin-left: 100px;
-}
 

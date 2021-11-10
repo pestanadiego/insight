@@ -90,81 +90,85 @@ function RegisterEspecialistForm() {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.register}>
-        <h1>Registro <span>especialista</span></h1>
-        <form onSubmit={handleSubmit}>
-          <div className={styles.inputGroup}>
-            <label htmlFor="name">Nombre y apellido</label><br/>
-            <input
-              name="name"
-              id="name"
-              type="text"
-              value={values.name}
-              onChange={handleOnChange} // Evento que "escucha" cada vez que el input cambia
-            />
+    <div className={styles.mainContainer}>
+      <div className={styles.container}>
+        <div className={styles.register}>
+          <h1>Registro especialista</h1>
+          <div className={styles.form_div}>
+            <form onSubmit={handleSubmit}>
+              <div className={styles.inputGroup}>
+                <label htmlFor="name">Nombre y apellido</label><br/>
+                <input
+                  name="name"
+                  id="name"
+                  type="text"
+                  value={values.name}
+                  onChange={handleOnChange} // Evento que "escucha" cada vez que el input cambia
+                />
+              </div>
+    
+              <div className={styles.inputGroup}>
+                <label htmlFor="email">Correo electrónico</label><br/>
+                <input
+                  name="email"
+                  id="email"
+                  type="email"
+                  value={values.email}
+                  onChange={handleOnChange}
+                />
+              </div>
+    
+              <div className={styles.inputGroup}>
+                <label htmlFor="date">Fecha de nacimiento</label><br/>
+                <input
+                  name="date"
+                  id="date"
+                  type="date"
+                  value={values.date}
+                  onChange={handleOnChange}
+                />
+              </div>
+    
+              <div className={styles.inputGroup}>
+                <label htmlFor="password">Contraseña</label><br/>
+                <input
+                  name="password"
+                  id="password"
+                  type="password"
+                  value={values.password}
+                  onChange={handleOnChange}
+                />
+              </div>
+    
+              <div className={styles.inputGroup}>
+                <label htmlFor="credentials">Cargar credenciales</label><br/>
+                <input
+                  name="credentials"
+                  id="credentials"
+                  type="file"
+                  onChange={handlePick}
+                  multiple="multiple"
+                />
+              </div>
+    
+              <div className={styles.checkboxGroup}>
+                <input
+                  name="conditions"
+                  id="conditions"
+                  type="checkbox"
+                  value={values.password}
+                  onChange={handleOnChange}
+                  required
+                />
+                <label htmlFor="conditions">Acepto los términos y condiciones</label>
+              </div>
+    
+              <div className={styles.btnDiv}><button type="submit" onClick={handleSubmit}>
+                Confirmar
+              </button></div>
+            </form>
           </div>
-
-          <div className={styles.inputGroup}>
-            <label htmlFor="email">Correo electrónico</label><br/>
-            <input
-              name="email"
-              id="email"
-              type="email"
-              value={values.email}
-              onChange={handleOnChange}
-            />
-          </div>
-
-          <div className={styles.inputGroup}>
-            <label htmlFor="date">Fecha de nacimiento</label><br/>
-            <input
-              name="date"
-              id="date"
-              type="date"
-              value={values.date}
-              onChange={handleOnChange}
-            />
-          </div>
-
-          <div className={styles.inputGroup}>
-            <label htmlFor="password">Contraseña</label><br/>
-            <input
-              name="password"
-              id="password"
-              type="password"
-              value={values.password}
-              onChange={handleOnChange}
-            />
-          </div>
-
-          <div className={styles.inputGroup}>
-            <label htmlFor="credentials">Cargar credenciales</label><br/>
-            <input
-              name="credentials"
-              id="credentials"
-              type="file"
-              onChange={handlePick}
-              multiple="multiple"
-            />
-          </div>
-
-          <div className={styles.checkboxGroup}>
-            <input
-              name="conditions"
-              id="conditions"
-              type="checkbox"
-              value={values.password}
-              onChange={handleOnChange}
-              required
-            />
-            <label htmlFor="conditions">Acepto los términos y condiciones</label>
-          </div>
-
-          <button type="submit" onClick={handleSubmit}>
-            Confirmar
-          </button>
-        </form>
+        </div>
       </div>
     </div>
   );
