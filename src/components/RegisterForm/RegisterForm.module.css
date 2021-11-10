@@ -17,14 +17,19 @@ body {
 
 h1{
   color: var(--main-letters-color);
-  margin: 10px 100px;
+  margin: 10px 106px;
   font-size: 2.2em;
   margin-bottom: 25px;
 }
 
+.tituloPaciente{
+  margin-left: -4px;
+  margin-bottom: 20px;
+}
+
 .inputGroup{
   margin: 20px 0px;
-  margin-left: 16px;
+  margin-left: 12px;
 }
 
 .inputGroup label {
@@ -53,7 +58,7 @@ h1{
 
 .checkboxGroup{
   margin: 20px 0px;
-  margin-left: 28px;
+  margin-left: 12px;
 }
 
 .container button{

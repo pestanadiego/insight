@@ -7,6 +7,68 @@ body {
   background: var(--main-bg-color);
 }
 
-.register {
-  background: white;
+.container {
+  width: 45vw;
+  height: 135vh;
+  padding: 30px 103.5px;
+  margin: 20px 340px;
+  background-color: white;
+}
+
+h1{
+  color: var(--main-letters-color);
+  margin: 10px 106px;
+  font-size: 2.2em;
+  margin-bottom: 25px;
+}
+span{
+  margin-left: -33px;
+  margin-bottom: 20px;
+}
+
+.inputGroup{
+  margin: 20px 0px;
+  margin-left: 12px;
+}
+
+.inputGroup label {
+  color: var(--main-letters-color);
+  font-size: 0.875em;
+}
+
+.inputGroup input{
+  width:360px;
+  height:34px;
+  outline: none;
+  padding: 5px;
+  border-radius: 4px;
+  border: solid 1px var(--main-input-color);
+}
+
+.inputGroup input::content{
+  color: var(--main-letters-color); 
+}
+
+.checkboxGroup label{
+  color: var(--main-letters-color);
+  font-size: 0.875em;
+  margin: 10px 10px;
+}
+
+.checkboxGroup{
+  margin: 20px 12px;
+}
+
+.container button{
+  background-color: var(--main-button-color);
+  margin: 10px 75px;
+  color: white;
+  width: 216px;
+  height:46px; 
+  outline: none;
+  font-weight: bold;
+  font-size: 1.1em;
+  border-radius: 5px;
+  border-color: var(--main-button-color);
+  cursor:pointer;
 }

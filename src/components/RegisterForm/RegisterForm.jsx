@@ -67,7 +67,7 @@ function RegisterForm() {
   return (
     <div className={styles.container}>
       <div className={styles.register}>
-        <h1>Registro paciente</h1>
+        <h1>Registro <span className={styles.tituloPaciente}>paciente</span></h1>
         <form onSubmit={handleSubmit}>
           <div className={styles.inputGroup}>
             <label htmlFor="name">Nombre y apellido</label><br/>
