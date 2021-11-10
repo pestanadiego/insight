@@ -84,7 +84,7 @@ function RegisterEspecialistForm() {
       },
       response.user.uid // Se saca de response el uid
     );
-    history.push('/'); // Devuelve al home
+    history.push('/under_review'); // Envia a Pagina de review
 
     console.log(response.user.uid);
   };

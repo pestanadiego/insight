@@ -50,25 +50,20 @@ function LoginForm() {
     <div className={styles.section}>
       <div className={styles.mainContainer}>
         <div className={styles.container}>
-          <ul>
-
-          <li>
+          <div className={styles.containerLoginbtn}>
             <div className={styles.btnimage}><img src={googleIcon} alt=""/></div> {/* Acción cuando se le da clic */}
             <div className={styles.btnlogin}><button type="button" onClick={handleGoogleLogin}>
-             <span>Iniciar Sesión con Google</span></button></div></li>
+             <span>Iniciar Sesión con Google</span></button></div>
 
-          <li>
             <div className={styles.btnimage}><img src={facebIcon} alt=""/></div> {/* Acción cuando se le da clic */}
             <div className={styles.btnlogin}><button type="button" onClick={handleFacebookLogin}>
              <span>Iniciar Sesión con Facebook</span>
-          </button></div></li>
+          </button></div>
 
-          <li>
             <div className={styles.btnimage}><img src={twitterIcon} alt=""/></div> {/* Acción cuando se le da clic */}
             <div className={styles.btnlogin}><button type="button" onClick={handleFacebookLogin}>
              <span>Iniciar Sesión con Twitter</span></button></div>
-          </li>
-          </ul>
+          </div>
           <h1>Inicia Sesión</h1>
           <form onSubmit={handleSubmit}>
             <div className={styles.inputGroup}>
@@ -95,15 +90,15 @@ function LoginForm() {
               />
             </div>
 
-            <button type="submit" className={styles.login} onClick={handleSubmit}>
+            <div className={styles.btnSubmit}><button type="submit" className={styles.login} onClick={handleSubmit}>
               Iniciar Sesión
-            </button>
+            </button></div>
           </form>
           <div className={styles.registration}>
             <h5>¿No estas registrado?</h5>
             <br/>
-            <Link to="/register"><h5 className={styles.pacient}>Regístrate como Paciente</h5></Link><h5 className={styles.letter}>o</h5>
-            <Link to="/register"><h5 className={styles.specialist}>Regístrate como Especialista</h5></Link>
+            <Link to="/register_pacient"><h5 className={styles.pacient}>Regístrate como Paciente</h5></Link><h5 className={styles.letter}>o</h5>
+            <Link to="/register_especialist"><h5 className={styles.specialist}>Regístrate como Especialista</h5></Link>
           </div>
         </div>
       </div>
