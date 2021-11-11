@@ -5,10 +5,9 @@ import { Link, useHistory } from 'react-router-dom';
 
 function Dashboard() {
     const { user } = useContext(UserContext);
-
     return(
         <div>
-          {!!user ? (
+          {(!!user && !(user.role == "pending") && !(user.role == "admin")) ? (
             <div className={styles.dashboard}>
               <ul>
                 <li>

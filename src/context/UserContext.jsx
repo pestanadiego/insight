@@ -20,6 +20,17 @@ export default function UserContextProvider({ children }) {
     }
   };
 
+  const getUserPending = async (email) => {
+    const pendingReference = db.collection('pendings');
+    const snapshot = await pendingReference.where('email', '==', email).get();
+    if(!snapshot.size) {
+      return null;
+    }
+    const pendingUser = getFirstElementArrayCollection(snapshot);
+
+    return pendingUser;
+   };
+
   const getUserByEmail = async (email) => {
     const usersReference = db.collection('users');
     // Se busca en la base de datos un objeto cuyo parámetro email coincida con el ingresado
@@ -41,13 +52,19 @@ export default function UserContextProvider({ children }) {
         const profile = await getUserByEmail(loggedUser.email);
         // Si no tienes un perfil creado en la base de datos, se crea y se coloca en el contexto.
         if (!profile) {
-          const newProfile = {
-            name: loggedUser.displayName,
-            email: loggedUser.email,
-            role: loggedUser.role,
-          };
-          await createUser(newProfile, loggedUser.uid);
-          setUser(newProfile);
+          const pendingProfile = await getUserPending(loggedUser.email);
+          if(!pendingProfile) {
+            const newProfile = {
+              name: loggedUser.displayName,
+              email: loggedUser.email,
+              role: loggedUser.role,
+            };
+            await createUser(newProfile, loggedUser.uid);
+            setUser(newProfile);            
+          } else {
+
+            setUser(null);
+          }
         } else {
           setUser(profile);
         }

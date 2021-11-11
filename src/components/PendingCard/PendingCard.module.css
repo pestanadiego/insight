@@ -1,0 +1,17 @@
+.card {
+  background-color: white;
+}
+
+.card span {
+  font-weight: bold;
+}
+
+.validate {
+  background-color: green;
+  padding: 0.5em;
+}
+
+.novalidate {
+  background-color: red;
+  padding: 0.5em;
+}
