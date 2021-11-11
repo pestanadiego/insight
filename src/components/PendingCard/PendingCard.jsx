@@ -11,8 +11,8 @@ function PendingCard({ id, name, email, date, credentials}) {
     // a la colección de users y specialist
     const handleValidation = async () => {
         const pendingProfile = await getUserPending(email);
-        pendingProfile.role = 'especialist';
-        await db.collection('especialists').doc(pendingProfile.uid).set(pendingProfile);
+        pendingProfile.role = 'specialist';
+        await db.collection('specialists').doc(pendingProfile.uid).set(pendingProfile);
         await db.collection('users').doc(pendingProfile.uid).set(pendingProfile);
         await db.collection('pendings').doc(pendingProfile.uid).delete();
     }

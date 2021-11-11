@@ -9,7 +9,7 @@ import facebIcon from "../../icons/cib_facebook.svg";
 import twitterIcon from "../../icons/twitter_icon.svg";
 
 function LoginForm() {
-  const { getUserByEmail, setUser } = useContext(UserContext); // Lo que nos permite cambiar el estado
+  const { getUserByEmail, getUserPending, setUser } = useContext(UserContext); // Lo que nos permite cambiar el estado
   const history = useHistory(); // Se utiliza para redirigir al usuario
   const [values, setValues] = useState({
     email: '',
@@ -41,14 +41,23 @@ function LoginForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let loggedUser;
     await auth.signInWithEmailAndPassword(values.email, values.password);
-    loggedUser = await getUserByEmail(values.email);
-    if(loggedUser.role === "admin") {
-      history.push('/admin');
-    } else {
-      history.push('/');
-    }
+    const loggedUser = await getUserByEmail(values.email);
+    console.log(loggedUser);
+    if(!!!(loggedUser)) {
+      const pendingUser = await getUserPending(values.email);
+      if(pendingUser) {
+        history.push('/under_review');
+      } else {
+        history.push('/');
+      }
+    }else {
+        if(loggedUser.role === "admin") {
+          history.push('/admin');
+        } else {
+          history.push('/home');
+        }
+      }
   };
 
   return (

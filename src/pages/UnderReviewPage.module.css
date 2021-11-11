@@ -1,0 +1,16 @@
+h2 {
+    font-size: 12px;
+    color: var(--main-letters-color);
+    text-align: center;
+}
+
+.page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.underReviewContainer {
+    background-color: white;
+    border-radius: 5px;
+}

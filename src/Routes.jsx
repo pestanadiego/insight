@@ -15,7 +15,7 @@ function Routes() {
       <Route exact path="/register_pacient" component={RegisterPage} />
       <Route exact path="/register_especialist" component={RegisterEspecialistPage} />
       <Route exact path="/under_review" component={UnderReviewPage} />
-      {/* Protected Route */}
+      {/* Protected Routes */}
       <PrivateRoute exact path="/profile" component={ProfilePage} />
       <PrivateRoute exact path="/admin" component={AdminPage} />
       <Route exact path="/" component={HomePage} />
