@@ -20,20 +20,8 @@ function RegisterEspecialistForm() {
   // de esos archivos en la base de datos. 
   const uploadFile = async (file) => {
     const uploadTask = storage.ref(`credentials/${file.name}`).put(file);
-    uploadTask.on('state_changed', 
-    (snapshot) => {
-    }, 
-    (error) => console.log(error),
-    () => {
-      storage
-        .ref('credentials')
-        .child(file.name)
-        .getDownloadURL().
-        then((url) => {
-          return url;
-        });
-      }
-    );
+    const fileUrl = storage.ref('credentials').child(file.name).getDownloadURL();
+    return(fileUrl);
   }
 
   const handleOnChange = (event) => {
@@ -72,7 +60,6 @@ function RegisterEspecialistForm() {
       values.password
     );
     // Para que se almacene en la base de datos y no sólo en el módulo de autenticación
-    console.log(credentialsArray);
     await createUser(
       {
         name: values.name,
@@ -80,7 +67,7 @@ function RegisterEspecialistForm() {
         date: values.date,
         role: 'pending',
         uid: response.user.uid,
-        credentials: [1,2]
+        credentials: credentialsArray
       },
       response.user.uid
     );
