@@ -25,50 +25,49 @@
   width: 20vw;
   height: 7.8vh;
   margin: 15px 0px;
-  outline:none;
+  outline: none;
   cursor: pointer;
-
 }
 
-.section_alternatives{
+.section_alternatives {
   display: flex;
-  justify-content:center;
+  justify-content: center;
 }
 
-.containerLoginbtn ul li{
+.containerLoginbtn ul li {
   list-style: none;
 }
 
-.containerLoginbtn ul li button{
+.containerLoginbtn ul li button {
   width: 20vw;
   height: 6.7vh;
   border-radius: 5px;
-  background-color:#F5F5F7;
-  border: solid 1px #DBDBE1;
+  background-color: #f5f5f7;
+  border: solid 1px #dbdbe1;
 }
 
-.btnDiv{
+.btnDiv {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   font-size: 0.87em;
 }
 
-.form_Div{
-  display:flex;
+.form_Div {
+  display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   text-align: center;
 }
 
-.container h1{
-    text-align: center;
-    font-size: 2.2em;
-    color: var(--main-letters-color);
+.container h1 {
+  text-align: center;
+  font-size: 2.2em;
+  color: var(--main-letters-color);
 }
 
-.inputGroup{
-  margin:20px 0px;
+.inputGroup {
+  margin: 20px 0px;
 }
 
 .inputGroup label {
@@ -93,34 +92,33 @@
   font-size: 1.1em;
   border-radius: 5px;
   margin-top: 10px;
-  border-color: var(--main-button-color);
+  border: none;
 }
 
-.registration{
-  text-align:center;
+.registration {
+  text-align: center;
   align-items: center;
-  color:var(--main-letters-color);
+  color: var(--main-letters-color);
 }
 
-.pacient, .specialist{
-  text-align:center;
+.pacient,
+.specialist {
+  text-align: center;
   align-items: center;
-  color: #0163E0;
+  color: #0163e0;
   cursor: pointer;
 }
 
-
-.specialist:hover{
+.specialist:hover {
   text-decoration: underline;
 }
 
-.pacient:hover{
+.pacient:hover {
   text-decoration: underline;
 }
 
-.btnImage{
-  display:flex;
-  justify-content:flex-start;
-  align-self:center;
+.btnImage {
+  display: flex;
+  justify-content: flex-start;
+  align-self: center;
 }
-

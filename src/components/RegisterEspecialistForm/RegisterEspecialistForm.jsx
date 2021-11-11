@@ -15,27 +15,13 @@ function RegisterEspecialistForm() {
     date: '',
     password: ''
   });
-  let credentialsArray = [];
 
   // Esta función se encarga de subir los archivos al storage y guardar la dirección
   // de esos archivos en la base de datos. 
-  const uploadFile = (file) => {
+  const uploadFile = async (file) => {
     const uploadTask = storage.ref(`credentials/${file.name}`).put(file);
-    uploadTask.on('state_changed', 
-    (snapshot) => {
-    }, 
-    (error) => console.log(error),
-    () => {
-      storage
-        .ref('credentials')
-        .child(file.name)
-        .getDownloadURL().
-        then((url) => {
-        console.log(url);
-        credentialsArray.push(url);
-        });
-      }
-    );
+    const fileUrl = storage.ref('credentials').child(file.name).getDownloadURL();
+    return(fileUrl);
   }
 
   const handleOnChange = (event) => {
@@ -47,7 +33,6 @@ function RegisterEspecialistForm() {
   const handlePick = (event) => {
     let pickedFile;
     let allFiles = [];
-    console.log(event.target.files.length);
     if(event.target.files) {
       for (let i = 0; i < event.target.files.length; i++) {
         pickedFile = event.target.files[i];
@@ -62,12 +47,13 @@ function RegisterEspecialistForm() {
     e.preventDefault();
     // Se sube al storage cada archivo
     let file;
-    console.log(files);
+    let fileUrl;
+    let credentialsArray = [];
     for (let i = 0; i < files.length; i++) {
       file = files[i];
-      uploadFile(file);
+      fileUrl = await uploadFile(file);
+      credentialsArray.push(fileUrl);
     }
-    credentialsArray = [];
 
     const response = await auth.createUserWithEmailAndPassword(
       values.email,
@@ -79,14 +65,14 @@ function RegisterEspecialistForm() {
         name: values.name,
         email: values.email,
         date: values.date,
-        credentials: credentialsArray,
         role: 'pending',
+        uid: response.user.uid,
+        credentials: credentialsArray
       },
-      response.user.uid // Se saca de response el uid
+      response.user.uid
     );
     history.push('/under_review'); // Envia a Pagina de review
 
-    console.log(response.user.uid);
   };
 
   return (

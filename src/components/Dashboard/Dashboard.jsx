@@ -5,10 +5,9 @@ import { Link, useHistory } from 'react-router-dom';
 
 function Dashboard() {
     const { user } = useContext(UserContext);
-
     return(
         <div>
-          {!!user ? (
+          {(!!user && !(user.role == "pending") && !(user.role == "admin")) ? (
             <div className={styles.dashboard}>
               <ul>
                 <li>
@@ -16,16 +15,32 @@ function Dashboard() {
                     Mi Perfil
                   </Link>
                 </li>
-                <li>
-                  <Link to="/profile" className={styles.link}>
-                    Citas
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/profile" className={styles.link}>
-                    Pacientes
-                  </Link>
-                </li>
+                {(user.role === "specialist") ? (
+                  <li>
+                    <Link to="/profile" className={styles.link}>
+                      Citas
+                    </Link>
+                  </li>
+                    ) : (
+                  <li>
+                    <Link to="/profile" className={styles.link}>
+                      Consultas
+                    </Link>
+                  </li>
+                )}
+                {(user.role === "specialist") ? (
+                  <li>
+                    <Link to="/profile" className={styles.link}>
+                      Pacientes
+                    </Link>
+                  </li>
+                    ) : (
+                  <li>
+                    <Link to="/profile" className={styles.link}>
+                      Especialistas
+                    </Link>
+                  </li>
+                )}
                 <li>
                     <Link to="/profile" className={styles.link}>
                       Mensajes

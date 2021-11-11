@@ -66,12 +66,11 @@ function RegisterForm() {
         email: values.email,
         date: values.date,
         role: 'pacient',
+        uid: response.user.uid
       },
       response.user.uid // Se saca de response el uid
     );
     history.push('/'); // Devuelve al home
-
-    console.log(response.user.uid);
   };
 
   return (

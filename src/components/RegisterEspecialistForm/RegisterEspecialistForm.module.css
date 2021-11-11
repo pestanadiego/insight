@@ -25,7 +25,7 @@
   background-color: white;
 }
 
-h1{
+h1 {
   color: var(--main-letters-color);
   text-align: center;
 
@@ -33,14 +33,14 @@ h1{
   margin-bottom: 25px;
 }
 
-.form_div{
-  display:flex;
-  justify-content:center;
-  align-items:center;
+.form_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.inputGroup{
-  margin:20px 0px;
+.inputGroup {
+  margin: 20px 0px;
 }
 
 .inputGroup label {
@@ -48,42 +48,42 @@ h1{
   font-size: 0.875em;
 }
 
-.inputGroup input{
-  width:30vw;
-  height:6.5vh;
+.inputGroup input {
+  width: 30vw;
+  height: 6.5vh;
   outline: none;
   padding: 5px;
   border-radius: 4px;
   border: solid 1px var(--main-input-color);
 }
 
-.inputGroup input::content{
-  color: var(--main-letters-color); 
+.inputGroup input::content {
+  color: var(--main-letters-color);
 }
 
-.checkboxGroup label{
+.checkboxGroup label {
   color: var(--main-letters-color);
   font-size: 0.875em;
 }
 
-.checkboxGroup{
+.checkboxGroup {
   margin-bottom: 10px;
 }
 
-.btnDiv{
-  text-align:center;
-  align-items:center;
+.btnDiv {
+  text-align: center;
+  align-items: center;
 }
 
-.container button{
+.container button {
   background-color: var(--main-button-color);
   color: white;
   width: 17vw;
-  height:8vh; 
+  height: 8vh;
   outline: none;
   font-weight: bold;
   font-size: 1.1em;
   border-radius: 5px;
   border: none;
-  cursor:pointer;
+  cursor: pointer;
 }

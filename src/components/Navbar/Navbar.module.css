@@ -1,4 +1,3 @@
-
 .navbarContainer {
   display: flex;
   align-items: center;
@@ -6,8 +5,12 @@
   padding: 0 40px;
   margin-left: auto;
   list-style: none;
-  background: rgb(87,118,234);
-  background: linear-gradient( rgba(67,88,207,1) 0%, 90deg, rgba(87,118,234,1) 100%);
+  background: rgb(87, 118, 234);
+  background: linear-gradient(
+    rgba(67, 88, 207, 1) 0%,
+    90deg,
+    rgba(87, 118, 234, 1) 100%
+  );
   color: #fff;
   font-size: 0.5rem;
 }
@@ -32,7 +35,7 @@
 }
 
 .navbarContainer li.rightSide .container .logoutBtn {
-  background: #e75151;
+  background: #e70000;
   color: #fff;
   border: none;
   padding: 10px 1rem;
@@ -44,8 +47,8 @@
 .login {
   padding: 0.7rem;
   cursor: pointer;
-  background-color: #FCE58E;
-  color: #287BC6;
+  background-color: #fce58e;
+  color: #287bc6;
   border: none;
   border-radius: 50px;
   transition: all 500ms ease;
