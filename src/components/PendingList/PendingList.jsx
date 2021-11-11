@@ -6,7 +6,8 @@ function PendingList({ pendingUsers }) {
         <div className={styles.list}>
             {pendingUsers.map((pendingUser) => (
                 <PendingCard
-                    id={pendingUser.id}
+                    key={pendingUser.uid}
+                    id={pendingUser.uid}
                     email={pendingUser.email}
                     name={pendingUser.name}
                     date={pendingUser.date}

@@ -56,92 +56,96 @@ function RegisterForm() {
         email: values.email,
         date: values.date,
         role: 'pacient',
+        uid: response.user.uid
       },
       response.user.uid // Se saca de response el uid
     );
     history.push('/'); // Devuelve al home
-
-    console.log(response.user.uid);
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.register}>
-        <h1>Registro <span className={styles.tituloPaciente}>paciente</span></h1>
-        <form onSubmit={handleSubmit}>
-          <div className={styles.inputGroup}>
-            <label htmlFor="name">Nombre y apellido</label><br/>
-            <input
-              name="name"
-              id="name"
-              type="text"
-              value={values.name}
-              onChange={handleOnChange} // Evento que "escucha" cada vez que el input cambia
-            />
+    <div className={styles.mainContainer}>
+      <div className={styles.container}>
+        <div className={styles.register}>
+          <h1>Registro <span className={styles.tituloPaciente}>paciente</span></h1>
+          <div className={styles.formDiv}>
+            <form onSubmit={handleSubmit}>
+              <div className={styles.inputGroup}>
+                <label htmlFor="name">Nombre y apellido</label><br/>
+                <input
+                  name="name"
+                  id="name"
+                  type="text"
+                  value={values.name}
+                  onChange={handleOnChange} // Evento que "escucha" cada vez que el input cambia
+                />
+              </div>
+    
+              <div className={styles.inputGroup}>
+                <label htmlFor="email">Correo electrónico</label><br/>
+                <input
+                  name="email"
+                  id="email"
+                  type="email"
+                  value={values.email}
+                  onChange={handleOnChange}
+                />
+              </div>
+    
+              <div className={styles.inputGroup}>
+                <label htmlFor="date">Fecha de nacimiento</label><br/>
+                <input
+                  name="date"
+                  id="date"
+                  type="date"
+                  value={values.date}
+                  onChange={handleOnChange}
+                />
+              </div>
+    
+              <div className={styles.inputGroup}>
+                <label htmlFor="password">Contraseña</label><br/>
+                <input
+                  name="password"
+                  id="password"
+                  type="password"
+                  value={values.password}
+                  onChange={handleOnChange}
+                />
+              </div>
+    
+              <div className={styles.checkboxGroup}>
+                <input
+                  name="conditions"
+                  id="conditions"
+                  type="checkbox"
+                  value={values.password}
+                  onChange={handleOnChange}
+                  required
+                />
+                <label htmlFor="conditions">Acepto los términos y condiciones</label>
+              </div>
+              <div className={styles.btn_div}><button type="submit" onClick={handleSubmit}>
+                Confirmar
+              </button></div>
+            </form>
           </div>
-
-          <div className={styles.inputGroup}>
-            <label htmlFor="email">Correo electrónico</label><br/>
-            <input
-              name="email"
-              id="email"
-              type="email"
-              value={values.email}
-              onChange={handleOnChange}
-            />
+          <div className={styles.alternatives_div}>
+            <p>O regístrate a través de: </p>
+            <div className={styles.containerAlternatives}>
+            <div className={styles.alternative} onClick={handleGoogleLogin}>
+              <img src={googleIcon} alt=""/>
+            </div>
+            <div className={styles.alternative} onClick={handleFacebookLogin}>
+              <img src={facebIcon} alt=""/> 
+            </div>
+            <div className={styles.alternative} onClick={handleGoogleLogin}>
+              <img src={twitterIcon} alt=""/>
+            </div>
+            </div>
+            <p className={styles.question}>¿Ya estás registrado? <br/><a href="/login">Inicia sesión</a></p>
           </div>
-
-          <div className={styles.inputGroup}>
-            <label htmlFor="date">Fecha de nacimiento</label><br/>
-            <input
-              name="date"
-              id="date"
-              type="date"
-              value={values.date}
-              onChange={handleOnChange}
-            />
-          </div>
-
-          <div className={styles.inputGroup}>
-            <label htmlFor="password">Contraseña</label><br/>
-            <input
-              name="password"
-              id="password"
-              type="password"
-              value={values.password}
-              onChange={handleOnChange}
-            />
-          </div>
-
-          <div className={styles.checkboxGroup}>
-            <input
-              name="conditions"
-              id="conditions"
-              type="checkbox"
-              value={values.password}
-              onChange={handleOnChange}
-              required
-            />
-            <label htmlFor="conditions">Acepto los términos y condiciones</label>
-          </div>
-
-          <button type="submit" onClick={handleSubmit}>
-            Confirmar
-          </button>
-        </form>
-        <p>O regístrate a través de: </p>
-        <div className={styles.containerAlternatives}>
-        <div className={styles.alternative} onClick={handleGoogleLogin}>
-          <img src={googleIcon} alt=""/>
         </div>
-        <div className={styles.alternative} onClick={handleFacebookLogin}>
-          <img src={facebIcon} alt=""/> 
-        </div>
-        <div className={styles.alternative} onClick={handleGoogleLogin}>
-          <img src={twitterIcon} alt=""/>
-        </div>
-        </div>
-        <p className={styles.question}>¿Ya estás registrado? <br/><a href="/login">Inicia sesión</a></p>
       </div>
     </div>
   );

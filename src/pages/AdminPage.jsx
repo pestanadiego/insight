@@ -5,15 +5,14 @@ import PendingList from '../components/PendingList/PendingList';
 function AdminPage() {
     const [pendingUsers, setPendingUsers] = useState([]);
 
+    
     const fetchPendingUsers = async () => {
         const response = await db.collection('pendings').get() // Trae la colección de pendings desde Firestore
         setPendingUsers(response.docs.map(doc => doc.data())); // Coloca cada pendingUsers en un array
-        console.log(pendingUsers);
     }
 
-
     useEffect(() => {
-        fetchPendingUsers();
+      const unlisten = db.collection('pendings').onSnapshot(async () => fetchPendingUsers());
     }, []);
 
     return (

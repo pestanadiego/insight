@@ -1,10 +1,11 @@
 /*INICIO DE SESION*/
 .section {
   background-color: var(--main-bg-color);
-  margin: 0;
+  margin: 20px 0px;
   padding: 0;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .mainContainer {
@@ -16,45 +17,56 @@
 .container {
   width: 45vw;
   height: 135vh;
-  padding: 30px 0px;
-  margin: 20px 340px;
+  align-items: center;
   background-color: white;
-}
-
-.container ul li {
-  list-style: none;
-  margin: 10px 165px;
-}
-
-.container ul li img {
-  margin: 5px;
 }
 
 .container button {
   width: 20vw;
   height: 7.8vh;
-  margin-bottom: 20px;
+  margin: 15px 0px;
+  outline: none;
   cursor: pointer;
-  align-items: center;
 }
 
-.container h1 {
-  margin-top: 20px;
-  margin-left: 175px;
-  font-size: 2.2em;
-  color: var(--main-letters-color);
-  align-self: center;
+.section_alternatives {
+  display: flex;
   justify-content: center;
 }
 
-.container form,
-h1 {
-  margin: 10px 170px;
+.containerLoginbtn ul li {
+  list-style: none;
+}
+
+.containerLoginbtn ul li button {
+  width: 20vw;
+  height: 6.5vh;
+  border-radius: 5px;
+  background-color: #f5f5f7;
+  border: solid 1px #dbdbe1;
+}
+
+.btnDiv {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.form_Div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.container h1 {
+  text-align: center;
+  font-size: 2.2em;
+  color: var(--main-letters-color);
 }
 
 .inputGroup {
   margin: 20px 0px;
-  margin-left: 22px;
 }
 
 .inputGroup label {
@@ -66,8 +78,8 @@ h1 {
   outline: none;
   border-radius: 4px;
   padding: 5px;
-  width: 208px;
-  height: 32px;
+  width: 18vw;
+  height: 6vh;
   border: solid 1px var(--main-input-color);
 }
 
@@ -83,24 +95,17 @@ h1 {
 }
 
 .registration {
-  margin-left: 222px;
+  text-align: center;
+  align-items: center;
   color: var(--main-letters-color);
 }
 
 .pacient,
 .specialist {
+  text-align: center;
+  align-items: center;
   color: #0163e0;
   cursor: pointer;
-}
-
-.pacient {
-  margin-left: -10px;
-  margin-top: -35px;
-}
-
-.specialist {
-  margin-left: -17px;
-  margin-top: -21px;
 }
 
 .specialist:hover {
@@ -111,15 +116,8 @@ h1 {
   text-decoration: underline;
 }
 
-.btnimage {
-  position: absolute;
-  cursor: pointer;
-  width: 5vw;
-  height: 7.8vh;
-  padding: 0px 10px;
-  margin-bottom: 5px;
-}
-
-.letter {
-  margin-left: 20%;
+.btnImage {
+  display: flex;
+  justify-content: flex-start;
+  align-self: center;
 }

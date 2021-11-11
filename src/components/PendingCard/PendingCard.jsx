@@ -6,20 +6,23 @@ import { db } from '../../utils/firebaseConfig';
 
 function PendingCard({ id, name, email, date, credentials}) {
     const { getUserPending } = useContext(UserContext);
+    console.log(id, name, email, date, credentials);
 
+    // Si se acepta el usuario, se elimina de la colección de pending y se agrega 
+    // a la colección de users y specialist
     const handleValidation = async () => {
         const pendingProfile = await getUserPending(email);
         pendingProfile.role = 'especialist';
-        console.log(pendingProfile.uid);
-        await db.collection('especialists').add(pendingProfile);
+        await db.collection('especialists').doc(pendingProfile.uid).set(pendingProfile);
+        await db.collection('users').doc(pendingProfile.uid).set(pendingProfile);
         await db.collection('pendings').doc(pendingProfile.uid).delete();
     }
 
+    // Si se rechaza el usuario, se elimina de la colección pending y su autenticación también
     const handleRejection = async () => {
-        // TO DO
+        const pendingProfile = await getUserPending(email);
+        await db.collection('pendings').doc(pendingProfile.uid).delete();
     }
-
-
     return (
       <div className={styles.card}>
           <div className={styles.info}>
@@ -29,7 +32,7 @@ function PendingCard({ id, name, email, date, credentials}) {
             <p><span>Fecha de nacimiento:</span> {date}</p>
             <p><span>Credenciales: </span>
             {credentials.map((credential) => (
-              <a href={credential} target="_blank">Link</a>))  
+              <a key={credential} href={credential} target="_blank">Link</a>))  
             }
             </p>
           </div>
