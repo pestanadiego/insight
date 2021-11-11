@@ -1,17 +1,41 @@
 .card {
   background-color: white;
+  width: 500px;
+  margin: 20px;
+  border-radius: 5px;
 }
 
 .card span {
   font-weight: bold;
 }
 
+.info {
+  padding-top: 20px;
+}
+
+.buttons {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
 .validate {
-  background-color: green;
-  padding: 0.5em;
+  background-color: #23e386;
+  font-family: "poppins";
+  border-radius: 5px;
+  border: none;
+  color: white;
+  padding: 1em 2.3em;
+  cursor: pointer;
+  margin: 5px;
 }
 
 .novalidate {
-  background-color: red;
-  padding: 0.5em;
+  background-color: #e70000;
+  font-family: "poppins";
+  border-radius: 5px;
+  border: none;
+  color: white;
+  padding: 1em 2.3em;
+  cursor: pointer;
+  margin: 5px;
 }

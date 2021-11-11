@@ -87,6 +87,7 @@ export default function UserContextProvider({ children }) {
         setUser,
         createUser,
         getUserByEmail,
+        getUserPending
       }}
     >
       {children} {/* Encierra a todos los hijos que están en App.jsx */}

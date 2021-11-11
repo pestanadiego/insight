@@ -3,7 +3,7 @@ import styles from './PendingList.module.css';
 
 function PendingList({ pendingUsers }) {
     return(
-        <div className="list">
+        <div className={styles.list}>
             {pendingUsers.map((pendingUser) => (
                 <PendingCard
                     id={pendingUser.id}
