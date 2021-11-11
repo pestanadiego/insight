@@ -6,7 +6,6 @@ import { db } from '../../utils/firebaseConfig';
 
 function PendingCard({ id, name, email, date, credentials}) {
     const { getUserPending } = useContext(UserContext);
-    console.log(id, name, email, date, credentials);
 
     // Si se acepta el usuario, se elimina de la colección de pending y se agrega 
     // a la colección de users y specialist

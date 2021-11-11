@@ -14,9 +14,9 @@ function AdminPage() {
     useEffect(() => {
       const unlisten = db.collection('pendings').onSnapshot(async () => fetchPendingUsers());
     }, []);
-
+    
     return (
-      <PendingList pendingUsers={pendingUsers} />
+        <PendingList pendingUsers={pendingUsers} />      
     );
   }
   

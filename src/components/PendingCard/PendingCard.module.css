@@ -10,7 +10,12 @@
 }
 
 .info {
-  padding-top: 20px;
+  padding: 20px;
+  
+}
+
+.info a {
+  padding: 0 5px;
 }
 
 .buttons {
