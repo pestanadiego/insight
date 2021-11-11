@@ -9,7 +9,7 @@ import facebIcon from "../../icons/cib_facebook.svg";
 import twitterIcon from "../../icons/twitter_icon.svg";
 
 function LoginForm() {
-  const { getUserByEmail, getUserPending, setUser } = useContext(UserContext); // Lo que nos permite cambiar el estado
+  const { getUserByEmail, getUserPending, setUser, createUser } = useContext(UserContext); // Lo que nos permite cambiar el estado
   const history = useHistory(); // Se utiliza para redirigir al usuario
   const [values, setValues] = useState({
     email: '',
@@ -21,54 +21,99 @@ function LoginForm() {
     setValues({ ...values, [inputName]: value });
   };
 
-  // Inicio de sesión con Google
+  // Inicio de sesion con Google
   const handleGoogleLogin = async () => {
-    const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
-    setUser({
-      name: response.user.displayName,
-      email: response.user.email
-    });
-    history.push('/profile');
+    try{const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
+      setUser({
+        name: response.user.displayName,
+        email: response.user.email
+      });
+      // Para que se almacene en la base de datos y no sólo en el módulo de autenticación
+      await createUser(
+        {
+          name: response.user.displayName,
+          email: response.user.email,
+          date: values.date,
+          role: 'pacient',
+          uid: response.user.uid,
+        },
+        response.user.uid);
+      history.push('/');
+    } catch(error){
+      alert('Se ha producido un error por favor inténtelo más tarde.')
+    }
   };
 
-  //Inicio de sesion con Facebook
+ //Inicio de sesion con Facebook
   const handleFacebookLogin = async () => {
-    const response = await auth.signInWithPopup(facebookProvider);  //Se le envia al proveedor de Facebook
-    setUser({
-      name: response.user.displayName,
-      email: response.user.email
-    });
-    history.push('/');
+    try{
+      const response = await auth.signInWithPopup(facebookProvider);  //Se le envia al proveedor de Facebook
+      setUser({
+        name: response.user.displayName,
+        email: response.user.email
+      });
+      // Para que se almacene en la base de datos y no sólo en el módulo de autenticación
+      await createUser(
+        {
+          name: response.user.displayName,
+          email: response.user.email,
+          date: values.date,
+          role: 'pacient',
+          uid: response.user.uid,
+        },
+        response.user.uid);
+      history.push('/');
+    } catch(error){
+      alert('Se ha producido un error por favor inténtelo más tarde.')
+    }
+    
   };
 
   //Inicio de sesion con Twitter
   const handleTwitterLogin = async () => {
-    const response = await auth.signInWithPopup(twitterProvider);  //Se le envia al proveedor de Twitter
-    setUser({
-      name: response.user.displayName,
-      email: response.user.email
-    });
-    history.push('/');
+    try{
+      const response = await auth.signInWithPopup(twitterProvider);  //Se le envia al proveedor de Twitter
+      setUser({
+        name: response.user.displayName,
+        email: response.user.email
+      });
+      // Para que se almacene en la base de datos y no sólo en el módulo de autenticación
+      await createUser(
+        {
+          name: response.user.name,
+          email: response.user.email,
+          date: values.date,
+          role: 'pacient',
+          uid: response.user.uid,
+        },
+        response.user.uid);
+      history.push('/');
+    } catch(error){
+      alert('Se ha producido un error por favor inténtelo más tarde.')
+    }
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    await auth.signInWithEmailAndPassword(values.email, values.password);
-    const loggedUser = await getUserByEmail(values.email);
-    console.log(loggedUser);
-    if(!!!(loggedUser)) {
-      const pendingUser = await getUserPending(values.email);
-      if(pendingUser) {
-        history.push('/under_review');
-      } else {
-        history.push('/');
-      }
-    }else {
-        if(loggedUser.role === "admin") {
-          history.push('/admin');
+    try{
+      e.preventDefault();
+      await auth.signInWithEmailAndPassword(values.email, values.password);
+      const loggedUser = await getUserByEmail(values.email);
+      console.log(loggedUser);
+      if(!!!(loggedUser)) {
+        const pendingUser = await getUserPending(values.email);
+        if(pendingUser) {
+          history.push('/under_review');
         } else {
-          history.push('/home');
+          history.push('/');
         }
+      }else {
+          if(loggedUser.role === "admin") {
+            history.push('/admin');
+          } else {
+            history.push('/home');
+        }
+      }} catch(error) {
+        alert('Se ha producido un error por favor inténtelo más tarde.')
       }
   };
 
