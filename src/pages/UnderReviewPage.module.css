@@ -1,5 +1,15 @@
 h2 {
-    font-size: 12px;
+    font-size: 24px;
+    color: var(--main-letters-color);
+    text-align: center;
+}
+
+.checkmark {
+    text-align: center;
+}
+
+p {
+    font-size: 14px;
     color: var(--main-letters-color);
     text-align: center;
 }
@@ -13,4 +23,15 @@ h2 {
 .underReviewContainer {
     background-color: white;
     border-radius: 5px;
+}
+
+.underReviewBtn {
+    background-color: var(--main-button-color);
+    color: white;
+    padding: 5px;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
 }
