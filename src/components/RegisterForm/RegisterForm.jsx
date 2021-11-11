@@ -6,7 +6,7 @@ import { auth } from '../../utils/firebaseConfig';
 import googleIcon from "../../icons/Google_Icon.svg";
 import facebIcon from "../../icons/cib_facebook.svg";
 import twitterIcon from "../../icons/twitter_icon.svg";
-import { googleProvider, facebookProvider} from '../../utils/firebaseConfig';
+import { googleProvider, facebookProvider, twitterProvider} from '../../utils/firebaseConfig';
 
 function RegisterForm() {
   const { setUser } = useContext(UserContext);
@@ -34,6 +34,16 @@ function RegisterForm() {
   //Inicio de sesion con Facebook
   const handleFacebookLogin = async () => {
     await auth.signInWithPopup(facebookProvider);  //Se le envia al proveedor de Facebook
+    history.push('/');
+  };
+
+  //Inicio de sesion con Twitter
+  const handleTwitterLogin = async () => {
+    const response = await auth.signInWithPopup(twitterProvider);  //Se le envia al proveedor de Twitter
+    setUser({
+      name: response.user.displayName,
+      email: response.user.email
+    });
     history.push('/');
   };
 
@@ -140,7 +150,7 @@ function RegisterForm() {
             <div className={styles.alternative} onClick={handleFacebookLogin}>
               <img src={facebIcon} alt=""/> 
             </div>
-            <div className={styles.alternative} onClick={handleGoogleLogin}>
+            <div className={styles.alternative} onClick={handleTwitterLogin}>
               <img src={twitterIcon} alt=""/>
             </div>
             </div>

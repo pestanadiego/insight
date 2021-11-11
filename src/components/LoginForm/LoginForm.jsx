@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import styles from './LoginForm.module.css';
-import { auth, googleProvider, facebookProvider } from '../../utils/firebaseConfig';
+import { auth, googleProvider, facebookProvider, twitterProvider } from '../../utils/firebaseConfig';
 import { UserContext } from '../../context/UserContext';
 import { useState } from 'react';
 import googleIcon from "../../icons/Google_Icon.svg";
@@ -34,11 +34,23 @@ function LoginForm() {
 
   //Inicio de sesion con Facebook
   const handleFacebookLogin = async () => {
-    await auth.signInWithPopup(facebookProvider);  //Se le envia al proveedor de Facebook
+    const response = await auth.signInWithPopup(facebookProvider);  //Se le envia al proveedor de Facebook
+    setUser({
+      name: response.user.displayName,
+      email: response.user.email
+    });
     history.push('/');
   };
 
-  //TODO INICIO DE SESION CON TWITTER
+  //Inicio de sesion con Twitter
+  const handleTwitterLogin = async () => {
+    const response = await auth.signInWithPopup(twitterProvider);  //Se le envia al proveedor de Twitter
+    setUser({
+      name: response.user.displayName,
+      email: response.user.email
+    });
+    history.push('/');
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,7 +74,7 @@ function LoginForm() {
                  <span className={styles.btnText}>Iniciar Sesión con Facebook</span></div></button></li>
 
                  {/* Acción cuando se le da clic */}
-                <li><button type="button" onClick={handleGoogleLogin}><div className={styles.btnDiv}><img className={styles.btnImage} src={twitterIcon} alt=""/>
+                <li><button type="button" onClick={handleTwitterLogin}><div className={styles.btnDiv}><img className={styles.btnImage} src={twitterIcon} alt=""/>
                  <span className={styles.btnText}>Iniciar Sesión con Twitter</span></div></button></li>
               </ul>
             </div>

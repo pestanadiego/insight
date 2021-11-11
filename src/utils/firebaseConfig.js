@@ -18,4 +18,5 @@ export const db = app.firestore(); // Base de datos
 export const auth = app.auth();
 export const storage = app.storage();
 export const facebookProvider = new firebase.auth.FacebookAuthProvider();
+export const twitterProvider = new firebase.auth.TwitterAuthProvider();
 export const googleProvider = new firebase.auth.GoogleAuthProvider();
