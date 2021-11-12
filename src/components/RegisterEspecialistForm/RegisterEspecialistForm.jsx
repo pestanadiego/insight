@@ -19,9 +19,14 @@ function RegisterEspecialistForm() {
   // Esta función se encarga de subir los archivos al storage y guardar la dirección
   // de esos archivos en la base de datos. 
   const uploadFile = async (file) => {
-    const uploadTask = storage.ref(`credentials/${file.name}`).put(file);
-    const fileUrl = storage.ref('credentials').child(file.name).getDownloadURL();
-    return(fileUrl);
+    try{
+      const uploadTask = storage.ref(`credentials/${file.name}`).put(file);
+      const fileUrl = storage.ref('credentials').child(file.name).getDownloadURL();
+      return(fileUrl);
+    } catch(error) {
+      alert('Se ha producido un error por favor inténtelo más tarde.')
+    }
+
   }
 
   const handleOnChange = (event) => {
@@ -31,48 +36,55 @@ function RegisterEspecialistForm() {
 
   // Función que maneja los archivos subidos por el usuario
   const handlePick = (event) => {
-    let pickedFile;
-    let allFiles = [];
-    if(event.target.files) {
-      for (let i = 0; i < event.target.files.length; i++) {
-        pickedFile = event.target.files[i];
-        allFiles.push(pickedFile);
+    try{
+      let pickedFile;
+      let allFiles = [];
+      if(event.target.files) {
+        for (let i = 0; i < event.target.files.length; i++) {
+          pickedFile = event.target.files[i];
+          allFiles.push(pickedFile);
+        }
+        setFiles(allFiles);
       }
-      setFiles(allFiles);
+    } catch(error) {
+      alert('Se ha producido un error por favor inténtelo más tarde.')
     }
   }
 
   // Función del submit del botón
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    // Se sube al storage cada archivo
-    let file;
-    let fileUrl;
-    let credentialsArray = [];
-    for (let i = 0; i < files.length; i++) {
-      file = files[i];
-      fileUrl = await uploadFile(file);
-      credentialsArray.push(fileUrl);
+    try{
+      e.preventDefault();
+      // Se sube al storage cada archivo
+      let file;
+      let fileUrl;
+      let credentialsArray = [];
+      for (let i = 0; i < files.length; i++) {
+        file = files[i];
+        fileUrl = await uploadFile(file);
+        credentialsArray.push(fileUrl);
+      }
+
+      const response = await auth.createUserWithEmailAndPassword(
+        values.email,
+        values.password
+      );
+      // Para que se almacene en la base de datos y no sólo en el módulo de autenticación
+      await createUser(
+        {
+          name: values.name,
+          email: values.email,
+          date: values.date,
+          role: 'pending',
+          uid: response.user.uid,
+          credentials: credentialsArray
+        },
+        response.user.uid
+      );
+      history.push('/under_review'); // Envia a Pagina de review
+    } catch(error) {
+      alert('Se ha producido un error por favor inténtelo más tarde.')
     }
-
-    const response = await auth.createUserWithEmailAndPassword(
-      values.email,
-      values.password
-    );
-    // Para que se almacene en la base de datos y no sólo en el módulo de autenticación
-    await createUser(
-      {
-        name: values.name,
-        email: values.email,
-        date: values.date,
-        role: 'pending',
-        uid: response.user.uid,
-        credentials: credentialsArray
-      },
-      response.user.uid
-    );
-    history.push('/under_review'); // Envia a Pagina de review
-
   };
 
   return (

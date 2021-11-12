@@ -6,7 +6,7 @@ import { auth } from '../../utils/firebaseConfig';
 import googleIcon from "../../icons/Google_Icon.svg";
 import facebIcon from "../../icons/cib_facebook.svg";
 import twitterIcon from "../../icons/twitter_icon.svg";
-import { googleProvider, facebookProvider} from '../../utils/firebaseConfig';
+import { googleProvider, facebookProvider, twitterProvider} from '../../utils/firebaseConfig';
 
 function RegisterForm() {
   const { setUser } = useContext(UserContext);
@@ -23,18 +23,74 @@ function RegisterForm() {
 
   // Registro con Google
   const handleGoogleLogin = async () => {
-    const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
-    setUser({
-      name: response.user.displayName,
-      email: response.user.email
-    });
-    history.push('/');
+    try{const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
+      setUser({
+        name: response.user.displayName,
+        email: response.user.email
+      });
+      // Para que se almacene en la base de datos y no sólo en el módulo de autenticación
+      await createUser(
+        {
+          name: response.user.displayName,
+          email: response.user.email,
+          date: values.date,
+          role: 'pacient',
+          uid: response.user.uid,
+        },
+        response.user.uid);
+      history.push('/');
+    } catch(error){
+      alert('Se ha producido un error por favor inténtelo más tarde.')
+    }
   };
 
   //Inicio de sesion con Facebook
   const handleFacebookLogin = async () => {
-    await auth.signInWithPopup(facebookProvider);  //Se le envia al proveedor de Facebook
-    history.push('/');
+    try{
+      const response = await auth.signInWithPopup(facebookProvider);  //Se le envia al proveedor de Facebook
+      setUser({
+        name: response.user.displayName,
+        email: response.user.email
+      });
+      // Para que se almacene en la base de datos y no sólo en el módulo de autenticación
+      await createUser(
+        {
+          name: response.user.displayName,
+          email: response.user.email,
+          date: values.date,
+          role: 'pacient',
+          uid: response.user.uid,
+        },
+        response.user.uid);
+      history.push('/');
+    } catch(error){
+      alert('Se ha producido un error por favor inténtelo más tarde.')
+    }
+    
+  };
+
+  //Inicio de sesion con Twitter
+  const handleTwitterLogin = async () => {
+    try{
+      const response = await auth.signInWithPopup(twitterProvider);  //Se le envia al proveedor de Twitter
+      setUser({
+        name: response.user.displayName,
+        email: response.user.email
+      });
+      // Para que se almacene en la base de datos y no sólo en el módulo de autenticación
+      await createUser(
+        {
+          name: response.user.name,
+          email: response.user.email,
+          date: values.date,
+          role: 'pacient',
+          uid: response.user.uid,
+        },
+        response.user.uid);
+      history.push('/');
+    } catch(error){
+      alert('Se ha producido un error por favor inténtelo más tarde.')
+    }
   };
 
   const handleOnChange = (event) => {
@@ -45,7 +101,8 @@ function RegisterForm() {
   // Función del submit del botón
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await auth.createUserWithEmailAndPassword(
+    try{
+      const response = await auth.createUserWithEmailAndPassword(
       values.email,
       values.password
     );
@@ -61,6 +118,9 @@ function RegisterForm() {
       response.user.uid // Se saca de response el uid
     );
     history.push('/'); // Devuelve al home
+  } catch(error) {
+    alert('Se ha producido un error por favor inténtelo más tarde.')
+  }
   };
 
   return (
@@ -139,7 +199,7 @@ function RegisterForm() {
             <div className={styles.alternative} onClick={handleFacebookLogin}>
               <img src={facebIcon} alt=""/> 
             </div>
-            <div className={styles.alternative} onClick={handleGoogleLogin}>
+            <div className={styles.alternative} onClick={handleTwitterLogin}>
               <img src={twitterIcon} alt=""/>
             </div>
             </div>
