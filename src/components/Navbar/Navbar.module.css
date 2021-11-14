@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   height: 10vh;
+  width: 100%;
   padding: 0 40px;
   margin-left: auto;
   list-style: none;
@@ -51,7 +52,6 @@
   color: #287bc6;
   border: none;
   border-radius: 50px;
-  transition: all 500ms ease;
 }
 
 .register {
@@ -67,4 +67,22 @@
 
 img {
   padding-top: 5px;
+}
+
+@media (max-width: 700px) {
+  .login {
+    padding: 0.3rem;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    border: none;
+  }
+
+  .register {
+    padding: 0.3rem;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    border: none;
+  }
 }

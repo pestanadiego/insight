@@ -124,26 +124,40 @@ function LoginForm() {
           <div className={styles.section_alternatives}>
             <div className={styles.containerLoginbtn}>
               <ul>
-                 {/* Acción cuando se le da clic */}
-                <li><button type="button" onClick={handleGoogleLogin}><div className={styles.btnDiv}><img className={styles.btnImage} src={googleIcon} alt=""/>
-                 <span className={styles.btnText}>Iniciar Sesión con Google</span></div></button></li>
-
-                 {/* Acción cuando se le da clic */}
-                <li><button type="button" onClick={handleFacebookLogin}><div className={styles.btnDiv}><img className={styles.btnImage} src={facebIcon} alt=""/>
-                 <span className={styles.btnText}>Iniciar Sesión con Facebook</span></div></button></li>
-
-                 {/* Acción cuando se le da clic */}
-                <li><button type="button" onClick={handleTwitterLogin}><div className={styles.btnDiv}><img className={styles.btnImage} src={twitterIcon} alt=""/>
-                 <span className={styles.btnText}>Iniciar Sesión con Twitter</span></div></button></li>
+                <li>
+                  <button type="button" onClick={handleGoogleLogin}> {/* Acción cuando se le da clic */}
+                    <div className={styles.btnDiv}>
+                      <img className={styles.btnImage} src={googleIcon} alt=""/>
+                      <span className={styles.btnText}>Iniciar sesión con Google</span>
+                    </div>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" onClick={handleFacebookLogin}>
+                    <div className={styles.btnDiv}>
+                      <img className={styles.btnImage} src={facebIcon} alt=""/>
+                      <span className={styles.btnText}>Iniciar sesión con Facebook</span>
+                    </div>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" onClick={handleTwitterLogin}>
+                    <div className={styles.btnDiv}>
+                      <img className={styles.btnImage} src={twitterIcon} alt=""/>
+                      <span className={styles.btnText}>Iniciar sesión con Twitter</span>
+                    </div>
+                  </button>
+                </li>
               </ul>
             </div>
           </div>
-          <h1>Inicia Sesión</h1>
+          <h1>Inicia sesión</h1>
+          <p>Ingresa tu correo y contraseña</p>
           <div className={styles.formDiv}>
             <div className={styles.form_Div}>
               <form onSubmit={handleSubmit}>
                 <div className={styles.inputGroup}>
-                  <label htmlFor="email">Ingrese su correo electrónico</label><br/>
+                  <label htmlFor="email">Correo electrónico</label><br/>
                   <input
                     name="email"
                     id="email"
@@ -155,7 +169,7 @@ function LoginForm() {
                 </div>
 
                 <div className={styles.inputGroup}>
-                  <label htmlFor="password">Ingrese su contraseña</label><br/>
+                  <label htmlFor="password">Contraseña</label><br/>
                   <input
                     name="password"
                     id="password"
