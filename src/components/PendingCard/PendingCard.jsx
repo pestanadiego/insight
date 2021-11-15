@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { db } from '../../utils/firebaseConfig';
 //import sendMail from '../../utils/mailing';
+import Mailing from '../../utils/mailingNode';
 
 
 function PendingCard({ id, name, email, date, credentials}) {
@@ -12,8 +13,10 @@ function PendingCard({ id, name, email, date, credentials}) {
     // a la colección de users y specialist
     const handleValidation = async () => {
       const pendingProfile = await getUserPending(email);
-      //const validate=true;
+      const validate=true;
+      Mailing(validate, pendingProfile);
       //await sendMail(validate, pendingProfile);
+
       pendingProfile.role = 'specialist';
       await db.collection('specialists').doc(pendingProfile.uid).set(pendingProfile);
       await db.collection('users').doc(pendingProfile.uid).set(pendingProfile);
