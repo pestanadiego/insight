@@ -2,6 +2,7 @@ import styles from './PendingCard.module.css';
 import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { db } from '../../utils/firebaseConfig';
+//import sendMail from '../../utils/mailing';
 
 
 function PendingCard({ id, name, email, date, credentials}) {
@@ -10,7 +11,9 @@ function PendingCard({ id, name, email, date, credentials}) {
     // Si se acepta el usuario, se elimina de la colección de pending y se agrega 
     // a la colección de users y specialist
     const handleValidation = async () => {
+        //const validate=true;
         const pendingProfile = await getUserPending(email);
+        //await sendMail(validate, pendingProfile);
         pendingProfile.role = 'specialist';
         await db.collection('specialists').doc(pendingProfile.uid).set(pendingProfile);
         await db.collection('users').doc(pendingProfile.uid).set(pendingProfile);
@@ -19,7 +22,9 @@ function PendingCard({ id, name, email, date, credentials}) {
 
     // Si se rechaza el usuario, se elimina de la colección pending y su autenticación también
     const handleRejection = async () => {
+        //const validate=false;
         const pendingProfile = await getUserPending(email);
+        //await sendMail(validate, pendingProfile);
         await db.collection('pendings').doc(pendingProfile.uid).delete();
     }
     return (
