@@ -14,7 +14,7 @@ function PendingCard({ id, name, email, date, credentials}) {
     const handleValidation = async () => {
       const pendingProfile = await getUserPending(email);
       const validate=true;
-      Mailing(validate, pendingProfile);
+      await Mailing(validate, pendingProfile);
       //await sendMail(validate, pendingProfile);
 
       pendingProfile.role = 'specialist';
@@ -23,12 +23,13 @@ function PendingCard({ id, name, email, date, credentials}) {
       await db.collection('pendings').doc(pendingProfile.uid).delete();
     }
 
-    // Si se rechaza el usuario, se elimina de la colección pending y su autenticación también
+    // Si se rechaza el usuario, se elimina de la colección pending y se agrega a la colección no valids.
     const handleRejection = async () => {
-      const pendingProfile = await getUserPending(email);
-      //const validate=false;
-      //await sendMail(validate, pendingProfile);
-      await db.collection('pendings').doc(pendingProfile.uid).delete();
+        const pendingProfile = await getUserPending(email);
+        //const validate=false;
+        //await sendMail(validate, pendingProfile);
+        await db.collection('novalids').doc(pendingProfile.uid).set(pendingProfile);
+        await db.collection('pendings').doc(pendingProfile.uid).delete();
     }
     return (
       <div className={styles.card}>

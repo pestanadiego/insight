@@ -101,7 +101,7 @@ function RegisterEspecialistForm() {
                   id="name"
                   type="text"
                   value={values.name}
-                  onChange={handleOnChange} // Evento que "escucha" cada vez que el input cambia
+                  onChange={handleOnChange} // Evento que "escucha" cada vez que el input cambia (Observer)
                 />
               </div>
     
