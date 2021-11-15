@@ -30,12 +30,12 @@ function PasswordForm() {
   };
 
   return (
-    <div className={styles.page}>
-        <div className={styles.section}>
-            <p className={styles.title}>Reestablezca su contraseña</p>
-            <p className={styles.message}>Le enviaremos un correo electrónico con más instrucciones sobre cómo reestablecer su contraseña.</p>
+    <div className={styles.pagePassword}>
+        <div className={styles.sectionPassword}>
+            <p className={styles.titlePassword}>Reestablezca su contraseña</p>
+            <p className={styles.messagePassword}>Le enviaremos un correo electrónico con más instrucciones sobre cómo reestablecer su contraseña.</p>
             <form onSubmit={handleSubmit}>
-                <div className={styles.inputGroup}>
+                <div className={styles.inputGroupPassword}>
                       <label htmlFor="email">Correo electrónico</label>
                       <input
                         name="email"
@@ -46,8 +46,8 @@ function PasswordForm() {
                         onChange={handleOnChange}
                       />
                 </div>
-                <div className={styles.btnContainer}>
-                    <button type="submit" className={styles.emailBtn} onClick={handleSubmit}>
+                <div className={styles.btnContainerPassword}>
+                    <button type="submit" className={styles.emailBtnPassword} onClick={handleSubmit}>
                         Enviar un email
                     </button>
                 </div>

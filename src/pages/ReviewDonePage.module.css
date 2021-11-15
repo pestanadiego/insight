@@ -1,27 +1,34 @@
-.titlePassword {
+.noValidTitle {
     padding: 0 62px;
-    padding-top: 10px;
+    padding-top: 14px;
     font-size: 24px;
     color: var(--main-letters-color);
     text-align: center;
   }
   
-.messagePassword {
+  .x {
+    text-align: center;
+  }
+  
+  .infoNoValid {
+    padding: 30px 0;
+  }
+  
+  .underReviewMessage {
     padding-top: 28px;
-    padding: 20px 10px;
     font-size: 14px;
     color: var(--main-letters-color);
     text-align: center;
   }
   
-.pagePassword {
+  .pageNoValid {
     height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
-.sectionPassword {
+  .noValidContainer {
     height: 360px;
     width: 400px;
     background-color: white;
@@ -32,43 +39,24 @@
     flex-flow: column;
   }
   
-.btnContainerPassword {
-    margin-top: 20px;
+ .noValidBtnContainer {
+    padding-top: 64px;
     text-align: center;
   }
   
-.emailBtnPassword {
+  .imgContainer {
+    text-align: center;
+  }
+  
+  .doneReviewBtn {
     background-color: var(--main-button-color);
     color: white;
-    padding: 10px 32px;
+    padding: 8px 32px;
     font-family: "poppins";
     font-size: 14px;
     text-align: center;
     border-radius: 5px;
     border: none;
     cursor: pointer;
-  }
-
-.inputGroupPassword {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column;
-}
-
-.sectionPassword label {
-    font-size: 14px;
-    color: var(--main-letters-color);
-    text-align: left;
-
-}
-
-.sectionPassword input {
-    outline: none;
-    border-radius: 4px;
-    padding: 5px;
-    width: 20vw;
-    height: 6vh;
-    border: solid 1px var(--main-input-color);
   }
   

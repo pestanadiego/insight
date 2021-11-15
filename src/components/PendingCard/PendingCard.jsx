@@ -17,9 +17,10 @@ function PendingCard({ id, name, email, date, credentials}) {
         await db.collection('pendings').doc(pendingProfile.uid).delete();
     }
 
-    // Si se rechaza el usuario, se elimina de la colección pending y su autenticación también
+    // Si se rechaza el usuario, se elimina de la colección pending y se agrega a la colección no valids.
     const handleRejection = async () => {
         const pendingProfile = await getUserPending(email);
+        await db.collection('novalids').doc(pendingProfile.uid).set(pendingProfile);
         await db.collection('pendings').doc(pendingProfile.uid).delete();
     }
     return (

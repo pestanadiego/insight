@@ -38,7 +38,7 @@ function LoginForm() {
           uid: response.user.uid,
         },
         response.user.uid);
-      history.push('/');
+      history.push('/profile');
     } catch(error){
       alert('Se ha producido un error por favor inténtelo más tarde.')
     }
@@ -62,7 +62,7 @@ function LoginForm() {
           uid: response.user.uid,
         },
         response.user.uid);
-      history.push('/');
+      history.push('/profile');
     } catch(error){
       alert('Se ha producido un error por favor inténtelo más tarde.')
     }
@@ -94,26 +94,23 @@ function LoginForm() {
   };
 
   const handleSubmit = async (e) => {
-    try{
-      e.preventDefault();
-      await auth.signInWithEmailAndPassword(values.email, values.password);
-      const loggedUser = await getUserByEmail(values.email);
-      console.log(loggedUser);
-      if(!!!(loggedUser)) {
-        const pendingUser = await getUserPending(values.email);
-        if(pendingUser) {
-          history.push('/under_review');
+    e.preventDefault();
+    await auth.signInWithEmailAndPassword(values.email, values.password);
+    const loggedUser = await getUserByEmail(values.email);
+    console.log(loggedUser);
+    if(!!!(loggedUser)) {
+      const pendingUser = await getUserPending(values.email);
+      if(pendingUser) {
+        history.push('/under_review');
+      } else {
+        history.push('/');
+      }
+    }else {
+        if(loggedUser.role === "admin") {
+          history.push('/admin');
         } else {
-          history.push('/');
+          history.push('/profile');
         }
-      }else {
-          if(loggedUser.role === "admin") {
-            history.push('/admin');
-          } else {
-            history.push('/profile');
-        }
-      }} catch(error) {
-        alert('Se ha producido un error por favor inténtelo más tarde.')
       }
   };
 

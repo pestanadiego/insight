@@ -62,7 +62,7 @@ function RegisterForm() {
           uid: response.user.uid,
         },
         response.user.uid);
-      history.push('/');
+      history.push('/profile');
     } catch(error){
       alert('Se ha producido un error por favor inténtelo más tarde.')
     }
@@ -87,7 +87,7 @@ function RegisterForm() {
           uid: response.user.uid,
         },
         response.user.uid);
-      history.push('/');
+      history.push('/profile');
     } catch(error){
       alert('Se ha producido un error por favor inténtelo más tarde.')
     }
@@ -117,7 +117,7 @@ function RegisterForm() {
       },
       response.user.uid // Se saca de response el uid
     );
-    history.push('/'); // Devuelve al home
+    history.push('/profile'); // Devuelve al home
   } catch(error) {
     alert('Se ha producido un error por favor inténtelo más tarde.')
   }
