@@ -1,6 +1,6 @@
-import { useState, useEffect, createContext } from 'react';
-import { auth, db } from '../utils/firebaseConfig';
-import { getFirstElementArrayCollection } from '../utils/parser';
+import { useState, useEffect, createContext } from "react";
+import { auth, db } from "../utils/firebaseConfig";
+import { getFirstElementArrayCollection } from "../utils/parser";
 
 export const UserContext = createContext(null); // Se crea el estado global de la aplicación
 
@@ -11,29 +11,33 @@ export default function UserContextProvider({ children }) {
 
   // user es el json con los datos del usuario y uid es el ID de autenticación que da Firebase
   const createUser = async (user, uid) => {
-    if(user.role === 'pacient') {
-      await db.collection('users').doc(uid).set(user); // Se guarda en la colección 'users'
-      await db.collection('pacients').doc(uid).set(user); // Se guarda en la colección 'pacients'
-    } else if(user.role === 'pending') {
-      await db.collection('pendings').doc(uid).set(user); // Se guarda en la colección 'pendings'
+    if (user.role === "pacient") {
+      await db.collection("users").doc(uid).set(user); // Se guarda en la colección 'users'
+      await db.collection("pacients").doc(uid).set(user); // Se guarda en la colección 'pacients'
+    } else if (user.role === "pending") {
+      await db.collection("pendings").doc(uid).set(user); // Se guarda en la colección 'pendings'
+    } else {
+      user.role = "pacient";
+      await db.collection("users").doc(uid).set(user); // Se guarda en la colección 'users'
+      await db.collection("pacients").doc(uid).set(user); // Se guarda en la colección 'pacients'
     }
   };
 
   const getUserPending = async (email) => {
-    const pendingReference = db.collection('pendings');
-    const snapshot = await pendingReference.where('email', '==', email).get();
-    if(!snapshot.size) {
+    const pendingReference = db.collection("pendings");
+    const snapshot = await pendingReference.where("email", "==", email).get();
+    if (!snapshot.size) {
       return null;
     }
     const pendingUser = getFirstElementArrayCollection(snapshot);
 
     return pendingUser;
-   };
+  };
 
   const getUserByEmail = async (email) => {
-    const usersReference = db.collection('users');
+    const usersReference = db.collection("users");
     // Se busca en la base de datos un objeto cuyo parámetro email coincida con el ingresado
-    const snapshot = await usersReference.where('email', '==', email).get(); 
+    const snapshot = await usersReference.where("email", "==", email).get();
 
     if (!snapshot.size) return null;
 
@@ -52,16 +56,15 @@ export default function UserContextProvider({ children }) {
         // Si no tienes un perfil creado en la base de datos, se crea y se coloca en el contexto.
         if (!profile) {
           const pendingProfile = await getUserPending(loggedUser.email);
-          if(!pendingProfile) {
+          if (!pendingProfile) {
             const newProfile = {
               name: loggedUser.displayName,
               email: loggedUser.email,
               role: loggedUser.role,
             };
             await createUser(newProfile, loggedUser.uid);
-            setUser(newProfile);            
+            setUser(newProfile);
           } else {
-
             setUser(null);
           }
         } else {
