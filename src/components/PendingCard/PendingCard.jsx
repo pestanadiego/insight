@@ -2,9 +2,34 @@ import styles from './PendingCard.module.css';
 import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { db } from '../../utils/firebaseConfig';
+//import { eliminateUser } from '../../utils/firebaseAdmin';
+import emailjs from 'emailjs-com';
+
 
 function PendingCard({ id, name, email, date, credentials}) {
     const { getUserPending } = useContext(UserContext);
+
+    const templateRejections = {
+      title: 'Usted no ha sido admitido en Insight',
+      name: name,
+      email: email,
+      notes: 'Usted no ha sido admitido como especialista. Inténtelo de nuevo.'
+    };
+
+    const templateValidations = {
+      title: 'Usted ha sido admitido en Insight',
+      name: name,
+      email: email,
+      notes: 'Usted ha sido admitido como especialista. ¡Felicitaciones!'
+    };
+
+    const sendStatus = (templateParams) => {
+      emailjs.send('service_rkywh23', 'template_ob227vk', templateParams, 'user_A1eEQeCvsHGleoXo5JDz3').then((result) => {
+        console.log(result.text);
+      }, (error) => {
+        console.log(error.text);
+      });
+    };
 
     // Si se acepta el usuario, se elimina de la colección de pending y se agrega 
     // a la colección de users y specialist
@@ -14,13 +39,18 @@ function PendingCard({ id, name, email, date, credentials}) {
         await db.collection('specialists').doc(pendingProfile.uid).set(pendingProfile);
         await db.collection('users').doc(pendingProfile.uid).set(pendingProfile);
         await db.collection('pendings').doc(pendingProfile.uid).delete();
+        sendStatus(templateValidations);
     }
 
-    // Si se rechaza el usuario, se agrega a la colección no valids.
+    // Si se rechaza el usuario, se agrega a la colección no valids y se elimina de pendings.
     const handleRejection = async () => {
         const pendingProfile = await getUserPending(email);
         await db.collection('novalids').doc(pendingProfile.uid).set(pendingProfile);
+        await db.collection('pendings').doc(pendingProfile.uid).delete();
+        sendStatus(templateRejections);
+        //eliminateUser(pendingProfile.uid);
     }
+
     return (
       <div className={styles.card}>
           <div className={styles.info}>

@@ -32,7 +32,7 @@ export default function UserContextProvider({ children }) {
 
   const getNoValidUser = async (email) => {
     const noValidReference = db.collection('novalids');
-    const snapshot = await pendingReference.where('email', '==', email).get();
+    const snapshot = await noValidReference.where('email', '==', email).get();
     if(!snapshot.size) {
       return null;
     }

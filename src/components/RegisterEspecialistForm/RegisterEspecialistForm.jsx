@@ -43,6 +43,7 @@ function RegisterEspecialistForm() {
         for (let i = 0; i < event.target.files.length; i++) {
           pickedFile = event.target.files[i];
           allFiles.push(pickedFile);
+          console.log(pickedFile);
         }
         setFiles(allFiles);
       }
@@ -53,7 +54,6 @@ function RegisterEspecialistForm() {
 
   // Función del submit del botón
   const handleSubmit = async (e) => {
-    try{
       e.preventDefault();
       // Se sube al storage cada archivo
       let file;
@@ -69,7 +69,7 @@ function RegisterEspecialistForm() {
         values.email,
         values.password
       );
-      // Para que se almacene en la base de datos y no sólo en el módulo de autenticación
+      // Para que se almacene en la base de datos y no sólo en el módulo de autenticación.
       await createUser(
         {
           name: values.name,
@@ -82,11 +82,7 @@ function RegisterEspecialistForm() {
         response.user.uid
       );
       history.push('/under_review'); // Envia a Pagina de review
-    } catch(error) {
-      alert('Se ha producido un error por favor inténtelo más tarde.')
-    }
-  };
-
+    };
   return (
     <div className={styles.mainContainer}>
       <div className={styles.container}>
@@ -146,6 +142,7 @@ function RegisterEspecialistForm() {
                   type="file"
                   onChange={handlePick}
                   multiple="multiple"
+                  required
                 />
               </div>
     

@@ -63,7 +63,6 @@ function LoginForm() {
     } catch(error){
       alert('Se ha producido un error por favor inténtelo más tarde.')
     }
-    
   };
 
   //Inicio de sesion con Twitter
@@ -98,7 +97,7 @@ function LoginForm() {
     if(!!!(loggedUser)) {
       const pendingUser = await getUserPending(values.email);
       const noValidUser = await getNoValidUser(values.email);
-      if(pendingUser && noValidUser) {
+      if(noValidUser) {
         history.push('/done_review');
       } else if(pendingUser) {
         history.push('/under_review');

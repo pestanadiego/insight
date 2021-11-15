@@ -18,8 +18,9 @@ function PasswordForm() {
       e.preventDefault();
       try {
           await passwordReset(values.email);
+          alert('Se ha enviado un correo con las instrucciones para reestablecer tu contraseña. Chequea tu bandeja.');
       } catch {
-          alert('No se pudo reestablecer la contraseña. Verifique que usted es un usuario registrado.')
+          alert('No se pudo reestablecer la contraseña. Verifique que usted es un usuario registrado.');
           setValues({email: ''});
       }
   };
