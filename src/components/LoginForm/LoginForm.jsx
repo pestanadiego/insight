@@ -23,25 +23,32 @@ function LoginForm() {
 
   // Inicio de sesion con Google
   const handleGoogleLogin = async () => {
-    try{const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
+    try{
+      const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
       setUser({
         name: response.user.displayName,
         email: response.user.email
       });
       // Para que se almacene en la base de datos y no sólo en el módulo de autenticación
-      await createUser(
+      const user_email = await getUserByEmail(response.user.email);
+      if(!user_email){
+        await createUser(
         {
           name: response.user.displayName,
           email: response.user.email,
-          date: values.date,
-          role: 'pacient',
-          uid: response.user.uid,
+          date:  "15/11/21",
+          role: "pacient",
+          uid: response.user.uid
         },
         response.user.uid);
       history.push('/profile');
-    } catch(error){
+      }else{
+        history.push('/profile');
+      }
+    } catch(error) {
       alert('Se ha producido un error por favor inténtelo más tarde.')
     }
+      
   };
 
  //Inicio de sesion con Facebook
@@ -57,7 +64,7 @@ function LoginForm() {
         {
           name: response.user.displayName,
           email: response.user.email,
-          date: values.date,
+          date: "15/11/21",
           role: 'pacient',
           uid: response.user.uid,
         },
@@ -80,14 +87,14 @@ function LoginForm() {
       // Para que se almacene en la base de datos y no sólo en el módulo de autenticación
       await createUser(
         {
-          name: response.user.name,
+          name: response.user.displayName,
           email: response.user.email,
           date: values.date,
           role: 'pacient',
           uid: response.user.uid,
         },
         response.user.uid);
-      history.push('/');
+      history.push('/profile');
     } catch(error){
       alert('Se ha producido un error por favor inténtelo más tarde.')
     }

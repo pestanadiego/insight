@@ -7,6 +7,8 @@ import googleIcon from "../../icons/Google_Icon.svg";
 import facebIcon from "../../icons/cib_facebook.svg";
 import twitterIcon from "../../icons/twitter_icon.svg";
 import { googleProvider, facebookProvider, twitterProvider} from '../../utils/firebaseConfig';
+import BirthdayForm from '../../components/BirthdayForm/BirthdayForm';
+
 
 function RegisterForm() {
   const { setUser } = useContext(UserContext);
@@ -28,17 +30,7 @@ function RegisterForm() {
         name: response.user.displayName,
         email: response.user.email
       });
-      // Para que se almacene en la base de datos y no sólo en el módulo de autenticación
-      await createUser(
-        {
-          name: response.user.displayName,
-          email: response.user.email,
-          date: values.date,
-          role: 'pacient',
-          uid: response.user.uid,
-        },
-        response.user.uid);
-      history.push('/profile');
+      await BirthdayForm(response.user.displayName, response.user.email, response.user.uid);
     } catch(error){
       alert('Se ha producido un error por favor inténtelo más tarde.')
     }

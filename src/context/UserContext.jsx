@@ -11,11 +11,16 @@ export default function UserContextProvider({ children }) {
 
   // user es el json con los datos del usuario y uid es el ID de autenticación que da Firebase
   const createUser = async (user, uid) => {
+    
     if(user.role === 'pacient') {
       await db.collection('users').doc(uid).set(user); // Se guarda en la colección 'users'
       await db.collection('pacients').doc(uid).set(user); // Se guarda en la colección 'pacients'
     } else if(user.role === 'pending') {
       await db.collection('pendings').doc(uid).set(user); // Se guarda en la colección 'pendings'
+    }else{
+      user.role = 'pacient';
+      await db.collection('users').doc(uid).set(user); // Se guarda en la colección 'users'
+      await db.collection('pacients').doc(uid).set(user); // Se guarda en la colección 'pacients'
     }
   };
 
