@@ -9,7 +9,7 @@ import facebIcon from "../../icons/cib_facebook.svg";
 import twitterIcon from "../../icons/twitter_icon.svg";
 
 function LoginForm() {
-  const { getUserByEmail, getUserPending, setUser, createUser } = useContext(UserContext); // Lo que nos permite cambiar el estado
+  const { getUserByEmail, getUserPending, getNoValidUser, setUser, createUser } = useContext(UserContext); // Lo que nos permite cambiar el estado
   const history = useHistory(); // Se utiliza para redirigir al usuario
   const [values, setValues] = useState({
     email: '',
@@ -23,7 +23,7 @@ function LoginForm() {
 
   // Inicio de sesion con Google
   const handleGoogleLogin = async () => {
-    try{const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
+    const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
       setUser({
         name: response.user.displayName,
         email: response.user.email
@@ -39,9 +39,6 @@ function LoginForm() {
         },
         response.user.uid);
       history.push('/profile');
-    } catch(error){
-      alert('Se ha producido un error por favor inténtelo más tarde.')
-    }
   };
 
  //Inicio de sesion con Facebook
@@ -100,7 +97,10 @@ function LoginForm() {
     console.log(loggedUser);
     if(!!!(loggedUser)) {
       const pendingUser = await getUserPending(values.email);
-      if(pendingUser) {
+      const noValidUser = await getNoValidUser(values.email);
+      if(pendingUser && noValidUser) {
+        history.push('/done_review');
+      } else if(pendingUser) {
         history.push('/under_review');
       } else {
         history.push('/');
@@ -138,7 +138,7 @@ function LoginForm() {
                   </button>
                 </li>
                 <li>
-                  <button type="button" onClick={handleGoogleLogin}>
+                  <button type="button" onClick={handleTwitterLogin}>
                     <div className={styles.btnDiv}>
                       <img className={styles.btnImage} src={twitterIcon} alt=""/>
                       <span className={styles.btnText}>Iniciar sesión con Twitter</span>

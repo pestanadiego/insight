@@ -3,7 +3,6 @@ import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { db } from '../../utils/firebaseConfig';
 
-
 function PendingCard({ id, name, email, date, credentials}) {
     const { getUserPending } = useContext(UserContext);
 
@@ -17,11 +16,10 @@ function PendingCard({ id, name, email, date, credentials}) {
         await db.collection('pendings').doc(pendingProfile.uid).delete();
     }
 
-    // Si se rechaza el usuario, se elimina de la colección pending y se agrega a la colección no valids.
+    // Si se rechaza el usuario, se agrega a la colección no valids.
     const handleRejection = async () => {
         const pendingProfile = await getUserPending(email);
         await db.collection('novalids').doc(pendingProfile.uid).set(pendingProfile);
-        await db.collection('pendings').doc(pendingProfile.uid).delete();
     }
     return (
       <div className={styles.card}>
