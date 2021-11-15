@@ -45,6 +45,7 @@ function PendingCard({ id, name, email, date, credentials}) {
     // Si se rechaza el usuario, se agrega a la colección no valids y se elimina de pendings.
     const handleRejection = async () => {
         const pendingProfile = await getUserPending(email);
+        pendingProfile.role = 'pending';
         await db.collection('novalids').doc(pendingProfile.uid).set(pendingProfile);
         await db.collection('pendings').doc(pendingProfile.uid).delete();
         sendStatus(templateRejections);

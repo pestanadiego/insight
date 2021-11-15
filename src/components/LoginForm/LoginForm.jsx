@@ -122,14 +122,14 @@ function LoginForm() {
       const response = await auth.signInWithPopup(twitterProvider); //Se le envia al proveedor de Twitter
       setUser({
         name: response.user.displayName,
-        email: response.user.email,
+        email: "example@email.com",
       });
       // Para que se almacene en la base de datos y no sólo en el módulo de autenticación
       await createUser(
         {
           name: response.user.name,
-          email: response.user.email,
-          date: "",
+          email: "example@email.com",
+          date: "2021",
           role: "pacient",
           uid: response.user.uid,
         },
@@ -150,7 +150,9 @@ function LoginForm() {
       const pendingUser = await getUserPending(values.email);
       const noValidUser = await getNoValidUser(values.email);
       if(noValidUser) {
+        setUser(null);
         history.push('/done_review');
+        setUser(null);
       } else if(pendingUser) {
         history.push('/under_review');
       } else {

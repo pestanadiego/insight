@@ -16,7 +16,6 @@ function PasswordForm() {
   };
 
   const handleSubmit = async (e) => {
-<<<<<<< HEAD
       e.preventDefault();
       try {
           await passwordReset(values.email);
@@ -25,18 +24,6 @@ function PasswordForm() {
           alert('No se pudo reestablecer la contraseña. Verifique que usted es un usuario registrado.');
           setValues({email: ''});
       }
-=======
-    e.preventDefault();
-    try {
-      await passwordReset(values.email);
-      alert("Se ha envíado un correo para restablecer la contraseña");
-    } catch {
-      alert(
-        "No se pudo reestablecer la contraseña. Verifique que usted es un usuario registrado."
-      );
-      setValues({ email: "" });
-    }
->>>>>>> 1e4b5352029f76cacebe13106d45f15fa1198224
   };
 
   const handleOnChange = (event) => {
