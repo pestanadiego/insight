@@ -4,6 +4,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import RegisterEspecialistPage from './pages/RegisterEspecialistPage';
 import UnderReviewPage from './pages/UnderReviewPage';
+import PasswordPage from './pages/PasswordPage';
 import ProfilePage from './pages/ProfilePage';
 import PrivateRoute from './components/ProtectedRoutes/PrivateRoute';
 import AdminPage from './pages/AdminPage';
@@ -15,6 +16,7 @@ function Routes() {
       <Route exact path="/register_pacient" component={RegisterPage} />
       <Route exact path="/register_especialist" component={RegisterEspecialistPage} />
       <Route exact path="/under_review" component={UnderReviewPage} />
+      <Route exact path="/forgotten_password" component={PasswordPage} />
       {/* Protected Routes */}
       <PrivateRoute exact path="/profile" component={ProfilePage} />
       <PrivateRoute exact path="/admin" component={AdminPage} />

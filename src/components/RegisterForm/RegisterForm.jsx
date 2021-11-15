@@ -38,7 +38,7 @@ function RegisterForm() {
           uid: response.user.uid,
         },
         response.user.uid);
-      history.push('/');
+      history.push('/profile');
     } catch(error){
       alert('Se ha producido un error por favor inténtelo más tarde.')
     }

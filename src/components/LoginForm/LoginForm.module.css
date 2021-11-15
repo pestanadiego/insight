@@ -119,11 +119,16 @@
 }
 
 .pacient,
-.specialist {
+.specialist,
+.password {
   text-align: center;
   align-items: center;
   color: #0163e0;
   cursor: pointer;
+}
+
+.password {
+  padding-top: 20px;
 }
 
 .specialist:hover {
