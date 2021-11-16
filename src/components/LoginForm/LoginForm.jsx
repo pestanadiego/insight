@@ -152,6 +152,7 @@ function LoginForm() {
       if(noValidUser) {
         setUser(null);
         history.push('/done_review');
+        auth.signOut();
         setUser(null);
       } else if(pendingUser) {
         history.push('/under_review');
