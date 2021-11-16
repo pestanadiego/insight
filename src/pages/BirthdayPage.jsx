@@ -1,4 +1,4 @@
-import BirthdayForm from '../components/BirthdayForm/BirthdayForm';
+import BirthdayForm from "../components/BirthdayForm/BirthdayForm";
 
 function BirthdayPage() {
   return <BirthdayForm />;
