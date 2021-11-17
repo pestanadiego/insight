@@ -1,8 +1,8 @@
+import Profile from '../components/Profile/Profile';
+
 function ProfilePage() {
   return (
-    <>
-        <h1>Perfil</h1>
-    </>
+    <Profile />
   );
 }
 
