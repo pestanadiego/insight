@@ -21,7 +21,7 @@ function RegisterForm() {
   const [values, setValues] = useState({
     name: "",
     email: "",
-    date: "",
+    phone: "",
     password: "",
   });
 
@@ -40,7 +40,7 @@ function RegisterForm() {
           {
             name: response.user.displayName,
             email: response.user.email,
-            date: "",
+            phone: response.user.phoneNumber,
             role: "pacient",
             uid: response.user.uid,
           },
@@ -68,7 +68,7 @@ function RegisterForm() {
         {
           name: response.user.displayName,
           email: response.user.email,
-          date: "",
+          phone: "",
           role: "pacient",
           uid: response.user.uid,
         },
@@ -88,15 +88,12 @@ function RegisterForm() {
         name: response.user.displayName,
         email: response.user.email,
       });
-      console.log(response.user.displayName);
-      console.log(response.user.email);
-      console.log(response.user.uid);
       // Para que se almacene en la base de datos y no sólo en el módulo de autenticación
       await createUser(
         {
           name: response.user.displayName,
           email: "example@email.com",
-          date: "",
+          phone: response.user.phoneNumber,
           role: "pacient",
           uid: response.user.uid,
         },
@@ -126,7 +123,7 @@ function RegisterForm() {
         {
           name: values.name,
           email: values.email,
-          date: values.date,
+          phone: values.phone,
           role: "pacient",
           uid: response.user.uid,
         },
@@ -172,13 +169,13 @@ function RegisterForm() {
               </div>
 
               <div className={styles.inputGroup}>
-                <label htmlFor="date">Fecha de nacimiento</label>
+                <label htmlFor="phone">Número telefónico</label>
                 <br />
                 <input
-                  name="date"
-                  id="date"
-                  type="date"
-                  value={values.date}
+                  name="phone"
+                  id="phone"
+                  type="tel"
+                  value={values.phone}
                   onChange={handleOnChange}
                 />
               </div>
@@ -194,14 +191,22 @@ function RegisterForm() {
                   onChange={handleOnChange}
                 />
               </div>
-
+              <div className={styles.checkboxGroup}>
+                <input
+                  name="oldenough"
+                  id="oldenough"
+                  type="checkbox"
+                  required
+                />
+                <label htmlFor="conditions">
+                  Confirmo que tengo más de 18 años
+                </label>
+              </div>
               <div className={styles.checkboxGroup}>
                 <input
                   name="conditions"
                   id="conditions"
                   type="checkbox"
-                  value={values.password}
-                  onChange={handleOnChange}
                   required
                 />
                 <label htmlFor="conditions">

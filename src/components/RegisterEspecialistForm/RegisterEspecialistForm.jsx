@@ -12,7 +12,7 @@ function RegisterEspecialistForm() {
   const [values, setValues] = useState({
     name: '',
     email: '',
-    date: '',
+    phone: '',
     password: ''
   });
 
@@ -74,7 +74,7 @@ function RegisterEspecialistForm() {
         {
           name: values.name,
           email: values.email,
-          date: values.date,
+          phone: values.phone,
           role: 'pending',
           uid: response.user.uid,
           credentials: credentialsArray
@@ -113,12 +113,12 @@ function RegisterEspecialistForm() {
               </div>
     
               <div className={styles.inputGroup}>
-                <label htmlFor="date">Fecha de nacimiento</label><br/>
+                <label htmlFor="date">Número telefónico</label><br/>
                 <input
-                  name="date"
-                  id="date"
-                  type="date"
-                  value={values.date}
+                  name="phone"
+                  id="phone"
+                  type="tel"
+                  value={values.phone}
                   onChange={handleOnChange}
                 />
               </div>
@@ -145,14 +145,22 @@ function RegisterEspecialistForm() {
                   required
                 />
               </div>
+
+              <div className={styles.checkboxGroup}>
+                <input
+                  name="oldenough"
+                  id="oldenough"
+                  type="checkbox"
+                  required
+                />
+                <label htmlFor="conditions">Confirmo que tengo más de 18 años</label>
+              </div>
     
               <div className={styles.checkboxGroup}>
                 <input
                   name="conditions"
                   id="conditions"
                   type="checkbox"
-                  value={values.password}
-                  onChange={handleOnChange}
                   required
                 />
                 <label htmlFor="conditions">Acepto los términos y condiciones</label>
