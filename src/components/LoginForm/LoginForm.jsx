@@ -76,7 +76,7 @@ function LoginForm() {
           {
             name: response.user.displayName,
             email: response.user.email,
-            date: "",
+            phone: response.user.phoneNumber,
             role: "pacient",
             uid: response.user.uid,
           },
@@ -104,7 +104,7 @@ function LoginForm() {
         {
           name: response.user.displayName,
           email: response.user.email,
-          date: values.date,
+          phone: response.user.phoneNumber,
           role: "pacient",
           uid: response.user.uid,
         },
@@ -128,8 +128,7 @@ function LoginForm() {
       await createUser(
         {
           name: response.user.name,
-          email: "example@email.com",
-          date: "2021",
+          phone: response.user.phoneNumber,
           role: "pacient",
           uid: response.user.uid,
         },
