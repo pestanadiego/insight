@@ -23,7 +23,7 @@ function Dashboard() {
               </Link>
             </li>
             <li id={styles["arrow"]}>
-              <button> menu </button>
+              <button onClick> menu </button>
             </li>
             <li>
               <Link to="/profile" className={styles.link}>

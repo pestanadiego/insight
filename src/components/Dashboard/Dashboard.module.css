@@ -28,11 +28,17 @@
 }
 
 @media screen and (max-width: 858px) {
-  #dash {
+  .dashboard {
     background-color: red;
     margin-left: -100vw;
     transition: all 0.4s;
   }
+  #dash {
+    background-color: red;
+    margin-left: -0vw;
+    transition: all 0.4s;
+  }
+
   #arrow {
     display: flex;
     margin-left: 122%;
