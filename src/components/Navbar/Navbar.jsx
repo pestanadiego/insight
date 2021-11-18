@@ -1,33 +1,44 @@
-import { useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { UserContext } from '../../context/UserContext';
-import { auth } from '../../utils/firebaseConfig';
-import styles from './Navbar.module.css';
-import logo from '../../images/logo.svg';
+import { useContext, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
+import { auth } from "../../utils/firebaseConfig";
+import styles from "./Navbar.module.css";
+import logo from "../../images/logo.svg";
+import menu_desp from "../../icons/menu_desp.svg";
 
 function Navbar() {
   const history = useHistory();
   const { user, setUser } = useContext(UserContext); // Para poder acceder al estado global del sistema
+  const [showMenu, setMenu] = useState(true);
 
   // Función para cerrar sesión. Se coloca el user en null y se devuelve al home page
   const handleLogout = async () => {
     await auth.signOut();
     setUser(null);
-    history.push('/');
+    history.push("/");
   };
 
   return (
     <ul className={styles.navbarContainer}>
       <li>
         <Link to="/" className={styles.link}>
-          <img src={logo} alt="logo" />
+          <img className={styles.logo} src={logo} alt="logo" />
         </Link>
+        <div className={styles.resboton}>
+          <button onClick={() => setMenu(!showMenu)} className={styles.login}>
+            <img className={styles.menu_desp} src={menu_desp} alt="menu_desp" />
+          </button>
+        </div>
       </li>
 
-      <li className={styles.rightSide}>
+      <li id={styles[showMenu ? "hidden" : ""]} className={styles.rightSide}>
         {!!user ? (
           <div className={styles.container}>
-            <button type="button" className={styles.logoutBtn}onClick={handleLogout}>
+            <button
+              type="button"
+              className={styles.logoutBtn}
+              onClick={handleLogout}
+            >
               CERRAR SESIÓN
             </button>
           </div>
@@ -35,7 +46,10 @@ function Navbar() {
           <>
             <div className={styles.container}>
               <Link to="/register_pacient" className={styles.link}>
-                <button className={styles.register}>
+                <button
+                  onClick={() => setMenu(!showMenu)}
+                  className={styles.register}
+                >
                   PACIENTE
                 </button>
               </Link>
@@ -43,18 +57,24 @@ function Navbar() {
 
             <div className={styles.container}>
               <Link to="/register_especialist" className={styles.link}>
-                <button className={styles.register}>
+                <button
+                  onClick={() => setMenu(!showMenu)}
+                  className={styles.register}
+                >
                   ESPECIALISTA
                 </button>
               </Link>
             </div>
 
             <div className={styles.container}>
-                <Link to="/login" className={styles.link}>
-                  <button className={styles.login}>
-                    INICIAR SESIÓN
-                  </button>
-                </Link>
+              <Link to="/login" className={styles.link}>
+                <button
+                  onClick={() => setMenu(!showMenu)}
+                  className={styles.login}
+                >
+                  INICIAR SESIÓN
+                </button>
+              </Link>
             </div>
           </>
         )}

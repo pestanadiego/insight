@@ -86,3 +86,54 @@ img {
     border: none;
   }
 }
+
+.resboton {
+  display: none;
+  margin-right: 30px;
+  font-size: 25px;
+}
+
+@media screen and (max-width: 952px) {
+  .logo {
+    font-size: 30px;
+    padding-left: 35px;
+  }
+
+  .container {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 858px) {
+  .resboton {
+    display: inline-flex;
+    margin-left: 30%;
+  }
+  .navbarContainer li {
+    display: flex;
+  }
+
+  #hidden {
+    position: fixed;
+    width: 100vw;
+    height: 100%;
+    background: #287bc6;
+    flex-direction: column;
+    bottom: 100vh;
+    transition: all 0.4s;
+  }
+  .navbarContainer li.rightSide {
+    position: fixed;
+    align-items: left;
+    width: 100vw;
+    height: 100%;
+    margin-left: 50%;
+    background: #287bc6;
+    flex-direction: column;
+    justify-content: space-around;
+    bottom: 0vh;
+    transition: all 0.4s;
+  }
+  .container {
+    border-bottom: solid #fce58e;
+  }
+}
