@@ -10,7 +10,7 @@ function PendingList({ pendingUsers }) {
                     id={pendingUser.uid}
                     email={pendingUser.email}
                     name={pendingUser.name}
-                    date={pendingUser.date}
+                    phone={pendingUser.phone}
                     credentials={pendingUser.credentials}
                 />
             ))}
