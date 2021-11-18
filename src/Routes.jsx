@@ -9,6 +9,8 @@ import PasswordPage from "./pages/PasswordPage";
 import ProfilePage from "./pages/ProfilePage";
 import PrivateRoute from "./components/ProtectedRoutes/PrivateRoute";
 import AdminPage from "./pages/AdminPage";
+import SearchSpecialistPage from "./pages/SearchSpecialistPage";
+
 
 
 function Routes() {
@@ -26,6 +28,7 @@ function Routes() {
       <Route exact path="/done_review" component={ReviewDonePage} />
       {/* Protected Routes */}
       <PrivateRoute exact path="/profile" component={ProfilePage} />
+      <PrivateRoute exact path="/search" component={SearchSpecialistPage} />
       <PrivateRoute exact path="/admin" component={AdminPage} />
       <Route exact path="/" component={HomePage} />
       <Route path="*">
