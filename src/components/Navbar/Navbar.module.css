@@ -69,7 +69,9 @@ img {
   padding-top: 5px;
 }
 
-@media (max-width: 700px) {
+@media (min-width: 1024px) {
+}
+@media (min-width: 768px) {
   .login {
     padding: 0.3rem;
     cursor: pointer;
