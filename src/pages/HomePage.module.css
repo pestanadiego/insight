@@ -71,6 +71,16 @@ p {
   color: var(--main-letters-color);
   background: #fff;
 }
+.listService lu li {
+  padding: 1em, 0, 1em, 1em;
+  text-align: left;
+}
+.listService .cont {
+  padding: 10px 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /* MEDIA PARA LOS ESTILOS EN PANTALLAS DE TABLETS Y MONITORES*/
 @media (min-width: 1024px) {

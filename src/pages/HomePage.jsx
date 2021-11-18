@@ -1,6 +1,9 @@
 //import homePic from "../images/home_pic.jpg";
+import { useEffect, useState } from "react";
+import { db } from "../utils/firebaseConfig";
 import styles from "./HomePage.module.css";
 import pictures from "../images/imagenes";
+import EspecialistCard from "../components/HomeEspecialistCard/HomeEspecialistCard";
 
 function HomePage() {
   return (
@@ -45,27 +48,28 @@ function HomePage() {
         </div>
       </section>
 
-      <section>
-        <div className={styles.welcome}>
-          <h3>Servicios que ofrecemos</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-            nonummy nibh euismod tincidunt ut laoreet dolores.
-          </p>
+      <section className={styles.welcome}>
+        <h3>Servicios que ofrecemos</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+          nonummy nibh euismod tincidunt ut laoreet dolores.
+        </p>
+      </section>
+
+      <section className={styles.listService}>
+        <lu>
+          <li>Ansiedad</li>
+          <li>Estrés</li>
+          <li>Problemas de parejas</li>
+          <li>Autoestima</li>
+          <li>Desarrollo personal</li>
+          <li>Sexualiadad y género</li>
+        </lu>
+        <div className={styles.cont}>
+          <button type="button" className={styles.btn}>
+            Elije a tu psicolólogo en línea
+          </button>
         </div>
-        <div className={styles.listService}>
-          <lu>
-            <li>Ansiedad</li>
-            <li>Estrés</li>
-            <li>Problemas de parejas</li>
-            <li>Autoestima</li>
-            <li>Desarrollo personal</li>
-            <li>Sexualiadad y género</li>
-          </lu>
-        </div>
-        <button type="button" className={styles.btn}>
-          Elije a tu psicolólogo en línea
-        </button>
       </section>
 
       <section>
