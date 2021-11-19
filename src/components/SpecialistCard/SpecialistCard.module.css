@@ -1,0 +1,21 @@
+.card {
+  background-color: white;
+  width: 500px;
+  margin: 20px;
+  border-radius: 5px;
+}
+
+.card span {
+  font-weight: bold;
+}
+
+
+.info {
+  padding: 20px;
+  
+}
+
+.buttons {
+  text-align: center;
+  padding-bottom: 20px;
+}

@@ -3,16 +3,32 @@
     justify-content: space-evenly;
 }
 
-body{
+.sections{
     background-color: white;
+    height:100%;
 }
 
 .titleForm{
     font-size:1.8em;
     color:var(--main-letters-color);
     text-align:center;
-    margin: 20px;
 }
+
+h2{
+    text-align: center;
+    padding: 30px;
+
+}
+
+.searchIcon img{
+    cursor:pointer;
+}
+
+.searchInput input{
+    width: 15vw;
+    height: 5vh;
+}
+
 .search_form{
     align-items: center;
 }
@@ -24,10 +40,8 @@ body{
 
 .inputGroup{
     display:flex;
-    justify-content: center;
+    justify-content: space-around;
     width: 20vw;
-    background-color: black;
-
 }
 
 .filterContainer{
