@@ -8,6 +8,7 @@ import homelogo from "../../icons/home_logo.svg";
 import loginLogo from "../../icons/login_logo.svg";
 import especialisLogo from "../../icons/especialist_logo.svg";
 import pacientLogo from "../../icons/paciente_logo.svg";
+import logOut from "../../icons/logout.svg";
 
 function Navbar() {
   const history = useHistory();
@@ -30,15 +31,24 @@ function Navbar() {
           </Link>
         </li>
 
-        <li id={styles[showMenu ? "hidden" : ""]} className={styles.rightSide}>
+        <li className={styles.rightSide}>
           {!!user ? (
             <div className={styles.container}>
               <button
                 type="button"
+                id={styles["show"]}
                 className={styles.logoutBtn}
                 onClick={handleLogout}
               >
                 CERRAR SESIÓN
+              </button>
+              <button
+                type="button"
+                id={styles["hidden"]}
+                className={styles.logoutBtn}
+                onClick={handleLogout}
+              >
+                <img src={logOut} alt="logOut" />
               </button>
             </div>
           ) : (
