@@ -1,5 +1,5 @@
 .dashboard {
-  background: #898990;
+  background: #f5f5f7;
   text-align: center;
   color: #939393;
   width: 320px;
@@ -27,8 +27,40 @@
   display: none;
 }
 
+#hidden_d {
+  display: none;
+}
+
 @media screen and (max-width: 858px) {
-  .dashboard {
+  #dash {
+    text-align: center;
+    color: #939393;
+    width: 100%;
+    position: fixed;
+    bottom: -80vh;
+    float: none;
+  }
+
+  #hidden_d {
+    display: flex;
+  }
+
+  .dashboard li {
+    margin-top: -90px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .dashboard ul {
+    background-color: #f5f5f7;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #showdash {
+    display: none;
+  }
+  /*.dashboard {
     background-color: #f5f5f7;
     margin-left: -100vw;
     transition: all 0.4s;
@@ -42,5 +74,5 @@
   #arrow {
     display: flex;
     margin-left: 122%;
-  }
+  }*/
 }
