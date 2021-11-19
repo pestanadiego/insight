@@ -27,6 +27,7 @@ body {
   height: 120vh;
   align-items: center;
   background-color: white;
+  border-radius: 10px;
 }
 
 h1 {
@@ -114,4 +115,37 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+@media screen and (max-width: 852px) {
+  .container {
+    background-color: rgb(255, 255, 255);
+    width: 70%;
+    height: 140vh;
+    border-radius: 10px;
+  }
+
+  .register {
+    background-color: rgb(255, 255, 255);
+    height: 100%;
+    width: 100%;
+  }
+
+  .register .formDiv .inputGroup {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .register .formDiv .checkboxGroup {
+    margin-left: 10px;
+  }
+
+  .inputGroup input {
+    height: 50%;
+    width: 50%;
+  }
+
+  .btn_div button {
+    width: 50%;
+  }
 }
