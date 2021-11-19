@@ -15,6 +15,7 @@
 }
 
 .container {
+  border-radius: 10px;
   width: 45vw;
   height: 135vh;
   align-items: center;
