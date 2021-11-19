@@ -122,3 +122,42 @@
   justify-content: flex-start;
   align-self: center;
 }
+
+@media screen and (max-width: 850px) {
+  .container {
+    width: 80vw;
+    height: 80vh;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+  }
+
+  #hidden_signfire {
+  }
+  .btnText {
+    display: none;
+  }
+  .containerLoginbtn ul li button {
+    background: none;
+    border: none;
+  }
+
+  .containerLoginbtn ul {
+    display: flex;
+  }
+  .form_Div form {
+    width: 100%;
+  }
+
+  .container input {
+    outline: none;
+    border-radius: 4px;
+    padding: 5px;
+    width: 60vw;
+    height: 6vh;
+    border: solid 1px var(--main-input-color);
+  }
+  .btnSubmit button {
+    width: 50vw;
+  }
+}
