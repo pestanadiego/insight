@@ -132,12 +132,13 @@ img {
   }
 
   .navbarContainer li.rightSide .container .logoutBtn {
-    background-color: #f5f5f7;
+    background-color: #363653;
     color: #fff;
     border: none;
     padding: 10px 1rem;
     border-radius: 50px;
     font-size: 1rem;
     cursor: pointer;
+    padding-bottom: 120px;
   }
 }
