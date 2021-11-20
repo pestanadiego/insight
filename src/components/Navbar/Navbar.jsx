@@ -13,7 +13,7 @@ import logOut from "../../icons/logout.svg";
 function Navbar() {
   const history = useHistory();
   const { user, setUser } = useContext(UserContext); // Para poder acceder al estado global del sistema
-  const [showMenu, setMenu] = useState(true);
+  //const [showMenu, setMenu] = useState(true);
 
   // Función para cerrar sesión. Se coloca el user en null y se devuelve al home page
   const handleLogout = async () => {
