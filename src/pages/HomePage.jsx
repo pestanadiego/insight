@@ -3,8 +3,25 @@
 import { Link } from "react-router-dom";
 import styles from "./HomePage.module.css";
 import pictures from "../images/imagenes";
+//import HomeSlide from "../components/HomeSlide/HomeSlide";
+import EspecialistCard from "../components/HomeEspecialistCard/HomeEspecialistCard";
 
 function HomePage() {
+  const especialist = [
+    { name: "Pedro jose", email: "aladmadio@gmail.com", phone: "04124567845" },
+    {
+      name: "Luis alberto",
+      email: "aladmadio@gmail.com",
+      phone: "04124567845",
+    },
+    { name: "jose luis", email: "aladmadio@gmail.com", phone: "04124567845" },
+    {
+      name: "maria josefina",
+      email: "aladmadio@gmail.com",
+      phone: "04124567845",
+    },
+    { name: "laura loca", email: "aladmadio@gmail.com", phone: "04124567845" },
+  ];
   return (
     <>
       <section className={styles.banner}>
@@ -14,69 +31,72 @@ function HomePage() {
             Sigue a tu corazón pero lleva contigo a tu cerebro ~ Alfred Adler
           </h4>
           <Link to="/register_pacient">
-            <button type="button" className={styles.btn}>
-              QUIERO EMPEZAR
+            <button type="button" className={styles.bttn}>
+              Quiero empezar!
             </button>
           </Link>
         </div>
       </section>
 
-      <section className={styles.welcome}>
-        <h3>Psicólogos en línea</h3>
-        <p>
-          En Insight no nos limitamos al horario comercial, de lunes a viernes.
-          Elija entre una variedad de terapeutas con diferentes antecedentes y
-          especialidades, disponibles cuando usted lo desee.
-        </p>
-      </section>
-      <section className={styles.items}>
-        <div className="contenedor">
+      <section className={styles.inline}>
+        <section className={styles.welcome}>
+          <h2>Psicólogos en línea</h2>
+          <p>
+            En Insight no nos limitamos al horario comercial, de lunes a
+            viernes. Elija entre una variedad de terapeutas con diferentes
+            antecedentes y especialidades, disponibles cuando usted lo desee.
+          </p>
+        </section>
+        <section className={styles.items}>
           <article>
-            <img src={pictures.profesional} alt="wait to load"></img>
+            <img src={pictures.profesional} alt="home-professional"></img>
             <h3>Profesional</h3>
             <p>Lorem ipsum dolor sit amet, consectetuer ibh euis.</p>
           </article>
           <article>
-            <img src={pictures.access} alt="wait to load"></img>
+            <img src={pictures.access} alt="home-access"></img>
             <h3>Accesible</h3>
             <p>Lorem ipsum dolor sit amet, consectetuer ibh euis.</p>
           </article>
           <article>
-            <img src={pictures.save} alt="wait to load"></img>
+            <img src={pictures.save} alt="home-save"></img>
             <h3>Seguro</h3>
             <p>Lorem ipsum dolor sit amet, consectetuer ibh euis.</p>
           </article>
-        </div>
-      </section>
-      <section className={styles.listService}>
-        <div className={styles.imgRotar}>
-          <img src={pictures.service} alt="wait to load"></img>
-        </div>
-        <div className={styles.welcome}>
-          <h3>Servicios que ofrecemos</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-            nonummy nibh euismod tincidunt ut laoreet dolores.
-          </p>
-        </div>
-        <lu>
-          <li>Ansiedad</li>
-          <li>Estrés</li>
-          <li>Problemas de parejas</li>
-          <li>Autoestima</li>
-          <li>Desarrollo personal</li>
-          <li>Sexualiadad y género</li>
-        </lu>
-        <div className={styles.cont}>
-          <Link to="/register_pacient">
-            <button type="button" className={styles.btn}>
-              ELIJE A TU PSICÓLOGO EN LÍNEA
-            </button>
-          </Link>
-        </div>
+        </section>
       </section>
 
-      <section>
+      <section className={styles.listService}>
+        <div className={styles.imgRotar}>
+          <img src={pictures.service} alt="home-service"></img>
+        </div>
+        <section className={styles.service}>
+          <div className={styles.list}>
+            <h3>Servicios que ofrecemos</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+              nonummy nibh euismod tincidunt ut laoreet dolores.
+            </p>
+
+            <lu>
+              <li>Ansiedad</li>
+              <li>Estrés</li>
+              <li>Problemas de parejas</li>
+              <li>Autoestima</li>
+              <li>Desarrollo personal</li>
+              <li>Sexualiadad y género</li>
+            </lu>
+
+            <Link to="/register_pacient" className={styles.cont}>
+              <button type="button" className={styles.bttn}>
+                ELIJE A TU PSICÓLOGO EN LÍNEA
+              </button>
+            </Link>
+          </div>
+        </section>
+      </section>
+
+      <section className={styles.psico}>
         <div className={styles.welcome}>
           <h3>Psicólogos experimentados y de confianza</h3>
           <p>
@@ -85,10 +105,17 @@ function HomePage() {
             profundo conocimiento clínico.
           </p>
         </div>
+
         <h1>SLIDE CON ESPECIALISTAS</h1>
+        <EspecialistCard
+          name={especialist[0].name}
+          email={especialist[0].email}
+          phone={especialist[0].phone}
+        />
+
         <div className={styles.cont}>
-          <Link to="/register_especialist">
-            <button type="button" className={styles.btn}>
+          <Link to="/register_pacient">
+            <button type="button" className={styles.bttn}>
               VER MÁS
             </button>
           </Link>
@@ -119,19 +146,19 @@ function HomePage() {
             </lu>
 
             <Link to="/register_pacient" className={styles.cont}>
-              <button type="button" className={styles.btn}>
+              <button type="button" className={styles.bttn}>
                 QUIERO EMPEZAR
               </button>
             </Link>
           </div>
         </section>
         <div className={styles.imgRotar}>
-          <img src={pictures.service} alt="wait to load"></img>
+          <img src={pictures.terapia} alt="home-terapia"></img>
         </div>
       </section>
 
       <section>
-        <h1>SLIDE CON COMENTARIOS</h1>
+        <h1>SLIDE DE COMENTARIOS</h1>
       </section>
 
       <section className={styles.bannerFinal}>
@@ -139,8 +166,8 @@ function HomePage() {
         <div className={styles.contenedor}>
           <h3>¿Eres psicólogo clínico?</h3>
           <Link to="/register_specialist">
-            <button type="button" className={styles.btn}>
-              APLICAR AQUÍ!
+            <button type="button" className={styles.bttn}>
+              Aplica aquí!
             </button>
           </Link>
         </div>

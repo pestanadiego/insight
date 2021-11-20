@@ -17,7 +17,7 @@
   transform: translateX(-50%) translateY(-50%);
   color: #fff;
 }
-.btn {
+.bttn {
   margin-top: 0.6em;
   display: block;
   padding: 10px 1rem;
@@ -29,16 +29,18 @@
   color: #fff;
 }
 
-/* ESTILOS PARA WELCOME  */
+/* ESTILOS PARA  PSICÓLOGOS EN LÍNEA */
+.psico {
+  background-color: #fff;
+}
 .welcome {
   background: #fff;
   text-align: center;
   color: var(--main-letters-color);
 }
-.welcome h3 {
+.welcome h2 {
   color: var(--main-bg-color);
 }
-/* ESTILOS PARA ITEMS */
 .items {
   margin-top: -1em;
   background: #fff;
@@ -50,12 +52,6 @@
 .items h3,
 p {
   text-align: center;
-}
-
-.items .contenedor {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
 }
 
 .items article {
@@ -75,6 +71,11 @@ p {
   color: var(--main-letters-color);
   background: #fff;
 }
+.listService .service {
+  background: #fff;
+  text-align: center;
+  color: var(--main-letters-color);
+}
 .listService img {
   width: 100%;
   height: 100%;
@@ -92,6 +93,9 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.listService .list {
+  margin: 1em;
 }
 
 /* ESTILOS PARA EL APARTADO DE TERAPIA */
@@ -119,13 +123,15 @@ p {
   background: #fff;
   text-align: center;
   color: var(--main-letters-color);
-  width: 100%;
-  height: 100%;
 }
 
 .functionTerapy lu li {
   padding: 1em, 0, 1em, 1em;
   text-align: left;
+}
+
+.functionTerapy .list {
+  margin: 1em;
 }
 
 /*ESTILOS PARA EL BANNER FINAL =)*/
@@ -174,9 +180,29 @@ footer .imgRotar {
 
 /* MEDIA PARA LOS ESTILOS EN PANTALLAS DE TABLETS Y MONITORES DE PC*/
 @media (min-width: 768px) {
+  .bttn {
+    font-size: 1em;
+  }
+  .banner {
+    font-size: 1.5em;
+  }
+
+  .listService {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .listService .service {
+    flex: 1;
+  }
+  .listService .imgRotar {
+    display: flex;
+    flex: 1;
+  }
+
   .functionTerapy {
     display: flex;
     flex-wrap: wrap;
+    background: #fff;
   }
   .functionTerapy .terapi {
     flex: 1;
@@ -201,6 +227,29 @@ footer .imgRotar {
 }
 
 @media (min-width: 1024px) {
+  .banner {
+    font-size: 2em;
+  }
+
+  .inline {
+    font-size: 1.2em;
+    background: #fff;
+  }
+  .welcome {
+    margin: 1em;
+  }
+  .items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+  }
+
+  .listService .service {
+    font-size: 1.2em;
+  }
+
   .functionTerapy .terapi {
     font-size: 1.2em;
   }

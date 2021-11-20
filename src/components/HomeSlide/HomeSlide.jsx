@@ -1,21 +1,19 @@
 import EspecialistCard from "../components/HomeEspecialistCard/HomeEspecialistCard";
-import HomeComment from "../../components/HomeComment/HomeComment";
+//import HomeComment from "../../components/HomeComment/HomeComment";
 import styles from "./HomeSlide.module.css";
 
-function HomeSlideEspecialist({ EspecialistCard }) {
+function HomeSlide({ list }) {
   return (
-    <>
-      <h1>Slideeeeeeeeeeeeee</h1>
-      <p>slide de especialistas</p>
-    </>
+    <div className={styles.especialistCard}>
+      {list.map((especialist) => (
+        <EspecialistCard
+          name={especialist.name}
+          email={especialist.email}
+          phone={especialist.phone}
+        />
+      ))}
+    </div>
   );
 }
 
-function HomeSlideComment({ HomeComment }) {
-  return (
-    <>
-      <h1>WEEEEEEEEEEE</h1>
-      <p>slide de comentarios</p>
-    </>
-  );
-}
+export default HomeSlide;
