@@ -33,18 +33,18 @@ export default function UserContextProvider({ children }) {
     const pendingUser = getFirstElementArrayCollection(snapshot);
 
     return pendingUser;
-    };
+  };
 
   const getNoValidUser = async (email) => {
-    const noValidReference = db.collection('novalids');
-    const snapshot = await noValidReference.where('email', '==', email).get();
-    if(!snapshot.size) {
+    const noValidReference = db.collection("novalids");
+    const snapshot = await noValidReference.where("email", "==", email).get();
+    if (!snapshot.size) {
       return null;
     }
     const noValidUser = getFirstElementArrayCollection(snapshot);
 
     return noValidUser;
-    };
+  };
 
   const getUserByEmail = async (email) => {
     const usersReference = db.collection("users");
@@ -108,7 +108,7 @@ export default function UserContextProvider({ children }) {
         createUser,
         getUserByEmail,
         getUserPending,
-        getNoValidUser
+        getNoValidUser,
       }}
     >
       {children} {/* Encierra a todos los hijos que están en App.jsx */}

@@ -10,6 +10,7 @@ import ProfilePage from "./pages/ProfilePage";
 import PrivateRoute from "./components/ProtectedRoutes/PrivateRoute";
 import AdminPage from "./pages/AdminPage";
 import LoadingPage from "./pages/LoadingPage";
+import ScheduleAppointmentPage from "./pages/ScheduleAppointmentPage";
 
 function Routes() {
   return (
@@ -28,6 +29,11 @@ function Routes() {
       {/* Protected Routes */}
       <PrivateRoute exact path="/profile" component={ProfilePage} />
       <PrivateRoute exact path="/admin" component={AdminPage} />
+      <Route
+        exact
+        path="/schedule_appointment"
+        component={ScheduleAppointmentPage}
+      />
       <Route exact path="/" component={HomePage} />
       <Route path="*">
         <h1>404</h1>
