@@ -49,15 +49,25 @@
 
 .btnDiv {
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
   font-size: 0.87em;
+}
+
+.btnText {
+  font-family: "poppins";
+  color: #415b72;
+  float: right;
+}
+
+.btnImage {
+  float: left;
+  margin: 0 10px;
 }
 
 .form_Div {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   text-align: center;
 }
 
@@ -67,13 +77,20 @@
   color: var(--main-letters-color);
 }
 
+.container p {
+  margin-top: 16px;
+  font-size: 14px;
+  text-align: center;
+  color: var(--main-letters-color);
+}
+
 .inputGroup {
   margin: 20px 0px;
 }
 
 .inputGroup label {
   color: var(--main-letters-color);
-  font-size: 0.875em;
+  font-size: 14px;
 }
 
 .container input {
@@ -103,11 +120,16 @@
 }
 
 .pacient,
-.specialist {
+.specialist,
+.password {
   text-align: center;
   align-items: center;
   color: #0163e0;
   cursor: pointer;
+}
+
+.password {
+  padding-top: 20px;
 }
 
 .specialist:hover {

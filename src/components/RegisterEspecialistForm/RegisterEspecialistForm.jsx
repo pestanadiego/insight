@@ -12,7 +12,7 @@ function RegisterEspecialistForm() {
   const [values, setValues] = useState({
     name: '',
     email: '',
-    date: '',
+    phone: '',
     password: ''
   });
 
@@ -43,6 +43,7 @@ function RegisterEspecialistForm() {
         for (let i = 0; i < event.target.files.length; i++) {
           pickedFile = event.target.files[i];
           allFiles.push(pickedFile);
+          console.log(pickedFile);
         }
         setFiles(allFiles);
       }
@@ -53,7 +54,6 @@ function RegisterEspecialistForm() {
 
   // Función del submit del botón
   const handleSubmit = async (e) => {
-    try{
       e.preventDefault();
       // Se sube al storage cada archivo
       let file;
@@ -69,12 +69,12 @@ function RegisterEspecialistForm() {
         values.email,
         values.password
       );
-      // Para que se almacene en la base de datos y no sólo en el módulo de autenticación
+      // Para que se almacene en la base de datos y no sólo en el módulo de autenticación.
       await createUser(
         {
           name: values.name,
           email: values.email,
-          date: values.date,
+          phone: values.phone,
           role: 'pending',
           uid: response.user.uid,
           credentials: credentialsArray
@@ -82,11 +82,7 @@ function RegisterEspecialistForm() {
         response.user.uid
       );
       history.push('/under_review'); // Envia a Pagina de review
-    } catch(error) {
-      alert('Se ha producido un error por favor inténtelo más tarde.')
-    }
-  };
-
+    };
   return (
     <div className={styles.mainContainer}>
       <div className={styles.container}>
@@ -101,7 +97,7 @@ function RegisterEspecialistForm() {
                   id="name"
                   type="text"
                   value={values.name}
-                  onChange={handleOnChange} // Evento que "escucha" cada vez que el input cambia
+                  onChange={handleOnChange} // Evento que "escucha" cada vez que el input cambia (Observer)
                 />
               </div>
     
@@ -117,12 +113,12 @@ function RegisterEspecialistForm() {
               </div>
     
               <div className={styles.inputGroup}>
-                <label htmlFor="date">Fecha de nacimiento</label><br/>
+                <label htmlFor="date">Número telefónico</label><br/>
                 <input
-                  name="date"
-                  id="date"
-                  type="date"
-                  value={values.date}
+                  name="phone"
+                  id="phone"
+                  type="tel"
+                  value={values.phone}
                   onChange={handleOnChange}
                 />
               </div>
@@ -146,7 +142,18 @@ function RegisterEspecialistForm() {
                   type="file"
                   onChange={handlePick}
                   multiple="multiple"
+                  required
                 />
+              </div>
+
+              <div className={styles.checkboxGroup}>
+                <input
+                  name="oldenough"
+                  id="oldenough"
+                  type="checkbox"
+                  required
+                />
+                <label htmlFor="conditions">Confirmo que tengo más de 18 años</label>
               </div>
     
               <div className={styles.checkboxGroup}>
@@ -154,8 +161,6 @@ function RegisterEspecialistForm() {
                   name="conditions"
                   id="conditions"
                   type="checkbox"
-                  value={values.password}
-                  onChange={handleOnChange}
                   required
                 />
                 <label htmlFor="conditions">Acepto los términos y condiciones</label>

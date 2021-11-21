@@ -14,10 +14,16 @@ function UnderReviewPage() {
         <>
         <div className={styles.page}>
           <div className={styles.underReviewContainer}>
-              <img className={styles.checkmark} src={checkmarkIcon} alt=""/>
-              <h2 className={styles.underReviewTitle}>Hemos recibido tu información de registro</h2>
+            <div className={styles.info}>
+              <div className={styles.imgContainer}>
+                <img className={styles.checkmark} src={checkmarkIcon} alt=""/>
+              </div>
+              <p className={styles.underReviewTitle}>Hemos recibido tu información de registro</p>
               <p className={styles.underReviewMessage}>¡Te notificaremos por correo lo antes posible!</p>
-              <button type='submit' className={styles.underReviewBtn} onClick={handleClick}>Volver</button>
+              <div className={styles.btnContainer}>
+                <button type='submit' className={styles.underReviewBtn} onClick={handleClick}>Volver</button>
+              </div>
+            </div>
           </div>
         </div>
         </>

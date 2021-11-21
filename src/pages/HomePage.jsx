@@ -1,8 +1,9 @@
+import homePic from '../images/home_pic.jpg';
+import styles from './HomePage.module.css';
+
 function HomePage() {
   return (
-    <>
-        <h1>HomePage</h1>
-    </>
+    <div className={styles.imgContainer}></div>
   );
 }
 
