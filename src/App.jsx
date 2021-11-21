@@ -3,19 +3,20 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Navbar from './components/Navbar/Navbar';
 import UserContextProvider from './context/UserContext';
 import Routes from './Routes';
-import { useContext } from 'react';
-import { user } from './context/UserContext';
+import './app.css';
 
 function App() {
-  
+
   return (
     <UserContextProvider>
       <Router>
-          <Navbar />
+        <Navbar />
+        <div class="layout">
           <Dashboard />
-          <div className="container">
+          <div class="container">
             <Routes />
           </div>
+        </div>
       </Router>
     </UserContextProvider>
   );
