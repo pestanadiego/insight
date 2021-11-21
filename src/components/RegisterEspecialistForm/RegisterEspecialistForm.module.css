@@ -25,7 +25,7 @@
   background-color: white;
 }
 
-h1 {
+.register h1 {
   color: var(--main-letters-color);
   text-align: center;
 

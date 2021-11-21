@@ -4,7 +4,8 @@
   color: #939393;
   width: 25vw;
   height: 90vh;
-  float: left;
+  position: sticky;
+  top: 0;
 }
 
 .dashboard ul {

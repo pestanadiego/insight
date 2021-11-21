@@ -9,18 +9,16 @@ import PasswordPage from "./pages/PasswordPage";
 import ProfilePage from "./pages/ProfilePage";
 import PrivateRoute from "./components/ProtectedRoutes/PrivateRoute";
 import AdminPage from "./pages/AdminPage";
-import SearchSpecialistPage from "./pages/SearchSpecialistPage";
 import SpecialistDetailsPage from "./pages/SpecialistDetailsPage";
-
-
-
+import SearchSpecialistPage from "./pages/SearchSpecialistPage";
+import LoadingPage from "./pages/LoadingPage";
 
 function Routes() {
-  return (
+  return(
+    return (
     <Switch>
       <Route exact path="/login" component={LoginPage} />
       <Route exact path="/register_pacient" component={RegisterPage} />
-      <Route exact path="/specialists/:specialistID" component={SpecialistDetailsPage} />
       <Route
         exact
         path="/register_especialist"
@@ -29,15 +27,16 @@ function Routes() {
       <Route exact path="/under_review" component={UnderReviewPage} />
       <Route exact path="/forgotten_password" component={PasswordPage} />
       <Route exact path="/done_review" component={ReviewDonePage} />
+      <Route exact path="/loading" component={LoadingPage} />
       {/* Protected Routes */}
       <PrivateRoute exact path="/profile" component={ProfilePage} />
-      <PrivateRoute exact path="/search" component={SearchSpecialistPage} />
       <PrivateRoute exact path="/admin" component={AdminPage} />
       <Route exact path="/" component={HomePage} />
       <Route path="*">
         <h1>404</h1>
       </Route>
     </Switch>
+  );
   );
 }
 
