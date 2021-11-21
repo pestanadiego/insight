@@ -23,86 +23,84 @@ function Navbar() {
   };
 
   return (
-    <div className={styles.main_navContainer}>
-      <ul className={styles.navbarContainer}>
-        <li id={styles["logoshow"]}>
-          <Link to="/" className={styles.link}>
-            <img className={styles.logo} src={logo} alt="logo" />
-          </Link>
-        </li>
+    <ul className={styles.navbarContainer}>
+      <li id={styles["logoshow"]}>
+        <Link to="/" className={styles.link}>
+          <img className={styles.logo} src={logo} alt="logo" />
+        </Link>
+      </li>
 
-        <li className={styles.rightSide}>
-          {!!user ? (
+      <li className={styles.rightSide}>
+        {!!user ? (
+          <div className={styles.container}>
+            <button
+              type="button"
+              id={styles["show"]}
+              className={styles.logoutBtn}
+              onClick={handleLogout}
+            >
+              CERRAR SESIÓN
+            </button>
+            <button
+              type="button"
+              id={styles["hidden"]}
+              className={styles.logoutBtn}
+              onClick={handleLogout}
+            >
+              <img src={logOut} alt="logOut" />
+            </button>
+          </div>
+        ) : (
+          <>
             <div className={styles.container}>
-              <button
-                type="button"
-                id={styles["show"]}
-                className={styles.logoutBtn}
-                onClick={handleLogout}
-              >
-                CERRAR SESIÓN
-              </button>
-              <button
-                type="button"
-                id={styles["hidden"]}
-                className={styles.logoutBtn}
-                onClick={handleLogout}
-              >
-                <img src={logOut} alt="logOut" />
-              </button>
+              <Link to="/register_pacient" className={styles.link}>
+                <button id={styles["show"]} className={styles.register}>
+                  PACIENTE
+                </button>
+              </Link>
+              <Link to="/register_pacient" className={styles.link}>
+                <button id={styles["hidden"]} className={styles.register}>
+                  <img src={pacientLogo} alt="pacientLogo" />
+                </button>
+              </Link>
             </div>
-          ) : (
-            <>
-              <div className={styles.container}>
-                <Link to="/register_pacient" className={styles.link}>
-                  <button id={styles["show"]} className={styles.register}>
-                    PACIENTE
-                  </button>
-                </Link>
-                <Link to="/register_pacient" className={styles.link}>
-                  <button id={styles["hidden"]} className={styles.register}>
-                    <img src={pacientLogo} alt="pacientLogo" />
-                  </button>
-                </Link>
-              </div>
 
-              <div className={styles.container}>
-                <Link to="/register_especialist" className={styles.link}>
-                  <button id={styles["show"]} className={styles.register}>
-                    ESPECIALISTA
-                  </button>
-                </Link>
-                <Link to="/register_especialist" className={styles.link}>
-                  <button id={styles["hidden"]} className={styles.register}>
-                    <img src={especialisLogo} alt="especialistLogo" />
-                  </button>
-                </Link>
-              </div>
+            <div className={styles.container}>
+              <Link to="/register_especialist" className={styles.link}>
+                <button id={styles["show"]} className={styles.register}>
+                  ESPECIALISTA
+                </button>
+              </Link>
+              <Link to="/register_especialist" className={styles.link}>
+                <button id={styles["hidden"]} className={styles.register}>
+                  <img src={especialisLogo} alt="especialistLogo" />
+                </button>
+              </Link>
+            </div>
 
-              <div className={styles.container}>
-                <Link to="/login" className={styles.link}>
-                  <button id={styles["show"]} className={styles.login}>
-                    INICIAR SESIÓN
-                  </button>
-                </Link>
-                <Link to="/login" className={styles.link}>
-                  <button id={styles["hidden"]} className={styles.login}>
-                    <img src={loginLogo} alt="loginLogo" />
-                  </button>
-                </Link>
-              </div>
-              <div>
-                <Link to="/" className={styles.link}>
-                  <button id={styles["hidden"]} className={styles.login}>
-                    <img alt="homelogo" src={homelogo} />
-                  </button>
-                </Link>
-              </div>
-            </>
-          )}
-        </li>
-      </ul>
-    </div>
+            <div className={styles.container}>
+              <Link to="/login" className={styles.link}>
+                <button id={styles["show"]} className={styles.login}>
+                  INICIAR SESIÓN
+                </button>
+              </Link>
+              <Link to="/login" className={styles.link}>
+                <button id={styles["hidden"]} className={styles.login}>
+                  <img src={loginLogo} alt="loginLogo" />
+                </button>
+              </Link>
+            </div>
+            <div>
+              <Link to="/" className={styles.link}>
+                <button id={styles["hidden"]} className={styles.login}>
+                  <img alt="homelogo" src={homelogo} />
+                </button>
+              </Link>
+            </div>
+          </>
+        )}
+      </li>
+    </ul>
   );
 }
 
