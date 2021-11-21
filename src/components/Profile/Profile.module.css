@@ -1,7 +1,108 @@
 .profile {
   background-color: white;
+  color: var(--main-letters-color);
 }
 
-.profile .profileInformation {
-  color: black;
+.profileInformation {
+  margin-left: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profileInfo {
+  margin-bottom: 20px;
+}
+
+.profileTitle {
+  font-weight: 800;
+}
+
+.buttonProfile {
+  background-color: var(--main-button-color);
+  font-family: "Poppins";
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 20%;
+  padding: 10px 10px;
+  text-align: center;
+  font-size: 14px;
+  margin: 1rem 5px;
+  transition: all ease 250ms;
+}
+
+.buttonProfile:hover {
+  background-color: #4970be;
+}
+
+.buttonProfileContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.formProfile {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputProfile {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputProfile input {
+  outline: none;
+  border-radius: 4px;
+  padding: 5px;
+  width: 18vw;
+  border: solid 1px var(--main-input-color);
+}
+
+.inputProfile textarea {
+  outline: none;
+  border-radius: 4px;
+  padding: 5px;
+  width: 18vw;
+  border: solid 1px var(--main-input-color);
+}
+
+.checkbox {
+  outline: none;
+  width: 10px;
+  border-radius: 4px;
+  border: solid 1px var(--main-input-color);
+}
+
+.togglePassword {
+  display: inline-block;
+}
+
+.uncompletedInfo {
+  border: 1px #e70000 solid;
+  background-color: #ffa2a2;
+  padding: 5px;
+}
+
+.uncompletedInfo p {
+  display: inline-block;
+  color: #e70000;
+  padding: 5px;
+}
+
+.specialistForm {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.specialistInfo {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.checkboxWork label {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  margin-left: 5px;
 }
