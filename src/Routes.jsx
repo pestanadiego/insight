@@ -15,10 +15,10 @@ import LoadingPage from "./pages/LoadingPage";
 
 function Routes() {
   return(
-    return (
     <Switch>
       <Route exact path="/login" component={LoginPage} />
       <Route exact path="/register_pacient" component={RegisterPage} />
+      <Route exact path="/specialists/:specialistID" component={SpecialistDetailsPage} />
       <Route
         exact
         path="/register_especialist"
@@ -26,6 +26,7 @@ function Routes() {
       />
       <Route exact path="/under_review" component={UnderReviewPage} />
       <Route exact path="/forgotten_password" component={PasswordPage} />
+      <PrivateRoute exact path="/search" component={SearchSpecialistPage} />
       <Route exact path="/done_review" component={ReviewDonePage} />
       <Route exact path="/loading" component={LoadingPage} />
       {/* Protected Routes */}
@@ -36,7 +37,6 @@ function Routes() {
         <h1>404</h1>
       </Route>
     </Switch>
-  );
   );
 }
 
