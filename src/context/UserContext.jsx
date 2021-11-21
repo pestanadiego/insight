@@ -8,6 +8,7 @@ export const UserContext = createContext(null); // Se crea el estado global de l
 // Se le pasa children porque es un componente que encierra a otros (ver App.jsx)
 export default function UserContextProvider({ children }) {
   const [user, setUser] = useState(null); // Para que cuando el usuario inicie sesión, el estado cambie. setUser cambia el estado.
+  const [loading, setLoading] = useState(false);
 
   // user es el json con los datos del usuario y uid es el ID de autenticación que da Firebase
   const createUser = async (user, uid) => {
@@ -60,6 +61,7 @@ export default function UserContextProvider({ children }) {
   useEffect(() => {
     // Este useEffect permite que la sesión no se caiga cuando se refresque la página
     // unlisten es un Observer que está pendiente de los cambios de sesión del usuario
+    setLoading(true);
     const unlisten = auth.onAuthStateChanged(async (loggedUser) => {
       if (loggedUser) {
         // Cuando se inicie sesión, se busca el usuario en la base de datos
@@ -84,6 +86,7 @@ export default function UserContextProvider({ children }) {
       } else {
         setUser(null);
       }
+      setLoading(false);
     });
 
     // Función que se ejecuta cuando el componente se destruye. Se quita el Observer
@@ -94,10 +97,13 @@ export default function UserContextProvider({ children }) {
 
   return (
     <UserContext.Provider
+      //<Spinner animation="border" variant="secondary" />
       value={{
         /* Variables que estarán disponibles globalmente */
         user,
         setUser,
+        loading,
+        setLoading,
         createUser,
         getUserByEmail,
         getUserPending,
