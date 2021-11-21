@@ -63,7 +63,6 @@ function LoginForm() {
   // }
   // };
   const handleGoogleLogin = async () => {
-    try {
       const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
       setUser({
         name: response.user.displayName,
@@ -84,11 +83,8 @@ function LoginForm() {
         );
         history.push("/profile");
       } else {
-        history.push("/profile");
+        history.push("/");
       }
-    } catch (error) {
-      alert("Se ha producido un error por favor inténtelo más tarde.");
-    }
   };
 
   //Inicio de sesion con Facebook

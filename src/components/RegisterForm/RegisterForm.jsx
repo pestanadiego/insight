@@ -27,7 +27,6 @@ function RegisterForm() {
 
   // Registro con Google
   const handleGoogleLogin = async () => {
-    try {
       const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
       setUser({
         name: response.user.displayName,
@@ -45,14 +44,15 @@ function RegisterForm() {
             uid: response.user.uid,
           },
           response.user.uid
-        );
-        history.push("/profile");
+        ).then( () =>
+          history.push("/profile"))
+          .catch( () =>
+            console.log('ERROR'),
+            history.push("/")
+          );
       } else {
         history.push("/profile");
       }
-    } catch (error) {
-      alert("Se ha producido un error por favor inténtelo más tarde.");
-    }
   };
 
   //Inicio de sesion con Facebook
