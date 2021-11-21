@@ -10,6 +10,8 @@ import ProfilePage from "./pages/ProfilePage";
 import PrivateRoute from "./components/ProtectedRoutes/PrivateRoute";
 import AdminPage from "./pages/AdminPage";
 import SearchSpecialistPage from "./pages/SearchSpecialistPage";
+import SpecialistDetailsPage from "./pages/SpecialistDetailsPage";
+
 
 
 
@@ -18,6 +20,7 @@ function Routes() {
     <Switch>
       <Route exact path="/login" component={LoginPage} />
       <Route exact path="/register_pacient" component={RegisterPage} />
+      <Route exact path="/specialists/:specialistID" component={SpecialistDetailsPage} />
       <Route
         exact
         path="/register_especialist"

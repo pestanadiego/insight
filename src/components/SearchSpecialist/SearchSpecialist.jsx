@@ -17,21 +17,21 @@ function SearchSpecialist() {
         },
         {
             value:"2",
-            label: "Especialista"
+            label: "Especialidad"
         },
         {
             value:"3",
-            label: "Valoraciones"
+            label: "Rating"
         }
     ]
 
-    const [selectedValue, setSelectedValue] = useState(0);
-    const [specialists, setSpecialists] = useState([]);
+    const [selectedValue, setSelectedValue] = useState(0);  //Almacena el valor del dropdown
+    const [specialists, setSpecialists] = useState([]);  //Almacena todos los especialistas en la bd
      const [inputValue, setInputValue] = useState({
     search: ""
-  });
+    });//Almaena el string ingresado en el input
 
-  const [specialistsSelection, setSpecialistsSelection] = useState([]);
+    const [specialistsSelection, setSpecialistsSelection] = useState([]);  //Almacena el match entre el search y la bd
     
     const fetchSpecialists = async () => {
         const response = await db.collection('specialists').get() // Trae la colección de especialistas desde Firestore
@@ -50,26 +50,53 @@ function SearchSpecialist() {
     //Buscar en base de datos y generar componentes
     const handleSubmit = async (e) => { 
         e.preventDefault();
-        if(selectedValue==="1"){
-            console.log('VALOR DEL INPUT: ');
-            console.log(inputValue);
-            console.log('Especialistas en la base de datos ');
-            console.log(specialists);
+        const helperA =[];
+        if(selectedValue==="1"){ //Si se busca por nombre
             for (let index = 0; index < specialists.length; index++) {
                 const element = specialists[index];
-                if(element.name === inputValue.search){
-                    console.log('Found match');
-                    console.log(element);
-                    setSpecialistsSelection(element);
-                    console.log(specialistsSelection);
+                if((element.status === "yes") && (element.name === inputValue.search)){
+                    helperA.push(element);
                 }else{}
             }
-            console.log('Matches: ');
-            console.log(specialistsSelection);
-        }if(selectedValue==="2"){
-            //busco por especialidad
-        }if(selectedValue==="3"){
-            //busco por feedback
+            setSpecialistsSelection(helperA);
+        }if(selectedValue==="2"){  //Si se busca por especialidad
+            const helperB=[];
+            for (let index = 0; index < specialists.length; index++) {
+                const element = specialists[index];
+                if(element.status === "yes"){
+                   for (let index = 0; index < element.speciality.length; index++) {
+                    const speciality = element.speciality[index];
+                    
+                    if(speciality === inputValue.search){
+                        helperB.push(element);
+                    }else{}
+                } 
+                }else{}
+            }
+            setSpecialistsSelection(helperB);
+        }if(selectedValue==="3"){  //Muestra los especialistas por rating
+            var i, j;
+            var u;
+            let ordered=[];
+            for (u=0; u<specialists.length; u++){
+                if(specialists[u].status === "yes"){
+                    ordered.push(specialists[u]);
+                }
+                else{}
+            }
+            for (i = 0; i < ordered.length-1; i++)
+            {
+                for (j = 0; j < ordered.length-i-1; j++)
+                {
+                    if (ordered[j].ratings < ordered[j+1].ratings)
+                    {
+                     var temp = ordered[j];
+                     ordered[j] = ordered[j+1];
+                     ordered[j+1] = temp;
+                    }
+                }
+            }
+            setSpecialistsSelection(ordered);
         }
     }
 
@@ -77,6 +104,8 @@ function SearchSpecialist() {
     const { value, name: inputName } = event.target; 
     setInputValue({ ...inputValue, [inputName]: value });
   };
+
+
 
     return(
         <div className={styles.sections}>
