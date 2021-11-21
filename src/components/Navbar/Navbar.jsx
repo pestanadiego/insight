@@ -5,6 +5,7 @@ import { auth } from "../../utils/firebaseConfig";
 import styles from "./Navbar.module.css";
 import logo from "../../images/logo.svg";
 import menu_desp from "../../icons/menu_desp.svg";
+import x_svg from "../../images/x.svg";
 
 function Navbar() {
   const history = useHistory();
@@ -24,6 +25,7 @@ function Navbar() {
         <Link to="/" className={styles.link}>
           <img className={styles.logo} src={logo} alt="logo" />
         </Link>
+
         <div className={styles.resboton}>
           <button onClick={() => setMenu(!showMenu)} className={styles.login}>
             <img className={styles.menu_desp} src={menu_desp} alt="menu_desp" />
@@ -36,10 +38,20 @@ function Navbar() {
           <div className={styles.container}>
             <button
               type="button"
+              id={styles["buttonbig"]}
               className={styles.logoutBtn}
               onClick={handleLogout}
             >
               CERRAR SESIÓN
+            </button>
+            <button
+              id={styles["hidden_button"]}
+              type="button"
+              className={styles.logoutBtn}
+              onClick={handleLogout}
+            >
+              <img src={x_svg} alt="x_svg" />
+              Cerrar sesión
             </button>
           </div>
         ) : (
