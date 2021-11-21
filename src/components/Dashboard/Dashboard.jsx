@@ -36,7 +36,7 @@ function Dashboard() {
                   </li>
                     ) : (
                   <li>
-                    <Link to="/profile" className={styles.link}>
+                    <Link to="/schedule_appointment" className={styles.link}>
                       Especialistas
                     </Link>
                   </li>

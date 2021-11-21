@@ -18,6 +18,23 @@ import { L10n } from "@syncfusion/ej2-base";
 import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements, CardElement } from "@stripe/react-stripe-js";
+
+const stripe = loadStripe("pk_test_51JyIhdBhuxwlUlvDZhVWkZ9lkOMmEiUd0TcuENMKX1j9bEcYYYOdfLVHFQnhGriw3xc8XMfG8fotwE38j1L1i7rO00bIMERD3A");
+
+const cardElementOptions = {
+  style: {
+    base: {
+      fontSize: "16px",
+      color: '#939393'
+      },
+    invalid: {
+      color: '#434343'
+    }
+  }
+};
+
 setCulture("en-US");
 L10n.load({
   "en-US": {
@@ -48,7 +65,8 @@ L10n.load({
 });
 function editWindowTemplate(props) {
   //Nos permite editar la ventana que se despliega cuando el paciente va a agendar una cita
-  return props !== undefined ? (
+  return(
+    props !== undefined ? (
     <table
       className="custom-event-editor"
       style={{ width: "100%", cellpadding: "5" }}
@@ -153,6 +171,7 @@ function editWindowTemplate(props) {
     </table>
   ) : (
     <div></div>
+  )
   );
 }
 
@@ -214,41 +233,66 @@ function ScheduleAppointment() {
   useEffect(() => {
     setScheduleData("gasly@email.com");
   }, []);
+
+
   return (
     <>
       {isLoading ? (
         <h1>Loading...</h1>
       ) : (
-        <ScheduleComponent
-          eventSettings={{
-            dataSource: appointments,
-            fields: {
-              id: "Id",
-              subject: { name: "Subject", default: "Cita" },
-              startTime: { name: "StartTime", validation: { required: true } },
-              endTime: { name: "EndTime", validation: { required: true } },
-              eventType: {
-                name: "EventType",
-                default: "Pending",
-              },
-              description: { name: "Description", default: "" },
-            },
-            enableTooltip: true,
-          }}
-          startHour={workingHours[0]}
-          endHour={workingHours[1]}
-          workDays={workingDays}
-          editorTemplate={editWindowTemplate.bind(this)}
-          firstDayOfWeek={1}
-          showQuickInfo={false}
-          timeScale={{ enable: true, interval: 45, slotCount: 1 }}
-          popupOpen={onPopupOpen.bind(this)}
-        >
-          <ViewsDirective>
-            <ViewDirective option="WorkWeek" />
-          </ViewsDirective>
-          <Inject services={[Day, Week, WorkWeek, Month]} />
-        </ScheduleComponent>
+        <div className="appointmentContainer">
+          <div className="calendar">
+            <h1>Reserva una cita</h1>
+            <p>Ingresa la fecha y hora en la que deseas agendar tu cita:</p>
+            <ScheduleComponent
+              className="calendarComponent"
+              eventSettings={{
+                dataSource: appointments,
+                fields: {
+                  id: "Id",
+                  subject: { name: "Subject", default: "Cita" },
+                  startTime: { name: "StartTime", validation: { required: true } },
+                  endTime: { name: "EndTime", validation: { required: true } },
+                  eventType: {
+                    name: "EventType",
+                    default: "Pending",
+                  },
+                  description: { name: "Description", default: "" },
+                },
+                enableTooltip: true,
+              }}
+              startHour={workingHours[0]}
+              endHour={workingHours[1]}
+              workDays={workingDays}
+              editorTemplate={editWindowTemplate.bind(this)}
+              firstDayOfWeek={1}
+              showQuickInfo={false}
+              timeScale={{ enable: true, interval: 45, slotCount: 1 }}
+              popupOpen={onPopupOpen.bind(this)}
+            >
+              <ViewsDirective>
+                <ViewDirective option="WorkWeek" />
+              </ViewsDirective>
+              <Inject services={[Day, Week, WorkWeek, Month]} />
+            </ScheduleComponent>
+          </div>
+
+          <h1>Pago</h1>
+          <div className="payment">
+              <div className="paymentColumn">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, iste.</p>
+              </div>
+              <div className="paymentColumn">
+                <div className="price">
+                    <p>Precio de la consulta</p>
+                    <h1>$45</h1>
+                </div>
+                <Elements stripe={stripe}>
+                  <CardElement option={cardElementOptions}></CardElement>
+                </Elements>
+              </div>
+          </div>  
+        </div>
       )}
     </>
   );
