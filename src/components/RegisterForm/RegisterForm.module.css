@@ -117,18 +117,19 @@ a:hover {
   text-decoration: underline;
 }
 
-@media screen and (max-width: 852px) {
+@media screen and (max-width: 414px) {
   .container {
-    background-color: rgb(255, 255, 255);
+    background-color: var(--main-bg-color);
     width: 70%;
-    height: 140vh;
+    height: 122vh;
     border-radius: 10px;
   }
 
   .register {
     background-color: rgb(255, 255, 255);
-    height: 100%;
+    height: 90%;
     width: 100%;
+    border-radius: 10px;
   }
 
   .register .formDiv .inputGroup {
@@ -147,5 +148,232 @@ a:hover {
 
   .btn_div button {
     width: 50%;
+  }
+}
+@media screen and (max-width: 360px) {
+  .container {
+    background-color: var(--main-bg-color);
+    width: 70%;
+    height: 140vh;
+    border-radius: 10px;
+  }
+
+  .register {
+    background-color: rgb(255, 255, 255);
+    height: 105%;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .register .formDiv .inputGroup {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .register .formDiv .checkboxGroup {
+    margin-left: 10px;
+  }
+
+  .inputGroup input {
+    height: 50%;
+    width: 50%;
+  }
+
+  .btn_div button {
+    width: 50%;
+  }
+}
+
+@media screen and (height: 667px) {
+  .container {
+    background-color: var(--main-bg-color);
+    width: 70%;
+    height: 150vh;
+    border-radius: 10px;
+  }
+
+  .register {
+    background-color: rgb(255, 255, 255);
+    height: 90%;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .register .formDiv .inputGroup {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .register .formDiv .checkboxGroup {
+    margin-left: 10px;
+  }
+
+  .inputGroup input {
+    height: 50%;
+    width: 50%;
+  }
+
+  .btn_div button {
+    width: 50%;
+  }
+}
+
+/*IPAD */
+@media screen and (width: 768px) {
+  .container {
+    background-color: var(--main-bg-color);
+    width: 70%;
+    height: 100vh;
+    border-radius: 10px;
+  }
+
+  .register {
+    background-color: rgb(255, 255, 255);
+    height: 90%;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .register .formDiv .inputGroup {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .register .formDiv .checkboxGroup {
+    margin-left: 10px;
+  }
+
+  .inputGroup input {
+    height: 50%;
+    width: 50%;
+  }
+
+  .btn_div button {
+    width: 50%;
+    height: 4vh;
+  }
+
+  #labelpaciente {
+    font-size: large;
+  }
+}
+/*IPAD  pro*/
+@media screen and (width: 1024px) {
+  .container {
+    background-color: var(--main-bg-color);
+    width: 70%;
+    height: 100vh;
+    border-radius: 10px;
+  }
+
+  .register {
+    background-color: rgb(255, 255, 255);
+    height: 90%;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .register .formDiv .inputGroup {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .register .formDiv .checkboxGroup {
+    margin-left: 10px;
+  }
+
+  .inputGroup input {
+    height: 5vh;
+    width: 60%;
+  }
+
+  .btn_div button {
+    width: 50%;
+    height: 5vh;
+    font-size: x-large;
+  }
+
+  #labelpaciente {
+    font-size: x-large;
+  }
+}
+/*SURFACE*/
+@media screen and (width: 540px) {
+  .container {
+    background-color: var(--main-bg-color);
+    width: 70%;
+    height: 160vh;
+    border-radius: 10px;
+  }
+
+  .register {
+    background-color: rgb(255, 255, 255);
+    height: 90%;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .register .formDiv .inputGroup {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .register .formDiv .checkboxGroup {
+    margin-left: 10px;
+  }
+
+  .inputGroup input {
+    height: 5vh;
+    width: 60%;
+  }
+
+  .btn_div button {
+    width: 50%;
+    height: 5vh;
+    font-size: x-large;
+  }
+
+  #labelpaciente {
+    font-size: x-large;
+  }
+}
+/*Fold*/
+@media screen and (width: 280px) {
+  .container {
+    background-color: var(--main-bg-color);
+    width: 70%;
+    height: 150vh;
+    border-radius: 10px;
+  }
+
+  .register {
+    background-color: rgb(255, 255, 255);
+    height: 90%;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .register .formDiv .inputGroup {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .register .formDiv .checkboxGroup {
+    margin-left: 10px;
+  }
+
+  .inputGroup input {
+    height: 5vh;
+    width: 60%;
+  }
+
+  .btn_div button {
+    width: 50%;
+    height: 5vh;
+    font-size: medium;
+  }
+
+  #labelpaciente {
+    font-size: medium;
   }
 }
