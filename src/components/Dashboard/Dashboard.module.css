@@ -57,7 +57,7 @@
     justify-content: space-between;
   }
 
-  img {
+  #imagendash {
     width: 60px;
   }
 
@@ -91,7 +91,7 @@
     justify-content: space-between;
   }
 
-  img {
+  #imagendash {
     width: 45px;
   }
 
@@ -159,7 +159,7 @@
     justify-content: space-between;
   }
 
-  img {
+  #imagendash {
     width: 40px;
   }
 
@@ -193,7 +193,7 @@
     justify-content: space-around;
   }
 
-  img {
+  #imagendash {
     width: 20px;
   }
 

@@ -21,14 +21,30 @@ function Dashboard() {
   const [pacienState, setPacient] = useState(true);
   const [dateState, setDate] = useState(true);
   const [profileState, setProfile] = useState(true);
-  const mensajeNormal = <img src={mensajes_image} alt="mensajeselec" />;
-  const mensajeRojo = <img src={mensajes_rojo} alt="mensajeselec" />;
-  const pacientNormal = <img src={paciente_nor} alt="mensajeselec" />;
-  const pacientRojo = <img src={paciente_rojo} alt="mensajeselec" />;
-  const dateNormal = <img src={date_nor} alt="mensajeselec" />;
-  const dateRoja = <img src={date_rojo} alt="mensajeselec" />;
-  const perfilNormal = <img src={prof_nor} alt="mensajeselec" />;
-  const perfilRoja = <img src={prof_rojo} alt="mensajeselec" />;
+  const mensajeNormal = (
+    <img id={styles["imagendash"]} src={mensajes_image} alt="mensajeselec" />
+  );
+  const mensajeRojo = (
+    <img id={styles["imagendash"]} src={mensajes_rojo} alt="mensajeselec" />
+  );
+  const pacientNormal = (
+    <img id={styles["imagendash"]} src={paciente_nor} alt="mensajeselec" />
+  );
+  const pacientRojo = (
+    <img id={styles["imagendash"]} src={paciente_rojo} alt="mensajeselec" />
+  );
+  const dateNormal = (
+    <img id={styles["imagendash"]} src={date_nor} alt="mensajeselec" />
+  );
+  const dateRoja = (
+    <img id={styles["imagendash"]} src={date_rojo} alt="mensajeselec" />
+  );
+  const perfilNormal = (
+    <img id={styles["imagendash"]} src={prof_nor} alt="mensajeselec" />
+  );
+  const perfilRoja = (
+    <img id={styles["imagendash"]} src={prof_rojo} alt="mensajeselec" />
+  );
 
   return (
     <div className={styles.maindiv}>
