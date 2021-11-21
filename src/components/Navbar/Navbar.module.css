@@ -103,7 +103,7 @@ img {
     font-size: 16px;
   }
 }
-@media screen and (max-width: 858px) {
+@media screen and (max-width: 414px) {
   .resboton {
     display: inline-flex;
     margin-left: 30%;
@@ -157,10 +157,326 @@ img {
     flex-direction: column;
     justify-content: space-around;
     top: 80px;
-    right: -50vh;
+    right: -60vh;
     transition: all 0.4s;
   }
   .container {
     border-bottom: solid #5788ea;
+  }
+}
+@media screen and (width: 1024px) {
+  .resboton {
+    display: inline-flex;
+    margin-left: 30%;
+  }
+  .navbarContainer li {
+    display: flex;
+  }
+  .navbarContainer li .link img {
+    padding-left: 1px;
+
+    padding-right: 20px;
+  }
+  #buttonbig {
+    display: none;
+  }
+
+  #hidden_button {
+    background-color: #f5f5f7;
+
+    display: flex;
+    color: red;
+    flex-direction: column;
+    align-items: center;
+  }
+  #hidden {
+    position: fixed;
+    right: -700px;
+    top: 135px;
+    background-color: #f5f5f7;
+    height: 50%;
+    width: 100%;
+
+    flex-direction: column;
+
+    transition: all 0.4s;
+  }
+  .register {
+    font-size: x-large;
+    color: #939393;
+  }
+  .login {
+    font-size: x-large;
+    color: #939393;
+    background-color: #f5f5f7;
+  }
+
+  #ulstyles {
+    justify-content: space-around;
+  }
+  #menuid {
+    background-color: rgb(87, 118, 234);
+
+    margin-left: 240px;
+  }
+  #imgstyles {
+    height: 6vh;
+  }
+  .navbarContainer li.rightSide {
+    position: fixed;
+    align-items: left;
+    border-radius: 10px;
+    width: 100%;
+    height: 50%;
+    margin-left: 10%;
+    background: #5f7a92;
+    flex-direction: column;
+    justify-content: space-around;
+    top: 135px;
+    right: -80vh;
+    transition: all 0.4s;
+  }
+  .container {
+    border-bottom: solid #5788ea;
+  }
+}
+
+@media screen and (width: 768px) {
+  .resboton {
+    display: inline-flex;
+    margin-left: 30%;
+  }
+  .navbarContainer li {
+    display: flex;
+  }
+  .navbarContainer li .link img {
+    padding-left: 1px;
+
+    padding-right: 20px;
+  }
+  #buttonbig {
+    display: none;
+  }
+
+  #hidden_button {
+    background-color: #f5f5f7;
+
+    display: flex;
+    color: red;
+    flex-direction: column;
+    align-items: center;
+  }
+  #hidden {
+    position: fixed;
+    right: -500px;
+    top: 135px;
+    background-color: #f5f5f7;
+    height: 50%;
+    width: 100%;
+
+    flex-direction: column;
+
+    transition: all 0.4s;
+  }
+  .register {
+    font-size: x-large;
+    color: #939393;
+  }
+  .login {
+    font-size: x-large;
+    color: #939393;
+    background-color: #f5f5f7;
+  }
+
+  #ulstyles {
+    justify-content: space-around;
+  }
+  #menuid {
+    background-color: rgb(87, 118, 234);
+
+    margin-left: 120px;
+  }
+  #imgstyles {
+    height: 7vh;
+  }
+  .navbarContainer li.rightSide {
+    position: fixed;
+    align-items: left;
+    border-radius: 10px;
+    width: 100%;
+    height: 50%;
+    margin-left: 10%;
+    background: #5f7a92;
+    flex-direction: column;
+    justify-content: space-around;
+    top: 135px;
+    right: -80vh;
+    transition: all 0.4s;
+  }
+  .container {
+    border-bottom: solid #5788ea;
+  }
+}
+@media screen and (width: 540px) {
+  .resboton {
+    display: inline-flex;
+    margin-left: 30%;
+  }
+  .navbarContainer li {
+    display: flex;
+  }
+  .navbarContainer li .link img {
+    padding-left: 1px;
+
+    padding-right: 20px;
+  }
+  #buttonbig {
+    display: none;
+  }
+
+  #hidden_button {
+    background-color: #f5f5f7;
+
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+  }
+  #hidden {
+    position: fixed;
+    right: -300px;
+    top: 135px;
+    background-color: #f5f5f7;
+    height: 50%;
+    width: 100%;
+
+    flex-direction: column;
+
+    transition: all 0.4s;
+  }
+  .register {
+    font-size: large;
+    color: #939393;
+  }
+  .login {
+    font-size: large;
+    color: #939393;
+    background-color: #f5f5f7;
+  }
+
+  #ulstyles {
+    justify-content: space-around;
+  }
+  #menuid {
+    background-color: rgb(87, 118, 234);
+
+    margin-left: 70px;
+  }
+  #imgstyles {
+    height: 7vh;
+  }
+  .navbarContainer li.rightSide {
+    position: fixed;
+    align-items: left;
+    border-radius: 10px;
+    width: 100%;
+    height: 50%;
+    margin-left: 10%;
+    background: #5f7a92;
+    flex-direction: column;
+    justify-content: space-around;
+    top: 135px;
+    right: -80vh;
+    transition: all 0.4s;
+  }
+  .container {
+    border-bottom: solid #5788ea;
+  }
+}
+
+@media screen and (width: 280px) {
+  .resboton {
+    display: inline-flex;
+    margin-left: 30%;
+  }
+  .navbarContainer li {
+    display: flex;
+  }
+  .navbarContainer li .link img {
+    padding-left: 1px;
+
+    padding-right: 20px;
+  }
+  #buttonbig {
+    display: none;
+  }
+
+  #hidden_button {
+    background-color: #f5f5f7;
+
+    display: flex;
+    color: red;
+    flex-direction: column;
+    align-items: center;
+  }
+  #hidden {
+    position: fixed;
+    right: -50px;
+    top: 64px;
+    background-color: #f5f5f7;
+    height: 50%;
+    width: 100%;
+
+    flex-direction: column;
+
+    transition: all 0.4s;
+  }
+  .register {
+    font-size: medium;
+    color: #939393;
+  }
+  .login {
+    font-size: medium;
+    color: #939393;
+    background-color: #f5f5f7;
+  }
+
+  #ulstyles {
+    justify-content: space-between;
+  }
+  #menuid {
+    background-color: rgb(87, 118, 234);
+
+    margin-left: 30px;
+  }
+  .resboton {
+    margin-top: -5px;
+  }
+  #imgstyles {
+    height: 4vh;
+    margin-top: 3.5vh;
+  }
+  .navbarContainer li.rightSide {
+    position: fixed;
+    align-items: left;
+    border-radius: 10px;
+    width: 100%;
+    height: 50%;
+    margin-left: 10%;
+    background: #5f7a92;
+    flex-direction: column;
+    justify-content: space-around;
+    top: 64px;
+    right: -80vh;
+    transition: all 0.4s;
+  }
+  .container {
+    border-bottom: solid #5788ea;
+  }
+
+  .navbarContainer {
+    position: fixed;
+    margin-right: 10px;
+    margin-top: -4vh;
   }
 }

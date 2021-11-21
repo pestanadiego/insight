@@ -10,7 +10,7 @@ import x_svg from "../../images/x.svg";
 function Navbar() {
   const history = useHistory();
   const { user, setUser } = useContext(UserContext); // Para poder acceder al estado global del sistema
-  const [showMenu, setMenu] = useState(true);
+  const [showMenu, setMenu] = useState(false);
 
   // Función para cerrar sesión. Se coloca el user en null y se devuelve al home page
   const handleLogout = async () => {
@@ -20,15 +20,29 @@ function Navbar() {
   };
 
   return (
-    <ul className={styles.navbarContainer}>
+    <ul id={styles["ulstyles"]} className={styles.navbarContainer}>
       <li>
         <Link to="/" className={styles.link}>
-          <img className={styles.logo} src={logo} alt="logo" />
+          <img
+            id={styles["imgstyles"]}
+            className={styles.logo}
+            src={logo}
+            alt="logo"
+          />
         </Link>
 
         <div className={styles.resboton}>
-          <button onClick={() => setMenu(!showMenu)} className={styles.login}>
-            <img className={styles.menu_desp} src={menu_desp} alt="menu_desp" />
+          <button
+            id={styles["menuid"]}
+            onClick={() => setMenu(!showMenu)}
+            className={styles.login}
+          >
+            <img
+              id={styles["imgstyles"]}
+              className={styles.menu_desp}
+              src={menu_desp}
+              alt="menu_desp"
+            />
           </button>
         </div>
       </li>
