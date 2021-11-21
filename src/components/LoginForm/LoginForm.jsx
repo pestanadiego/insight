@@ -216,12 +216,14 @@ function LoginForm() {
             </div>
           </div>
           <h1>Inicia sesión</h1>
-          <p>Ingresa tu correo y contraseña</p>
+          <p id={styles["titles"]}>Ingresa tu correo y contraseña</p>
           <div className={styles.formDiv}>
             <div className={styles.form_Div}>
               <form onSubmit={handleSubmit}>
                 <div className={styles.inputGroup}>
-                  <label htmlFor="email">Ingrese su correo electrónico</label>
+                  <label id={styles["titles"]} htmlFor="email">
+                    Ingrese su correo electrónico
+                  </label>
                   <br />
                   <input
                     name="email"
@@ -234,7 +236,9 @@ function LoginForm() {
                 </div>
 
                 <div className={styles.inputGroup}>
-                  <label htmlFor="password">Ingrese su contraseña</label>
+                  <label id={styles["titles"]} htmlFor="password">
+                    Ingrese su contraseña
+                  </label>
                   <br />
                   <input
                     name="password"
@@ -257,7 +261,7 @@ function LoginForm() {
                 </div>
               </form>
             </div>
-            <div className={styles.registration}>
+            <div id={styles["lowerzone"]} className={styles.registration}>
               <h5>¿No estas registrado?</h5>
               <Link to="/register_pacient">
                 <h5 className={styles.pacient}>Regístrate como Paciente</h5>
