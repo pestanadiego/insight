@@ -6,10 +6,29 @@ import citas_image from "../../images/icons/dates.svg";
 import perfil_image from "../../images/icons/profile.svg";
 import pacientes_image from "../../images/icons/paciente.svg";
 import mensajes_image from "../../images/icons/mensaje.svg";
+import mensajes_rojo from "../../images/icons/mensajeS.svg";
+import paciente_nor from "../../images/icons/paciente.svg";
+import paciente_rojo from "../../images/icons/pacienteR.svg";
+import date_nor from "../../images/icons/dates.svg";
+import date_rojo from "../../images/icons/datesR.svg";
+import prof_nor from "../../images/icons/profile.svg";
+import prof_rojo from "../../images/icons/profileR.svg";
 
 function Dashboard() {
   const { user } = useContext(UserContext);
   const [showDash, setDash] = useState(false);
+  const [normalImage, setImage] = useState(true);
+  const [pacienState, setPacient] = useState(true);
+  const [dateState, setDate] = useState(true);
+  const [profileState, setProfile] = useState(true);
+  const mensajeNormal = <img src={mensajes_image} alt="mensajeselec" />;
+  const mensajeRojo = <img src={mensajes_rojo} alt="mensajeselec" />;
+  const pacientNormal = <img src={paciente_nor} alt="mensajeselec" />;
+  const pacientRojo = <img src={paciente_rojo} alt="mensajeselec" />;
+  const dateNormal = <img src={date_nor} alt="mensajeselec" />;
+  const dateRoja = <img src={date_rojo} alt="mensajeselec" />;
+  const perfilNormal = <img src={prof_nor} alt="mensajeselec" />;
+  const perfilRoja = <img src={prof_rojo} alt="mensajeselec" />;
 
   return (
     <div className={styles.maindiv}>
@@ -17,17 +36,22 @@ function Dashboard() {
         <div id={styles["dash"]} className={styles.dashboard}>
           <ul>
             <li id={styles["showdash"]}>
-              <Link
-                onClick={() => setDash(!showDash)}
-                to="/profile"
-                className={styles.link}
-              >
+              <Link to="/profile" className={styles.link}>
                 Mi Perfil
               </Link>
             </li>
             <li id={styles["hidden_d"]}>
-              <Link to="/profile" className={styles.link}>
-                <img src={perfil_image} alt="Mi perfil" />
+              <Link
+                to="/profile"
+                onClick={() => {
+                  setImage(true);
+                  setPacient(true);
+                  setDate(true);
+                  setProfile(false);
+                }}
+                className={styles.link}
+              >
+                {profileState ? perfilNormal : perfilRoja}
               </Link>
             </li>
             <li id={styles["showdash"]}>
@@ -36,8 +60,17 @@ function Dashboard() {
               </Link>
             </li>
             <li id={styles["hidden_d"]}>
-              <Link to="/profile" className={styles.link}>
-                <img src={citas_image} alt="imagen_cita" />
+              <Link
+                to="/profile"
+                onClick={() => {
+                  setImage(true);
+                  setPacient(true);
+                  setDate(false);
+                  setProfile(true);
+                }}
+                className={styles.link}
+              >
+                {dateState ? dateNormal : dateRoja}
               </Link>
             </li>
 
@@ -47,8 +80,17 @@ function Dashboard() {
               </Link>
             </li>
             <li id={styles["hidden_d"]}>
-              <Link to="/profile" className={styles.link}>
-                <img src={pacientes_image} alt="paciente_image" />
+              <Link
+                to="/profile"
+                onClick={() => {
+                  setImage(true);
+                  setPacient(false);
+                  setDate(true);
+                  setProfile(true);
+                }}
+                className={styles.link}
+              >
+                {pacienState ? pacientNormal : pacientRojo}
               </Link>
             </li>
             <li id={styles["showdash"]}>
@@ -57,8 +99,17 @@ function Dashboard() {
               </Link>
             </li>
             <li id={styles["hidden_d"]}>
-              <Link to="/profile" className={styles.link}>
-                <img src={mensajes_image} alt="mensajes_image" />
+              <Link
+                to="/profile"
+                onClick={() => {
+                  setImage(false);
+                  setPacient(true);
+                  setDate(true);
+                  setProfile(true);
+                }}
+                className={styles.link}
+              >
+                {normalImage ? mensajeNormal : mensajeRojo}
               </Link>
             </li>
           </ul>
