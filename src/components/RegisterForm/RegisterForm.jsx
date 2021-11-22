@@ -31,9 +31,10 @@ function RegisterForm() {
       history.push('/profile');
   };
 
+
   //Inicio de sesion con Facebook
   const handleFacebookLogin = async () => {
-    try {
+    try{
       const response = await auth.signInWithPopup(facebookProvider); //Se le envia al proveedor de Facebook
       setUser({
         name: response.user.displayName,
@@ -51,7 +52,7 @@ function RegisterForm() {
         response.user.uid
       );
       history.push("/profile");
-    } catch (error) {
+    } catch(error) {
       alert("Se ha producido un error por favor inténtelo más tarde.");
     }
   };

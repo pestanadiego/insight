@@ -36,7 +36,7 @@ function Dashboard() {
                   </li>
                     ) : (
                   <li>
-                    <Link to="/schedule_appointment" className={styles.link}>
+                    <Link to="/search" className={styles.link}>
                       Especialistas
                     </Link>
                   </li>

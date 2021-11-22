@@ -9,14 +9,21 @@ import PasswordPage from "./pages/PasswordPage";
 import ProfilePage from "./pages/ProfilePage";
 import PrivateRoute from "./components/ProtectedRoutes/PrivateRoute";
 import AdminPage from "./pages/AdminPage";
+import SpecialistDetailsPage from "./pages/SpecialistDetailsPage";
+import SearchSpecialistPage from "./pages/SearchSpecialistPage";
 import LoadingPage from "./pages/LoadingPage";
 import ScheduleAppointmentPage from "./pages/ScheduleAppointmentPage";
+import ReserveAppointmentPage from "./pages/ReserveAppointmentPage";
+
 
 function Routes() {
-  return (
+  return(
     <Switch>
       <Route exact path="/login" component={LoginPage} />
       <Route exact path="/register_pacient" component={RegisterPage} />
+      <Route exact path="/specialists/:specialistID" component={SpecialistDetailsPage} />
+      <Route exact path="/appointments/:specialistId" component={ReserveAppointmentPage} />
+
       <Route
         exact
         path="/register_especialist"
@@ -24,6 +31,7 @@ function Routes() {
       />
       <Route exact path="/under_review" component={UnderReviewPage} />
       <Route exact path="/forgotten_password" component={PasswordPage} />
+      <PrivateRoute exact path="/search" component={SearchSpecialistPage} />
       <Route exact path="/done_review" component={ReviewDonePage} />
       <Route exact path="/loading" component={LoadingPage} />
       {/* Protected Routes */}

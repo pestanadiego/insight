@@ -179,7 +179,10 @@ function onPopupOpen(props) {
   }
 }
 
-function ScheduleAppointment() {
+function ScheduleAppointment({ specialist }) {
+
+  // SE LE PASA LA PROP SPECIALIST (EL .JSON CON TODOS LOS DATOS DEL ESPECIALISTA)
+  console.log(specialist);
   const history = useHistory();
   const { user, getUserByEmail, setUser } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true); //Pantalla de carga
