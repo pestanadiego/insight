@@ -18,6 +18,12 @@ import { L10n } from "@syncfusion/ej2-base";
 import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+
+// Stripe
+const stripe = loadStripe("pk_test_51JyIhdBhuxwlUlvDZhVWkZ9lkOMmEiUd0TcuENMKX1j9bEcYYYOdfLVHFQnhGriw3xc8XMfG8fotwE38j1L1i7rO00bIMERD3A");
+
 setCulture("en-US");
 L10n.load({
   "en-US": {
@@ -48,7 +54,8 @@ L10n.load({
 });
 function editWindowTemplate(props) {
   //Nos permite editar la ventana que se despliega cuando el paciente va a agendar una cita
-  return props !== undefined ? (
+  return(
+    props !== undefined ? (
     <table
       className="custom-event-editor"
       style={{ width: "100%", cellpadding: "5" }}
@@ -156,9 +163,12 @@ function editWindowTemplate(props) {
     </table>
   ) : (
     <div></div>
+  )
   );
 }
 
+/* 
+COMENTARIO 
 function onPopupOpen(props) {
   //Valida si el paciente intenta agendar una cita antes del presente, de tal manera que el popup no se despliegue
   const today = new Date();
@@ -174,7 +184,15 @@ function onPopupOpen(props) {
   }
 }
 
-function ScheduleAppointment() {
+*/
+
+
+
+function ScheduleAppointment({specialist}) {
+
+  // SE LE PASA LA PROP SPECIALIST (EL .JSON CON TODOS LOS DATOS DEL ESPECIALISTA)
+  console.log(specialist);
+  /* COMENTARIO 
   const history = useHistory();
   const { user, getUserByEmail, setUser } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true); //Pantalla de carga
@@ -216,46 +234,123 @@ function ScheduleAppointment() {
     }
   };
   useEffect(() => {
-    setScheduleData("gasly@email.com");
+    setScheduleData("kimi@email.com");
   }, []);
+<<<<<<< HEAD
   console.log(appointments);
+=======
+
+  /*
+  // Formulario de pago
+  function CheckoutForm() {
+    const stripe = useStripe();
+    const elements = useElements();
+    const [isPaymentLoading, setPaymentLoading] = useState(false);
+
+     payMoney = async (e) => {
+      e.preventDefault();
+      if (!stripe || !elements) {
+        return;
+      }
+      setPaymentLoading(true);
+      const clientSecret = getClientSecret();
+      const paymentResult = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+          billing_details: {
+            name: "Faruq Yusuff",
+          },
+        },
+      });
+    
+      setPaymentLoading(false);
+      if (paymentResult.error) {
+        alert(paymentResult.error.message);
+      } else {
+        if (paymentResult.paymentIntent.status === "succeeded") {
+          alert("El pago fue realizado con éxito!");
+        }
+      }
+    };
+
+    return(
+      <form>
+        <CardElement />
+        <button>{isPaymentLoading ? "Cargando..." : "Pagar"}</button>
+      </form>
+    );
+  }
+  
+  
+  */
+
+>>>>>>> 610bca44f0064e89d64a36f0a0a8db207194cfa9
   return (
+    <div>
+      <p>{specialist}</p>
+    </div>
+    /*
     <>
       {isLoading ? (
         <h1>Loading...</h1>
       ) : (
-        <ScheduleComponent
-          eventSettings={{
-            dataSource: appointments,
-            fields: {
-              id: "Id",
-              subject: { name: "Subject", default: "Cita" },
-              startTime: { name: "StartTime", validation: { required: true } },
-              endTime: { name: "EndTime", validation: { required: true } },
-              eventType: {
-                name: "EventType",
-                default: "Pending",
-              },
-              description: { name: "Description", default: "" },
-            },
-            enableTooltip: true,
-          }}
-          startHour={workingHours[0]}
-          endHour={workingHours[1]}
-          workDays={workingDays}
-          editorTemplate={editWindowTemplate.bind(this)}
-          firstDayOfWeek={1}
-          showQuickInfo={false}
-          timeScale={{ enable: true, interval: 45, slotCount: 1 }}
-          popupOpen={onPopupOpen.bind(this)}
-        >
-          <ViewsDirective>
-            <ViewDirective option="WorkWeek" />
-          </ViewsDirective>
-          <Inject services={[Day, Week, WorkWeek, Month]} />
-        </ScheduleComponent>
+        <div className="appointmentContainer">
+          <div className="calendar">
+            <h1>Reserva una cita</h1>
+            <p>Ingresa la fecha y hora en la que deseas agendar tu cita:</p>
+            <ScheduleComponent
+              className="calendarComponent"
+              eventSettings={{
+                dataSource: appointments,
+                fields: {
+                  id: "Id",
+                  subject: { name: "Subject", default: "Cita" },
+                  startTime: { name: "StartTime", validation: { required: true } },
+                  endTime: { name: "EndTime", validation: { required: true } },
+                  eventType: {
+                    name: "EventType",
+                    default: "Pending",
+                  },
+                  description: { name: "Description", default: "" },
+                },
+                enableTooltip: true,
+              }}
+              startHour={workingHours[0]}
+              endHour={workingHours[1]}
+              workDays={workingDays}
+              editorTemplate={editWindowTemplate.bind(this)}
+              firstDayOfWeek={1}
+              showQuickInfo={false}
+              timeScale={{ enable: true, interval: 45, slotCount: 1 }}
+              popupOpen={onPopupOpen.bind(this)}
+            >
+              <ViewsDirective>
+                <ViewDirective option="WorkWeek" />
+              </ViewsDirective>
+              <Inject services={[Day, Week, WorkWeek, Month]} />
+            </ScheduleComponent>
+          </div>
+
+          <h1>Pago</h1>
+          <div className="payment">
+              <div className="paymentColumn">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, iste.</p>
+              </div>
+              <div className="paymentColumn">
+                <div className="price">
+                    <p>Precio de la consulta</p>
+                    <h1>$45</h1>
+                </div>
+                <Elements stripe={stripe}>
+                  {/*<CheckoutForm />}
+                </Elements>
+              </div>
+          </div>  
+        </div>
       )}
     </>
+    */
+
   );
 }
 

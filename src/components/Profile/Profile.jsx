@@ -134,26 +134,10 @@ function Profile() {
     checkStatus();
   };
 
-  // Función para saber si el especialista ya rellenó todos sus datos
-  const checkStatus = async () => {
-    let counter = 0;
-    user.work.length != 0 && counter++;
-    console.log(counter);
-    !!user.description && counter++;
-    console.log(counter);
-    !!user.payment && counter++;
-    console.log(counter);
-    user.work.length != 0 && counter++;
-    console.log(counter);
-    user.hours.length != 0 && counter++;
-    console.log(counter);
-    if (counter == 5) {
-      user.status = "yes";
-      await db.collection("users").doc(user.uid).update({ status: "yes" });
-      await db
-        .collection("specialists")
-        .doc(user.uid)
-        .update({ status: "yes" });
+    const arraySpeciality = (specialityString) => {
+      const string = specialityString.toLowerCase();
+      const specialityArray = string.split(',');
+      return specialityArray;
     }
   };
 
@@ -257,33 +241,42 @@ function Profile() {
     setShowPassword(!showPassword);
   };
 
-  // Se encarga de los cambios que ocurren en los input
-  const handleOnChange = (event) => {
-    const { value, name: inputName } = event.target;
-    setValues({ ...values, [inputName]: value });
-  };
+    const renderSpeciality = () => {
+      let render = "";
+      for (let i = 0; i < user.speciality.length; i++) {
+        const speciality = user.speciality[i];
+        render += speciality + " ";
+      }
+      return render;
+    }
 
-  const renderWorkDays = () => {
-    let render = "";
-    if (!!!user.work) {
-      return null;
-    } else {
-      for (let i = 0; i < user.work.length; i++) {
-        const workDay = user.work[i];
-        if (workDay === "1") {
-          render += "Lunes ";
-        } else if (workDay === "2") {
-          render += "Martes ";
-        } else if (workDay === "3") {
-          render += "Miércoles ";
-        } else if (workDay === "4") {
-          render += "Jueves ";
-        } else if (workDay === "5") {
-          render += "Viernes ";
-        } else if (workDay === "6") {
-          render += "Sábado ";
-        } else if (workDay === "0") {
-          render += "Domingo ";
+    const renderHours = () => {
+      let render = 'De ' + user.hours[0] + ' a ' + user.hours[1];
+      return render;
+    }   
+
+    const renderWorkDays = () => {
+      let render = "";
+      if(!!!user.work) {
+        return null;
+      } else {
+        for (let i = 0; i < user.work.length; i++) {
+          const workDay = user.work[i];
+          if(workDay === "1") {
+            render += "Lunes ";
+          } else if(workDay === "2") {
+            render += "Martes ";
+          } else if(workDay === "3") {
+            render += "Miércoles ";
+          } else if(workDay === "4") {
+            render += "Jueves ";
+          } else if(workDay === "5") {
+            render += "Viernes ";
+          } else if(workDay === "6") {
+            render += "Sábado ";
+          } else if(workDay === "0") {
+            render += "Domingo "
+          } 
         }
       }
       console.log(render);
@@ -456,16 +449,11 @@ function Profile() {
                 <div className={styles.secondColumn}>
                   <div className={styles.profileInfo}>
                     <p className={styles.profileTitle}>Especialidades:</p>
-                    <p>
-                      {user.speciality[0]}, {user.speciality[1]},{" "}
-                      {user.speciality[2]}
-                    </p>
+                    <p>{ (!!user.speciality) ? renderSpeciality() : null}</p>
                   </div>
                   <div className={styles.profileInfo}>
                     <p className={styles.profileTitle}>Horario de trabajo: </p>
-                    <p>
-                      De {user.hours[0]} a {user.hours[1]}{" "}
-                    </p>
+                    <p>{ (!!user.hours) ? renderHours() : null}</p>
                   </div>
                   <div className={styles.profileInfo}>
                     <p className={styles.profileTitle}>Días laborales: </p>

@@ -27,7 +27,7 @@ function Navbar() {
       <li className={styles.rightSide}>
         {!!user ? (
           <div className={styles.container}>
-            <button type="button" className={styles.logoutBtn}onClick={handleLogout}>
+            <button type="button" className={styles.logoutBtn} onClick={handleLogout}>
               CERRAR SESIÓN
             </button>
           </div>
