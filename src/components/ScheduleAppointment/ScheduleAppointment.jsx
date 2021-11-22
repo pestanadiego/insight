@@ -172,8 +172,6 @@ function editWindowTemplate(props) {
   );
 }
 
-/* 
-COMENTARIO 
 function onPopupOpen(props) {
   //Valida si el paciente intenta agendar una cita antes del presente, de tal manera que el popup no se despliegue
   const today = new Date();
@@ -186,57 +184,44 @@ function onPopupOpen(props) {
       "Por favor seleccione un horario válido. En caso de que el problema persista, chequee que le fecha y hora que esté seleccionando no sea un día u hora que ya pasó"
     );
     props.cancel = true;
+  } else {
   }
 }
 
-*/
-
 function ScheduleAppointment({ specialist }) {
   // SE LE PASA LA PROP SPECIALIST (EL .JSON CON TODOS LOS DATOS DEL ESPECIALISTA)
-  console.log(specialist);
-  /* COMENTARIO 
+  //   const { user } = useContext(UserContext);
   const history = useHistory();
-  const { user, getUserByEmail, setUser } = useContext(UserContext);
+  console.log("ESPECIALISTAAAA", specialist);
   const [isLoading, setIsLoading] = useState(true); //Pantalla de carga
-  const [workingHours, setWorkingHours] = useState([]); //Almacena la información referente al horario de trabajo del especialista
-  const [workingDays, setWorkingDays] = useState([]); //Almacena la información referente a los días de trabajo del especialista
-  const [appointments, setAppointments] = useState([]); //Almacena la información referente a las citas agendadas del especialista
+  const workingHours = specialist.hours; //Almacena la información referente al horario de trabajo del especialista
+  let workingDays = []; //Almacena la información referente a los días de trabajo del especialista
+  let appointments = []; //Almacena la información referente a las citas agendadas del especialista
+  const numAppointments = specialist.appointments;
 
-  const setScheduleData = async (email) => {
+  const getWorkingDays = (prop) => {
+    //Obtiene los días de trabajo del especialista
+    for (let i = 0; i < prop.work.length; i++) {
+      workingDays.push(parseInt(prop.work[i]));
+    }
+    return workingDays;
+  };
+
+  const getAppointments = (prop) => {
+    //Obtiene las citas agendadas del especialistas
+    if (prop.appointments !== undefined) {
+      appointments = prop.appointments;
+    }
+  };
+
+  const setScheduleData = () => {
     //Se encarga de insertarle los parametros necesarios al calendario para que este muestre las citas, días de trabajo y horarios del especialista
     setIsLoading(true);
-    const response = await getUserByEmail(email); //Obtiene los datos del especialista que escogió el paciente
-    console.log("especialista", response);
-    getWorkingHours(response);
-    getWorkingDays(response);
-    getAppointments(response);
+    getAppointments(specialist);
     setIsLoading(false);
   };
-
-  const getWorkingHours = (response) => {
-    //Obtiene el horario de trabajo del especialista
-    setWorkingHours(response.hours);
-  };
-
-  const getWorkingDays = (response) => {
-    //Obtiene los días de trabajo del especialista
-    let workint = [];
-    for (let i = 0; i < response.work.length; i++) {
-      workint.push(parseInt(response.work[i]));
-    }
-    setWorkingDays(workint);
-  };
-
-  const getAppointments = (response) => {
-    //Obtiene las citas agendadas del especialistas
-    if (response.appointments === undefined) {
-      setAppointments([]);
-    } else {
-      setAppointments(response.appointments);
-    }
-  };
   useEffect(() => {
-    setScheduleData("kimi@email.com");
+    setScheduleData();
   }, []);
 
   /*
@@ -284,10 +269,9 @@ function ScheduleAppointment({ specialist }) {
   */
 
   return (
-    <div>
-      <p>{specialist}</p>
-    </div>
-    /*
+    // <div>
+    //   <p>{specialist}</p>
+    // </div>
     <>
       {isLoading ? (
         <h1>Loading...</h1>
@@ -303,7 +287,10 @@ function ScheduleAppointment({ specialist }) {
                 fields: {
                   id: "Id",
                   subject: { name: "Subject", default: "Cita" },
-                  startTime: { name: "StartTime", validation: { required: true } },
+                  startTime: {
+                    name: "StartTime",
+                    validation: { required: true },
+                  },
                   endTime: { name: "EndTime", validation: { required: true } },
                   eventType: {
                     name: "EventType",
@@ -315,7 +302,7 @@ function ScheduleAppointment({ specialist }) {
               }}
               startHour={workingHours[0]}
               endHour={workingHours[1]}
-              workDays={workingDays}
+              workDays={getWorkingDays(specialist)}
               editorTemplate={editWindowTemplate.bind(this)}
               firstDayOfWeek={1}
               showQuickInfo={false}
@@ -329,7 +316,7 @@ function ScheduleAppointment({ specialist }) {
             </ScheduleComponent>
           </div>
 
-          <h1>Pago</h1>
+          {/* <h1>Pago</h1>
           <div className="payment">
               <div className="paymentColumn">
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, iste.</p>
@@ -340,14 +327,13 @@ function ScheduleAppointment({ specialist }) {
                     <h1>$45</h1>
                 </div>
                 <Elements stripe={stripe}>
-                  {/*<CheckoutForm />}
+                  {<CheckoutForm />}
                 </Elements>
               </div>
-          </div>  
+          </div>*/}
         </div>
       )}
     </>
-    */
   );
 }
 

@@ -25,9 +25,9 @@ L10n.load({
     schedule: {
       day: "Día",
       week: "Semana",
-      workWeek: "Semana-Laboral",
+      workWeek: "Semana",
       month: "Mes",
-      agenda: "Citas de Hoy",
+      agenda: "Citas",
       today: "Hoy",
       allDay: "Todo el Día",
       start: "Comienza",
@@ -65,7 +65,25 @@ function Appointments() {
       StartTime: new Date(2021, 10, 23, 10, 30),
       EndTime: new Date(2021, 10, 23, 11, 30),
       EventType: "Pending",
+      pacient: "Cristiano Ronaldo",
+      description: "",
+    },
+    {
+      Id: "2",
+      Subject: "Cita",
+      StartTime: new Date(2021, 10, 23, 13, 30),
+      EndTime: new Date(2021, 10, 23, 14, 30),
+      EventType: "Pending",
       pacient: "Julio Perez",
+      description: "",
+    },
+    {
+      Id: "3",
+      Subject: "Cita",
+      StartTime: new Date(2021, 10, 24, 10, 30),
+      EndTime: new Date(2021, 10, 24, 11, 30),
+      EventType: "Pending",
+      pacient: "Salcedo Loco",
       description: "",
     },
   ]); //Almacena la información referente a las citas agendadas del especialista
@@ -142,7 +160,7 @@ function Appointments() {
           }}
           startHour={workingHours[0]}
           endHour={workingHours[1]}
-          workDays={[1, 2, 3, 4, 5]}
+          workDays={workingDays}
           firstDayOfWeek={1}
           showQuickInfo={false}
           timeScale={{ enable: true, interval: 45, slotCount: 1 }}
@@ -150,8 +168,9 @@ function Appointments() {
         >
           <ViewsDirective>
             <ViewDirective option="WorkWeek" />
+            <ViewDirective option="Agenda" />
           </ViewsDirective>
-          <Inject services={[Day, Week, WorkWeek, Month]} />
+          <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
         </ScheduleComponent>
       )}
     </>
