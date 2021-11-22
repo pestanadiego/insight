@@ -19,21 +19,10 @@ import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
-import { Elements, CardElement } from "@stripe/react-stripe-js";
+import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 
+// Stripe
 const stripe = loadStripe("pk_test_51JyIhdBhuxwlUlvDZhVWkZ9lkOMmEiUd0TcuENMKX1j9bEcYYYOdfLVHFQnhGriw3xc8XMfG8fotwE38j1L1i7rO00bIMERD3A");
-
-const cardElementOptions = {
-  style: {
-    base: {
-      fontSize: "16px",
-      color: '#939393'
-      },
-    invalid: {
-      color: '#434343'
-    }
-  }
-};
 
 setCulture("en-US");
 L10n.load({
@@ -235,6 +224,49 @@ function ScheduleAppointment() {
   }, []);
 
 
+  // Formulario de pago
+  function CheckoutForm() {
+    const useStripe = useStripe();
+    const elements = useElements();
+    const [isPaymentLoading, setPaymentLoading] = useState(false);
+
+    /*
+     payMoney = async (e) => {
+      e.preventDefault();
+      if (!useStripe || !elements) {
+        return;
+      }
+      setPaymentLoading(true);
+      const clientSecret = getClientSecret();
+      const paymentResult = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+          billing_details: {
+            name: "Faruq Yusuff",
+          },
+        },
+      });
+    
+      setPaymentLoading(false);
+      if (paymentResult.error) {
+        alert(paymentResult.error.message);
+      } else {
+        if (paymentResult.paymentIntent.status === "succeeded") {
+          alert("El pago fue realizado con éxito!");
+        }
+      }
+    };
+    */
+
+    return(
+      <form>
+        <CardElement />
+        <button>{isPaymentLoading ? "Cargando..." : "Pagar"}</button>
+      </form>
+    );
+  }
+
+
   return (
     <>
       {isLoading ? (
@@ -288,7 +320,7 @@ function ScheduleAppointment() {
                     <h1>$45</h1>
                 </div>
                 <Elements stripe={stripe}>
-                  <CardElement option={cardElementOptions}></CardElement>
+                  <CheckoutForm />
                 </Elements>
               </div>
           </div>  

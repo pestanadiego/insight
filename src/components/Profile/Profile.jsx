@@ -140,8 +140,8 @@ function Profile() {
     }
 
     const arraySpeciality = (specialityString) => {
-      const specialityArray = specialityString.split(',');
-      console.log(specialityString);
+      const string = specialityString.toLowerCase();
+      const specialityArray = string.split(',');
       return specialityArray;
     }
 
@@ -193,6 +193,20 @@ function Profile() {
       const { value, name: inputName } = event.target; 
       setValues({ ...values, [inputName]: value }); 
     };
+
+    const renderSpeciality = () => {
+      let render = "";
+      for (let i = 0; i < user.speciality.length; i++) {
+        const speciality = user.speciality[i];
+        render += speciality + " ";
+      }
+      return render;
+    }
+
+    const renderHours = () => {
+      let render = 'De ' + user.hours[0] + ' a ' + user.hours[1];
+      return render;
+    }   
 
     const renderWorkDays = () => {
       let render = "";
@@ -352,11 +366,11 @@ function Profile() {
                 <div className={styles.secondColumn}>
                   <div className={styles.profileInfo}>
                     <p className={styles.profileTitle}>Especialidades:</p>
-                    <p>{user.speciality[0]}, {user.speciality[1]}, {user.speciality[2]}</p>
+                    <p>{ (!!user.speciality) ? renderSpeciality() : null}</p>
                   </div>
                   <div className={styles.profileInfo}>
                     <p className={styles.profileTitle}>Horario de trabajo: </p>
-                    <p>De {user.hours[0]} a {user.hours[1]} </p>
+                    <p>{ (!!user.hours) ? renderHours() : null}</p>
                   </div>
                   <div className={styles.profileInfo}>
                     <p className={styles.profileTitle}>Días laborales: </p>
