@@ -10,9 +10,9 @@ import ProfilePage from "./pages/ProfilePage";
 import PrivateRoute from "./components/ProtectedRoutes/PrivateRoute";
 import AdminPage from "./pages/AdminPage";
 import SpecialistDetailsPage from "./pages/SpecialistDetailsPage";
-import AppointmentsPage from "./pages/AppointmentsPage";
 import SearchSpecialistPage from "./pages/SearchSpecialistPage";
 import LoadingPage from "./pages/LoadingPage";
+import AppointmentsPage from "./pages/AppointmentsPage";
 import ScheduleAppointmentPage from "./pages/ScheduleAppointmentPage";
 import ReserveAppointmentPage from "./pages/ReserveAppointmentPage";
 
