@@ -220,20 +220,19 @@ function ScheduleAppointment() {
     }
   };
   useEffect(() => {
-    setScheduleData("gasly@email.com");
+    setScheduleData("kimi@email.com");
   }, []);
 
-
+  /*
   // Formulario de pago
   function CheckoutForm() {
-    const useStripe = useStripe();
+    const stripe = useStripe();
     const elements = useElements();
     const [isPaymentLoading, setPaymentLoading] = useState(false);
 
-    /*
      payMoney = async (e) => {
       e.preventDefault();
-      if (!useStripe || !elements) {
+      if (!stripe || !elements) {
         return;
       }
       setPaymentLoading(true);
@@ -256,7 +255,6 @@ function ScheduleAppointment() {
         }
       }
     };
-    */
 
     return(
       <form>
@@ -265,7 +263,7 @@ function ScheduleAppointment() {
       </form>
     );
   }
-
+  */
 
   return (
     <>
@@ -320,7 +318,7 @@ function ScheduleAppointment() {
                     <h1>$45</h1>
                 </div>
                 <Elements stripe={stripe}>
-                  <CheckoutForm />
+                  {/*<CheckoutForm />*/}
                 </Elements>
               </div>
           </div>  
