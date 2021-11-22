@@ -19,10 +19,17 @@ import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
-import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import {
+  Elements,
+  CardElement,
+  useStripe,
+  useElements,
+} from "@stripe/react-stripe-js";
 
 // Stripe
-const stripe = loadStripe("pk_test_51JyIhdBhuxwlUlvDZhVWkZ9lkOMmEiUd0TcuENMKX1j9bEcYYYOdfLVHFQnhGriw3xc8XMfG8fotwE38j1L1i7rO00bIMERD3A");
+const stripe = loadStripe(
+  "pk_test_51JyIhdBhuxwlUlvDZhVWkZ9lkOMmEiUd0TcuENMKX1j9bEcYYYOdfLVHFQnhGriw3xc8XMfG8fotwE38j1L1i7rO00bIMERD3A"
+);
 
 setCulture("en-US");
 L10n.load({
@@ -54,8 +61,7 @@ L10n.load({
 });
 function editWindowTemplate(props) {
   //Nos permite editar la ventana que se despliega cuando el paciente va a agendar una cita
-  return(
-    props !== undefined ? (
+  return props !== undefined ? (
     <table
       className="custom-event-editor"
       style={{ width: "100%", cellpadding: "5" }}
@@ -163,7 +169,6 @@ function editWindowTemplate(props) {
     </table>
   ) : (
     <div></div>
-  )
   );
 }
 
@@ -186,10 +191,7 @@ function onPopupOpen(props) {
 
 */
 
-
-
-function ScheduleAppointment({specialist}) {
-
+function ScheduleAppointment({ specialist }) {
   // SE LE PASA LA PROP SPECIALIST (EL .JSON CON TODOS LOS DATOS DEL ESPECIALISTA)
   console.log(specialist);
   /* COMENTARIO 
@@ -236,9 +238,6 @@ function ScheduleAppointment({specialist}) {
   useEffect(() => {
     setScheduleData("kimi@email.com");
   }, []);
-<<<<<<< HEAD
-  console.log(appointments);
-=======
 
   /*
   // Formulario de pago
@@ -284,7 +283,6 @@ function ScheduleAppointment({specialist}) {
   
   */
 
->>>>>>> 610bca44f0064e89d64a36f0a0a8db207194cfa9
   return (
     <div>
       <p>{specialist}</p>
@@ -350,7 +348,6 @@ function ScheduleAppointment({specialist}) {
       )}
     </>
     */
-
   );
 }
 
