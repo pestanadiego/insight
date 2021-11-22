@@ -91,6 +91,7 @@ function editWindowTemplate(props) {
               value={new Date(props.startTime || props.StartTime)}
               className="e-field"
               readonly
+              showClearButton={false}
             ></DateTimePickerComponent>
           </td>
         </tr>
@@ -103,6 +104,8 @@ function editWindowTemplate(props) {
               data-name="EndTime"
               value={new Date(props.endTime || props.EndTime)}
               className="e-field"
+              readonly
+              showClearButton={false}
             ></DateTimePickerComponent>
           </td>
         </tr>
@@ -183,6 +186,7 @@ function ScheduleAppointment() {
     //Se encarga de insertarle los parametros necesarios al calendario para que este muestre las citas, días de trabajo y horarios del especialista
     setIsLoading(true);
     const response = await getUserByEmail(email); //Obtiene los datos del especialista que escogió el paciente
+    console.log("especialista", response);
     getWorkingHours(response);
     getWorkingDays(response);
     getAppointments(response);
@@ -214,6 +218,7 @@ function ScheduleAppointment() {
   useEffect(() => {
     setScheduleData("gasly@email.com");
   }, []);
+  console.log(appointments);
   return (
     <>
       {isLoading ? (
