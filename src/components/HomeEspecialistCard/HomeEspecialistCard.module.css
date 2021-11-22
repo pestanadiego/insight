@@ -1,0 +1,22 @@
+.card {
+  width: 70%;
+  margin: 1em;
+  border-radius: 15%;
+  background: var(--main-bg-color);
+  color: #fff;
+  box-shadow: 10px 5px 5px black;
+}
+.card .cont {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.card p {
+  padding: 0.5em;
+}

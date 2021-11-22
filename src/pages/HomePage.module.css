@@ -98,6 +98,15 @@ p {
   margin: 1em;
 }
 
+/* ESTILOS PARA PSICÓLOGOS EXPERIMENTADOS ... */
+
+.psico .cont {
+  padding: 10px 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* ESTILOS PARA EL APARTADO DE TERAPIA */
 .functionTerapy {
   width: 100%;

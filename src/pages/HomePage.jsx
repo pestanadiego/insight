@@ -3,11 +3,12 @@
 import { Link } from "react-router-dom";
 import styles from "./HomePage.module.css";
 import pictures from "../images/imagenes";
-//import HomeSlide from "../components/HomeSlide/HomeSlide";
 import EspecialistCard from "../components/HomeEspecialistCard/HomeEspecialistCard";
+import HomeComment from "../components/HomeComment/HomeComment";
+import Slide from "../components/HomeSlide/Slide";
 
 function HomePage() {
-  const especialist = [
+  const specialist = [
     { name: "Pedro jose", email: "aladmadio@gmail.com", phone: "04124567845" },
     {
       name: "Luis alberto",
@@ -21,6 +22,38 @@ function HomePage() {
       phone: "04124567845",
     },
     { name: "laura loca", email: "aladmadio@gmail.com", phone: "04124567845" },
+  ];
+  const coments = [
+    {
+      name: "Pedro jose",
+      comment:
+        "texto texto texto texto texto texto texto texto texto texto texto texto ",
+      estrellas: "4",
+    },
+    {
+      name: "Pedro jose",
+      comment:
+        "texto texto texto texto texto texto texto texto texto texto texto texto ",
+      estrellas: "4",
+    },
+    {
+      name: "Pedro jose",
+      comment:
+        "texto texto texto texto texto texto texto texto texto texto texto texto ",
+      estrellas: "4",
+    },
+    {
+      name: "Pedro jose",
+      comment:
+        "texto texto texto texto texto texto texto texto texto texto texto texto ",
+      estrellas: "4",
+    },
+    {
+      name: "Pedro jose",
+      comment:
+        "texto texto texto texto texto texto texto texto texto texto texto texto ",
+      estrellas: "4",
+    },
   ];
   return (
     <>
@@ -106,12 +139,13 @@ function HomePage() {
           </p>
         </div>
 
-        <h1>SLIDE CON ESPECIALISTAS</h1>
-        <EspecialistCard
-          name={especialist[0].name}
-          email={especialist[0].email}
-          phone={especialist[0].phone}
-        />
+        <section>
+          <EspecialistCard
+            name={specialist[0].name}
+            email={specialist[0].email}
+            phone={specialist[0].phone}
+          />
+        </section>
 
         <div className={styles.cont}>
           <Link to="/register_pacient">
@@ -158,7 +192,15 @@ function HomePage() {
       </section>
 
       <section>
-        <h1>SLIDE DE COMENTARIOS</h1>
+        <HomeComment
+          name={coments[0].name}
+          comment={coments[0].comment}
+          starts={coments[0].estrellas}
+        />
+      </section>
+
+      <section>
+        <Slide />
       </section>
 
       <section className={styles.bannerFinal}>

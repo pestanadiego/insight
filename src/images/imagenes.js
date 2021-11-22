@@ -7,6 +7,7 @@ import ser from "../images/homeService.png";
 import tera from "../images/homeTerapia.jpg";
 import cli from "../images/homeClinico.jpg";
 import foo from "../images/logoFooter.svg";
+import cara from "./perfil.jpeg";
 
 const pictures = {
   home_p: imgHome_p,
@@ -18,5 +19,6 @@ const pictures = {
   terapia: tera,
   clinico: cli,
   logoFooter: foo,
+  perfil: cara,
 };
 export default pictures;
