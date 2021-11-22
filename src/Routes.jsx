@@ -12,6 +12,8 @@ import AdminPage from "./pages/AdminPage";
 import SpecialistDetailsPage from "./pages/SpecialistDetailsPage";
 import SearchSpecialistPage from "./pages/SearchSpecialistPage";
 import LoadingPage from "./pages/LoadingPage";
+import ReserveAppointmentPage from "./pages/ReserveAppointmentPage";
+
 
 function Routes() {
   return(
@@ -19,6 +21,8 @@ function Routes() {
       <Route exact path="/login" component={LoginPage} />
       <Route exact path="/register_pacient" component={RegisterPage} />
       <Route exact path="/specialists/:specialistID" component={SpecialistDetailsPage} />
+      <Route exact path="/appointments/:specialistId" component={ReserveAppointmentPage} />
+
       <Route
         exact
         path="/register_especialist"

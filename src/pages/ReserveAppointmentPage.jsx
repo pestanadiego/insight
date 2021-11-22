@@ -1,13 +1,10 @@
-import SpecialistDetails from '../components/SpecialistDetails/SpecialistDetails';
 import { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import { useParams } from 'react-router-dom';
 import { db } from '../utils/firebaseConfig';
 
-
-function SpecialistDetailsPage(){
-
-    let {specialistID}  = useParams();
+function ReserveAppointmentPage(){
+    let {specialistId}  = useParams();
     const [specialist, setSpecialist] = useState(null);
     const [specialists, setSpecialists] = useState([]);
 
@@ -18,7 +15,7 @@ function SpecialistDetailsPage(){
     const fetchSpecialist = async () => {
       try {
         setIsLoading(true);
-        const res = await db.collection('specialists').doc(specialistID).get();
+        const res = await db.collection('specialists').doc(specialistId).get();
         const response =res.data();
         console.log(response);
         setSpecialist(response);
@@ -34,17 +31,9 @@ function SpecialistDetailsPage(){
       fetchSpecialist();
     }, []);
 
+    return(
+    {/*<Componente prop={specialist} />*/}
+    );
+};
 
-   return(
-    <>
-      {specialist===null ? (
-        <h2>NULL</h2>
-      ) : (
-        <SpecialistDetails specialist={specialist} />
-      )}
-    </>
-  );
-}; 
-
-
-export default SpecialistDetailsPage;
+export default ReserveAppointmentPage;

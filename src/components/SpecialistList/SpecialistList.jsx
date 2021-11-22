@@ -15,7 +15,7 @@ function SpecialistList({ specialists }) {
     }
 
     return(
-            <div className={styles.list}>
+            <div className={styles.specialistList}>
             {specialists?.map((specialist) => (
                 <SpecialistCard
                     key={specialist.id}

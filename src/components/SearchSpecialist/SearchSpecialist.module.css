@@ -1,11 +1,11 @@
-.container{
+.searchContainer{
     display: flex;
     justify-content: space-evenly;
 }
 
-.sections{
+.searchSections{
     background-color: white;
-    height:100vh;
+    height:100%;
     width: 75vw;
 }
 
@@ -13,12 +13,7 @@
     font-size:1.8em;
     color:var(--main-letters-color);
     text-align:center;
-}
-
-h2{
-    text-align: center;
     padding: 30px;
-
 }
 
 .searchIcon img{
@@ -34,7 +29,7 @@ h2{
     align-items: center;
 }
 
-.inputs{
+.searchInputs{
     display:flex;
     justify-content: space-around;
 }
@@ -54,7 +49,7 @@ h2{
     justify-content: space-around;
 }
 
-label{
+.filter label{
     margin-right:10px;
 }
 
@@ -80,13 +75,15 @@ label{
     width:20vw;
 }
 
-.selection{
-    width:23vw;
-    background-color: blue;
-    margin-right: 0px;
-    margin-left: auto;
-}
 
 .item{
     border: solid 1px var(--main-input-color);
+}
+
+.selectionList{
+    width: 75vw;
+    display: flex;
+    justify-content:space-between;
+    flex-wrap: wrap;
+    
 }

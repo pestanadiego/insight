@@ -108,11 +108,11 @@ function SearchSpecialist() {
 
 
     return(
-        <div className={styles.sections}>
-        <div class Name={styles.container}>
+        <div className={styles.searchSections}>
+        <div class Name={styles.searchContainer}>
             <form className={styles.search_form}>
                 <h2 className={styles.titleForm}>ENCUENTRA TU PSICÓLOGO IDEAL</h2>
-                <div className={styles.inputs}>
+                <div className={styles.searchInputs}>
                 <div className={styles.inputGroup}>
                     <div className={styles.searchInput}><input type="text" name="search" id="search" value={inputValue.search}
                   onChange={handleOnChange}>
@@ -134,8 +134,12 @@ function SearchSpecialist() {
                 </div>
                 </div>
             </form>
+            
+            <div className={styles.selectionList}>
             <SpecialistList 
             specialists={specialistsSelection}/>
+            </div>
+            
         </div>
         </div>
     );

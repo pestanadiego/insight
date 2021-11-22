@@ -1,5 +1,6 @@
-.list{
+.SpecialistList{
     display: flex;
     justify-content: space-evenly;
-    width: 400px;
+    flex-wrap: wrap;
+    width: 27vw;
 }
