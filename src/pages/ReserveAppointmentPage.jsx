@@ -1,12 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import { useParams } from 'react-router-dom';
+import ScheduleAppointment from '../components/ScheduleAppointment/ScheduleAppointment';
 import { db } from '../utils/firebaseConfig';
 
 function ReserveAppointmentPage(){
     let {specialistId}  = useParams();
     const [specialist, setSpecialist] = useState(null);
-    const [specialists, setSpecialists] = useState([]);
 
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);

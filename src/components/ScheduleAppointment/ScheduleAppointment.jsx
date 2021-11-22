@@ -164,6 +164,8 @@ function editWindowTemplate(props) {
   );
 }
 
+/* 
+COMENTARIO 
 function onPopupOpen(props) {
   //Valida si el paciente intenta agendar una cita antes del presente, de tal manera que el popup no se despliegue
   const today = new Date();
@@ -179,10 +181,15 @@ function onPopupOpen(props) {
   }
 }
 
-function ScheduleAppointment({ specialist }) {
+*/
+
+
+
+function ScheduleAppointment({specialist}) {
 
   // SE LE PASA LA PROP SPECIALIST (EL .JSON CON TODOS LOS DATOS DEL ESPECIALISTA)
   console.log(specialist);
+  /* COMENTARIO 
   const history = useHistory();
   const { user, getUserByEmail, setUser } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true); //Pantalla de carga
@@ -266,9 +273,15 @@ function ScheduleAppointment({ specialist }) {
       </form>
     );
   }
+  
+  
   */
 
   return (
+    <div>
+      <p>{specialist}</p>
+    </div>
+    /*
     <>
       {isLoading ? (
         <h1>Loading...</h1>
@@ -321,13 +334,15 @@ function ScheduleAppointment({ specialist }) {
                     <h1>$45</h1>
                 </div>
                 <Elements stripe={stripe}>
-                  {/*<CheckoutForm />*/}
+                  {/*<CheckoutForm />}
                 </Elements>
               </div>
           </div>  
         </div>
       )}
     </>
+    */
+
   );
 }
 
