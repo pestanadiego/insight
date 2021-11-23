@@ -9,6 +9,9 @@ import {
   Month,
   ViewsDirective,
   ViewDirective,
+  getMaxDays,
+  getStartEndHours,
+  getDateFromString,
 } from "@syncfusion/ej2-react-schedule";
 import "./ScheduleAppointment.css";
 import { DropDownListComponent } from "@syncfusion/ej2-react-dropdowns";
@@ -197,7 +200,7 @@ function ScheduleAppointment({ specialist }) {
   const workingHours = specialist.hours; //Almacena la información referente al horario de trabajo del especialista
   let workingDays = []; //Almacena la información referente a los días de trabajo del especialista
   let appointments = []; //Almacena la información referente a las citas agendadas del especialista
-  const numAppointments = specialist.appointments;
+  const numAppointments = specialist.appointments.length;
 
   const getWorkingDays = (prop) => {
     //Obtiene los días de trabajo del especialista

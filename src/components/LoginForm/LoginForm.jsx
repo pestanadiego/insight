@@ -14,7 +14,13 @@ import facebIcon from "../../icons/cib_facebook.svg";
 import twitterIcon from "../../icons/twitter_icon.svg";
 
 function LoginForm() {
-  const { getUserByEmail, getUserPending, getNoValidUser, setUser, createUser } = useContext(UserContext); // Lo que nos permite cambiar el estado
+  const {
+    getUserByEmail,
+    getUserPending,
+    getNoValidUser,
+    setUser,
+    createUser,
+  } = useContext(UserContext); // Lo que nos permite cambiar el estado
   const history = useHistory(); // Se utiliza para redirigir al usuario
   const [values, setValues] = useState({
     email: "",
@@ -25,10 +31,10 @@ function LoginForm() {
     const { value, name: inputName } = event.target;
     setValues({ ...values, [inputName]: value });
   };
-  
+
   const handleGoogleLogin = async () => {
     const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
-    history.push('/profile');
+    history.push("/profile");
   };
 
   //Inicio de sesion con Facebook
@@ -88,13 +94,13 @@ function LoginForm() {
     if (!!!loggedUser) {
       const pendingUser = await getUserPending(values.email);
       const noValidUser = await getNoValidUser(values.email);
-      if(noValidUser) {
+      if (noValidUser) {
         setUser(null);
-        history.push('/done_review');
+        history.push("/done_review");
         auth.signOut();
         setUser(null);
-      } else if(pendingUser) {
-        history.push('/under_review');
+      } else if (pendingUser) {
+        history.push("/under_review");
       } else {
         history.push("/");
       }
@@ -219,5 +225,5 @@ function LoginForm() {
       </div>
     </div>
   );
-};
+}
 export default LoginForm;
