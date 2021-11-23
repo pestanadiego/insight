@@ -13,7 +13,6 @@ import SpecialistDetailsPage from "./pages/SpecialistDetailsPage";
 import SearchSpecialistPage from "./pages/SearchSpecialistPage";
 import LoadingPage from "./pages/LoadingPage";
 import AppointmentsPage from "./pages/AppointmentsPage";
-import ScheduleAppointmentPage from "./pages/ScheduleAppointmentPage";
 import ReserveAppointmentPage from "./pages/ReserveAppointmentPage";
 
 function Routes() {

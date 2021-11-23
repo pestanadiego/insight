@@ -19,6 +19,7 @@ import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
+
 import {
   Elements,
   CardElement,
@@ -190,15 +191,16 @@ function onPopupOpen(props) {
 
 function ScheduleAppointment({ specialist }) {
   // SE LE PASA LA PROP SPECIALIST (EL .JSON CON TODOS LOS DATOS DEL ESPECIALISTA)
-  //   const { user } = useContext(UserContext);
   const history = useHistory();
-  console.log("ESPECIALISTAAAA", specialist);
+  const { user } = useContext(UserContext);
+  const [done, setDone] = useState(false);
+  const [paymentView, setPaymentView] = useState(false);
+  const [appointments, setAppointments] = useState(specialist.appointments);
   const [isLoading, setIsLoading] = useState(true); //Pantalla de carga
   const workingHours = specialist.hours; //Almacena la información referente al horario de trabajo del especialista
   let workingDays = []; //Almacena la información referente a los días de trabajo del especialista
-  let appointments = []; //Almacena la información referente a las citas agendadas del especialista
-  const numAppointments = specialist.appointments;
-
+  const numAppointments = specialist.appointments.length;
+  
   const getWorkingDays = (prop) => {
     //Obtiene los días de trabajo del especialista
     for (let i = 0; i < prop.work.length; i++) {
@@ -207,42 +209,76 @@ function ScheduleAppointment({ specialist }) {
     return workingDays;
   };
 
-  const getAppointments = (prop) => {
-    //Obtiene las citas agendadas del especialistas
-    if (prop.appointments !== undefined) {
-      appointments = prop.appointments;
+  const checkScheduling = () => {
+    console.log(appointments.length);
+    console.log(numAppointments);
+    const result = appointments.length - numAppointments;
+    if(result == 0 && (!done)) {
+      setPaymentView(false);
+      setDone(true);
+    } else if( result == 1) {
+      setPaymentView(true);
+    } else if(result == 0 && (done)) {
+      setPaymentView(true);
+    } else {
+      setPaymentView(false);
     }
-  };
+    console.log('Probando');
+    console.log(result);
+  }
+
 
   const setScheduleData = () => {
     //Se encarga de insertarle los parametros necesarios al calendario para que este muestre las citas, días de trabajo y horarios del especialista
     setIsLoading(true);
-    getAppointments(specialist);
     setIsLoading(false);
   };
+  
   useEffect(() => {
     setScheduleData();
-  }, []);
+  });
 
-  /*
-  // Formulario de pago
+  const getNewAppointment = (appointments) => {
+    // Se crea el appointment que se subirá a Firestore
+    const appointment = {
+      Id: appointments[appointments.length - 1].Id,
+      Description: appointments[appointments.length - 1].Description,
+      StartTime: JSON.stringify(appointments[appointments.length - 1].StartTime),
+      EndTime: JSON.stringify(appointments[appointments.length - 1].EndTime),
+      isBlock: true,
+      pacient: user.name,
+      pacientEmail: user.email,
+      pacientPhone: user.phone
+    }
+    // Se elimina el appointment con los datos innecesarios de appointments
+    appointments = appointments.pop();
+    // Se agrega el appointment creado
+    appointments.push(appointment);
+
+    return appointments;
+  }
+
+
+
   function CheckoutForm() {
     const stripe = useStripe();
     const elements = useElements();
     const [isPaymentLoading, setPaymentLoading] = useState(false);
 
-     payMoney = async (e) => {
+    const payMoney = async (e) => {
       e.preventDefault();
       if (!stripe || !elements) {
         return;
       }
       setPaymentLoading(true);
-      const clientSecret = getClientSecret();
+      const clientSecret = 'aeiou';
       const paymentResult = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: elements.getElement(CardElement),
           billing_details: {
-            name: "Faruq Yusuff",
+            name: user.name,
+            phone: user.phone,
+            email: user.email
           },
         },
       });
@@ -258,20 +294,14 @@ function ScheduleAppointment({ specialist }) {
     };
 
     return(
-      <form>
+      <form onSubmit={payMoney}> 
         <CardElement />
-        <button>{isPaymentLoading ? "Cargando..." : "Pagar"}</button>
+        <button className="buttonSchedule">{isPaymentLoading ? "Cargando..." : "Pagar"}</button>
       </form>
     );
   }
-  
-  
-  */
 
   return (
-    // <div>
-    //   <p>{specialist}</p>
-    // </div>
     <>
       {isLoading ? (
         <h1>Loading...</h1>
@@ -314,23 +344,45 @@ function ScheduleAppointment({ specialist }) {
               </ViewsDirective>
               <Inject services={[Day, Week, WorkWeek, Month]} />
             </ScheduleComponent>
+
+            <div>
+              <button className="buttonSchedule" type="button" onClick={checkScheduling}>
+                Continuar
+              </button>
+            </div>
           </div>
 
-          {/* <h1>Pago</h1>
+          {(!paymentView) ? (
+            <p>Agende una sola cita para poder hacer el pago.</p>
+          ) : (
+          <>
+          <h1>Pago</h1>
           <div className="payment">
-              <div className="paymentColumn">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, iste.</p>
+            <div className="paymentColumn">
+              <p className="titlePayment">Paciente:</p>
+              <p className="descriptionPayment">{user.name}</p>
+              <p className="titlePayment">Especialista:</p>
+              <p className="descriptionPayment">{specialist.name}</p>
+              <p className="titlePayment">Fecha:</p>
+              <p className="descriptionPayment">{appointments[appointments.length - 1].Description}</p>
+              <p className="titlePayment">Hora:</p>
+              <p className="descriptionPayment">{appointments[appointments.length -1].Description}</p>
+              <p className="titlePayment">Descripción:</p>
+              <p className="descriptionPayment">{appointments[appointments.length - 1].Description}</p>
+            </div>
+            <div className="paymentColumn">
+              <div className="price">
+                  <p>Precio de la consulta</p>
+                  <h1>$45</h1>
               </div>
-              <div className="paymentColumn">
-                <div className="price">
-                    <p>Precio de la consulta</p>
-                    <h1>$45</h1>
-                </div>
-                <Elements stripe={stripe}>
-                  {<CheckoutForm />}
-                </Elements>
-              </div>
-          </div>*/}
+              <Elements stripe={stripe}>
+                {<CheckoutForm />}
+              </Elements>
+            </div>
+          </div>
+          </>
+          )}
+
         </div>
       )}
     </>

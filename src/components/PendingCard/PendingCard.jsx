@@ -36,6 +36,8 @@ function PendingCard({ id, name, email, phone, credentials }) {
     const pendingProfile = await getUserPending(email);
     pendingProfile.role = 'specialist';
     pendingProfile.status = 'no'; // Status del especialista
+    pendingProfile.appointments = [];
+    pendingProfile.rating = '0';
     await db.collection('specialists').doc(pendingProfile.uid).set(pendingProfile);
     await db.collection('users').doc(pendingProfile.uid).set(pendingProfile);
     await db.collection('pendings').doc(pendingProfile.uid).delete();
