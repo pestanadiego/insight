@@ -283,8 +283,19 @@ function ScheduleAppointment({ specialist }) {
       if (!stripe || !elements) {
         return;
       }
-      setPaymentLoading(true);
+      /*
+      //Payment Intent
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: specialist.pay,
+        currency: 'usd',
+        const clientSecret = paymentIntent.client_secret;
+      });
+      */
+      
+
+      // Confirm Payment
       const clientSecret = 'aeiou';
+      setPaymentLoading(true);
       const paymentResult = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: elements.getElement(CardElement),
