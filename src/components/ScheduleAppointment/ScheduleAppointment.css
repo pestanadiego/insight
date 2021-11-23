@@ -1,0 +1,66 @@
+@import "../../../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-calendars/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-dropdowns/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-lists/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-navigations/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-popups/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-react-schedule/styles/material.css";
+
+#Summary {
+  width: 200px;
+}
+
+.appointmentContainer {
+  background-color: white;
+}
+
+.appointmentContainer h1 {
+  padding-top: 20px;
+  color: var(--main-letters-color);
+  text-align: center;
+}
+
+.calendar p {
+  color: var(--main-letters-color);
+  font-size: 1em;
+  padding: 20px;
+}
+
+.calendarComponent {
+  border: var(--main-letters-color) 1px solid;
+  margin: 0 20px;
+}
+
+.payment h1 {
+  padding-top: 0px;
+  color: var(--main-letters-color);
+  text-align: center;
+}
+
+.price {
+  background-color: #f3f3f3;
+  border: 1px #939393 solid;
+}
+
+.price h1 {
+  color: #777777;
+  margin-top: 0px;
+}
+
+.price p {
+  color: #777777;
+  padding: 5px;
+  text-align: center;
+}
+
+.payment {
+  display: flex;
+  padding: 20px;
+}
+
+.paymentColumn {
+  flex: 50%;
+}

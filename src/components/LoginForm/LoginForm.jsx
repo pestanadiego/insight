@@ -27,32 +27,8 @@ function LoginForm() {
   };
   
   const handleGoogleLogin = async () => {
-    try {
-      const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
-      setUser({
-        name: response.user.displayName,
-        email: response.user.email,
-      });
-      // Para que se almacene en la base de datos y no sólo en el módulo de autenticación
-      const user_email = await getUserByEmail(response.user.email);
-      if (!user_email) {
-        await createUser(
-          {
-            name: response.user.displayName,
-            email: response.user.email,
-            phone: response.user.phoneNumber,
-            role: "pacient",
-            uid: response.user.uid,
-          },
-          response.user.uid
-        );
-        history.push("/profile");
-      } else {
-        history.push("/profile");
-      }
-    } catch (error) {
-      alert("Se ha producido un error por favor inténtelo más tarde.");
-    }
+    const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
+    history.push('/profile');
   };
 
   //Inicio de sesion con Facebook
