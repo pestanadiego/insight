@@ -8,3 +8,27 @@
 @import "../../../node_modules/@syncfusion/ej2-popups/styles/material.css";
 @import "../../../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css";
 @import "../../../node_modules/@syncfusion/ej2-react-schedule/styles/material.css";
+
+.appointmentsContainer {
+  background-color: white;
+}
+
+.appointmentsContainer h1 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  color: var(--main-letters-color);
+  text-align: left;
+}
+
+.calendarComponent {
+  border: var(--main-letters-color) 1px solid;
+  margin: 0 20px;
+  border-radius: 10px;
+}
+
+.data-table {
+  border: var(--main-letters-color) 1px solid;
+  border-radius: 10px;
+  margin: 20px 20px;
+}

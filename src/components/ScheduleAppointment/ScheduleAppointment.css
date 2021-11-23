@@ -9,10 +9,6 @@
 @import "../../../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css";
 @import "../../../node_modules/@syncfusion/ej2-react-schedule/styles/material.css";
 
-#Summary {
-  width: 200px;
-}
-
 .descriptionPayment {
   color: var(--main-letters-color);
   padding-bottom: 10px;

@@ -215,17 +215,25 @@ function ScheduleAppointment({ specialist }) {
     setScheduleData();
   });
 
+  console.log("Appointments", appointments);
+
   const getNewAppointment = (appointments) => {
     // Se crea el appointment que se subirá a Firestore
     const appointment = {
       Id: appointments[appointments.length - 1].Id,
       Description: appointments[appointments.length - 1].Description,
-      StartTime: JSON.stringify(
-        appointments[appointments.length - 1].StartTime
-      ).replace(rep, ""),
-      EndTime: JSON.stringify(
-        appointments[appointments.length - 1].EndTime
-      ).replace(rep, ""),
+      StartTime: getStartTime(
+        JSON.stringify(appointments[appointments.length - 1].StartTime).replace(
+          rep,
+          ""
+        )
+      ),
+      EndTime: getEndTime(
+        JSON.stringify(appointments[appointments.length - 1].EndTime).replace(
+          rep,
+          ""
+        )
+      ),
       isBlock: true,
       pacient: user.name,
       pacientEmail: user.email,
@@ -237,6 +245,82 @@ function ScheduleAppointment({ specialist }) {
     appointments.push(appointment);
 
     return appointments;
+  };
+
+  const getStartTime = (prop) => {
+    let startHour = "";
+    let year = "";
+    let month = "";
+    let day = "";
+    year = prop.substring(0, 4);
+    month = prop.substring(5, 7);
+    day = prop.substring(8, 10);
+    startHour = prop.substring(11, 16);
+    const numStart = startHour.substring(0, 2);
+    let num1 = parseInt(startHour.substring(0, 2));
+    num1 = num1 - 4;
+    let hour = num1.toString();
+    const yesterday = parseInt(day) - 1;
+
+    if (hour.length < 2 || (num1 * -1).toString().length < 2) {
+      if (hour == "-1") {
+        hour = "23";
+        day = yesterday.toString();
+      } else if (hour == "-2") {
+        hour = "22";
+        day = yesterday.toString();
+      } else if (hour == "-3") {
+        hour = "21";
+        day = yesterday.toString();
+      } else if (hour == "-4") {
+        hour = "20";
+        day = yesterday.toString();
+      } else {
+        hour = "0" + hour;
+      }
+    }
+
+    startHour = startHour.replace(numStart, hour);
+
+    return year + "-" + month + "-" + day + "T" + startHour + ":00.000Z";
+  };
+  const getEndTime = (prop) => {
+    let endHour = "";
+    let year = "";
+    let month = "";
+    let day = "";
+    year = prop.substring(0, 4);
+    month = prop.substring(5, 7);
+    day = prop.substring(8, 10);
+    endHour = prop.substring(11, 16);
+    const numEnd = endHour.substring(0, 2);
+    let num2 = parseInt(endHour.substring(0, 2));
+    const yesterday = parseInt(day) - 1;
+    num2 = num2 - 4;
+    let hour = num2.toString();
+
+    if (hour.length < 2 || (num2 * -1).toString().length < 2) {
+      if (hour == "-1") {
+        hour = "23";
+        day = yesterday.toString();
+      } else if (hour == "-2") {
+        console.log("cono entre");
+        hour = "22";
+        day = yesterday.toString();
+      } else if (hour == "-3") {
+        hour = "21";
+        day = yesterday.toString();
+      } else if (hour == "-4") {
+        hour = "20";
+        day = yesterday.toString();
+      } else {
+        hour = "0" + hour;
+      }
+    }
+
+    endHour = endHour.replace(numEnd, hour);
+
+    return year + "-" + month + "-" + day + "T" + endHour + ":00.000Z";
   };
 
   const formatDate = (date) => {
