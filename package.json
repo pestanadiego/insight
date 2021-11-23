@@ -2,7 +2,7 @@
   "name": "insight",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001",
+  "proxy": "http://localhost:3001/",
   "dependencies": {
     "@devexpress/dx-react-core": "^2.7.6",
     "@stripe/react-stripe-js": "^1.6.0",

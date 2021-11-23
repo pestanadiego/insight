@@ -19,6 +19,7 @@ import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
+import axios from 'axios';
 
 import {
   Elements,
@@ -28,9 +29,7 @@ import {
 } from "@stripe/react-stripe-js";
 
 // Stripe
-const stripe = loadStripe(
-  "pk_test_51JyIhdBhuxwlUlvDZhVWkZ9lkOMmEiUd0TcuENMKX1j9bEcYYYOdfLVHFQnhGriw3xc8XMfG8fotwE38j1L1i7rO00bIMERD3A"
-);
+const stripePromise = loadStripe("pk_test_51JyIhdBhuxwlUlvDZhVWkZ9lkOMmEiUd0TcuENMKX1j9bEcYYYOdfLVHFQnhGriw3xc8XMfG8fotwE38j1L1i7rO00bIMERD3A");
 
 setCulture("en-US");
 L10n.load({
@@ -278,49 +277,36 @@ function ScheduleAppointment({ specialist }) {
     const elements = useElements();
     const [isPaymentLoading, setPaymentLoading] = useState(false);
 
-    const payMoney = async (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
-      if (!stripe || !elements) {
-        return;
-      }
-      /*
-      //Payment Intent
-      const paymentIntent = await stripe.paymentIntents.create({
-        amount: specialist.pay,
-        currency: 'usd',
-        const clientSecret = paymentIntent.client_secret;
-      });
-      */
-      
 
-      // Confirm Payment
-      const clientSecret = 'aeiou';
-      setPaymentLoading(true);
-      const paymentResult = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement),
-          billing_details: {
-            name: user.name,
-            phone: user.phone,
-            email: user.email
-          },
-        },
+      const {error, paymentMethod} = await stripe.createPaymentMethod({
+        type: 'card',
+        card: elements.getElement(CardElement)
       });
-    
-      setPaymentLoading(false);
-      if (paymentResult.error) {
-        alert(paymentResult.error.message);
-      } else {
-        if (paymentResult.paymentIntent.status === "succeeded") {
-          alert("El pago fue realizado con éxito!");
+      setIsLoading(true);
+
+      if(!error) {
+        const { id } = paymentMethod;
+
+        try {
+          const { data } = await axios.post('http://localhost:3001/api/checkout', {
+            id,
+            amount: parseInt(specialist.pay) * 100 // Se pasa en centavos
+          });
+        } catch (error) {
+          console.log(error);
         }
+        console.log(data);
+        elements.getElement(CardElement).clear();
       }
-    };
-
+      setIsLoading(false);
+    }
+        
     return(
-      <form onSubmit={payMoney}> 
+      <form onSubmit={handleSubmit}> 
         <CardElement />
-        <button className="buttonSchedule">{isPaymentLoading ? "Cargando..." : "Pagar"}</button>
+        <button className="buttonSchedule" disabled={!stripe}>{isPaymentLoading ? "Cargando..." : "Pagar"}</button>
       </form>
     );
   }
@@ -399,8 +385,8 @@ function ScheduleAppointment({ specialist }) {
                   <p>Precio de la consulta</p>
                   <h1>$45</h1>
               </div>
-              <Elements stripe={stripe}>
-                {<CheckoutForm />}
+              <Elements stripe={stripePromise}>
+                <CheckoutForm />
               </Elements>
             </div>
           </div>
