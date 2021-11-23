@@ -27,7 +27,7 @@ L10n.load({
       week: "Semana",
       workWeek: "Semana",
       month: "Mes",
-      agenda: "Citas",
+      agenda: "Citas Agendadas",
       today: "Hoy",
       allDay: "Todo el Día",
       start: "Comienza",
@@ -48,6 +48,7 @@ L10n.load({
     },
   },
 });
+
 function onPopupOpen(props) {
   props.cancel = true;
 }
@@ -95,14 +96,8 @@ function Appointments() {
     console.log("especialista", response);
     getWorkingHours(response);
     getWorkingDays(response);
-    test();
-    // getAppointments(response);
+    getAppointments(response);
     setIsLoading(false);
-  };
-  const test = () => {
-    for (let i = 0; i < appointments.length; i++) {
-      appointments[i].Subject = "Cita con " + appointments[i].pacient;
-    }
   };
 
   const getWorkingHours = (response) => {
@@ -126,17 +121,20 @@ function Appointments() {
       setAppointments([]);
     } else {
       for (let i = 0; i < response.appointments.length; i++) {
-        response.appointments[i].IsReadonly = false;
+        response.appointments[i].IsBlock = false;
         response.appointments[i].Subject =
           "Cita con " + response.appointments[i].pacient;
       }
       setAppointments(response.appointments);
     }
   };
+
   useEffect(() => {
     setScheduleData();
   }, []);
+
   console.log(appointments);
+
   return (
     <>
       {isLoading ? (

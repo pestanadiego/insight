@@ -13,6 +13,11 @@
   width: 200px;
 }
 
+.descriptionPayment {
+  color: var(--main-letters-color);
+  padding-bottom: 10px;
+}
+
 .appointmentContainer {
   background-color: white;
 }
@@ -63,4 +68,27 @@
 
 .paymentColumn {
   flex: 50%;
+}
+
+.titlePayment {
+  font-weight: 800;
+  color: var(--main-letters-color);
+}
+
+.buttonSchedule {
+  background-color: var(--main-button-color);
+  font-family: "Poppins";
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 20%;
+  padding: 10px 10px;
+  text-align: center;
+  font-size: 14px;
+  margin: 1rem 5px;
+  transition: all ease 250ms;
+}
+
+.buttonSchedule:hover {
+  background-color: #4970be;
 }
