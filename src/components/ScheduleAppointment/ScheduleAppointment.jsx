@@ -200,6 +200,7 @@ function ScheduleAppointment({ specialist }) {
   const workingHours = specialist.hours; //Almacena la información referente al horario de trabajo del especialista
   let workingDays = []; //Almacena la información referente a los días de trabajo del especialista
   const numAppointments = specialist.appointments.length;
+  const rep = /"/gi;
   
   const getWorkingDays = (prop) => {
     //Obtiene los días de trabajo del especialista
@@ -243,8 +244,8 @@ function ScheduleAppointment({ specialist }) {
     const appointment = {
       Id: appointments[appointments.length - 1].Id,
       Description: appointments[appointments.length - 1].Description,
-      StartTime: JSON.stringify(appointments[appointments.length - 1].StartTime),
-      EndTime: JSON.stringify(appointments[appointments.length - 1].EndTime),
+      StartTime: JSON.stringify(appointments[appointments.length - 1].StartTime).replace(rep,""),
+      EndTime: JSON.stringify(appointments[appointments.length - 1].EndTime).replace(rep,""),
       isBlock: true,
       pacient: user.name,
       pacientEmail: user.email,
@@ -256,6 +257,18 @@ function ScheduleAppointment({ specialist }) {
     appointments.push(appointment);
 
     return appointments;
+  }
+
+  const formatDate = (date) => {
+    const dateAppointment = date.substring(4, 15);
+    return dateAppointment;
+  }
+
+  const formatHour = (start, end) => {
+    const startHour = start.substring(16, 21);
+    const endHour = end.substring(16, 21);
+    const hour = "De " + startHour + " a " + endHour;
+    return hour;
   }
 
 
@@ -364,9 +377,9 @@ function ScheduleAppointment({ specialist }) {
               <p className="titlePayment">Especialista:</p>
               <p className="descriptionPayment">{specialist.name}</p>
               <p className="titlePayment">Fecha:</p>
-              <p className="descriptionPayment">{appointments[appointments.length - 1].Description}</p>
+              <p className="descriptionPayment">{formatDate(appointments[appointments.length - 1].StartTime.toString())}</p>
               <p className="titlePayment">Hora:</p>
-              <p className="descriptionPayment">{appointments[appointments.length -1].Description}</p>
+              <p className="descriptionPayment">{formatHour(appointments[appointments.length - 1].StartTime.toString(), appointments[appointments.length - 1].EndTime.toString())}</p>
               <p className="titlePayment">Descripción:</p>
               <p className="descriptionPayment">{appointments[appointments.length - 1].Description}</p>
             </div>
