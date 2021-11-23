@@ -2,8 +2,9 @@
   background: #f5f5f7;
   text-align: center;
   color: #939393;
-  width: 25vw;
+  width: 320px;
   height: 90vh;
+  float: left;
 }
 
 .dashboard ul {
@@ -18,20 +19,219 @@
   padding: 30px 0;
 }
 
-.link {
-  color: #939393;
-  transition: all ease 250ms;
-  cursor: pointer;
-}
-
-.link:hover {
-  color: #585858;
-}
-
-.link:link .link:visited .link:active {
-  text-decoration: none;
-}
-
 .nodisplay {
   display: none;
+}
+
+#arrow {
+  display: none;
+}
+
+#hidden_d {
+  display: none;
+}
+
+@media screen and (width: 1024px) {
+  #dash {
+    text-align: center;
+    color: #939393;
+    width: 100%;
+    position: fixed;
+    bottom: -80vh;
+    float: none;
+  }
+
+  #hidden_d {
+    display: flex;
+  }
+
+  .dashboard li {
+    margin-top: -80px;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
+  .dashboard ul {
+    background-color: #f5f5f7;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #imagendash {
+    width: 60px;
+  }
+
+  #showdash {
+    display: none;
+  }
+}
+@media screen and (width: 768px) {
+  #dash {
+    text-align: center;
+    color: #939393;
+    width: 100%;
+    position: fixed;
+    bottom: -80vh;
+    float: none;
+  }
+
+  #hidden_d {
+    display: flex;
+  }
+
+  .dashboard li {
+    margin-top: -80px;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
+  .dashboard ul {
+    background-color: #f5f5f7;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #imagendash {
+    width: 45px;
+  }
+
+  #showdash {
+    display: none;
+  }
+}
+@media screen and (width: 375px) {
+  #dash {
+    text-align: center;
+    color: #939393;
+    width: 100%;
+    position: fixed;
+    bottom: -80vh;
+    float: none;
+  }
+
+  #hidden_d {
+    display: flex;
+  }
+
+  .dashboard li {
+    margin-top: -90px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .dashboard ul {
+    background-color: #f5f5f7;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .dashboard li {
+    color: #939393;
+  }
+
+  #showdash {
+    display: none;
+  }
+}
+@media screen and (width: 540px) {
+  #dash {
+    text-align: center;
+    color: #939393;
+    width: 100%;
+    position: fixed;
+    bottom: -80vh;
+    float: none;
+  }
+
+  #hidden_d {
+    display: flex;
+  }
+
+  .dashboard li {
+    margin-top: -100px;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
+  .dashboard ul {
+    background-color: #f5f5f7;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #imagendash {
+    width: 40px;
+  }
+
+  #showdash {
+    display: none;
+  }
+}
+@media screen and (width: 280px) {
+  #dash {
+    text-align: center;
+    color: #939393;
+    width: 100%;
+    position: fixed;
+    bottom: -80vh;
+    float: none;
+  }
+
+  #hidden_d {
+    display: flex;
+  }
+
+  .dashboard li {
+    margin-top: -100px;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
+  .dashboard ul {
+    background-color: #f5f5f7;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  #imagendash {
+    width: 20px;
+  }
+
+  #showdash {
+    display: none;
+  }
+}
+@media screen and (max-width: 414px) {
+  #dash {
+    text-align: center;
+    color: #939393;
+    width: 100%;
+    position: fixed;
+    bottom: -80vh;
+    float: none;
+  }
+
+  #hidden_d {
+    display: flex;
+  }
+
+  .dashboard li {
+    margin-top: -90px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .dashboard ul {
+    background-color: #f5f5f7;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .dashboard li {
+    color: #939393;
+  }
+
+  #showdash {
+    display: none;
+  }
 }

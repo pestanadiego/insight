@@ -26,10 +26,14 @@ function SearchSpecialist() {
     ]
 
     const [selectedValue, setSelectedValue] = useState(0);  //Almacena el valor del dropdown
+    const [found, setFound] = useState(null);  //Almacena el valor del dropdown
+
     const [specialists, setSpecialists] = useState([]);  //Almacena todos los especialistas en la bd
      const [inputValue, setInputValue] = useState({
     search: ""
     });//Almaena el string ingresado en el input
+
+    const [isSearched, setIsSearched] = useState(false);
 
     const [specialistsSelection, setSpecialistsSelection] = useState([]);  //Almacena el match entre el search y la bd
     
@@ -50,27 +54,40 @@ function SearchSpecialist() {
     //Buscar en base de datos y generar componentes
     const handleSubmit = async (e) => { 
         e.preventDefault();
+        setIsSearched(true);
         const helperA =[];
         if(selectedValue==="1"){ //Si se busca por nombre
             for (let index = 0; index < specialists.length; index++) {
                 const element = specialists[index];
-                if((element.status === "yes") && (element.name === inputValue.search)){
+                let elementName = element.name.toLowerCase();
+                let inputV = inputValue.search.toLowerCase();
+                if((element.status === "yes") && (elementName.includes(inputV))){
                     helperA.push(element);
                 }else{}
             }
             setSpecialistsSelection(helperA);
         }if(selectedValue==="2"){  //Si se busca por especialidad
-            const helperB=[];
+            let helperB=[];
             for (let index = 0; index < specialists.length; index++) {
                 const element = specialists[index];
                 if(element.status === "yes"){
                    for (let index = 0; index < element.speciality.length; index++) {
                     const speciality = element.speciality[index];
-                    
-                    if(speciality === inputValue.search){
+                    let specialityInfo = speciality.toLowerCase()
+                    let inputV = inputValue.search.toLowerCase();
+                    if(specialityInfo.includes(inputV)){
                         helperB.push(element);
                     }else{}
-                } 
+                } if(helperB.lenght===0){
+                    setFound(false);
+                    console.log(found);
+                    console.log('alooo');
+                    console.log('ping');
+                    console.log('imprimeeee');
+
+                }else{
+                    setFound(true);
+                }
                 }else{}
             }
             setSpecialistsSelection(helperB);
@@ -135,11 +152,18 @@ function SearchSpecialist() {
                 </div>
             </form>
             
+            {isSearched && found &&
             <div className={styles.selectionList}>
             <SpecialistList 
             specialists={specialistsSelection}/>
-            </div>
-            
+            </div>}
+            {!isSearched &&
+                <div className={styles.selectionList}>
+                <SpecialistList 
+                specialists={specialists}/>
+                </div>}    
+            {!found &&
+                <h3 className={styles.searchError}>Lo sentimos, no se han encontrado especialistas que cumplan con las condiciones de busqueda ingresadas</h3>}
         </div>
         </div>
     );
