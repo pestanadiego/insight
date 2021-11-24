@@ -1,41 +1,37 @@
-.detailsContainer{
-    display: flex;
-    justify-content: space-evenly;
-    justify-content: center;
-    background-color: white;
-    height:100vh;
-
+.detailsContainer {
+  display: flex;
+  justify-content: space-evenly;
+  justify-content: center;
+  background-color: white;
+  height: 100vh;
 }
 
-.detailsSection{
-    background-color: white;
-    height:90vh;
-    width: 30vw;
-    margin:20px 0px;
-    padding:10px;
+.detailsSection {
+  background-color: white;
+  height: 90vh;
+  width: 30vw;
+  margin: 20px 0px;
+  padding: 10px;
 }
 
-.specialistName{
-    margin:30px 0px;
-    text-align: center;
-    font-size: 2em;
-    color: var(--main-letters-color);
+.specialistName {
+  margin: 30px 0px;
+  text-align: center;
+  font-size: 2em;
+  color: var(--main-letters-color);
 }
 
-
-.detailsInfo{
-   margin:10px 0px;
+.detailsInfo {
+  margin: 10px 0px;
 }
 
-.detail{
-    font-weight: bold;
-
+.detail {
+  font-weight: bold;
 }
-
 
 .detailsButtons {
-    display: flex;
-  justify-content:space-evenly;
+  display: flex;
+  justify-content: space-evenly;
   text-align: center;
   padding-bottom: 20px;
   margin-top: 15px;

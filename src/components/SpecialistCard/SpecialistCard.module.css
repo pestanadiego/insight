@@ -4,14 +4,12 @@
   margin: 20px;
   border-radius: 8px;
   border: solid 1px #939393;
-}  
-
+}
 
 .specialistCard span {
   font-weight: bold;
-  color:black;
+  color: black;
 }
-
 
 .specialistInfo {
   padding: 20px;
@@ -33,4 +31,3 @@
   cursor: pointer;
   margin: 5px;
 }
-
