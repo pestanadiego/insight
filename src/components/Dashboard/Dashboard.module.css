@@ -6,7 +6,7 @@
   height: 90vh;
   float: left;
   position: fixed;
-  margin-top: 10vh;
+  margin-top: 200px;
 }
 
 .dashboard ul {
@@ -302,6 +302,40 @@
 
   #imagendash {
     width: 45px;
+  }
+
+  #showdash {
+    display: none;
+  }
+}
+@media screen and (width: 360px) {
+  #dash {
+    text-align: center;
+    color: #939393;
+    width: 100%;
+    position: fixed;
+    bottom: -80vh;
+    float: none;
+  }
+
+  #hidden_d {
+    display: flex;
+  }
+
+  .dashboard li {
+    margin-top: -px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .dashboard ul {
+    background-color: #f5f5f7;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .dashboard li {
+    color: #939393;
   }
 
   #showdash {
