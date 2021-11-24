@@ -3,8 +3,6 @@
 import { Link } from "react-router-dom";
 import styles from "./HomePage.module.css";
 import pictures from "../images/imagenes";
-import EspecialistCard from "../components/HomeEspecialistCard/HomeEspecialistCard";
-import HomeComment from "../components/HomeComment/HomeComment";
 import Slide from "../components/HomeSlide/Slide";
 
 function HomePage() {
@@ -12,8 +10,8 @@ function HomePage() {
     { name: "Pedro jose", email: "aladmadio@gmail.com", phone: "04124567845" },
     {
       name: "Luis alberto",
-      email: "aladmadio@gmail.com",
-      phone: "04124567845",
+      email: "bellaquitaRemizzzzz@gmail.com",
+      phone: "456849781",
     },
     { name: "jose luis", email: "aladmadio@gmail.com", phone: "04124567845" },
     {
@@ -23,38 +21,7 @@ function HomePage() {
     },
     { name: "laura loca", email: "aladmadio@gmail.com", phone: "04124567845" },
   ];
-  const coments = [
-    {
-      name: "Pedro jose",
-      comment:
-        "texto texto texto texto texto texto texto texto texto texto texto texto ",
-      estrellas: "4",
-    },
-    {
-      name: "Pedro jose",
-      comment:
-        "texto texto texto texto texto texto texto texto texto texto texto texto ",
-      estrellas: "4",
-    },
-    {
-      name: "Pedro jose",
-      comment:
-        "texto texto texto texto texto texto texto texto texto texto texto texto ",
-      estrellas: "4",
-    },
-    {
-      name: "Pedro jose",
-      comment:
-        "texto texto texto texto texto texto texto texto texto texto texto texto ",
-      estrellas: "4",
-    },
-    {
-      name: "Pedro jose",
-      comment:
-        "texto texto texto texto texto texto texto texto texto texto texto texto ",
-      estrellas: "4",
-    },
-  ];
+
   return (
     <>
       <section className={styles.banner}>
@@ -140,11 +107,7 @@ function HomePage() {
         </div>
 
         <section>
-          <EspecialistCard
-            name={specialist[0].name}
-            email={specialist[0].email}
-            phone={specialist[0].phone}
-          />
+          <Slide slides={specialist} />
         </section>
 
         <div className={styles.cont}>
@@ -189,18 +152,6 @@ function HomePage() {
         <div className={styles.imgRotar}>
           <img src={pictures.terapia} alt="home-terapia"></img>
         </div>
-      </section>
-
-      <section>
-        <HomeComment
-          name={coments[0].name}
-          comment={coments[0].comment}
-          starts={coments[0].estrellas}
-        />
-      </section>
-
-      <section>
-        <Slide />
       </section>
 
       <section className={styles.bannerFinal}>

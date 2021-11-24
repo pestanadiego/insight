@@ -1,0 +1,17 @@
+.slider {
+  position: relative;
+  height: 50vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.right-arrow {
+  top: 50%;
+  cursor: pointer;
+}
+
+.left-arrow {
+  top: 50%;
+  cursor: pointer;
+}
