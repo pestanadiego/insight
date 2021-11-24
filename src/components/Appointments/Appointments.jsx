@@ -93,15 +93,6 @@ function Appointments() {
   ]); //Almacena la información referente a las citas agendadas del especialista
   const columns = [
     {
-      name: "Paciente",
-      selector: (row) => row.name,
-      sortable: true,
-    },
-    {
-      name: "Contacto",
-      selector: (row) => row.contact,
-    },
-    {
       name: "Fecha",
       selector: (row) => row.date,
       sortable: true,
@@ -110,6 +101,15 @@ function Appointments() {
       name: "Hora",
       selector: (row) => row.hour,
       sortable: true,
+    },
+    {
+      name: "Paciente",
+      selector: (row) => row.name,
+      sortable: true,
+    },
+    {
+      name: "Contacto",
+      selector: (row) => row.contact,
     },
     {
       name: "Descripción",
@@ -124,8 +124,8 @@ function Appointments() {
     console.log("especialista", response);
     getWorkingHours(response);
     getWorkingDays(response);
-    // getAppointments(response);
-    setData(appointments);
+    getAppointments(response);
+    setData(response.appointments);
     setIsLoading(false);
   };
 
@@ -185,8 +185,16 @@ function Appointments() {
     year = date.substring(0, 4);
     month = date.substring(5, 7);
     day = date.substring(8, 10);
-    // return day + "/" + month + "/" + year;
     return year + "/" + month + "/" + day;
+  };
+  const getExpandableDate = (date) => {
+    let year = "";
+    let month = "";
+    let day = "";
+    year = date.substring(0, 4);
+    month = date.substring(5, 7);
+    day = date.substring(8, 10);
+    return day + "/" + month + "/" + year;
   };
 
   const getTime = (hour) => {
@@ -198,20 +206,55 @@ function Appointments() {
   };
 
   const ExpandedComponent = ({ data }) => (
-    <div>
-      <p>Paciente: {data.name}</p>
-      <p>{data.contact}</p>
-      <p>Día de la cita: {data.date}</p>
-      <p>Hora de inicio de la cita: {data.hour.substring(0, 5)}</p>
-      <p>Hora de finalización de la cita: {data.hour.substring(6, 11)}</p>
-      <p>Motivo de la cita: {data.description}</p>
+    <div className="expandable-container">
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <p>Paciente: {data.name}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>{data.contact.substring(0, data.contact.length - 21)}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>
+                {data.contact.substring(
+                  data.contact.length - 21,
+                  data.contact.length
+                )}
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Día de la cita: {getExpandableDate(data.date)}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Hora de inicio de la cita: {data.hour.substring(0, 5)}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>
+                Hora de finalización de la cita: {data.hour.substring(6, 11)}
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Motivo de la cita: {data.description}</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
-  useEffect(() => {
-    setScheduleData();
-  }, []);
-
-  console.log(appointments);
   const customStyles = {
     headRow: {
       style: {
@@ -224,22 +267,28 @@ function Appointments() {
       style: {
         color: "#202124",
         fontSize: "14px",
+        fontweight: "bold",
       },
     },
     rows: {
       highlightOnHoverStyle: {
         backgroundColor: "#F2F6F9",
         borderBottomColor: "#FFFFFF",
-        borderRadius: "25px",
+        borderRadius: "8px",
         outline: "1px solid #FFFFFF",
       },
     },
-    pagination: {
-      style: {
-        border: "none",
-      },
-    },
   };
+
+  const paginationComponentOptions = {
+    noRowsPerPage: true,
+    rangeSeparatorText: "de",
+  };
+  useEffect(() => {
+    setScheduleData();
+  }, []);
+
+  console.log(appointments);
 
   return (
     <>
@@ -247,10 +296,12 @@ function Appointments() {
         <h1>Loading...</h1>
       ) : (
         <div className="appointmentsContainer">
+          <h1>Citas Agendadas</h1>
           <div className="calendar">
-            <h1>Citas Agendadas</h1>
             <ScheduleComponent
-              className="calendarComponent"
+              height="auto"
+              width="auto"
+              className="calendarComp"
               eventSettings={{
                 dataSource: appointments,
                 fields: {
@@ -293,6 +344,7 @@ function Appointments() {
               highlightOnHover={true}
               expandableRows={true}
               pagination={true}
+              paginationComponentOptions={paginationComponentOptions}
               expandableRowsComponent={ExpandedComponent}
             ></DataTable>
           </div>

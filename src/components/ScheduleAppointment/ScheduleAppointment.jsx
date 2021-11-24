@@ -153,13 +153,15 @@ function editWindowTemplate(props) {
 function onPopupOpen(props) {
   //Valida si el paciente intenta agendar una cita antes del presente, de tal manera que el popup no se despliegue
   const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
   const checkDate = (day) => {
     //Verifica que el día y hora escogido no sea antes que el presente
     return (props.data.startTime || props.data.StartTime) < day;
   };
-  if (checkDate(today)) {
+  if (checkDate(tomorrow)) {
     alert(
-      "Por favor seleccione un horario válido. En caso de que el problema persista, chequee que le fecha y hora que esté seleccionando no sea un día u hora que ya pasó"
+      "Por favor seleccione una fecha y hora válida. Verifique que la fecha y hora seleccionada para agendar la cita se está realizando como mínimo 24 horas de antelación"
     );
     props.cancel = true;
   } else {
@@ -304,7 +306,6 @@ function ScheduleAppointment({ specialist }) {
         hour = "23";
         day = yesterday.toString();
       } else if (hour == "-2") {
-        console.log("cono entre");
         hour = "22";
         day = yesterday.toString();
       } else if (hour == "-3") {

@@ -21,14 +21,33 @@
   text-align: left;
 }
 
-.calendarComponent {
+.calendar {
+  height: 100%;
+  width: 100%;
+}
+
+.calendarComp {
   border: var(--main-letters-color) 1px solid;
   margin: 0 20px;
   border-radius: 10px;
 }
 
 .data-table {
+  height: 100%;
+  width: auto;
   border: var(--main-letters-color) 1px solid;
   border-radius: 10px;
   margin: 20px 20px;
+}
+
+.tableComponent {
+}
+
+.expandable-container {
+  padding: 5px 10px;
+  background-color: #f2f6f9;
+}
+
+.expandable-container table,
+td {
 }
