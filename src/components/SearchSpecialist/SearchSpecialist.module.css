@@ -87,3 +87,9 @@
     flex-wrap: wrap;
     
 }
+
+.searchError{
+    color: var(--main-letters-color);
+    margin: 50px 20px;
+    font-size: 1em;
+}

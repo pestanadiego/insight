@@ -91,7 +91,7 @@ function Dashboard() {
             </li>
 
             <li id={styles["showdash"]}>
-              <Link to="/profile" className={styles.link}>
+              <Link to="/search" className={styles.link}>
                 Pacientes
               </Link>
             </li>

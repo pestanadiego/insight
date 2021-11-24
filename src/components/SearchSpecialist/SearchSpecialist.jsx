@@ -26,7 +26,7 @@ function SearchSpecialist() {
     ]
 
     const [selectedValue, setSelectedValue] = useState(0);  //Almacena el valor del dropdown
-    const [found, setFound] = useState(null);  //Almacena el valor del dropdown
+    const [found, setFound] = useState(null);  //True si se encuentra lo que busca el paciente, False si no
 
     const [specialists, setSpecialists] = useState([]);  //Almacena todos los especialistas en la bd
      const [inputValue, setInputValue] = useState({
@@ -63,11 +63,18 @@ function SearchSpecialist() {
                 let inputV = inputValue.search.toLowerCase();
                 if((element.status === "yes") && (elementName.includes(inputV))){
                     helperA.push(element);
+                    setFound(true);
                 }else{}
+            }
+            if(!(helperA.length > 0)){
+                setFound(false);
+
+            }if(helperA.length>0){
+                setFound(true);
             }
             setSpecialistsSelection(helperA);
         }if(selectedValue==="2"){  //Si se busca por especialidad
-            let helperB=[];
+            var helperB=[];
             for (let index = 0; index < specialists.length; index++) {
                 const element = specialists[index];
                 if(element.status === "yes"){
@@ -77,19 +84,17 @@ function SearchSpecialist() {
                     let inputV = inputValue.search.toLowerCase();
                     if(specialityInfo.includes(inputV)){
                         helperB.push(element);
+                        setFound(true);
                     }else{}
-                } if(helperB.lenght===0){
+                } 
+                
+            }}
+                if(!(helperB.length > 0)){
                     setFound(false);
-                    console.log(found);
-                    console.log('alooo');
-                    console.log('ping');
-                    console.log('imprimeeee');
 
-                }else{
+                }if(helperB.isArray && helperB.length>0){
                     setFound(true);
                 }
-                }else{}
-            }
             setSpecialistsSelection(helperB);
         }if(selectedValue==="3"){  //Muestra los especialistas por rating
             var i, j;
