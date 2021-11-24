@@ -432,7 +432,7 @@ img {
   }
   #hidden {
     position: fixed;
-    right: -50px;
+    right: -90px;
     top: 64px;
     background-color: #f5f5f7;
     height: 50%;
@@ -567,7 +567,7 @@ img {
     border-bottom: solid #5788ea;
   }
 }
-@media screen and (max-width: 320px) {
+@media screen and (width: 320px) {
   .resboton {
     display: inline-flex;
     margin-left: 30%;
