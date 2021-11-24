@@ -1,0 +1,140 @@
+/*INICIO DE SESION*/
+.section {
+  background-color: var(--main-bg-color);
+  margin: 20px 0px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 45vw;
+  height: 135vh;
+  align-items: center;
+  background-color: white;
+}
+
+.container button {
+  width: 20vw;
+  height: 7.8vh;
+  margin: 15px 0px;
+  outline: none;
+  cursor: pointer;
+}
+
+.section_alternatives {
+  display: flex;
+  justify-content: center;
+}
+
+.containerLoginbtn ul li {
+  list-style: none;
+}
+
+.containerLoginbtn ul li button {
+  width: 20vw;
+  height: 6.7vh;
+  border-radius: 5px;
+  background-color: #f5f5f7;
+  border: solid 1px #dbdbe1;
+}
+
+.btnDiv {
+  display: flex;
+  align-items: center;
+  font-size: 0.87em;
+}
+
+.btnText {
+  font-family: "poppins";
+  color: #415b72;
+  float: right;
+}
+
+.btnImage {
+  float: left;
+  margin: 0 10px;
+}
+
+.form_Div {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+}
+
+.container h1 {
+  text-align: center;
+  font-size: 2.2em;
+  color: var(--main-letters-color);
+}
+
+.container p {
+  margin-top: 16px;
+  font-size: 14px;
+  text-align: center;
+  color: var(--main-letters-color);
+}
+
+.inputGroup {
+  margin: 20px 0px;
+}
+
+.inputGroup label {
+  color: var(--main-letters-color);
+  font-size: 14px;
+}
+
+.container input {
+  outline: none;
+  border-radius: 4px;
+  padding: 5px;
+  width: 18vw;
+  height: 6vh;
+  border: solid 1px var(--main-input-color);
+}
+
+.login {
+  background-color: var(--main-button-color);
+  color: white;
+  outline: none;
+  font-weight: bold;
+  font-size: 1.1em;
+  border-radius: 5px;
+  margin-top: 10px;
+  border: none;
+}
+
+.registration {
+  text-align: center;
+  align-items: center;
+  color: var(--main-letters-color);
+}
+
+.pacient,
+.specialist,
+.password {
+  text-align: center;
+  align-items: center;
+  color: #0163e0;
+  cursor: pointer;
+}
+
+.password {
+  padding-top: 20px;
+}
+
+.specialist:hover {
+  text-decoration: underline;
+}
+
+.pacient:hover {
+  text-decoration: underline;
+}

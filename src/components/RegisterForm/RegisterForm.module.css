@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--main-bg-color);
+}
+
+.mainContainer {
+  margin: 20px 0px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register {
+  width: 45vw;
+  height: 105vh;
+  align-items: center;
+  background-color: white;
+}
+
+.container {
+  width: 45vw;
+  height: 120vh;
+  align-items: center;
+  background-color: white;
+}
+
+h1 {
+  color: var(--main-letters-color);
+  text-align: center;
+
+  font-size: 2.2em;
+  margin: 25px 0px;
+}
+
+.formDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputGroup {
+  margin: 20px 0px;
+}
+
+.inputGroup label {
+  color: var(--main-letters-color);
+  font-size: 0.875em;
+}
+
+.inputGroup input {
+  width: 30vw;
+  height: 6.5vh;
+  outline: none;
+  padding: 5px;
+  border-radius: 4px;
+  border: solid 1px var(--main-input-color);
+}
+
+.inputGroup input::content {
+  color: var(--main-letters-color);
+}
+
+.checkboxGroup label {
+  color: var(--main-letters-color);
+  font-size: 0.875em;
+}
+
+.checkboxGroup {
+  margin-bottom: 20px;
+}
+
+.container button {
+  background-color: var(--main-button-color);
+  color: white;
+  width: 17vw;
+  height: 8vh;
+  outline: none;
+  font-weight: bold;
+  font-size: 1.1em;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.btn_div {
+  text-align: center;
+  align-items: center;
+}
+
+.alternatives_div {
+  text-align: center;
+  align-items: center;
+}
+
+.containerAlternatives {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.alternative {
+  cursor: pointer;
+}
+
+a {
+  color: #0163e0;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+}
