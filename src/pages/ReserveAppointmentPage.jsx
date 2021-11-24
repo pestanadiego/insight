@@ -3,6 +3,7 @@ import { UserContext } from "../context/UserContext";
 import { useParams } from "react-router-dom";
 import ScheduleAppointment from "../components/ScheduleAppointment/ScheduleAppointment";
 import { db } from "../utils/firebaseConfig";
+import { Spinner } from "react-bootstrap";
 
 function ReserveAppointmentPage() {
   let { specialistId } = useParams();
@@ -33,7 +34,17 @@ function ReserveAppointmentPage() {
   return (
     <>
       {isLoading ? (
-        <h1> Loading...</h1>
+        <div
+          className="appointmentLoading"
+          style={{
+            width: "100%",
+            display: "flex",
+            "justify-content": "center",
+            "align-items": "center",
+          }}
+        >
+          <Spinner animation="border" variant="secondary" />
+        </div>
       ) : (
         <ScheduleAppointment specialist={specialist} />
       )}

@@ -74,7 +74,8 @@ export default function UserContextProvider({ children }) {
               name: loggedUser.displayName,
               email: loggedUser.email,
               uid: loggedUser.uid,
-              role: loggedUser.role
+              role: loggedUser.role,
+              appointments: [],
             };
             await createUser(newProfile, loggedUser.uid);
             setUser(newProfile);

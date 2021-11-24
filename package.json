@@ -5,6 +5,7 @@
   "proxy": "http://localhost:3001",
   "dependencies": {
     "@devexpress/dx-react-core": "^2.7.6",
+    "@paypal/react-paypal-js": "^7.4.2",
     "@stripe/react-stripe-js": "^1.6.0",
     "@stripe/stripe-js": "^1.21.1",
     "@syncfusion/ej2-react-calendars": "^19.3.53",

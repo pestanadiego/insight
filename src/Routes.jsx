@@ -13,6 +13,7 @@ import SpecialistDetailsPage from "./pages/SpecialistDetailsPage";
 import SearchSpecialistPage from "./pages/SearchSpecialistPage";
 import LoadingPage from "./pages/LoadingPage";
 import AppointmentsPage from "./pages/AppointmentsPage";
+import AppointmentsPacientPage from "./pages/AppointmentsPacientPage";
 import ReserveAppointmentPage from "./pages/ReserveAppointmentPage";
 
 function Routes() {
@@ -45,11 +46,12 @@ function Routes() {
       <PrivateRoute exact path="/profile" component={ProfilePage} />
       <PrivateRoute exact path="/admin" component={AdminPage} />
       <PrivateRoute exact path="/appointments" component={AppointmentsPage} />
-      {/* <PrivateRoute
+      <PrivateRoute
         exact
-        path="/schedule_appointment"
-        component={ScheduleAppointmentPage}
-      /> */}
+        path="/pacient_appointments"
+        component={AppointmentsPacientPage}
+      />
+
       <Route exact path="/" component={HomePage} />
       <Route path="*">
         <h1>404</h1>

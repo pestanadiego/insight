@@ -23,7 +23,7 @@ function Dashboard() {
               </li>
             ) : (
               <li>
-                <Link to="/profile" className={styles.link}>
+                <Link to="/pacient_appointments" className={styles.link}>
                   Consultas
                 </Link>
               </li>

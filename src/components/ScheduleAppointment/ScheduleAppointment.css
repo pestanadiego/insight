@@ -88,3 +88,11 @@
 .buttonSchedule:hover {
   background-color: #4970be;
 }
+
+.appointmentLoading {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}

@@ -21,19 +21,10 @@ import { L10n } from "@syncfusion/ej2-base";
 import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { loadStripe } from "@stripe/stripe-js";
-
-import {
-  Elements,
-  CardElement,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js";
-
-// Stripe
-const stripe = loadStripe(
-  "pk_test_51JyIhdBhuxwlUlvDZhVWkZ9lkOMmEiUd0TcuENMKX1j9bEcYYYOdfLVHFQnhGriw3xc8XMfG8fotwE38j1L1i7rO00bIMERD3A"
-);
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { db } from "../../utils/firebaseConfig";
+import emailjs from "emailjs-com";
+import { Spinner } from "react-bootstrap";
 
 setCulture("en-US");
 L10n.load({
@@ -59,7 +50,7 @@ L10n.load({
       previous: "Antes",
       next: "Después",
       newEvent: "Nueva Cita",
-      description: "Descripción",
+      description: "Motivo de Consulta:",
     },
   },
 });
@@ -174,12 +165,88 @@ function ScheduleAppointment({ specialist }) {
   const { user } = useContext(UserContext);
   const [done, setDone] = useState(false);
   const [paymentView, setPaymentView] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [appointments, setAppointments] = useState(specialist.appointments);
   const [isLoading, setIsLoading] = useState(true); //Pantalla de carga
   const workingHours = specialist.hours; //Almacena la información referente al horario de trabajo del especialista
   let workingDays = []; //Almacena la información referente a los días de trabajo del especialista
   const numAppointments = specialist.appointments.length;
   const rep = /"/gi;
+  console.log("SOY USUARIO", user);
+  const templatePacientAppointment = {
+    title: "Su cita se ha agendado con éxito",
+    name: user.name,
+    email: user.email,
+    notes:
+      "Su cita ha sido agendada con éxito. Ingrese a la aplicación para más información",
+  };
+  const templateSpecialistAppointment = {
+    title: "Tienes una nueva cita",
+    name: specialist.name,
+    email: specialist.email,
+    notes:
+      "Han agendado una cita con usted. Ingrese a la aplicación para más información.",
+  };
+
+  function CheckoutForm() {
+    console.log("Pago del la vaina", specialist.payment);
+    const [show, setShow] = useState(false);
+    const [ErrorMessage, setErrorMessage] = useState("");
+    const [orderID, setOrderID] = useState(false);
+    //Se crea la orden
+    const createOrder = (data, actions) => {
+      return actions.order
+        .create({
+          purchase_units: [
+            {
+              description: "Cita",
+              amount: {
+                currency_code: "USD",
+                value: specialist.payment,
+              },
+            },
+          ],
+          // not needed if a shipping address is actually needed
+          application_context: {
+            shipping_preference: "NO_SHIPPING",
+          },
+        })
+        .then((orderID) => {
+          setOrderID(orderID);
+          return orderID;
+        });
+    };
+    //Se valida la orden
+    const onApprove = (data, actions) => {
+      return actions.order.capture().then(function (details) {
+        const { payer } = details;
+        setSuccess(true);
+      });
+    };
+
+    if (success) {
+      alert("Payment successful!!");
+      successfulPayment();
+    }
+
+    const onError = (data, actions) => {
+      setErrorMessage("Ocurrió un error con tu pago - Te estafamos");
+    };
+    return (
+      <PayPalScriptProvider
+        options={{
+          "client-id":
+            "AT6Dn4fEQUUvOjsEipV3XKL8wyPXEzOi17M6YJI1wd4-jtJclBKR_ocy8yTB9eV0hI3rqyQ3-kurfzMM",
+        }}
+      >
+        <PayPalButtons
+          style={{ layout: "horizontal" }}
+          createOrder={(data, actions) => createOrder(data, actions)}
+          onApprove={(data, actions) => onApprove(data, actions)}
+        />
+      </PayPalScriptProvider>
+    );
+  }
 
   const getWorkingDays = (prop) => {
     //Obtiene los días de trabajo del especialista
@@ -220,108 +287,45 @@ function ScheduleAppointment({ specialist }) {
   console.log("Appointments", appointments);
 
   const getNewAppointment = (appointments) => {
+    let ap = appointments;
+    console.log("HOLA SOY AP", ap);
     // Se crea el appointment que se subirá a Firestore
-    const appointment = {
+    const newAppointment = {
       Id: appointments[appointments.length - 1].Id,
+      Subject: "Horario Ocupado",
       Description: appointments[appointments.length - 1].Description,
-      StartTime: getStartTime(
-        JSON.stringify(appointments[appointments.length - 1].StartTime).replace(
-          rep,
-          ""
-        )
-      ),
-      EndTime: getEndTime(
-        JSON.stringify(appointments[appointments.length - 1].EndTime).replace(
-          rep,
-          ""
-        )
-      ),
-      isBlock: true,
+      StartTime: JSON.stringify(
+        appointments[appointments.length - 1].StartTime
+      ).replace(rep, ""),
+      EndTime: JSON.stringify(
+        appointments[appointments.length - 1].EndTime
+      ).replace(rep, ""),
+      IsBlock: true,
       pacient: user.name,
       pacientEmail: user.email,
       pacientPhone: user.phone,
     };
+    const newAppointmentPacient = {
+      Id: appointments[appointments.length - 1].Id,
+      Description: appointments[appointments.length - 1].Description,
+      StartTime: JSON.stringify(
+        appointments[appointments.length - 1].StartTime
+      ).replace(rep, ""),
+      EndTime: JSON.stringify(
+        appointments[appointments.length - 1].EndTime
+      ).replace(rep, ""),
+      specialist: specialist.name,
+      specialistEmail: specialist.email,
+      specialistPhone: specialist.phone,
+    };
     // Se elimina el appointment con los datos innecesarios de appointments
-    appointments = appointments.pop();
+    ap.pop();
     // Se agrega el appointment creado
-    appointments.push(appointment);
+    ap.push(newAppointment);
+    console.log("chao ", ap);
+    setAppointments(ap);
 
-    return appointments;
-  };
-
-  const getStartTime = (prop) => {
-    let startHour = "";
-    let year = "";
-    let month = "";
-    let day = "";
-    year = prop.substring(0, 4);
-    month = prop.substring(5, 7);
-    day = prop.substring(8, 10);
-    startHour = prop.substring(11, 16);
-    const numStart = startHour.substring(0, 2);
-    let num1 = parseInt(startHour.substring(0, 2));
-    num1 = num1 - 4;
-    let hour = num1.toString();
-    const yesterday = parseInt(day) - 1;
-
-    if (hour.length < 2 || (num1 * -1).toString().length < 2) {
-      if (hour == "-1") {
-        hour = "23";
-        day = yesterday.toString();
-      } else if (hour == "-2") {
-        hour = "22";
-        day = yesterday.toString();
-      } else if (hour == "-3") {
-        hour = "21";
-        day = yesterday.toString();
-      } else if (hour == "-4") {
-        hour = "20";
-        day = yesterday.toString();
-      } else {
-        hour = "0" + hour;
-      }
-    }
-
-    startHour = startHour.replace(numStart, hour);
-
-    return year + "-" + month + "-" + day + "T" + startHour + ":00.000Z";
-  };
-  const getEndTime = (prop) => {
-    let endHour = "";
-    let year = "";
-    let month = "";
-    let day = "";
-    year = prop.substring(0, 4);
-    month = prop.substring(5, 7);
-    day = prop.substring(8, 10);
-    endHour = prop.substring(11, 16);
-    const numEnd = endHour.substring(0, 2);
-    let num2 = parseInt(endHour.substring(0, 2));
-    const yesterday = parseInt(day) - 1;
-    num2 = num2 - 4;
-    let hour = num2.toString();
-
-    if (hour.length < 2 || (num2 * -1).toString().length < 2) {
-      if (hour == "-1") {
-        hour = "23";
-        day = yesterday.toString();
-      } else if (hour == "-2") {
-        hour = "22";
-        day = yesterday.toString();
-      } else if (hour == "-3") {
-        hour = "21";
-        day = yesterday.toString();
-      } else if (hour == "-4") {
-        hour = "20";
-        day = yesterday.toString();
-      } else {
-        hour = "0" + hour;
-      }
-    }
-
-    endHour = endHour.replace(numEnd, hour);
-
-    return year + "-" + month + "-" + day + "T" + endHour + ":00.000Z";
+    return newAppointmentPacient;
   };
 
   const formatDate = (date) => {
@@ -336,63 +340,57 @@ function ScheduleAppointment({ specialist }) {
     return hour;
   };
 
-  function CheckoutForm() {
-    const stripe = useStripe();
-    const elements = useElements();
-    const [isPaymentLoading, setPaymentLoading] = useState(false);
+  const successfulPayment = async () => {
+    const newAppointmentPacient = getNewAppointment(appointments);
+    //Base de datos epecialista
+    await db
+      .collection("specialists")
+      .doc(specialist.uid)
+      .update({ appointments: appointments });
+    await db
+      .collection("users")
+      .doc(specialist.uid)
+      .update({ appointments: appointments });
 
-    const payMoney = async (e) => {
-      e.preventDefault();
-      if (!stripe || !elements) {
-        return;
-      }
-      /*
-      //Payment Intent
-      const paymentIntent = await stripe.paymentIntents.create({
-        amount: specialist.pay,
-        currency: 'usd',
-        const clientSecret = paymentIntent.client_secret;
-      });
-      */
+    //Base de datos paciente
+    await db
+      .collection("pacients")
+      .doc(user.uid)
+      .update({ appointments: [...user.appointments, newAppointmentPacient] });
+    await db
+      .collection("users")
+      .doc(user.uid)
+      .update({ appointments: [...user.appointments, newAppointmentPacient] });
 
-      // Confirm Payment
-      const clientSecret = "aeiou";
-      setPaymentLoading(true);
-      const paymentResult = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement),
-          billing_details: {
-            name: user.name,
-            phone: user.phone,
-            email: user.email,
-          },
-        },
-      });
+    //Actualiza el UsexContext
+    user.appointments.push(newAppointmentPacient);
 
-      setPaymentLoading(false);
-      if (paymentResult.error) {
-        alert(paymentResult.error.message);
-      } else {
-        if (paymentResult.paymentIntent.status === "succeeded") {
-          alert("El pago fue realizado con éxito!");
-        }
-      }
-    };
+    //Envío de mensajes de confirmación vía correo electrónico
+    sendNewAppointment(templatePacientAppointment);
+    sendNewAppointment(templateSpecialistAppointment);
+    history.push("/pacient_appointments");
+  };
 
-    return (
-      <form onSubmit={payMoney}>
-        <CardElement />
-        <button className="buttonSchedule">
-          {isPaymentLoading ? "Cargando..." : "Pagar"}
-        </button>
-      </form>
-    );
-  }
+  const sendNewAppointment = (templateParams) => {
+    emailjs
+      .send(
+        "service_rkywh23",
+        "template_ob227vk",
+        templateParams,
+        "user_A1eEQeCvsHGleoXo5JDz3"
+      )
+      .then(
+        (result) => {},
+        (error) => {}
+      );
+  };
 
   return (
     <>
       {isLoading ? (
-        <h1>Loading...</h1>
+        <div className="appointmentLoading">
+          <Spinner animation="border" variant="secondary" />
+        </div>
       ) : (
         <div className="appointmentContainer">
           <div className="calendar">
@@ -474,9 +472,9 @@ function ScheduleAppointment({ specialist }) {
                 <div className="paymentColumn">
                   <div className="price">
                     <p>Precio de la consulta</p>
-                    <h1>$45</h1>
+                    <h1>${specialist.payment}</h1>
                   </div>
-                  <Elements stripe={stripe}>{<CheckoutForm />}</Elements>
+                  <CheckoutForm />
                 </div>
               </div>
             </>

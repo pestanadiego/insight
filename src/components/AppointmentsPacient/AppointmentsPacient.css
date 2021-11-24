@@ -1,0 +1,20 @@
+.appointmentsTableContainer {
+  background-color: white;
+  height: 100%;
+}
+
+.appointmentsTableContainer h1 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  color: var(--main-letters-color);
+  text-align: left;
+}
+
+.data-table {
+  height: 100%;
+  width: auto;
+  border: var(--main-letters-color) 1px solid;
+  border-radius: 10px;
+  margin: 20px 20px;
+}
