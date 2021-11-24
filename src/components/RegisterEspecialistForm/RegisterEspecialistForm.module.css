@@ -87,3 +87,13 @@
   border: none;
   cursor: pointer;
 }
+@media screen and (width: 280px) {
+  .container {
+    height: -10px;
+    background-color: #1b2b3f;
+    margin-top: 100px;
+  }
+  .register {
+    background-color: black;
+  }
+}

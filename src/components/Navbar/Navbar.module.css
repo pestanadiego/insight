@@ -14,6 +14,7 @@
   );
   color: #fff;
   font-size: 0.5rem;
+  position: fixed;
 }
 
 .navbarContainer li {
@@ -85,12 +86,18 @@ img {
     color: white;
     border: none;
   }
+  .navbarContainer {
+    position: fixed;
+  }
 }
 
 .resboton {
   display: none;
   margin-right: 30px;
   font-size: 25px;
+}
+#hidden_button {
+  display: none;
 }
 
 @media screen and (max-width: 952px) {
@@ -163,6 +170,9 @@ img {
   .container {
     border-bottom: solid #5788ea;
   }
+  .navbarContainer {
+    position: fixed;
+  }
 }
 @media screen and (width: 1024px) {
   .resboton {
@@ -183,6 +193,7 @@ img {
 
   #hidden_button {
     background-color: #f5f5f7;
+    font-size: xx-large;
 
     display: flex;
     color: red;
@@ -394,7 +405,7 @@ img {
   }
 }
 
-@media screen and (width: 280px) {
+@media screen and (width: 280px) and (height: 653px) {
   .resboton {
     display: inline-flex;
     margin-left: 30%;
@@ -475,8 +486,84 @@ img {
   }
 
   .navbarContainer {
-    position: fixed;
     margin-right: 10px;
-    margin-top: -4vh;
+    margin-top: -2vh;
+  }
+}
+
+@media screen and (width: 1024px) and (height: 600px) {
+  .resboton {
+    display: inline-flex;
+    margin-left: 30%;
+  }
+  .navbarContainer li {
+    display: flex;
+  }
+  .navbarContainer li .link img {
+    padding-left: 1px;
+
+    padding-right: 20px;
+  }
+  #buttonbig {
+    display: none;
+  }
+
+  #hidden_button {
+    background-color: #f5f5f7;
+
+    display: flex;
+    color: red;
+    flex-direction: column;
+    align-items: center;
+  }
+  #hidden {
+    position: fixed;
+    right: -700px;
+    top: 135px;
+    background-color: #f5f5f7;
+    height: 50%;
+    width: 100%;
+
+    flex-direction: column;
+
+    transition: all 0.4s;
+  }
+  .register {
+    font-size: x-large;
+    color: #939393;
+  }
+  .login {
+    font-size: x-large;
+    color: #939393;
+    background-color: #f5f5f7;
+  }
+
+  #ulstyles {
+    justify-content: space-around;
+  }
+  #menuid {
+    background-color: rgb(87, 118, 234);
+
+    margin-left: 240px;
+  }
+  #imgstyles {
+    height: 6vh;
+  }
+  .navbarContainer li.rightSide {
+    position: fixed;
+    align-items: left;
+    border-radius: 10px;
+    width: 100%;
+    height: 50%;
+    margin-left: 10%;
+    background: #5f7a92;
+    flex-direction: column;
+    justify-content: space-around;
+    top: 135px;
+    right: -800vh;
+    transition: all 0.4s;
+  }
+  .container {
+    border-bottom: solid #5788ea;
   }
 }
