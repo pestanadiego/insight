@@ -28,17 +28,19 @@ function Slide({ slides }) {
           className="left-arrow"
           onClick={prevSlide}
         />
-        {slides.map((slide, index) => {
-          return (
-            <div key={index}>
-              <EspecialistCard
-                name={slide.name}
-                email={slide.email}
-                phone={slide.phone}
-              />
-            </div>
-          );
-        })}
+        <div className={styles.slick}>
+          {slides.map((slide, index) => {
+            return (
+              <div key={index}>
+                <EspecialistCard
+                  name={slide.name}
+                  email={slide.email}
+                  phone={slide.phone}
+                />
+              </div>
+            );
+          })}
+        </div>
         <img
           src={flechaAzulRight}
           alt="flecha"
