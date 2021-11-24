@@ -16,13 +16,16 @@
   height: 105vh;
   align-items: center;
   background-color: white;
+  border-radius: 10px;
 }
 
 .container {
   width: 45vw;
   height: 120vh;
   align-items: center;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
+  margin-top: 10vh;
+  border-radius: 10px;
 }
 
 .register h1 {
@@ -248,13 +251,18 @@
   }
 
   .inputGroup {
-    margin-left: 5%;
+    margin-left: 0%;
     height: 100px;
   }
 
+  .inputGroup label {
+    margin-left: 50px;
+  }
+
   .inputGroup input {
-    height: 40%;
+    height: 30%;
     width: 90%;
+    margin-left: 15px;
   }
 
   .btnDiv button {

@@ -18,7 +18,9 @@
   width: 45vw;
   height: 135vh;
   align-items: center;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
+  margin-top: 10vh;
+  border-radius: 10px;
 }
 
 .container button {
