@@ -89,7 +89,7 @@ function Dashboard() {
                 {dateState ? dateNormal : dateRoja}
               </Link>
             </li>
-
+            
             <li id={styles["showdash"]}>
               <Link to="/search" className={styles.link}>
                 Pacientes
