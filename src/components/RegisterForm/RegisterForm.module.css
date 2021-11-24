@@ -17,14 +17,14 @@ body {
 
 .register {
   width: 45vw;
-  height: 105vh;
+  height: 110vh;
   align-items: center;
   background-color: white;
 }
 
 .container {
   width: 45vw;
-  height: 120vh;
+  height: 130vh;
   align-items: center;
   background-color: rgb(255, 255, 255);
   margin-top: 10vh;

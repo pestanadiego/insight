@@ -200,7 +200,7 @@ function Dashboard() {
               <>
                 {" "}
                 <li id={styles["showdash"]}>
-                  <Link to="/search" className={styles.link}>
+                  <Link to="/appointments" className={styles.link}>
                     Citas
                   </Link>
                 </li>
@@ -236,7 +236,7 @@ function Dashboard() {
               <>
                 <li id={styles["showdash"]}>
                   <Link to="/search" className={styles.link}>
-                    Especialista
+                    Especialistas
                   </Link>
                 </li>
                 <li id={styles["hidden_d"]}>
