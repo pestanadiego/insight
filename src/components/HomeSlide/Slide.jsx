@@ -6,15 +6,10 @@ import EspecialistCard from "../HomeEspecialistCard/HomeEspecialistCard";
 
 function Slide({ slides }) {
   const [current, setCurrent] = useState(0);
-  const largo = slides.length;
 
-  const nextSlide = () => {
-    setCurrent(current === largo - 1 ? 0 : current + 1);
-  };
+  const nextSlide = () => {};
 
-  const prevSlide = () => {
-    setCurrent(current === 0 ? largo - 1 : current - 1);
-  };
+  const prevSlide = () => {};
 
   if (!Array.isArray(slides) || slides.length <= 0) {
     return null;
