@@ -2,6 +2,12 @@
   background-color: rgb(255, 255, 255);
   color: var(--main-letters-color);
   height: 1000vh;
+  margin-left: 38vh;
+  margin-top: 10vh;
+}
+
+.profile h1 {
+  margin-left: 45%;
 }
 
 .profileInformation {
@@ -81,13 +87,16 @@
 .uncompletedInfo {
   border: 1px #e70000 solid;
   background-color: #ffa2a2;
-  padding: 5px;
+  padding-top: -1px;
+  padding-left: 2%;
+  margin-bottom: 5%;
+  margin-top: 1%;
 }
 
 .uncompletedInfo p {
   display: inline-block;
   color: #e70000;
-  padding: 5px;
+  padding: 1px;
 }
 
 .specialistForm {
