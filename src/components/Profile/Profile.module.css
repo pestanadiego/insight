@@ -1,7 +1,7 @@
 .profile {
   background-color: rgb(255, 255, 255);
   color: var(--main-letters-color);
-  height: 1000vh;
+  height: 100vh;
   margin-left: 38vh;
   margin-top: 10vh;
 }
