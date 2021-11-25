@@ -145,7 +145,7 @@ function Dashboard() {
   const { user } = useContext(UserContext);
   const [showDash, setDash] = useState(false);
   const [normalImage, setImage] = useState(true);
-  const [pacienState, setPacient] = useState(true);
+  const [pacientState, setPacient] = useState(true);
   const [dateState, setDate] = useState(true);
   const [profileState, setProfile] = useState(true);
   const mensajeNormal = (
@@ -220,11 +220,27 @@ function Dashboard() {
                 </li>
               </>
             ) : (
-              <li>
-                <Link to="/profile" className={styles.link}>
-                  Consultas
-                </Link>
-              </li>
+              <>
+                <li id={styles["showdash"]}>
+                  <Link to="/profile" className={styles.link}>
+                    Consultas
+                  </Link>
+                </li>
+                <li id={styles["hidden_d"]}>
+                  <Link
+                    to="/profile"
+                    onClick={() => {
+                      setImage(true);
+                      setPacient(true);
+                      setDate(false);
+                      setProfile(true);
+                    }}
+                    className={styles.link}
+                  >
+                    {dateState ? dateNormal : dateRoja}
+                  </Link>
+                </li>
+              </>
             )}
             {user.role === "specialist" ? (
               <li>
@@ -250,7 +266,7 @@ function Dashboard() {
                     }}
                     className={styles.link}
                   >
-                    {pacienState ? pacientNormal : pacientRojo}
+                    {pacientState ? pacientNormal : pacientRojo}
                   </Link>
                 </li>
               </>
@@ -280,5 +296,7 @@ function Dashboard() {
     </>
   );
 }
+
+/*=============================================*/
 
 export default Dashboard;

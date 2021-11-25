@@ -88,12 +88,6 @@
   flex-wrap: wrap;
 }
 
-.searchError{
-    color: var(--main-letters-color);
-    margin: 50px 20px;
-    font-size: 1em;
-}
-
 .selectionList div {
   width: 100%;
   height: auto;
@@ -103,49 +97,24 @@
   overflow: visible;
   margin-top: 20px;
   margin-bottom: 20px;
-  @media screen and (width: 375px) {
-    #dash {
-      text-align: center;
-      color: #939393;
-      width: 100%;
-      position: fixed;
-      bottom: -80vh;
-      float: none;
-    }
-
-    #hidden_d {
-      display: flex;
-    }
-
-    .dashboard li {
-      margin-top: -90px;
-      margin-left: 20px;
-      margin-right: 20px;
-    }
-
-    .dashboard ul {
-      background-color: #f5f5f7;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .dashboard li {
-      color: #939393;
-    }
-
-    #showdash {
-      display: none;
-    }
-  }
 }
 
 @media screen and (max-width: 850px) {
   .searchSections {
-    background-color: rgb(73, 30, 30);
+    background-color: rgb(255, 255, 255);
     height: 100%;
     width: 100%;
-    margin-left: 2px;
+    margin-left: 10%;
     margin-top: 10vh;
-    position: fixed;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .searchSections {
+    background-color: #ffffff;
+    height: 100%;
+    width: 100%;
+    margin-left: 1px;
+    margin-top: 10vh;
   }
 }

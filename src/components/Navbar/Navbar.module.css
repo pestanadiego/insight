@@ -178,7 +178,7 @@ img {
 @media screen and (width: 1024px) {
   .resboton {
     display: inline-flex;
-    margin-left: 30%;
+    margin-left: 3%;
   }
   .navbarContainer li {
     display: flex;
@@ -256,7 +256,7 @@ img {
 @media screen and (width: 768px) {
   .resboton {
     display: inline-flex;
-    margin-left: 30%;
+    margin-left: 3%;
   }
   .navbarContainer li {
     display: flex;
@@ -332,7 +332,7 @@ img {
 @media screen and (width: 540px) {
   .resboton {
     display: inline-flex;
-    margin-left: 30%;
+    margin-left: 20%;
   }
   .navbarContainer li {
     display: flex;
@@ -571,7 +571,7 @@ img {
 @media screen and (width: 320px) {
   .resboton {
     display: inline-flex;
-    margin-left: 30%;
+    margin-left: 20%;
   }
   .navbarContainer li {
     display: flex;
