@@ -122,7 +122,9 @@ function RegisterForm() {
           <div className={styles.formDiv}>
             <form onSubmit={handleSubmit}>
               <div className={styles.inputGroup}>
-                <label htmlFor="name">Nombre y apellido</label>
+                <label id={styles["labelpaciente"]} htmlFor="name">
+                  Nombre y apellido
+                </label>
                 <br />
                 <input
                   name="name"
@@ -134,7 +136,9 @@ function RegisterForm() {
               </div>
 
               <div className={styles.inputGroup}>
-                <label htmlFor="email">Correo electrónico</label>
+                <label id={styles["labelpaciente"]} htmlFor="email">
+                  Correo electrónico
+                </label>
                 <br />
                 <input
                   name="email"
@@ -146,7 +150,9 @@ function RegisterForm() {
               </div>
 
               <div className={styles.inputGroup}>
-                <label htmlFor="phone">Número telefónico</label>
+                <label id={styles["labelpaciente"]} htmlFor="phone">
+                  Número telefónico
+                </label>
                 <br />
                 <input
                   name="phone"
@@ -158,7 +164,9 @@ function RegisterForm() {
               </div>
 
               <div className={styles.inputGroup}>
-                <label htmlFor="password">Contraseña</label>
+                <label id={styles["labelpaciente"]} htmlFor="password">
+                  Contraseña
+                </label>
                 <br />
                 <input
                   name="password"
@@ -175,7 +183,7 @@ function RegisterForm() {
                   type="checkbox"
                   required
                 />
-                <label htmlFor="conditions">
+                <label id={styles["labelpaciente"]} htmlFor="conditions">
                   Confirmo que tengo más de 18 años
                 </label>
               </div>
@@ -186,7 +194,7 @@ function RegisterForm() {
                   type="checkbox"
                   required
                 />
-                <label htmlFor="conditions">
+                <label id={styles["labelpaciente"]} htmlFor="conditions">
                   Acepto los términos y condiciones
                 </label>
               </div>
@@ -197,7 +205,7 @@ function RegisterForm() {
               </div>
             </form>
           </div>
-          <div className={styles.alternatives_div}>
+          <div id={styles["labelpaciente"]} className={styles.alternatives_div}>
             <p>O regístrate a través de: </p>
             <div className={styles.containerAlternatives}>
               <div className={styles.alternative} onClick={handleGoogleLogin}>

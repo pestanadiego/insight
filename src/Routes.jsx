@@ -17,10 +17,13 @@ import AppointmentsPacientPage from "./pages/AppointmentsPacientPage";
 import ReserveAppointmentPage from "./pages/ReserveAppointmentPage";
 
 function Routes() {
-  return (
+  return(
     <Switch>
       <Route exact path="/login" component={LoginPage} />
       <Route exact path="/register_pacient" component={RegisterPage} />
+      <Route exact path="/specialists/:specialistID" component={SpecialistDetailsPage} />
+      <Route exact path="/appointments/:specialistId" component={ReserveAppointmentPage} />
+
       <Route
         exact
         path="/specialists/:specialistID"

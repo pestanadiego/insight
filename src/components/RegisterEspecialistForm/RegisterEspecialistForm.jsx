@@ -93,7 +93,9 @@ function RegisterEspecialistForm() {
           <div className={styles.form_div}>
             <form onSubmit={handleSubmit}>
               <div className={styles.inputGroup}>
-                <label htmlFor="name">Nombre y apellido</label>
+                <label id={styles["titulosEspecialista"]} htmlFor="name">
+                  Nombre y apellido
+                </label>
                 <br />
                 <input
                   name="name"
@@ -105,7 +107,9 @@ function RegisterEspecialistForm() {
               </div>
 
               <div className={styles.inputGroup}>
-                <label htmlFor="email">Correo electrónico</label>
+                <label id={styles["titulosEspecialista"]} htmlFor="email">
+                  Correo electrónico
+                </label>
                 <br />
                 <input
                   name="email"
@@ -117,7 +121,9 @@ function RegisterEspecialistForm() {
               </div>
 
               <div className={styles.inputGroup}>
-                <label htmlFor="date">Número telefónico</label>
+                <label id={styles["titulosEspecialista"]} htmlFor="date">
+                  Número telefónico
+                </label>
                 <br />
                 <input
                   name="phone"
@@ -129,7 +135,9 @@ function RegisterEspecialistForm() {
               </div>
 
               <div className={styles.inputGroup}>
-                <label htmlFor="password">Contraseña</label>
+                <label id={styles["titulosEspecialista"]} htmlFor="password">
+                  Contraseña
+                </label>
                 <br />
                 <input
                   name="password"
@@ -141,7 +149,9 @@ function RegisterEspecialistForm() {
               </div>
 
               <div className={styles.inputGroup}>
-                <label htmlFor="credentials">Cargar credenciales</label>
+                <label id={styles["titulosEspecialista"]} htmlFor="credentials">
+                  Cargar credenciales
+                </label>
                 <br />
                 <input
                   name="credentials"
@@ -160,7 +170,7 @@ function RegisterEspecialistForm() {
                   type="checkbox"
                   required
                 />
-                <label htmlFor="conditions">
+                <label id={styles["titulosEspecialista"]} htmlFor="conditions">
                   Confirmo que tengo más de 18 años
                 </label>
               </div>
@@ -172,7 +182,7 @@ function RegisterEspecialistForm() {
                   type="checkbox"
                   required
                 />
-                <label htmlFor="conditions">
+                <label id={styles["titulosEspecialista"]} htmlFor="conditions">
                   Acepto los términos y condiciones
                 </label>
               </div>

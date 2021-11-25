@@ -1,6 +1,7 @@
 .profile {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   color: var(--main-letters-color);
+  height: 1000vh;
 }
 
 .profileInformation {
