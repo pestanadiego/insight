@@ -1,11 +1,18 @@
 .profile {
   background-color: white;
   color: var(--main-letters-color);
+  height: 90vh;
+}
+
+.profile h1 {
+  text-align: center;
+  padding: 20px;
 }
 
 .profileInformation {
   display: flex;
   flex-direction: column;
+  padding-left: 30px;
 }
 
 .profileInfo {
