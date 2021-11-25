@@ -42,7 +42,7 @@ function AppointmentsPacient() {
     //Se encarga de insertarle los parametros necesarios al calendario para que este muestre las citas, días de trabajo y horarios del especialista
     setIsLoading(true);
     const response = await user; //Obtiene los datos del especialista que escogió el paciente
-    console.log("Hola, soy el usuario", response.appointments);
+    console.log("Hola, soy el usuario", response);
     setData(response.appointments);
     setIsLoading(false);
   };

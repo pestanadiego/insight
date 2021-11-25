@@ -22,6 +22,7 @@ export default function UserContextProvider({ children }) {
       await db.collection("users").doc(uid).set(user); // Se guarda en la colección 'users'
       await db.collection("pacients").doc(uid).set(user); // Se guarda en la colección 'pacients'
     }
+    setUser(user);
   };
 
   const getUserPending = async (email) => {
@@ -66,6 +67,7 @@ export default function UserContextProvider({ children }) {
       if (loggedUser) {
         // Cuando se inicie sesión, se busca el usuario en la base de datos
         const profile = await getUserByEmail(loggedUser.email);
+        console.log("Pajuo", profile);
         // Si no tienes un perfil creado en la base de datos, se crea y se coloca en el contexto.
         if (!profile) {
           const pendingProfile = await getUserPending(loggedUser.email);

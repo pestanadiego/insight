@@ -47,6 +47,9 @@ function PendingCard({ id, name, email, phone, credentials }) {
     pendingProfile.status = "no"; // Status del especialista
     pendingProfile.appointments = [];
     pendingProfile.rating = "0";
+    pendingProfile.work = [];
+    pendingProfile.hours = [];
+    pendingProfile.speciality = [];
     await db
       .collection("specialists")
       .doc(pendingProfile.uid)

@@ -27,8 +27,12 @@ function RegisterForm() {
 
   // Registro con Google
   const handleGoogleLogin = async () => {
-    const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
-    history.push("/profile");
+    try {
+      const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
+      history.push("/profile");
+    } catch {
+      alert("Hubo un error!");
+    }
   };
 
   //Inicio de sesion con Facebook
@@ -62,23 +66,11 @@ function RegisterForm() {
       const response = await auth.signInWithPopup(twitterProvider); //Se le envia al proveedor de Twitter
       setUser({
         name: response.user.displayName,
-        email: response.user.email,
+        email: "null@email.com",
       });
-      // Para que se almacene en la base de datos y no sólo en el módulo de autenticación
-      await createUser(
-        {
-          name: response.user.displayName,
-          email: "example@email.com",
-          phone: response.user.phoneNumber,
-          role: "pacient",
-          uid: response.user.uid,
-          appointments: [],
-        },
-        response.user.uid
-      );
-      history.push("/profile");
-    } catch (error) {
-      alert("Se ha producido un error por favor inténtelo más tarde.");
+    } catch {
+      console.log("Error");
+      alert("Hubo un error!");
     }
   };
 
@@ -103,6 +95,7 @@ function RegisterForm() {
           phone: values.phone,
           role: "pacient",
           uid: response.user.uid,
+          appointments: [],
         },
         response.user.uid // Se saca de response el uid
       );
