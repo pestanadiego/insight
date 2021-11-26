@@ -113,7 +113,7 @@ function SearchSpecialist() {
 
   return (
     <div className={styles.searchSections}>
-      <div class Name={styles.searchContainer}>
+      <div className={styles.searchContainer}>
         <form className={styles.search_form}>
           <h2 className={styles.titleForm}>ENCUENTRA TU PSICÓLOGO IDEAL</h2>
           <div className={styles.searchInputs}>

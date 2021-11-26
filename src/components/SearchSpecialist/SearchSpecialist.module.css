@@ -1,89 +1,87 @@
-.searchContainer{
-    display: flex;
-    justify-content: space-evenly;
+.searchContainer {
+  display: flex;
+  justify-content: space-evenly;
 }
 
-.searchSections{
-    background-color: white;
-    height:100%;
-    width: 75vw;
+.searchSections {
+  background-color: white;
+  height: 100%;
+  width: 75vw;
 }
 
-.titleForm{
-    font-size:1.8em;
-    color:var(--main-letters-color);
-    text-align:center;
-    padding: 30px;
+.titleForm {
+  font-size: 1.8em;
+  color: var(--main-letters-color);
+  text-align: center;
+  padding: 30px;
 }
 
-.searchIcon img{
-    cursor:pointer;
+.searchIcon img {
+  cursor: pointer;
 }
 
-.searchInput input{
-    width: 15vw;
-    height: 5vh;
+.searchInput input {
+  width: 15vw;
+  height: 5vh;
 }
 
-.search_form{
-    align-items: center;
+.search_form {
+  align-items: center;
 }
 
-.searchInputs{
-    display:flex;
-    justify-content: space-around;
+.searchInputs {
+  display: flex;
+  justify-content: space-around;
 }
 
-.inputGroup{
-    display:flex;
-    justify-content: space-around;
-    width: 20vw;
+.inputGroup {
+  display: flex;
+  justify-content: space-around;
+  width: 20vw;
 }
 
-.filterContainer{
-    width:30vw;
+.filterContainer {
+  width: 30vw;
 }
 
-.filter{
-    display:flex;
-    justify-content: space-around;
+.filter {
+  display: flex;
+  justify-content: space-around;
 }
 
-.filter label{
-    margin-right:10px;
+.filter label {
+  margin-right: 10px;
 }
 
-.selectBox{
-    display:flex;
-    justify-content:space-around;
-    width: 23vw;
-    cursor:pointer;
-    position:relative;
-    z-index: 200;
-    border: solid 1px var(--main-input-color);
-    border-radius: 4px;
-    align-items: center;
-    background-color:red;
+.selectBox {
+  display: flex;
+  justify-content: space-around;
+  width: 23vw;
+  cursor: pointer;
+  position: relative;
+  z-index: 200;
+  border: solid 1px var(--main-input-color);
+  border-radius: 4px;
+  align-items: center;
+  background-color: red;
 }
 
-.selectContent img{
-    display:flex;
-    justify-content:flex-end;
+.selectContent img {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.dropdown{
-    width:20vw;
+.dropdown {
+  width: 20vw;
 }
 
-
-.item{
-    border: solid 1px var(--main-input-color);
+.item {
+  border: solid 1px var(--main-input-color);
 }
 
-.selectionList{
-    width: 75vw;
-    display: flex;
-    justify-content:space-between;
-    flex-wrap: wrap;
-    
+.selectionList {
+  width: 75vw;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }

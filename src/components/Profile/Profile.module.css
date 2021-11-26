@@ -1,7 +1,10 @@
 .profile {
+  position: absolute;
   background-color: white;
   color: var(--main-letters-color);
-  height: 90vh;
+  width: 75%;
+  left: 23%;
+  height: 125vh;
 }
 
 .profile h1 {
@@ -111,4 +114,72 @@
   width: 100%;
   cursor: pointer;
   margin-left: 5px;
+}
+/*======================================
+ Para resoluciones de max-width:414
+
+*/
+
+@media screen and (max-width: 414px) {
+  .profile {
+    position: absolute;
+    left: 0%;
+    background-color: rgb(253, 253, 253);
+    color: var(--main-letters-color);
+    width: 101%;
+
+    height: 100%;
+  }
+}
+/* Para resolucion de iphone 5 */
+@media screen and (width: 320px) {
+  .profile {
+    position: absolute;
+    left: 0%;
+    background-color: rgb(253, 253, 253);
+    color: var(--main-letters-color);
+    width: 101%;
+
+    height: 100%;
+  }
+}
+
+/* Pare resolucion de  max-width 768px*/
+
+@media screen and (max-width: 768px) and (min-width: 415px) {
+  .profile {
+    position: absolute;
+    left: 0%;
+    background-color: rgb(253, 253, 253);
+    color: var(--main-letters-color);
+    width: 100%;
+
+    height: 100%;
+  }
+}
+
+/* Para SURFACE DUO*/
+
+@media screen and (max-width: 540px) and (min-width: 415px) {
+  .profile {
+    position: absolute;
+    left: 0%;
+    background-color: rgb(253, 253, 253);
+    color: var(--main-letters-color);
+    width: 100%;
+
+    height: 100%;
+  }
+}
+/* Para resolucion GALAXY FOLD*/
+@media screen and (width: 280px) {
+  .profile {
+    position: absolute;
+    left: 0%;
+    background-color: rgb(253, 253, 253);
+    color: var(--main-letters-color);
+    width: 101%;
+    font-size: small;
+    height: 100%;
+  }
 }
