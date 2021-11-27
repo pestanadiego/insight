@@ -115,3 +115,349 @@ a {
 a:hover {
   text-decoration: underline;
 }
+@media screen and (max-width: 414px) {
+  .container {
+    background-color: var(--main-bg-color);
+    width: 70%;
+    height: 122vh;
+    border-radius: 10px;
+    margin-top: 5vh;
+  }
+
+  .register {
+    background-color: rgb(255, 255, 255);
+    height: 90%;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .register .formDiv .inputGroup {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .register .formDiv .checkboxGroup {
+    margin-left: 10px;
+  }
+
+  .inputGroup input {
+    height: 50%;
+    width: 50%;
+  }
+
+  .btn_div button {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 360px) {
+  .container {
+    background-color: var(--main-bg-color);
+    width: 70%;
+    height: 130vh;
+    border-radius: 10px;
+    margin-top: 6vh;
+  }
+
+  .register {
+    background-color: rgb(255, 255, 255);
+    height: 105%;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .register .formDiv .inputGroup {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .register .formDiv .checkboxGroup {
+    margin-left: 10px;
+  }
+
+  .inputGroup input {
+    height: 50%;
+    width: 50%;
+  }
+
+  .btn_div button {
+    width: 50%;
+  }
+}
+
+@media screen and (height: 667px) {
+  .container {
+    background-color: var(--main-bg-color);
+    width: 70%;
+    height: 150vh;
+    border-radius: 10px;
+  }
+
+  .register {
+    background-color: rgb(255, 255, 255);
+    height: 90%;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .register .formDiv .inputGroup {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .register .formDiv .checkboxGroup {
+    margin-left: 10px;
+  }
+
+  .inputGroup input {
+    height: 50%;
+    width: 50%;
+  }
+
+  .btn_div button {
+    width: 50%;
+  }
+}
+
+/*IPAD */
+@media screen and (width: 768px) {
+  .container {
+    background-color: var(--main-bg-color);
+    width: 70%;
+    height: 100vh;
+    border-radius: 10px;
+    margin-top: 10vh;
+  }
+
+  .register {
+    background-color: rgb(255, 255, 255);
+    height: 90%;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .register .formDiv .inputGroup {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .register .formDiv .checkboxGroup {
+    margin-left: 10px;
+  }
+
+  .inputGroup input {
+    height: 50%;
+    width: 50%;
+  }
+
+  .btn_div button {
+    width: 50%;
+    height: 4vh;
+  }
+
+  #labelpaciente {
+    font-size: large;
+  }
+}
+/*IPAD  pro*/
+@media screen and (width: 1024px) and (height: 1366px) {
+  .container {
+    background-color: var(--main-bg-color);
+    width: 70%;
+    height: 90vh;
+    border-radius: 10px;
+    position: absolute;
+    top: 5%;
+    left: 27%;
+  }
+
+  .register {
+    background-color: rgb(255, 255, 255);
+    height: 90%;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .register .formDiv .inputGroup {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .register .formDiv .checkboxGroup {
+    margin-left: 10px;
+  }
+
+  .inputGroup input {
+    height: 5vh;
+    width: 60%;
+  }
+
+  .btn_div button {
+    width: 50%;
+    height: 5vh;
+    font-size: x-large;
+  }
+
+  #labelpaciente {
+    font-size: x-large;
+  }
+}
+/*SURFACE*/
+@media screen and (width: 540px) {
+  .container {
+    background-color: var(--main-bg-color);
+    width: 70%;
+    height: 160vh;
+    border-radius: 10px;
+    margin-top: 10vh;
+  }
+
+  .register {
+    background-color: rgb(255, 255, 255);
+    height: 90%;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .register .formDiv .inputGroup {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .register .formDiv .checkboxGroup {
+    margin-left: 10px;
+  }
+
+  .inputGroup input {
+    height: 5vh;
+    width: 60%;
+  }
+
+  .btn_div button {
+    width: 50%;
+    height: 5vh;
+    font-size: x-large;
+  }
+
+  #labelpaciente {
+    font-size: x-large;
+  }
+}
+/*Fold*/
+@media screen and (width: 280px) {
+  .container {
+    background-color: var(--main-bg-color);
+    width: 70%;
+    height: 150vh;
+    border-radius: 10px;
+    margin-top: 3vh;
+  }
+
+  .register {
+    background-color: rgb(255, 255, 255);
+    height: 90%;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .register .formDiv .inputGroup {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .register .formDiv .checkboxGroup {
+    margin-left: 10px;
+  }
+
+  .inputGroup input {
+    height: 5vh;
+    width: 60%;
+  }
+
+  .btn_div button {
+    width: 50%;
+    height: 5vh;
+    font-size: medium;
+  }
+
+  #labelpaciente {
+    font-size: medium;
+  }
+}
+
+/* Nesthub*/
+
+@media screen and (width: 1024px) and (height: 600px) {
+  .container {
+    background-color: var(--main-bg-color);
+    position: absolute;
+    top: 1%;
+    left: 43%;
+    height: 150vh;
+  }
+
+  .register {
+    background-color: rgb(255, 255, 255);
+    height: 90%;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .register .formDiv .inputGroup {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .register .formDiv .checkboxGroup {
+    margin-left: 10px;
+  }
+
+  .inputGroup input {
+    height: 5vh;
+    width: 60%;
+  }
+
+  .btn_div button {
+    width: 50%;
+    height: 5vh;
+    font-size: small;
+  }
+
+  #labelpaciente {
+    font-size: small;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .container {
+    background-color: var(--main-bg-color);
+    width: 70%;
+    height: 145vh;
+    border-radius: 10px;
+    margin-top: 6vh;
+  }
+
+  .register {
+    background-color: rgb(255, 255, 255);
+    height: 105%;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .register .formDiv .inputGroup {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .register .formDiv .checkboxGroup {
+    margin-left: 10px;
+  }
+
+  .inputGroup input {
+    height: 50%;
+    width: 50%;
+  }
+
+  .btn_div button {
+    width: 50%;
+  }
+}

@@ -138,3 +138,421 @@
 .pacient:hover {
   text-decoration: underline;
 }
+
+.btnImage {
+  display: flex;
+  justify-content: flex-start;
+  align-self: center;
+}
+
+@media screen and (max-width: 414px) {
+  .container {
+    width: 80vw;
+    height: 80vh;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    margin-top: 10vh;
+  }
+
+  #hidden_signfire {
+  }
+  .btnText {
+    display: none;
+  }
+  .containerLoginbtn ul li button {
+    background: none;
+    border: none;
+  }
+
+  .containerLoginbtn ul {
+    display: flex;
+  }
+  .form_Div form {
+    width: 100%;
+  }
+
+  .container input {
+    outline: none;
+    border-radius: 4px;
+    padding: 5px;
+    width: 60vw;
+    height: 6vh;
+    border: solid 1px var(--main-input-color);
+  }
+  .btnSubmit button {
+    width: 50vw;
+  }
+}
+/* PARA 360 PX */
+@media screen and (width: 360px) {
+  .container {
+    width: 80vw;
+    height: 90vh;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+  }
+
+  #hidden_signfire {
+  }
+  .btnText {
+    display: none;
+  }
+  .containerLoginbtn ul li button {
+    background: none;
+    border: none;
+  }
+
+  .containerLoginbtn ul {
+    display: flex;
+  }
+  .form_Div form {
+    width: 100%;
+  }
+
+  .container input {
+    outline: none;
+    border-radius: 4px;
+    padding: 5px;
+    width: 60vw;
+    height: 6vh;
+    border: solid 1px var(--main-input-color);
+  }
+  .btnSubmit button {
+    width: 50vw;
+  }
+}
+/* PARA IPAD */
+@media screen and (width: 768px) {
+  .container {
+    width: 55vw;
+    height: 60vh;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    margin-top: 15vh;
+  }
+
+  #hidden_signfire {
+  }
+  .btnText {
+    display: none;
+  }
+  .containerLoginbtn ul li button {
+    background: none;
+    border: none;
+  }
+  .containerLoginbtn ul {
+    background: none;
+    border: none;
+    margin-left: 100px;
+  }
+
+  .containerLoginbtn ul {
+    display: flex;
+  }
+  .form_Div form {
+    width: 100%;
+  }
+
+  .container input {
+    outline: none;
+    border-radius: 4px;
+    padding: 5px;
+    width: 50vw;
+    height: 4vh;
+    border: solid 1px var(--main-input-color);
+  }
+  .btnSubmit button {
+    width: 30vw;
+    height: 5vh;
+  }
+  #lowezone {
+    font-size: x-large;
+  }
+}
+/* PARA IPAD PRO */
+@media screen and (width: 1024px) and (height: 1366px) {
+  .container {
+    width: 55vw;
+    height: 60vh;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+  }
+
+  .mainContainer {
+    position: absolute;
+    top: 22%;
+    left: 38%;
+  }
+
+  #hidden_signfire {
+  }
+  .btnText {
+    display: none;
+  }
+  .containerLoginbtn ul li button {
+    background: none;
+    border: none;
+  }
+  .containerLoginbtn ul {
+    background: none;
+    border: none;
+    margin-left: 100px;
+  }
+
+  .containerLoginbtn ul {
+    display: flex;
+  }
+  .form_Div form {
+    width: 100%;
+  }
+
+  .container input {
+    outline: none;
+    border-radius: 4px;
+    padding: 5px;
+    width: 50vw;
+    height: 4vh;
+    border: solid 1px var(--main-input-color);
+    font-size: x-large;
+  }
+  .btnSubmit button {
+    width: 25vw;
+    height: 6vh;
+    font-size: x-large;
+  }
+
+  #lowerzone {
+    font-size: x-large;
+  }
+
+  #titles {
+    font-size: x-large;
+  }
+}
+
+/* SURFACE */
+@media screen and (width: 540px) {
+  .container {
+    width: 55vw;
+    height: 75vh;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    margin-top: 10vh;
+  }
+
+  #hidden_signfire {
+  }
+  .btnText {
+    display: none;
+  }
+  .containerLoginbtn ul li button {
+    background: none;
+    border: none;
+  }
+  .containerLoginbtn ul {
+    background: none;
+    border: none;
+    margin-left: 50px;
+  }
+
+  .containerLoginbtn ul {
+    display: flex;
+  }
+  .form_Div form {
+    width: 100%;
+  }
+
+  .container input {
+    outline: none;
+    border-radius: 4px;
+    padding: 5px;
+    width: 50vw;
+    height: 4vh;
+    border: solid 1px var(--main-input-color);
+    font-size: small;
+  }
+  .btnSubmit button {
+    width: 25vw;
+    height: 6vh;
+    font-size: small;
+  }
+
+  #lowerzone {
+    font-size: small;
+  }
+
+  #titles {
+    font-size: small;
+  }
+}
+
+/* Galaxy fold*/
+@media screen and (width: 280px) {
+  .container {
+    width: 96vw;
+    height: 100vh;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+  }
+
+  .mainContainer {
+    position: absolute;
+    left: 13%;
+    top: -5%;
+  }
+
+  #hidden_signfire {
+  }
+  .btnText {
+    display: none;
+  }
+  .containerLoginbtn ul li button {
+    background: none;
+    border: none;
+    margin-right: 50px;
+  }
+  .containerLoginbtn ul {
+    background: none;
+    border: none;
+    margin-left: 55px;
+  }
+
+  .containerLoginbtn ul {
+    display: flex;
+  }
+  .form_Div form {
+    width: 100%;
+  }
+
+  .container input {
+    outline: none;
+    border-radius: 4px;
+    padding: 5px;
+    width: 70vw;
+    height: 5vh;
+    border: solid 1px var(--main-input-color);
+    font-size: medium;
+  }
+  .btnSubmit button {
+    width: 50vw;
+    height: 8vh;
+    font-size: medium;
+  }
+
+  #lowerzone {
+    font-size: medium;
+  }
+
+  #titles {
+    font-size: medium;
+  }
+}
+
+/* PARA nestuhub */
+@media screen and (width: 1024px) and (height: 600px) {
+  .container {
+    width: 55vw;
+    height: 100vh;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    margin-top: 20vh;
+  }
+  .mainContainer {
+    position: absolute;
+    top: -34%;
+    left: 38%;
+  }
+  #hidden_signfire {
+  }
+  .btnText {
+    display: none;
+  }
+  .containerLoginbtn ul li button {
+    background: none;
+    border: none;
+  }
+  .containerLoginbtn ul {
+    background: none;
+    border: none;
+  }
+  .containerLoginbtn ul {
+    display: flex;
+  }
+  .containerLoginbtn li {
+    margin: 50px 50px 0px;
+  }
+  .containerLoginbtn ul li button {
+    width: 100%;
+  }
+  .form_Div form {
+    width: 100%;
+  }
+
+  .container input {
+    outline: none;
+    border-radius: 4px;
+    padding: 5px;
+    width: 50vw;
+    height: 4vh;
+    border: solid 1px var(--main-input-color);
+    font-size: x-small;
+  }
+  .btnSubmit button {
+    width: 25vw;
+    height: 6vh;
+    font-size: medium;
+  }
+
+  #lowerzone {
+    font-size: x-small;
+  }
+
+  #titles {
+    font-size: x-small;
+  }
+}
+@media screen and (width: 320px) {
+  .container {
+    width: 80vw;
+    height: 90vh;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+  }
+
+  #hidden_signfire {
+  }
+  .btnText {
+    display: none;
+  }
+  .containerLoginbtn ul li button {
+    background: none;
+    border: none;
+  }
+
+  .containerLoginbtn ul {
+    display: flex;
+  }
+  .form_Div form {
+    width: 100%;
+  }
+
+  .container input {
+    outline: none;
+    border-radius: 4px;
+    padding: 5px;
+    width: 60vw;
+    height: 6vh;
+    border: solid 1px var(--main-input-color);
+  }
+  .btnSubmit button {
+    width: 50vw;
+  }
+}
