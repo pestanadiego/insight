@@ -24,7 +24,6 @@
 @media screen and (width: 320px) {
   .layout {
     display: flex;
-    background-color: rgb(124, 207, 29);
   }
   .container {
     height: 150vh;
@@ -36,7 +35,6 @@
 @media screen and (max-width: 768px) and (min-width: 415px) {
   .layout {
     display: flex;
-    background-color: rgb(182, 216, 216);
   }
 
   .container {
@@ -48,7 +46,6 @@
 @media screen and (max-width: 540px) and (min-width: 415px) {
   .layout {
     display: flex;
-    background-color: rgb(182, 216, 216);
   }
 
   .container {
@@ -72,7 +69,6 @@
 @media screen and (max-width: 280px) {
   .layout {
     display: flex;
-    background-color: rgb(124, 207, 29);
   }
   .container {
     position: absolute;

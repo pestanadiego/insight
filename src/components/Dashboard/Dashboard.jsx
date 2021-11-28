@@ -10,6 +10,9 @@ import date_nor from "../../icons/dates.svg";
 import date_rojo from "../../icons/datesR.svg";
 import prof_nor from "../../icons/profile.svg";
 import prof_rojo from "../../icons/profileR.svg";
+import especialista_nor from "../../icons/especialista.svg";
+import especialista_rojo from "../../icons/especialistaRojo.svg";
+
 function Dashboard() {
   const { user } = useContext(UserContext);
   const [showDash, setDash] = useState(false);
@@ -17,6 +20,16 @@ function Dashboard() {
   const [pacientState, setPacient] = useState(true);
   const [dateState, setDate] = useState(true);
   const [profileState, setProfile] = useState(true);
+  const [showSpecialist, setFspecialist] = useState(true);
+
+  const especialistaNormal = (
+    <img id={styles["imagendash"]} src={especialista_nor} alt="mensajeselec" />
+  );
+
+  const especialistaRojo = (
+    <img id={styles["imagendash"]} src={especialista_rojo} alt="mensajeselec" />
+  );
+
   const mensajeNormal = (
     <img id={styles["imagendash"]} src={mensajes_image} alt="mensajeselec" />
   );
@@ -59,6 +72,7 @@ function Dashboard() {
                   setPacient(true);
                   setDate(true);
                   setProfile(false);
+                  setFspecialist(true);
                 }}
                 className={styles.link}
               >
@@ -89,11 +103,27 @@ function Dashboard() {
                 </li>
               </>
             ) : (
-              <li>
-                <Link to="/pacient_appointments" className={styles.link}>
-                  Consultas
-                </Link>
-              </li>
+              <>
+                <li>
+                  <Link to="/pacient_appointments" className={styles.link}>
+                    Consultas
+                  </Link>
+                </li>
+                <li id={styles["hidden_d"]}>
+                  <Link
+                    to="/appointments"
+                    onClick={() => {
+                      setImage(true);
+                      setPacient(true);
+                      setDate(false);
+                      setProfile(true);
+                    }}
+                    className={styles.link}
+                  >
+                    {dateState ? dateNormal : dateRoja}
+                  </Link>
+                </li>
+              </>
             )}
             {user.role === "specialist" ? (
               <>
@@ -118,11 +148,27 @@ function Dashboard() {
                 </li>
               </>
             ) : (
-              <li>
-                <Link to="/search" className={styles.link}>
-                  Especialistas
-                </Link>
-              </li>
+              <>
+                <li>
+                  <Link to="/search" className={styles.link}>
+                    Especialistas
+                  </Link>
+                </li>
+                <li id={styles["hidden_d"]}>
+                  <Link
+                    to="/search"
+                    onClick={() => {
+                      setImage(true);
+
+                      setProfile(true);
+                      setFspecialist(false);
+                    }}
+                    className={styles.link}
+                  >
+                    {showSpecialist ? especialistaNormal : especialistaRojo}
+                  </Link>
+                </li>
+              </>
             )}
             <li>
               <Link to="/profile" className={styles.link}>
@@ -137,6 +183,7 @@ function Dashboard() {
                   setPacient(true);
                   setDate(true);
                   setProfile(true);
+                  setFspecialist(true);
                 }}
                 className={styles.link}
               >
