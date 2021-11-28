@@ -130,6 +130,9 @@
 
     height: 100%;
   }
+  .buttonProfile {
+    width: 30%;
+  }
 }
 /* Para resolucion de iphone 5 */
 @media screen and (width: 320px) {
@@ -181,5 +184,8 @@
     width: 101%;
     font-size: small;
     height: 100%;
+  }
+  .buttonProfile {
+    width: 40%;
   }
 }
