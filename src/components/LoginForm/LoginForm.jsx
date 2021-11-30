@@ -14,7 +14,13 @@ import facebIcon from "../../icons/cib_facebook.svg";
 import twitterIcon from "../../icons/twitter_icon.svg";
 
 function LoginForm() {
-  const { getUserByEmail, getUserPending, getNoValidUser, setUser, createUser } = useContext(UserContext); // Lo que nos permite cambiar el estado
+  const {
+    getUserByEmail,
+    getUserPending,
+    getNoValidUser,
+    setUser,
+    createUser,
+  } = useContext(UserContext); // Lo que nos permite cambiar el estado
   const history = useHistory(); // Se utiliza para redirigir al usuario
   const [values, setValues] = useState({
     email: "",
@@ -25,10 +31,14 @@ function LoginForm() {
     const { value, name: inputName } = event.target;
     setValues({ ...values, [inputName]: value });
   };
-  
+
   const handleGoogleLogin = async () => {
-    const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
-    history.push('/profile');
+    try {
+      const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
+      history.push("/profile");
+    } catch {
+      alert("Hubo un error!");
+    }
   };
 
   //Inicio de sesion con Facebook
@@ -62,21 +72,11 @@ function LoginForm() {
       const response = await auth.signInWithPopup(twitterProvider); //Se le envia al proveedor de Twitter
       setUser({
         name: response.user.displayName,
-        email: "example@email.com",
+        email: "null@email.com",
       });
-      // Para que se almacene en la base de datos y no sólo en el módulo de autenticación
-      await createUser(
-        {
-          name: response.user.name,
-          phone: response.user.phoneNumber,
-          role: "pacient",
-          uid: response.user.uid,
-        },
-        response.user.uid
-      );
-      history.push("/");
-    } catch (error) {
-      alert("Se ha producido un error por favor inténtelo más tarde.");
+    } catch {
+      console.log("Error");
+      alert("Hubo un error!");
     }
   };
 
@@ -88,13 +88,13 @@ function LoginForm() {
     if (!!!loggedUser) {
       const pendingUser = await getUserPending(values.email);
       const noValidUser = await getNoValidUser(values.email);
-      if(noValidUser) {
+      if (noValidUser) {
         setUser(null);
-        history.push('/done_review');
+        history.push("/done_review");
         auth.signOut();
         setUser(null);
-      } else if(pendingUser) {
-        history.push('/under_review');
+      } else if (pendingUser) {
+        history.push("/under_review");
       } else {
         history.push("/");
       }
@@ -113,7 +113,7 @@ function LoginForm() {
         <div className={styles.container}>
           <div className={styles.section_alternatives}>
             <div className={styles.containerLoginbtn}>
-              <ul>
+              <ul id={styles["hidden_signfire"]}>
                 <li>
                   <button type="button" onClick={handleGoogleLogin}>
                     {" "}
@@ -158,12 +158,14 @@ function LoginForm() {
             </div>
           </div>
           <h1>Inicia sesión</h1>
-          <p>Ingresa tu correo y contraseña</p>
+          <p id={styles["titles"]}>Ingresa tu correo y contraseña</p>
           <div className={styles.formDiv}>
             <div className={styles.form_Div}>
               <form onSubmit={handleSubmit}>
                 <div className={styles.inputGroup}>
-                  <label htmlFor="email">Correo electrónico</label>
+                  <label id={styles["titles"]} htmlFor="email">
+                    Correo electrónico
+                  </label>
                   <br />
                   <input
                     name="email"
@@ -176,7 +178,9 @@ function LoginForm() {
                 </div>
 
                 <div className={styles.inputGroup}>
-                  <label htmlFor="password">Contraseña</label>
+                  <label id={styles["titles"]} htmlFor="password">
+                    Contraseña
+                  </label>
                   <br />
                   <input
                     name="password"
@@ -199,7 +203,7 @@ function LoginForm() {
                 </div>
               </form>
             </div>
-            <div className={styles.registration}>
+            <div id={styles["lowerzone"]} className={styles.registration}>
               <h5>¿No estas registrado?</h5>
               <Link to="/register_pacient">
                 <h5 className={styles.pacient}>Regístrate como Paciente</h5>
@@ -219,5 +223,5 @@ function LoginForm() {
       </div>
     </div>
   );
-};
+}
 export default LoginForm;

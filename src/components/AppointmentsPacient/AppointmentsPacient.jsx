@@ -1,63 +1,15 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import {
-  Inject,
-  ScheduleComponent,
-  Day,
-  Week,
-  WorkWeek,
-  Month,
-  ViewsDirective,
-  ViewDirective,
-  Agenda,
-} from "@syncfusion/ej2-react-schedule";
-import "./Appointments.css";
-import { setCulture } from "@syncfusion/ej2-base";
-import { L10n } from "@syncfusion/ej2-base";
 import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import DataTable from "react-data-table-component";
-setCulture("en-US");
-L10n.load({
-  "en-US": {
-    schedule: {
-      day: "Día",
-      week: "Semana",
-      workWeek: "Semana",
-      month: "Mes",
-      agenda: "Citas Agendadas",
-      today: "Hoy",
-      allDay: "Todo el Día",
-      start: "Comienza",
-      end: "Finaliza",
-      delete: "Eliminar",
-      edit: "Editar",
-      editEvent: "Editar Cita",
-      subject: "Asunto",
-      createEvent: "Crear",
-      save: "Guardar",
-      saveButton: "Agregar",
-      cancelButton: "Cancelar",
-      deleteButton: "Eliminar",
-      previous: "Antes",
-      next: "Después",
-      newEvent: "Nueva Cita",
-      description: "Descripción",
-    },
-  },
-});
+import "./AppointmentsPacient.css";
 
-function onPopupOpen(props) {
-  props.cancel = true;
-}
-
-function Appointments() {
+function AppointmentsPacient() {
   const history = useHistory();
   const { user, setUser } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true); //Pantalla de carga
-  const [workingHours, setWorkingHours] = useState([]); //Almacena la información referente al horario de trabajo del especialista
-  const [workingDays, setWorkingDays] = useState([]); //Almacena la información referente a los días de trabajo del especialista
   const [tableData, setTableData] = useState([]);
   const [appointments, setAppointments] = useState([]); //Almacena la información referente a las citas agendadas del especialista
   const columns = [
@@ -72,7 +24,7 @@ function Appointments() {
       sortable: true,
     },
     {
-      name: "Paciente",
+      name: "Especialista",
       selector: (row) => row.name,
       sortable: true,
     },
@@ -81,7 +33,7 @@ function Appointments() {
       selector: (row) => row.contact,
     },
     {
-      name: "Descripción",
+      name: "Motivo de Cita",
       selector: (row) => row.description,
     },
   ];
@@ -90,53 +42,22 @@ function Appointments() {
     //Se encarga de insertarle los parametros necesarios al calendario para que este muestre las citas, días de trabajo y horarios del especialista
     setIsLoading(true);
     const response = await user; //Obtiene los datos del especialista que escogió el paciente
-    console.log("especialista", response);
-    getWorkingHours(response);
-    getWorkingDays(response);
-    getAppointments(response);
+    console.log("Hola, soy el usuario", response);
     setData(response.appointments);
     setIsLoading(false);
-  };
-
-  const getWorkingHours = (response) => {
-    //Obtiene el horario de trabajo del especialista
-    console.log(response);
-    setWorkingHours(response.hours);
-  };
-
-  const getWorkingDays = (response) => {
-    //Obtiene los días de trabajo del especialista
-    let workint = [];
-    for (let i = 0; i < response.work.length; i++) {
-      workint.push(parseInt(response.work[i]));
-    }
-    setWorkingDays(workint);
-  };
-
-  const getAppointments = (response) => {
-    //Obtiene las citas agendadas del especialistas
-    if (response.appointments === undefined) {
-      setAppointments([]);
-    } else {
-      for (let i = 0; i < response.appointments.length; i++) {
-        response.appointments[i].IsBlock = false;
-        response.appointments[i].Subject =
-          "Cita con " + response.appointments[i].pacient;
-      }
-      setAppointments(response.appointments);
-    }
   };
 
   const setData = (response) => {
     let arrayData = [];
     for (let i = 0; i < response.length; i++) {
       const jsonData = {};
+      console.log(i, response[i]);
       jsonData.id = response[i].Id;
-      jsonData.name = response[i].pacient;
+      jsonData.name = response[i].specialist;
       jsonData.contact =
-        response[i].pacientEmail.toString() +
+        response[i].specialistEmail.toString() +
         "\n" +
-        response[i].pacientPhone.toString();
+        response[i].specialistPhone.toString();
       jsonData.date = getDate(response[i].StartTime);
       jsonData.hour = getTime(response[i]);
       jsonData.description = response[i].Description;
@@ -288,7 +209,7 @@ function Appointments() {
           <tr>
             <td>
               <p>
-                <b>Paciente:</b> {data.name}
+                <b>Especialista:</b> {data.name}
               </p>
             </td>
           </tr>
@@ -380,64 +301,27 @@ function Appointments() {
   }, []);
 
   console.log(appointments);
-
   return (
     <>
       {isLoading ? (
         <h1>Loading...</h1>
       ) : (
-        <div className="appointmentsContainer">
-          <h1>Citas Agendadas</h1>
-          <div className="calendar">
-            <ScheduleComponent
-              height="auto"
-              width="auto"
-              className="calendarComp"
-              eventSettings={{
-                dataSource: appointments,
-                fields: {
-                  id: "Id",
-                  subject: { name: "Subject", default: "Cita" },
-                  startTime: {
-                    name: "StartTime",
-                    validation: { required: true },
-                  },
-                  endTime: { name: "EndTime", validation: { required: true } },
-                  eventType: {
-                    name: "EventType",
-                    default: "Pending",
-                  },
-                  description: { name: "Description", default: "" },
-                },
-                enableTooltip: true,
-              }}
-              startHour={workingHours[0]}
-              endHour={workingHours[1]}
-              workDays={workingDays}
-              firstDayOfWeek={1}
-              showQuickInfo={false}
-              timeScale={{ enable: true, interval: 45, slotCount: 1 }}
-              popupOpen={onPopupOpen.bind(this)}
-            >
-              <ViewsDirective>
-                <ViewDirective option="WorkWeek" />
-                <ViewDirective option="Agenda" />
-              </ViewsDirective>
-              <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
-            </ScheduleComponent>
-          </div>
-          <div className="data-table">
-            <DataTable
-              customStyles={customStyles}
-              className="tableComponent"
-              columns={columns}
-              data={tableData}
-              highlightOnHover={true}
-              expandableRows={true}
-              pagination={true}
-              paginationComponentOptions={paginationComponentOptions}
-              expandableRowsComponent={ExpandedComponent}
-            ></DataTable>
+        <div className="appointmentsTableContainer">
+          <div className="tableContainer">
+            <h1>Mis Consultas</h1>
+            <div className="data-table">
+              <DataTable
+                customStyles={customStyles}
+                className="tableComponent"
+                columns={columns}
+                data={tableData}
+                highlightOnHover={true}
+                expandableRows={true}
+                pagination={true}
+                paginationComponentOptions={paginationComponentOptions}
+                expandableRowsComponent={ExpandedComponent}
+              ></DataTable>
+            </div>
           </div>
         </div>
       )}
@@ -445,4 +329,4 @@ function Appointments() {
   );
 }
 
-export default Appointments;
+export default AppointmentsPacient;

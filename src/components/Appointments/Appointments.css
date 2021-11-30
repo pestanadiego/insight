@@ -1,0 +1,135 @@
+@import "../../../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-calendars/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-dropdowns/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-lists/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-navigations/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-popups/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-react-schedule/styles/material.css";
+
+.appointmentsContainer {
+  background-color: white;
+  position: absolute;
+  left: 23%;
+}
+
+.appointmentsContainer h1 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  color: var(--main-letters-color);
+  text-align: left;
+}
+
+.calendar {
+  height: 100%;
+  width: 100%;
+}
+
+.calendarComp {
+  border: var(--main-letters-color) 1px solid;
+  margin: 0 20px;
+  border-radius: 10px;
+}
+
+.data-table {
+  height: 25%;
+  max-width: 900px;
+  border: var(--main-letters-color) 1px solid;
+  border-radius: 10px;
+  margin: 20px 20px;
+}
+
+.tableComponent {
+}
+
+.expandable-container {
+  padding: 5px 10px;
+  background-color: #f2f6f9;
+}
+
+.expandable-container table,
+td {
+}
+/* Para resoluciones de max-width 414px*/
+
+@media screen and (max-width: 414px) {
+  .appointmentsContainer {
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    left: 0%;
+  }
+}
+
+/* Para Ipad */
+@media screen and (width: 768px) {
+  .appointmentsContainer {
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    left: 0%;
+  }
+}
+
+@media screen and (width: 1024px) {
+  .appointmentsContainer {
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    left: 23%;
+    height: 150%;
+    border-radius: 10px;
+  }
+  .data-table {
+    position: absolute;
+    top: 55vh;
+    width: 100%;
+  }
+}
+
+@media screen and (width: 540px) {
+  .appointmentsContainer {
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    left: 0%;
+    top: 1%;
+    height: 150%;
+    border-radius: 10px;
+  }
+  .data-table {
+    position: absolute;
+    width: 70%;
+    top: 60%;
+    left: -1%;
+  }
+}
+@media screen and (width: 280px) {
+  .appointmentsContainer {
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    left: 0%;
+    top: 1%;
+    height: 140%;
+    border-radius: 10px;
+  }
+  .data-table {
+    position: absolute;
+    width: 70%;
+    top: 60%;
+    left: -1%;
+  }
+}
+@media screen and (width: 1024px) and (max-height: 600px) {
+  .appointmentsContainer {
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    left: 23%;
+    height: 326%;
+    border-radius: 10px;
+  }
+  .data-table {
+    position: absolute;
+    top: 120vh;
+    width: 100%;
+  }
+}

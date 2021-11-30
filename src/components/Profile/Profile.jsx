@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../context/UserContext";
 import { db, auth } from "../../utils/firebaseConfig";
 import styles from "./Profile.module.css";
@@ -304,7 +304,11 @@ function Profile() {
       return render;
     }
   };
-
+  useEffect(() => {
+    if (user.role === "specialist") {
+      checkStatus();
+    }
+  });
   if (user.role === "pacient") {
     return (
       <div className={styles.profile}>
@@ -714,103 +718,6 @@ function Profile() {
       </div>
     );
   }
-
-  /*
-    return (
-      <div className={styles.profile}>
-        <h1>Mi perfil</h1>
-        {(user.role === "pacient") ? (
-          <div className={styles.profileInformation}>
-            {(!edit) ? (
-              <>
-              <div className={styles.profileInfo}>
-                <p className={styles.profileTitle}>Nombre:</p>
-                <p>{user.name}</p>
-              </div>
-              <div className={styles.profileInfo}>
-                <p className={styles.profileTitle}>Correo electrónico:</p>
-                <p>{user.email}</p>
-              </div>
-              <div className={styles.profileInfo}>
-                <p className={styles.profileTitle}>Número telefónico:</p>
-                <p>{user.phone}</p>
-              </div>
-              <div className={styles.profileInfo}>
-                <p className={styles.profileTitle}>Descripción:</p>
-                <p>{user.description}</p>  
-              </div>
-              <div className={styles.buttonProfileContainer}>
-                <button type="button" className={styles.buttonProfile} onClick={() => editProfile(true)}>Modificar perfil</button>
-              </div>
-              </>
-            ) : (
-              <form action="submit" onSubmit={handleSubmitPacient}>
-                <div className={styles.formProfile}>
-                  <div className={styles.inputProfile}>
-                    <label className={styles.profileTitle} htmlFor="name">Nombre:</label>
-                    <input
-                      name="name"
-                      id="name"
-                      type="text"
-                      placeholder={user.name}
-                      value={values.name}
-                      onChange={handleOnChange}
-                    />
-                  </div>  
-                  <div className={styles.inputProfile}>
-                    <label className={styles.profileTitle} htmlFor="email">Correo electrónico:</label>
-                    <input
-                      name="email"
-                      id="email"
-                      type="email"
-                      placeholder={user.email}
-                      value={values.email}
-                      onChange={handleOnChange}
-                    />
-                  </div>
-                  <div className={styles.inputProfile}>
-                    <label className={styles.profileTitle} htmlFor="phone">Número telefónico:</label>
-                    <input
-                      name="phone"
-                      id="phone"
-                      type="tel"
-                      placeholder={user.phone}
-                      value={values.phone}
-                      onChange={handleOnChange}
-                    />
-                  </div>
-                  <div className={styles.inputProfile}>
-                    <label className={styles.profileTitle} htmlFor="password">Contraseña:</label>
-                    <div className={styles.togglePassword}>
-                      <input
-                        name="password"
-                        id="password"
-                        type={ showPassword ? "text" : "password"}
-                        value={values.password}
-                        onChange={handleOnChange}
-                      />
-                      <input type="checkbox" style={{"width": "20px"}}onClick={togglePassword} />Ver
-                    </div> 
-                  </div>
-                  <div className={styles.inputProfile}>
-                    <label className={styles.profileTitle} htmlFor="description">Descripción:</label>
-                    <textarea name="description" placeholder={user.description} rows="2" cols="50" onChange={handleOnChange}></textarea>
-                  </div>
-                  <div className={styles.buttonProfileContainer}>
-                    <button className={styles.buttonProfile} type="submit">Guardar cambios</button>
-                    <button type="button" className={styles.buttonProfile} onClick={() => editProfile(false)}>Descartar</button> 
-                  </div> 
-                </div>      
-              </form>
-            )}
-          </div>
-            ) : (
-          <div>
-           </div>
-        )}
-      </div>
-    );
-    */
 }
 
 export default Profile;

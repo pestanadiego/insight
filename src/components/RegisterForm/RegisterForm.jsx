@@ -27,14 +27,17 @@ function RegisterForm() {
 
   // Registro con Google
   const handleGoogleLogin = async () => {
+    try {
       const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
-      history.push('/profile');
+      history.push("/profile");
+    } catch {
+      alert("Hubo un error!");
+    }
   };
-
 
   //Inicio de sesion con Facebook
   const handleFacebookLogin = async () => {
-    try{
+    try {
       const response = await auth.signInWithPopup(facebookProvider); //Se le envia al proveedor de Facebook
       setUser({
         name: response.user.displayName,
@@ -52,7 +55,7 @@ function RegisterForm() {
         response.user.uid
       );
       history.push("/profile");
-    } catch(error) {
+    } catch (error) {
       alert("Se ha producido un error por favor inténtelo más tarde.");
     }
   };
@@ -63,22 +66,11 @@ function RegisterForm() {
       const response = await auth.signInWithPopup(twitterProvider); //Se le envia al proveedor de Twitter
       setUser({
         name: response.user.displayName,
-        email: response.user.email,
+        email: "null@email.com",
       });
-      // Para que se almacene en la base de datos y no sólo en el módulo de autenticación
-      await createUser(
-        {
-          name: response.user.displayName,
-          email: "example@email.com",
-          phone: response.user.phoneNumber,
-          role: "pacient",
-          uid: response.user.uid,
-        },
-        response.user.uid
-      );
-      history.push("/profile");
-    } catch (error) {
-      alert("Se ha producido un error por favor inténtelo más tarde.");
+    } catch {
+      console.log("Error");
+      alert("Hubo un error!");
     }
   };
 
@@ -103,6 +95,7 @@ function RegisterForm() {
           phone: values.phone,
           role: "pacient",
           uid: response.user.uid,
+          appointments: [],
         },
         response.user.uid // Se saca de response el uid
       );
@@ -122,7 +115,9 @@ function RegisterForm() {
           <div className={styles.formDiv}>
             <form onSubmit={handleSubmit}>
               <div className={styles.inputGroup}>
-                <label htmlFor="name">Nombre y apellido</label>
+                <label id={styles["labelpaciente"]} htmlFor="name">
+                  Nombre y apellido
+                </label>
                 <br />
                 <input
                   name="name"
@@ -134,7 +129,9 @@ function RegisterForm() {
               </div>
 
               <div className={styles.inputGroup}>
-                <label htmlFor="email">Correo electrónico</label>
+                <label id={styles["labelpaciente"]} htmlFor="email">
+                  Correo electrónico
+                </label>
                 <br />
                 <input
                   name="email"
@@ -146,7 +143,9 @@ function RegisterForm() {
               </div>
 
               <div className={styles.inputGroup}>
-                <label htmlFor="phone">Número telefónico</label>
+                <label id={styles["labelpaciente"]} htmlFor="phone">
+                  Número telefónico
+                </label>
                 <br />
                 <input
                   name="phone"
@@ -158,7 +157,9 @@ function RegisterForm() {
               </div>
 
               <div className={styles.inputGroup}>
-                <label htmlFor="password">Contraseña</label>
+                <label id={styles["labelpaciente"]} htmlFor="password">
+                  Contraseña
+                </label>
                 <br />
                 <input
                   name="password"
@@ -175,7 +176,7 @@ function RegisterForm() {
                   type="checkbox"
                   required
                 />
-                <label htmlFor="conditions">
+                <label id={styles["labelpaciente"]} htmlFor="conditions">
                   Confirmo que tengo más de 18 años
                 </label>
               </div>
@@ -186,7 +187,7 @@ function RegisterForm() {
                   type="checkbox"
                   required
                 />
-                <label htmlFor="conditions">
+                <label id={styles["labelpaciente"]} htmlFor="conditions">
                   Acepto los términos y condiciones
                 </label>
               </div>
@@ -197,7 +198,7 @@ function RegisterForm() {
               </div>
             </form>
           </div>
-          <div className={styles.alternatives_div}>
+          <div id={styles["labelpaciente"]} className={styles.alternatives_div}>
             <p>O regístrate a través de: </p>
             <div className={styles.containerAlternatives}>
               <div className={styles.alternative} onClick={handleGoogleLogin}>

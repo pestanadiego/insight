@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { useParams } from "react-router-dom";
 import { db } from "../utils/firebaseConfig";
+import { Spinner } from "react-bootstrap";
 
 function SpecialistDetailsPage() {
   let { specialistID } = useParams();
@@ -35,7 +36,9 @@ function SpecialistDetailsPage() {
   return (
     <>
       {specialist === null ? (
-        <h1>Loading...</h1>
+        <div className="appointmentLoading">
+          <Spinner animation="border" variant="secondary" />
+        </div>
       ) : (
         <SpecialistDetails specialist={specialist} />
       )}

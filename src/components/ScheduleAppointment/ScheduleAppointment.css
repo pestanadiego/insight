@@ -9,10 +9,6 @@
 @import "../../../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css";
 @import "../../../node_modules/@syncfusion/ej2-react-schedule/styles/material.css";
 
-#Summary {
-  width: 200px;
-}
-
 .descriptionPayment {
   color: var(--main-letters-color);
   padding-bottom: 10px;
@@ -20,6 +16,8 @@
 
 .appointmentContainer {
   background-color: white;
+  position: absolute;
+  left: 21%;
 }
 
 .appointmentContainer h1 {
@@ -92,3 +90,135 @@
 .buttonSchedule:hover {
   background-color: #4970be;
 }
+
+.appointmentLoading {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+/* Para 414px*/
+
+@media screen and (max-width: 414px) {
+  .appointmentContainer {
+    background-color: white;
+    position: absolute;
+    left: 0%;
+    top: -1%;
+  }
+
+  .buttonSchedule {
+    background-color: var(--main-button-color);
+    font-family: "Poppins";
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 27%;
+    padding: 10px 10px;
+    text-align: center;
+    font-size: 14px;
+    margin: 1rem 5px;
+    transition: all ease 250ms;
+  }
+}
+
+/*Para Ipad*/
+@media screen and (width: 768px) {
+  .appointmentContainer {
+    background-color: white;
+    position: absolute;
+    left: 0%;
+    top: 2%;
+  }
+
+  .buttonSchedule {
+    background-color: var(--main-button-color);
+    font-family: "Poppins";
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 27%;
+    padding: 10px 10px;
+    text-align: center;
+    font-size: 14px;
+    margin: 1rem 5px;
+    transition: all ease 250ms;
+  }
+}
+/* IPAD PRO*/
+@media screen and (width: 1024px) {
+  .appointmentContainer {
+    background-color: white;
+    position: absolute;
+    left: 21%;
+    top: 4%;
+  }
+
+  .buttonSchedule {
+    background-color: var(--main-button-color);
+    font-family: "Poppins";
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 27%;
+    padding: 10px 10px;
+    text-align: center;
+    font-size: 14px;
+    margin: 1rem 5px;
+    transition: all ease 250ms;
+  }
+}
+
+/* SURFACE DUO */
+
+@media screen and (width: 540px) {
+  .appointmentContainer {
+    background-color: white;
+    position: absolute;
+    left: 0%;
+    top: -3%;
+  }
+
+  .buttonSchedule {
+    background-color: var(--main-button-color);
+    font-family: "Poppins";
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 27%;
+    padding: 10px 10px;
+    text-align: center;
+    font-size: 14px;
+    margin: 1rem 5px;
+    transition: all ease 250ms;
+  }
+}
+/*NEST HUB */
+
+@media screen and (width: 1024px) and (height: 600px) {
+  .appointmentContainer {
+    background-color: white;
+    position: absolute;
+    left: 24%;
+    height: 130vh;
+  }
+
+  .buttonSchedule {
+    background-color: var(--main-button-color);
+    font-family: "Poppins";
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 27%;
+    padding: 10px 10px;
+    text-align: center;
+    font-size: 14px;
+    margin: 1rem 5px;
+    transition: all ease 250ms;
+  }
+}
+/**/
+/**/
+/**/
+/**/
