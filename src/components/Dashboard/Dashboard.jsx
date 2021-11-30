@@ -172,7 +172,7 @@ function Dashboard() {
               </>
             )}
             <li>
-              <Link to="/profile" className={styles.link}>
+              <Link to="/chat" className={styles.link}>
                 Mensajes
               </Link>
             </li>

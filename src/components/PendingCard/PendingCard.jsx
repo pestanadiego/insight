@@ -50,6 +50,7 @@ function PendingCard({ id, name, email, phone, credentials }) {
     pendingProfile.work = [];
     pendingProfile.hours = [];
     pendingProfile.speciality = [];
+    pendingProfile.chats = [];
     await db
       .collection("specialists")
       .doc(pendingProfile.uid)
