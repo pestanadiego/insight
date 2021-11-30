@@ -1,0 +1,62 @@
+.noValidTitle {
+    padding: 0 62px;
+    padding-top: 14px;
+    font-size: 24px;
+    color: var(--main-letters-color);
+    text-align: center;
+  }
+  
+  .x {
+    text-align: center;
+  }
+  
+  .infoNoValid {
+    padding: 30px 0;
+  }
+  
+  .underReviewMessage {
+    padding-top: 28px;
+    font-size: 14px;
+    color: var(--main-letters-color);
+    text-align: center;
+  }
+  
+  .pageNoValid {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .noValidContainer {
+    height: 360px;
+    width: 400px;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-flow: column;
+  }
+  
+ .noValidBtnContainer {
+    padding-top: 64px;
+    text-align: center;
+  }
+  
+  .imgContainer {
+    text-align: center;
+  }
+  
+  .doneReviewBtn {
+    background-color: var(--main-button-color);
+    color: white;
+    padding: 8px 32px;
+    font-family: "poppins";
+    font-size: 14px;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  

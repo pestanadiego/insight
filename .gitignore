@@ -1,5 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+#FACEBOOK LOGIN
+CLIENT_ID_FB=4325310210924367
+CLIENT_SECRET_FB=e837cb4c6a16fcbb5fc6c6dd3a7830d8
+
 # dependencies
 /node_modules
 /.pnp

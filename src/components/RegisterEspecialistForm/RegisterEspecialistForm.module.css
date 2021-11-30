@@ -1,0 +1,370 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.mainContainer {
+  background-color: var(--main-bg-color);
+  margin: 20px 0px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register {
+  width: 45vw;
+  height: 105vh;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.container {
+  width: 45vw;
+  height: 120vh;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.register h1 {
+  color: var(--main-letters-color);
+  text-align: center;
+
+  font-size: 2.2em;
+  margin-bottom: 25px;
+}
+
+.form_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputGroup {
+  margin: 20px 0px;
+}
+
+.inputGroup label {
+  color: var(--main-letters-color);
+  font-size: 0.875em;
+}
+
+.inputGroup input {
+  width: 30vw;
+  height: 6.5vh;
+  outline: none;
+  padding: 5px;
+  border-radius: 4px;
+  border: solid 1px var(--main-input-color);
+}
+
+.inputGroup input::content {
+  color: var(--main-letters-color);
+}
+
+.checkboxGroup label {
+  color: var(--main-letters-color);
+  font-size: 0.875em;
+}
+
+.checkboxGroup {
+  margin-bottom: 10px;
+}
+
+.btnDiv {
+  text-align: center;
+  align-items: center;
+}
+
+.container button {
+  background-color: var(--main-button-color);
+  color: white;
+  width: 17vw;
+  height: 8vh;
+  outline: none;
+  font-weight: bold;
+  font-size: 1.1em;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+@media screen and (width: 280px) {
+  .container {
+    height: -10px;
+    background-color: #1b2b3f;
+    margin-top: 100px;
+  }
+  .register {
+    background-color: black;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .container {
+    width: 45vw;
+    height: 120vh;
+    align-items: center;
+    background-color: var(--main-bg-color);
+    border-radius: 10px;
+    width: 80%;
+    margin-top: 10vh;
+  }
+  .register {
+    border-radius: 10px;
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+  }
+
+  .inputGroup {
+    margin-left: 25%;
+  }
+
+  .inputGroup input {
+    height: 60%;
+    width: 70%;
+  }
+
+  .btnDiv button {
+    width: 50%;
+  }
+}
+/*IPAD */
+@media screen and (width: 768px) {
+  .container {
+    width: 60vw;
+    height: 90vh;
+    align-items: center;
+    background-color: var(--main-bg-color);
+    border-radius: 10px;
+    width: 80%;
+
+    margin-top: 10vh;
+  }
+  .register {
+    border-radius: 10px;
+    width: 60vw;
+    height: 85%;
+    margin-left: 13%;
+  }
+
+  .inputGroup {
+    margin-left: 25%;
+    height: 75px;
+  }
+
+  .inputGroup input {
+    height: 60%;
+    width: 70%;
+  }
+
+  .btnDiv button {
+    width: 50%;
+  }
+}
+/*IPAD PRO */
+@media screen and (width: 1024px) and (height: 1366px) {
+  .container {
+    position: absolute;
+    left: 30%;
+    top: 5%;
+    background-color: var(--main-bg-color);
+    border-radius: 10px;
+  }
+  .register {
+    border-radius: 10px;
+    width: 60vw;
+    height: 80%;
+    margin-left: 13%;
+  }
+
+  .inputGroup {
+    margin-left: 5%;
+    height: 100px;
+  }
+
+  .inputGroup input {
+    height: 40%;
+    width: 100%;
+  }
+
+  .btnDiv button {
+    width: 50%;
+    height: 80px;
+  }
+  #titulosEspecialista {
+    font-size: x-large;
+  }
+}
+
+/*SURFACE*/
+@media screen and (width: 540px) {
+  .container {
+    width: 60vw;
+    height: 170vh;
+    align-items: center;
+    background-color: var(--main-bg-color);
+    border-radius: 10px;
+    width: 80%;
+  }
+  .register {
+    border-radius: 10px;
+    width: 60vw;
+    height: 80%;
+    margin-left: 15%;
+  }
+
+  .inputGroup {
+    margin-left: 5%;
+    height: 100px;
+  }
+
+  .inputGroup input {
+    height: 40%;
+    width: 100%;
+  }
+
+  .btnDiv button {
+    width: 50%;
+  }
+}
+/*Para los 360*/
+@media screen and (width: 360px) {
+  .container {
+    width: 60vw;
+    height: 170vh;
+    align-items: center;
+    background-color: var(--main-bg-color);
+    border-radius: 10px;
+    width: 80%;
+    margin-top: 10vh;
+  }
+  .register {
+    border-radius: 10px;
+    width: 70vw;
+    height: 90%;
+    margin-left: 7%;
+  }
+
+  .inputGroup {
+    margin-left: 0%;
+    height: 100px;
+  }
+
+  .inputGroup label {
+    margin-left: 50px;
+  }
+
+  .inputGroup input {
+    height: 30%;
+    width: 90%;
+    margin-left: 15px;
+  }
+
+  .btnDiv button {
+    width: 50%;
+  }
+}
+/*Para los 280*/
+@media screen and (width: 280px) {
+  .container {
+    width: 60vw;
+    height: 170vh;
+    align-items: center;
+    background-color: var(--main-bg-color);
+    border-radius: 10px;
+    width: 80%;
+  }
+  .register {
+    border-radius: 10px;
+    width: 80vw;
+    height: 90%;
+  }
+
+  .inputGroup {
+    margin-left: 5%;
+    height: 100px;
+  }
+
+  .inputGroup input {
+    height: 40%;
+    width: 90%;
+  }
+
+  .btnDiv button {
+    width: 50%;
+  }
+}
+
+/*Para los 320*/
+@media screen and (width: 320px) {
+  .container {
+    width: 60vw;
+    height: 190vh;
+    align-items: center;
+    background-color: var(--main-bg-color);
+    border-radius: 10px;
+    width: 80%;
+    margin-top: 10vh;
+  }
+  .register {
+    border-radius: 10px;
+    width: 70vw;
+    height: 90%;
+    margin-left: 7%;
+  }
+
+  .inputGroup {
+    margin-left: 5%;
+    height: 100px;
+  }
+
+  .inputGroup input {
+    height: 40%;
+    width: 90%;
+  }
+
+  .btnDiv button {
+    width: 50%;
+  }
+}
+/*IPAD PRO */
+@media screen and (width: 1024px) and (height: 600px) {
+  .container {
+    position: absolute;
+    left: 34%;
+    top: 10%;
+    border-radius: 10px;
+  }
+
+  .mainContainer {
+    background-color: var(--main-bg-color);
+    position: absolute;
+    left: 43%;
+    top: 10%;
+  }
+  .register {
+    border-radius: 10px;
+    width: 45vw;
+    height: 123%;
+  }
+
+  .inputGroup {
+    margin-left: 5%;
+    height: 100px;
+  }
+
+  .inputGroup input {
+    height: 40%;
+    width: 100%;
+  }
+
+  .btnDiv button {
+    width: 50%;
+    height: 80px;
+  }
+  .label {
+    font-size: small;
+  }
+}

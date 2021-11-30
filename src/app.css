@@ -1,0 +1,78 @@
+.layout {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  top: 10%;
+  z-index: 1;
+}
+
+.container {
+  flex: 1;
+}
+/* Para resoluciones de max-width 414px*/
+@media screen and (max-width: 414px) {
+  .layout {
+    display: flex;
+  }
+  .container {
+    height: 134vh;
+    width: 100%;
+  }
+}
+/*Para resolucion de iphone 5*/
+
+@media screen and (width: 320px) {
+  .layout {
+    display: flex;
+  }
+  .container {
+    height: 150vh;
+    width: 100%;
+    font-size: small;
+  }
+}
+/* Para resoluciones de max-width 768px*/
+@media screen and (max-width: 768px) and (min-width: 415px) {
+  .layout {
+    display: flex;
+  }
+
+  .container {
+    height: 85vh;
+  }
+}
+
+/* Para SURFACE DUO*/
+@media screen and (max-width: 540px) and (min-width: 415px) {
+  .layout {
+    display: flex;
+  }
+
+  .container {
+    height: 110vh;
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 769px) {
+  .layout {
+    display: flex;
+  }
+
+  .container {
+    height: 51vh;
+    width: 120%;
+    position: absolute;
+    left: -23%;
+  }
+}
+/* Para resoluciones de GALAXY FOLD*/
+@media screen and (max-width: 280px) {
+  .layout {
+    display: flex;
+  }
+  .container {
+    position: absolute;
+    height: 140vh;
+    width: 43vh;
+  }
+}
