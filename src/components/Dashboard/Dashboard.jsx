@@ -111,11 +111,12 @@ function Dashboard() {
                 </li>
                 <li id={styles["hidden_d"]}>
                   <Link
-                    to="/appointments"
+                    to="/pacient_appointments"
                     onClick={() => {
                       setImage(true);
                       setPacient(true);
                       setDate(false);
+                      setFspecialist(true);
                       setProfile(true);
                     }}
                     className={styles.link}
@@ -159,7 +160,7 @@ function Dashboard() {
                     to="/search"
                     onClick={() => {
                       setImage(true);
-
+                      setDate(true);
                       setProfile(true);
                       setFspecialist(false);
                     }}

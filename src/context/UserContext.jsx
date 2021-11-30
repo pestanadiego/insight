@@ -86,6 +86,7 @@ export default function UserContextProvider({ children }) {
           }
         } else {
           setUser(profile);
+          console.log("soy usuario", user);
         }
       } else {
         setUser(null);
