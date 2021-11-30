@@ -12,20 +12,15 @@ function ChatPage() {
 
     useEffect(() => {
         const chatUsersRef = db.collection(db, "chats");
-        // Se crea la query
-        const q = db.query(chatUsersRef, where("id", "in", user.chats));
-        // Se ejecuta la query
-        const unsub = db.onSnapshot(q, (querySnapshot) => {
+        chatUsersRef.where('id', 'in', user.chats).get().then((snapshot) => {
             let chatUsers = [];
-            querySnapshot.forEach((doc) => {
+            snapshot.docs.forEach((doc) => {
                 chatUsers.push(doc.data());
-            });
+            })
             setChatUsers(chatUsers);
         });
-        return () => {
-            unsub()
-        }
-    }, []);
+        }, 
+        []);
     console.log(chatUsers);
   
   return(
