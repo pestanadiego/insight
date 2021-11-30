@@ -1,0 +1,43 @@
+.message-wrapper {
+    margin-top: 5px;
+    padding: 0px 5px;
+}
+
+p {
+    padding: 10px;
+    display: inline-block;
+    max-width: 50%;
+    text-align: left;
+    border-radius: 5px;
+}
+
+.hour-message {
+    display: inline-block;
+    margin-top: 15px;
+    opacity: 0.5;
+}
+
+.own {
+    text-align: right;
+}
+
+.me {
+    background-color: var(--main-button-color);
+    color: white;
+}
+
+.other {
+    background-color: gray;
+}
+
+@media screen and (max-width: 770px) {
+    .message-wrapper p {
+        max-width: 75%;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .message-wrapper p {
+        max-width: 10%;
+    }
+}

@@ -367,8 +367,9 @@ function ScheduleAppointment({ specialist }) {
       .doc(user.uid)
       .update({ appointments: [...user.appointments, newAppointmentPacient], chats: [...user.chats, chat.id] });
 
-    //Actualiza el UsexContext
+    //Actualiza el UserContext
     user.appointments.push(newAppointmentPacient);
+    user.chats.push(chat.id);
 
     //Envío de mensajes de confirmación vía correo electrónico
     sendNewAppointment(templatePacientAppointment);

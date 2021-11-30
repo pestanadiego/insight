@@ -25,3 +25,20 @@
     text-align: center;
 }
 
+.messages {
+    height: calc(100vh - 200px);
+    overflow-y: auto;
+    border-bottom: 1px solid var(--main-letters-color);
+}
+
+@media screen and (max-width: 770px) {
+    .chat-container {
+        grid-template-columns: 2fr 3fr;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .chat-container {
+        grid-template-columns: 1fr 5fr;
+    }
+}
