@@ -178,7 +178,7 @@ function Dashboard() {
             </li>
             <li id={styles["hidden_d"]}>
               <Link
-                to="/profile"
+                to="/chat"
                 onClick={() => {
                   setImage(false);
                   setPacient(true);

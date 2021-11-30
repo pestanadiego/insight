@@ -11,7 +11,7 @@ function ChatPage() {
     const [chat, setChat] = useState("");
 
     useEffect(() => {
-        const chatUsersRef = db.collection(db, "chats");
+        const chatUsersRef = db.collection("chats");
         chatUsersRef.where('id', 'in', user.chats).get().then((snapshot) => {
             let chatUsers = [];
             snapshot.docs.forEach((doc) => {
@@ -21,16 +21,20 @@ function ChatPage() {
         });
         }, 
         []);
-    console.log(chatUsers);
+    
+    const selectChatUser = (chatUser) => {
+        setChat(chatUser);
+        console.log(chatUser);
+    }
   
   return(
     <div className="chat-container">
         <div className="chat-users-container">
-          {chatUsers.map(chatUser => <ChatUser key={chatUser.id} user={chatUser} />)}
+          {chatUsers.map(chatUser => <ChatUser key={chatUser.id} chatUser={chatUser} selectChatUser={selectChatUser}/>)}
         </div>
         <div className="messages-container">
           {chat ? (
-            <Chat />
+            <h3 className="no-chat">{chat.id}</h3>
           ) : (
             <h3 className="no-chat">Haga clic en un usuario para iniciar la conversación</h3>
           )}

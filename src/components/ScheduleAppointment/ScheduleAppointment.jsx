@@ -281,11 +281,8 @@ function ScheduleAppointment({ specialist }) {
     setScheduleData();
   });
 
-  console.log("Appointments", appointments);
-
   const getNewAppointment = (appointments) => {
     let ap = appointments;
-    console.log("HOLA SOY AP", ap);
     // Se crea el appointment que se subirá a Firestore
     const newAppointment = {
       Id: appointments[appointments.length - 1].Id,
@@ -345,18 +342,19 @@ function ScheduleAppointment({ specialist }) {
       status: "pending",
       specialistName: specialist.name,
       pacientName: user.name,
-      id: chat.id
+      id: ''
     })
+    await db.collection("chats").doc(chat.id).update({id: chat.id});
 
     //Base de datos epecialista
     await db
       .collection("specialists")
       .doc(specialist.uid)
-      .update({ appointments: appointments, chats: [...specialist.chats, chat] });
+      .update({ appointments: appointments, chats: [...specialist.chats, chat.id] });
     await db
       .collection("users")
       .doc(specialist.uid)
-      .update({ appointments: appointments, chats: [...specialist.chats, chat] });
+      .update({ appointments: appointments, chats: [...specialist.chats, chat.id] });
 
 
     //Base de datos paciente
