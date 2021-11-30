@@ -270,8 +270,6 @@ function ScheduleAppointment({ specialist }) {
     } else {
       setPaymentView(false);
     }
-    console.log("Probando");
-    console.log(result);
   };
 
   const setScheduleData = () => {

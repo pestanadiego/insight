@@ -1,14 +1,14 @@
 import { useState, useEffect, createContext } from "react";
 import { auth, db } from "../utils/firebaseConfig";
 import { getFirstElementArrayCollection } from "../utils/parser";
-
+import { Spinner } from "react-bootstrap";
 export const UserContext = createContext(null); // Se crea el estado global de la aplicación
 
 // Proveedor que indica dónde está disponible el contexto.
 // Se le pasa children porque es un componente que encierra a otros (ver App.jsx)
 export default function UserContextProvider({ children }) {
   const [user, setUser] = useState(null); // Para que cuando el usuario inicie sesión, el estado cambie. setUser cambia el estado.
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   // user es el json con los datos del usuario y uid es el ID de autenticación que da Firebase
   const createUser = async (user, uid) => {
@@ -67,7 +67,6 @@ export default function UserContextProvider({ children }) {
       if (loggedUser) {
         // Cuando se inicie sesión, se busca el usuario en la base de datos
         const profile = await getUserByEmail(loggedUser.email);
-        console.log("Pajuo", profile);
         // Si no tienes un perfil creado en la base de datos, se crea y se coloca en el contexto.
         if (!profile) {
           const pendingProfile = await getUserPending(loggedUser.email);
@@ -85,6 +84,7 @@ export default function UserContextProvider({ children }) {
             setUser(null);
           }
         } else {
+          // update_user(profile);
           setUser(profile);
         }
       } else {
@@ -100,21 +100,27 @@ export default function UserContextProvider({ children }) {
   }, []);
 
   return (
-    <UserContext.Provider
-      //<Spinner animation="border" variant="secondary" />
-      value={{
-        /* Variables que estarán disponibles globalmente */
-        user,
-        setUser,
-        loading,
-        setLoading,
-        createUser,
-        getUserByEmail,
-        getUserPending,
-        getNoValidUser,
-      }}
-    >
-      {children} {/* Encierra a todos los hijos que están en App.jsx */}
-    </UserContext.Provider>
+    <>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <UserContext.Provider
+          //<Spinner animation="border" variant="secondary" />
+          value={{
+            /* Variables que estarán disponibles globalmente */
+            user,
+            setUser,
+            loading,
+            setLoading,
+            createUser,
+            getUserByEmail,
+            getUserPending,
+            getNoValidUser,
+          }}
+        >
+          {children} {/* Encierra a todos los hijos que están en App.jsx */}
+        </UserContext.Provider>
+      )}
+    </>
   );
 }
