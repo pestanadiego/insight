@@ -172,7 +172,6 @@ function ScheduleAppointment({ specialist }) {
   let workingDays = []; //Almacena la información referente a los días de trabajo del especialista
   const numAppointments = specialist.appointments.length;
   const rep = /"/gi;
-  console.log("SOY USUARIO", user);
   const templatePacientAppointment = {
     title: "Su cita se ha agendado con éxito",
     name: user.name,
