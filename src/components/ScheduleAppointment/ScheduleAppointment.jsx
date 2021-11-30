@@ -21,25 +21,10 @@ import { L10n } from "@syncfusion/ej2-base";
 import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
-<<<<<<< HEAD
-import { loadStripe } from "@stripe/stripe-js";
-import axios from 'axios';
-
-import {
-  Elements,
-  CardElement,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js";
-
-// Stripe
-const stripePromise = loadStripe("pk_test_51JyIhdBhuxwlUlvDZhVWkZ9lkOMmEiUd0TcuENMKX1j9bEcYYYOdfLVHFQnhGriw3xc8XMfG8fotwE38j1L1i7rO00bIMERD3A");
-=======
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { db } from "../../utils/firebaseConfig";
 import emailjs from "emailjs-com";
 import { Spinner } from "react-bootstrap";
->>>>>>> 04a002fa86ab30298026cb4059dddcf8a4d0d3c2
 
 setCulture("en-US");
 L10n.load({
@@ -354,64 +339,39 @@ function ScheduleAppointment({ specialist }) {
 
   const successfulPayment = async () => {
     const newAppointmentPacient = getNewAppointment(appointments);
+    //Se crea el chat
+    const chat = await db.collection("chats").add({
+      messages: [],
+      status: "pending",
+      specialistName: specialist.name,
+      pacientName: user.name,
+      id: chat.id
+    })
+
     //Base de datos epecialista
     await db
       .collection("specialists")
       .doc(specialist.uid)
-      .update({ appointments: appointments });
+      .update({ appointments: appointments, chats: [...specialist.chats, chat] });
     await db
       .collection("users")
       .doc(specialist.uid)
-      .update({ appointments: appointments });
+      .update({ appointments: appointments, chats: [...specialist.chats, chat] });
+
 
     //Base de datos paciente
     await db
       .collection("pacients")
       .doc(user.uid)
-      .update({ appointments: [...user.appointments, newAppointmentPacient] });
+      .update({ appointments: [...user.appointments, newAppointmentPacient], chats: [...user.chats, chat.id] });
     await db
       .collection("users")
       .doc(user.uid)
-      .update({ appointments: [...user.appointments, newAppointmentPacient] });
+      .update({ appointments: [...user.appointments, newAppointmentPacient], chats: [...user.chats, chat.id] });
 
     //Actualiza el UsexContext
     user.appointments.push(newAppointmentPacient);
 
-<<<<<<< HEAD
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-
-      const {error, paymentMethod} = await stripe.createPaymentMethod({
-        type: 'card',
-        card: elements.getElement(CardElement)
-      });
-      setIsLoading(true);
-
-      if(!error) {
-        const { id } = paymentMethod;
-
-        try {
-          const { data } = await axios.post('http://localhost:3001/api/checkout', {
-            id,
-            amount: parseInt(specialist.pay) * 100 // Se pasa en centavos
-          });
-        } catch (error) {
-          console.log(error);
-        }
-        console.log(data);
-        elements.getElement(CardElement).clear();
-      }
-      setIsLoading(false);
-    }
-        
-    return(
-      <form onSubmit={handleSubmit}> 
-        <CardElement />
-        <button className="buttonSchedule" disabled={!stripe}>{isPaymentLoading ? "Cargando..." : "Pagar"}</button>
-      </form>
-    );
-  }
-=======
     //Envío de mensajes de confirmación vía correo electrónico
     sendNewAppointment(templatePacientAppointment);
     sendNewAppointment(templateSpecialistAppointment);
@@ -431,7 +391,6 @@ function ScheduleAppointment({ specialist }) {
         (error) => {}
       );
   };
->>>>>>> 04a002fa86ab30298026cb4059dddcf8a4d0d3c2
 
   return (
     <>
@@ -525,16 +484,7 @@ function ScheduleAppointment({ specialist }) {
                   <CheckoutForm />
                 </div>
               </div>
-<<<<<<< HEAD
-              <Elements stripe={stripePromise}>
-                <CheckoutForm />
-              </Elements>
-            </div>
-          </div>
-          </>
-=======
             </>
->>>>>>> 04a002fa86ab30298026cb4059dddcf8a4d0d3c2
           )}
         </div>
       )}
