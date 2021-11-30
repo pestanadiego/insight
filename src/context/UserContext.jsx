@@ -84,7 +84,6 @@ export default function UserContextProvider({ children }) {
             setUser(null);
           }
         } else {
-          // update_user(profile);
           setUser(profile);
         }
       } else {
