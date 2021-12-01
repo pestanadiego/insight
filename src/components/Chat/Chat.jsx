@@ -1,6 +1,6 @@
 import "./Chat.css";
 
-const Chat = ({ handleSubmit, text, setText}) => {
+const Chat = ({ handleSubmit, text, setText, videoconference }) => {
 
     return(
         <form className="message-form" onSubmit={handleSubmit}> 
@@ -9,7 +9,7 @@ const Chat = ({ handleSubmit, text, setText}) => {
             </div>
             <div>
                 <button className="message-btn">Enviar</button>
-                <button className="message-btn">Video</button>
+                <button className="message-btn" type="button" onClick={videoconference}>Video</button>
             </div>
 
         </form>

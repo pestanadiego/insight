@@ -26,6 +26,19 @@
     color: white;
 }
 
+.video {
+    background-color: orange;
+    color: white;
+}
+
+.meet {
+    text-align: center;
+}
+
+.meet p {
+    text-align: center;
+}
+
 .other {
     background-color: gray;
 }

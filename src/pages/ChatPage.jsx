@@ -39,6 +39,20 @@ function ChatPage() {
         console.log(msgs);
     };
 
+    const videoconference = async () => {
+      const nameOfPacient = chat.pacientName.toLowerCase().split(" ");
+      const meeting = nameOfPacient[0] + nameOfPacient[1];
+      const message = {
+        text: "Meet. Clic aquí para ingresar",
+        url: `https://accounts.google.com/AccountChooser/signinchooser?continue=https://g.co/meet/cita${meeting}`
+      }
+      await db
+      .collection("chats")
+      .doc(chat.id)
+      .update({ messages: [...msgs, message] });
+      console.log('prueba');
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         let user2 = "";
@@ -53,7 +67,7 @@ function ChatPage() {
             text,
             from: user1,
             to: user2,
-            createdAt: date.getHours() + ":" + date.getMinutes()
+            createdAt: date.getHours() + ":" + date.getMinutes(),
         }
         await db
         .collection("chats")
@@ -78,7 +92,7 @@ function ChatPage() {
         await db.collection("chats").doc(chat.id).update({ status: 'finished'});
       }
     }
-  
+      
   return(
     <div className="chat-container">
         <div className="chat-users-container">
@@ -108,7 +122,7 @@ function ChatPage() {
               {msgs.length ? msgs.map((msg, i) => <Message key={i} msg={msg}/>) : null}
             </div>
             {(status != "pending" && status != "finished") && (
-              <Chat handleSubmit={handleSubmit} text={text} setText={setText}/>
+              <Chat handleSubmit={handleSubmit} text={text} setText={setText} videoconference={videoconference}/>
             )}
             {(status === "finished") && (
               <p className="no-chat">Este chat ya fue finalizado</p>
