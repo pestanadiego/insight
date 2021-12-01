@@ -230,6 +230,7 @@ footer .imgRotar {
     flex-wrap: wrap;
     background: #fff;
     margin-top: 0vh;
+    margin-bottom: 7vh;
   }
   .functionTerapy .terapi {
     flex: 1;
@@ -281,6 +282,8 @@ footer .imgRotar {
   .listService .service {
     font-size: 1.2em;
     margin-top: -2.5vh;
+    height: 56vh;
+    padding-top: 9vh;
     color: white;
     background: linear-gradient(60deg, var(--main-bg-color), aqua);
     animation: BgGradient 10s ease 0s infinite normal none running;
