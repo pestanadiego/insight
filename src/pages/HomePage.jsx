@@ -32,11 +32,12 @@ function HomePage() {
         <img src={pictures.home_p} alt="img_home" />
         <div className={styles.contenedor}>
           <h4>
-            Sigue a tu corazón pero lleva contigo a tu cerebro ~ Alfred Adler
+            Las emociones inexpresadas nunca mueren. <br /> Son enterradas vivas
+            y salen más tarde de peores formas ~ Freud
           </h4>
           <Link to="/register_pacient">
             <button type="button" className={styles.bttn}>
-              Quiero empezar!
+              ¡Quiero empezar!
             </button>
           </Link>
         </div>
@@ -59,7 +60,10 @@ function HomePage() {
               alt="home-professional"
             ></img>
             <h3>Profesional</h3>
-            <p>Lorem ipsum dolor sit amet, consectetuer ibh euis.</p>
+            <p>
+              Psicólogos <br /> con más de 5 años de experiencia profesional en
+              el área clínica.
+            </p>
           </article>
           <article>
             <img
@@ -68,7 +72,8 @@ function HomePage() {
               alt="home-access"
             ></img>
             <h3>Accesible</h3>
-            <p>Lorem ipsum dolor sit amet, consectetuer ibh euis.</p>
+            <p>El tiempo y la distancia ya no son problemas.</p>
+            <p> Tu terapeuta siempre estará contigo cuando lo necesites.</p>
           </article>
           <article>
             <img
@@ -77,7 +82,10 @@ function HomePage() {
               alt="home-save"
             ></img>
             <h3>Seguro</h3>
-            <p>Lorem ipsum dolor sit amet, consectetuer ibh euis.</p>
+            <p>
+              Mantenemos altos niveles de seguridad <br /> para cuidar y
+              resguardar tu información.
+            </p>
           </article>
         </section>
       </section>
@@ -87,8 +95,8 @@ function HomePage() {
           <div className={styles.list}>
             <h3>Servicios que ofrecemos</h3>
             <p id={styles["pcontainer"]}>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-              nonummy nibh euismod tincidunt ut laoreet dolores.
+              Éstas son algunas de las principales áreas que atienden nuestros
+              psicólogos en línea
             </p>
 
             <div className={styles.icons_service}>
@@ -133,7 +141,7 @@ function HomePage() {
 
             <Link to="/register_pacient" className={styles.cont}>
               <button type="button" className={styles.bttn}>
-                ELIJE A TU PSICÓLOGO EN LÍNEA
+                ELIGE A TU PSICÓLOGO EN LÍNEA
               </button>
             </Link>
           </div>
@@ -150,22 +158,22 @@ function HomePage() {
         <section className={styles.terapi}>
           <div className={styles.list}>
             <h3>¿Cómo funciona la terapia?</h3>
-            <p>
+            <p id={styles["estilos_how"]}>
               Tomar terapia con un psicólogo que se adapte a tu estilo y ritmo
               de vida actual es fácil y seguro con Insight.
             </p>
             <br />
-            <p>
+            <p id={styles["estilos_how"]}>
               Nosotros te ayudamos a buscar y seleccionar los mejores psicólogos
               en línea para tí!
             </p>
 
             <br />
-            <p>
+            <p id={styles["estilos_how"]}>
               1. Selecciona el día y la hora que mejor se adapte a tu rutina
             </p>
             <br />
-            <p>
+            <p id={styles["estilos_how"]}>
               2. Conecta a tus citas por videollamada de forma segura y privada
               a través de Insight
             </p>

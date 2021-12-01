@@ -50,7 +50,11 @@
   color: var(--main-bg-color);
 }
 .items h3,
-p {
+.inline p {
+  text-align: center;
+}
+
+.listService p {
   text-align: center;
 }
 
@@ -72,9 +76,14 @@ p {
   background: #fff;
 }*/
 .listService .service {
-  background: #fff;
   text-align: center;
-  color: var(--main-letters-color);
+
+  font-size: 1.2em;
+  margin-top: -3vh;
+  color: white;
+  background: linear-gradient(60deg, var(--main-bg-color), aqua);
+  animation: BgGradient 10s ease 0s infinite normal none running;
+  background-size: 400% 300%;
 }
 .listService img {
   width: 100%;
@@ -111,7 +120,7 @@ p {
 /* ESTILOS PARA EL APARTADO DE TERAPIA */
 .functionTerapy {
   width: 100%;
-  margin-top: 0.5em;
+  margin-top: -1.5em;
   list-style-image: url("../images/check.svg");
 }
 .functionTerapy img {
@@ -133,6 +142,7 @@ p {
   background: #fff;
   text-align: center;
   color: var(--main-letters-color);
+  margin-top: -6%;
 }
 
 .functionTerapy lu li {
@@ -153,6 +163,7 @@ p {
   background: linear-gradient(60deg, var(--main-bg-color), aqua);
   animation: BgGradient 10s ease 0s infinite normal none running;
   background-size: 400% 300%;
+  margin-top: -5%;
 }
 
 .bannerFinal img {
@@ -218,9 +229,11 @@ footer .imgRotar {
     display: flex;
     flex-wrap: wrap;
     background: #fff;
+    margin-top: 0vh;
   }
   .functionTerapy .terapi {
     flex: 1;
+    margin-top: 1%;
   }
   .functionTerapy .imgRotar {
     display: flex;
@@ -252,6 +265,7 @@ footer .imgRotar {
   .inline {
     font-size: 1.2em;
     background: #fff;
+    margin-top: -3.5vh;
   }
   .welcome {
     margin: 1em;
@@ -266,6 +280,11 @@ footer .imgRotar {
 
   .listService .service {
     font-size: 1.2em;
+    margin-top: -2.5vh;
+    color: white;
+    background: linear-gradient(60deg, var(--main-bg-color), aqua);
+    animation: BgGradient 10s ease 0s infinite normal none running;
+    background-size: 400% 300%;
   }
 
   .functionTerapy .terapi {
@@ -298,14 +317,91 @@ footer .imgRotar {
     display: flex;
     margin-left: 2em;
   }
-  p {
+  #estilos_how {
     text-align: justify;
   }
-  ul {
-    list-style: none;
-    background-color: aqua;
+}
+
+@media (width: 1024px) and (height: 600px) {
+  .banner {
+    font-size: 2em;
+    margin-left: 19%;
+    width: 84%;
+  }
+  .icons_service {
     display: flex;
     justify-content: space-between;
+  }
+  .inline {
+    font-size: 1.2em;
+    background: #fff;
+    margin-top: -3.5vh;
+    margin-left: 19%;
+    width: 84%;
+  }
+  .welcome {
+    margin: 1em;
+  }
+  .items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+  }
+
+  .listService .service {
+    font-size: 1.2em;
+    margin-top: -1.5vh;
+  }
+
+  .listService {
+    margin-left: 19%;
+    width: 84%;
+  }
+
+  .functionTerapy {
+    display: flex;
+    flex-wrap: wrap;
+    background: #fff;
+    margin-top: 0.6vh;
+    margin-left: 19%;
+    width: 84%;
+    margin-bottom: 5%;
+  }
+
+  .bannerFinal {
+    font-size: 2em;
+    height: 91%;
+    width: 84%;
+    margin-left: 19%;
+    margin-top: -5%;
+  }
+
+  footer .piePag {
+    font-size: 1.2em;
+  }
+  footer .cont {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .menuFooter p {
+    margin-right: 8px;
+  }
+  .menuFooter {
+    margin-top: 1.6em;
+    margin-right: 3em;
+    margin-bottom: 1em;
+    text-align: center;
+    justify-content: right;
+    font-size: 1.4em;
+  }
+  footer .imgRotar {
+    display: flex;
+    margin-left: 2em;
+  }
+  #estilos_how {
+    text-align: justify;
   }
 }
 @keyframes BgGradient {
