@@ -39,7 +39,7 @@ function ChatPage() {
         console.log(msgs);
     };
 
-    const handleSubmit = async e => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         let user2 = "";
         if(user.role === "pacient") {

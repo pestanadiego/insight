@@ -50,6 +50,16 @@
     border-bottom: 1px solid var(--main-letters-color);
 }
 
+.meet button {
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    font-family: 'Poppins';
+    font-size: 14px;
+}
+
 @media screen and (max-width: 770px) {
     .chat-container {
         grid-template-columns: 2fr 3fr;
