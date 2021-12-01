@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import { useHistory, Link } from "react-router-dom";
 import { db } from "../../utils/firebaseConfig";
+import { Rating } from "@mui/material";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
@@ -120,7 +121,7 @@ function SpecialistDetails({ specialist }) {
         </p>
         <p className={styles.detailsInfo}>
           <span className={styles.detail}>Rating: </span>
-          {average(ratings)}
+          <Rating readOnly={true} value={average(ratings)} precision={0.5}/>
         </p>
         <p className={styles.detailsInfo}>
           <span className={styles.detail}>Descripcion: </span>

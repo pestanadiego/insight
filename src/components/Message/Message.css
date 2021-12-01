@@ -31,6 +31,10 @@
     color: white;
 }
 
+.video a {
+    color:white;
+}
+
 .meet {
     text-align: center;
 }
@@ -40,17 +44,12 @@
 }
 
 .other {
-    background-color: gray;
+    background-color: #cfcfcf;
+    color: #666666;
 }
 
 @media screen and (max-width: 770px) {
     .message-wrapper p {
         max-width: 75%;
-    }
-}
-
-@media screen and (max-width: 580px) {
-    .message-wrapper p {
-        max-width: 10%;
     }
 }

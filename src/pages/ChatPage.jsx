@@ -6,6 +6,7 @@ import Message from "../components/Message/Message";
 import { db } from "../utils/firebaseConfig";
 import "./ChatPage.css";
 
+
 function ChatPage() {
     const { user } = useContext(UserContext);
     const [chatUsers, setChatUsers] = useState([]);

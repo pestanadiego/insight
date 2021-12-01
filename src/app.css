@@ -53,18 +53,6 @@
   }
 }
 
-@media screen and (max-width: 1024px) and (min-width: 769px) {
-  .layout {
-    display: flex;
-  }
-
-  .container {
-    height: 51vh;
-    width: 120%;
-    position: absolute;
-    left: -23%;
-  }
-}
 /* Para resoluciones de GALAXY FOLD*/
 @media screen and (max-width: 280px) {
   .layout {

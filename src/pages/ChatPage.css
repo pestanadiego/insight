@@ -1,15 +1,20 @@
 .chat-container {
     position: relative;
+    left: 20%;
     display: grid;
     grid-template-columns: 1fr 3fr;
     overflow: hidden;
     height: 90vh;
-    width: 100vw;
+    width: 80vw;
     background-color: white;
 }
 
 .activate-btn {
     text-align: center;
+}
+
+.name-user {
+    margin: 10px 0px;
 }
 
 .activate-btn button {
@@ -28,9 +33,9 @@
 }
 
 .chat-users-container {
-    margin-top: 10px;
-    border-right: 2px solid var(--main-letters-color);
+    border-right: 2px solid rgb(87 118 234);
     overflow-y: auto;
+    color: #666;
 }
 
 .messages-container {
@@ -47,7 +52,8 @@
 .messages {
     height: calc(100vh - 200px);
     overflow-y: auto;
-    border-bottom: 1px solid var(--main-letters-color);
+    border-bottom: 1px solid rgb(87 118 234);
+    padding-bottom: 10px;
 }
 
 .meet button {
@@ -60,14 +66,26 @@
     font-size: 14px;
 }
 
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 767px) {
     .chat-container {
         grid-template-columns: 2fr 3fr;
+        overflow-y: auto;
+        height: 90vh;
+        position: absolute;
+        left: 0%;
+        width: 100vw;
     }
+
+    .message-container {
+        height: 90%;
+    }
+
+
 }
 
 @media screen and (max-width: 580px) {
     .chat-container {
         grid-template-columns: 1fr 5fr;
+        
     }
 }

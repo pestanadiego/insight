@@ -1,4 +1,5 @@
 import styles from './SpecialistCard.module.css';
+import { Rating } from "@mui/material";
 import { useHistory, Link } from "react-router-dom";
 //import { useContext } from 'react';
 
@@ -23,7 +24,7 @@ function SpecialistCard({key, id, name, speciality, email, feedback}){
             <div className={styles.specialistInfo}>
                 <p><span>Nombre: </span>{name}</p>
                 <p><span>Especialidad: </span>{speciality}</p>
-                <p><span>Rating: </span>{calcRating(feedback)}</p>
+                <p><span>Rating: </span><Rating readOnly={true} value={calcRating(feedback)} precision={0.5}/></p>
                 <p><span>Correo electrónico: </span>{email}</p>
             </div>
             <div className={styles.specialistButtons}>
