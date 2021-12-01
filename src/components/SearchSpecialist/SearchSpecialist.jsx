@@ -48,6 +48,21 @@ function SearchSpecialist() {
     setSelectedValue(Obj.value);
   };
 
+  // Promedio rating
+  const average = (rating) => {
+    let sum = 0;
+    if(rating.length === 0) {
+      return 0;
+    } else {
+      for (let i = 0; i < rating.length; i++) {
+        const element = rating[i];
+        sum += parseInt(element);
+      }
+        const final = sum / rating.length;
+        return final;
+    }
+  }
+
   //Buscar en base de datos y generar componentes
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -95,7 +110,7 @@ function SearchSpecialist() {
       }
       for (i = 0; i < ordered.length - 1; i++) {
         for (j = 0; j < ordered.length - i - 1; j++) {
-          if (ordered[j].ratings < ordered[j + 1].ratings) {
+          if (average(ordered[j].rating) < average(ordered[j + 1].rating)) {
             var temp = ordered[j];
             ordered[j] = ordered[j + 1];
             ordered[j + 1] = temp;

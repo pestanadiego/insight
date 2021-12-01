@@ -5,6 +5,21 @@ import { db } from "../../utils/firebaseConfig";
 function SpecialistDetails({ specialist }) {
   const history = useHistory();
 
+  // Promedio rating
+  const average = (rating) => {
+    let sum = 0;
+    if(rating.length === 0) {
+      return 'No hay rating';
+    } else {
+      for (let i = 0; i < rating.length; i++) {
+        const element = rating[i];
+        sum += parseInt(element);
+      }
+        const final = sum / rating.length;
+        return final;
+    }
+  }
+
   //Para concatenar las especialidades
   function handleSpecialities(array) {
     let string = "";
@@ -45,7 +60,7 @@ function SpecialistDetails({ specialist }) {
         </p>
         <p className={styles.detailsInfo}>
           <span className={styles.detail}>Rating: </span>
-          {specialist.ratings}
+          {average(specialist.rating)}
         </p>
         <p className={styles.detailsInfo}>
           <span className={styles.detail}>Descripcion: </span>

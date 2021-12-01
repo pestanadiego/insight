@@ -46,7 +46,7 @@ function PendingCard({ id, name, email, phone, credentials }) {
     pendingProfile.role = "specialist";
     pendingProfile.status = "no"; // Status del especialista
     pendingProfile.appointments = [];
-    pendingProfile.rating = "0";
+    pendingProfile.rating = [];
     pendingProfile.work = [];
     pendingProfile.hours = [];
     pendingProfile.speciality = [];
