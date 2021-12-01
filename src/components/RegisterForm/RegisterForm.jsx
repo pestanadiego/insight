@@ -29,7 +29,7 @@ function RegisterForm() {
   const handleGoogleLogin = async () => {
     try {
       const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
-      history.push("/profile");
+      history.push("/welcome");
     } catch {
       alert("Hubo un error!");
     }
@@ -54,7 +54,7 @@ function RegisterForm() {
         },
         response.user.uid
       );
-      history.push("/profile");
+      history.push("/welcome");
     } catch (error) {
       alert("Se ha producido un error por favor inténtelo más tarde.");
     }
@@ -99,7 +99,7 @@ function RegisterForm() {
         },
         response.user.uid // Se saca de response el uid
       );
-      history.push("/profile"); // Devuelve al home
+      history.push("/welcome"); // Devuelve al home
     } catch (error) {
       alert("Se ha producido un error por favor inténtelo más tarde.");
     }

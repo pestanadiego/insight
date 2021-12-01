@@ -1,5 +1,6 @@
 import { Switch, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
+import WelcomePage from "./pages/WelcomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import RegisterEspecialistPage from "./pages/RegisterEspecialistPage";
@@ -37,6 +38,7 @@ function Routes() {
         path="/register_especialist"
         component={RegisterEspecialistPage}
       />
+      <Route exact path="/welcome" component={WelcomePage} />
       <Route exact path="/under_review" component={UnderReviewPage} />
       <Route exact path="/forgotten_password" component={PasswordPage} />
       <PrivateRoute exact path="/search" component={SearchSpecialistPage} />
@@ -51,7 +53,6 @@ function Routes() {
         path="/pacient_appointments"
         component={AppointmentsPacientPage}
       />
-
       <Route exact path="/" component={HomePage} />
       <Route path="*">
         <h1>404</h1>

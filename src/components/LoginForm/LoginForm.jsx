@@ -35,7 +35,7 @@ function LoginForm() {
   const handleGoogleLogin = async () => {
     try {
       const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
-      history.push("/profile");
+      history.push("/welcome");
     } catch {
       alert("Hubo un error!");
     }
@@ -60,7 +60,7 @@ function LoginForm() {
         },
         response.user.uid
       );
-      history.push("/profile");
+      history.push("/welcome");
     } catch (error) {
       alert("Se ha producido un error por favor inténtelo más tarde.");
     }
@@ -102,7 +102,7 @@ function LoginForm() {
       if (loggedUser.role === "admin") {
         history.push("/admin");
       } else {
-        history.push("/profile");
+        history.push("/welcome");
       }
     }
   };

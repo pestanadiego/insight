@@ -1,0 +1,9 @@
+.cont {
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 13em;
+  width: auto;
+  height: 100vh;
+}
