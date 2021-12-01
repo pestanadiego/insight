@@ -167,10 +167,12 @@ function SpecialistDetails({ specialist }) {
               <p>¿Qué puntuación le da al especialista?</p>
               <input type="range" min="0" max="5" step="0.5" onChange={(event) => setRangeval(event.target.value)}/>
               <p>{rangeval}</p>
+              <div>
+                <button type="button" onClick={giveFeedback}>
+                  Enviar
+                </button>
+              </div>
             </div>
-            <button type="button" onClick={giveFeedback}>
-              Feedback
-            </button>
           </Popup>
         )}
       </div>
