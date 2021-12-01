@@ -101,21 +101,27 @@ export default function UserContextProvider({ children }) {
   }, []);
 
   return (
-    <UserContext.Provider
-      //<Spinner animation="border" variant="secondary" />
-      value={{
-        /* Variables que estarán disponibles globalmente */
-        user,
-        setUser,
-        loading,
-        setLoading,
-        createUser,
-        getUserByEmail,
-        getUserPending,
-        getNoValidUser,
-      }}
-    >
-      {children} {/* Encierra a todos los hijos que están en App.jsx */}
-    </UserContext.Provider>
+    <>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <UserContext.Provider
+          //<Spinner animation="border" variant="secondary" />
+          value={{
+            /* Variables que estarán disponibles globalmente */
+            user,
+            setUser,
+            loading,
+            setLoading,
+            createUser,
+            getUserByEmail,
+            getUserPending,
+            getNoValidUser,
+          }}
+        >
+          {children} {/* Encierra a todos los hijos que están en App.jsx */}
+        </UserContext.Provider>
+      )}
+    </>
   );
 }
