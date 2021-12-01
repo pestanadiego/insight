@@ -12,6 +12,10 @@ import {
   ModalFooter,
 } from "reactstrap";
 import { db } from "../../utils/firebaseConfig";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+import trashIcon from "../../icons/trashIcon.svg";
+import editIcon from "../../icons/editIcon.svg";
 
 function PacientHistory() {
   const history = useHistory();
@@ -19,21 +23,6 @@ function PacientHistory() {
   const [selectedRows, setSelectedRows] = useState([]);
   const [toggleCleared, setToggleCleared] = useState(false);
   const [data, setData] = useState(user.histories);
-  // {
-  //   id: 1,
-  //   pacient_name: "Cristiano Ronaldo",
-  //   history_description: "SIIIIIIIIIIIIIIIIIIIIIIIUUUU",
-  // },
-  // {
-  //   id: 2,
-  //   pacient_name: "Ghostbusters",
-  //   history_description: "Alta pelicula mano",
-  // },
-  // {
-  //   id: 3,
-  //   pacient_name: "Sushi",
-  //   history_description: "QUE RICOOOO",
-  // },
 
   const [insertDataStatus, setInsertDataStatus] = useState(false);
   const [editDataStatus, setEditDataStatus] = useState(false);
@@ -210,6 +199,7 @@ function PacientHistory() {
     edit.history_description = values.history_description;
     arr.splice(item - 1, 1, edit);
     setData(arr);
+    console.log("Soy arr antes de updae", arr);
     setEditDataStatus(false);
     updateDb(arr);
     setValues({
@@ -219,13 +209,23 @@ function PacientHistory() {
     });
   };
 
+  const setDefaultValues = (val) => {
+    const defVal = {
+      id: val.id,
+      pacient_name: val.pacient_name,
+      history_description: val.history_description,
+    };
+
+    setValues(defVal);
+  };
+
   const contextActions = useMemo(() => {
     const handleDelete = () => {
       if (
         window.confirm(
-          `Are you sure you want to delete:\r ${selectedRows.map(
-            (r) => r.title
-          )}?`
+          "Está seguro de que desea eliminar el historial de " +
+            selectedRows.map((r) => r.pacient_name) +
+            "?"
         )
       ) {
         console.log(selectedRows.map((r) => r.id)[0]);
@@ -236,34 +236,23 @@ function PacientHistory() {
     const handleEdit = () => {
       if (selectedRows.map((r) => r).length > 1) {
         alert("Solo puede editar un historial a la vez!");
-      } else if (
-        window.confirm(`Desea editar \r ${selectedRows.map((r) => r.title)}?`)
-      ) {
+      } else {
         console.log(selectedRows.map((r) => r.id)[0]);
         setToggleCleared(!toggleCleared);
+        setDefaultValues(selectedRows.map((r) => r)[0]);
         setEditDataStatus(true);
       }
     };
 
     return (
-      <>
-        <Button
-          key="delete"
-          onClick={handleDelete}
-          style={{ backgroundColor: "red" }}
-          icon
-        >
-          Delete
+      <div className="actionsContainer">
+        <Button key="delete" onClick={handleDelete} className="deleteHistory">
+          <img src={trashIcon} alt="Eliminar" />
         </Button>
-        <Button
-          key="edit"
-          onClick={handleEdit}
-          style={{ backgroundColor: "blue" }}
-          icon
-        >
-          Delete
+        <Button key="edit" onClick={handleEdit} className="editHistory">
+          <img src={editIcon} alt="Editar" />
         </Button>
-      </>
+      </div>
     );
   }, [data, selectedRows, toggleCleared]);
 
@@ -281,14 +270,15 @@ function PacientHistory() {
     <div className="appointmentsTableContainer">
       <div className="tableContainer">
         <h1>Mis Pacientes</h1>
-        <Button
-          key="create"
-          onClick={openInsertHistory}
-          style={{ backgroundColor: "green" }}
-          icon
-        >
-          Create
-        </Button>
+        <div className="createButtonContainer">
+          <Button
+            key="create"
+            className="createHistory"
+            onClick={openInsertHistory}
+          >
+            Nueva Historia
+          </Button>
+        </div>
         <div className="data-table">
           <DataTable
             title="Historiales de Pacientes"
@@ -304,132 +294,133 @@ function PacientHistory() {
             expandableRows={true}
             expandableRowsComponent={ExpandedComponent}
           />
-          <Modal isOpen={insertDataStatus}>
-            <ModalHeader>
-              <div>
-                <h3>Agregar un Nuevo Historial</h3>
+          <Popup
+            open={insertDataStatus}
+            closeOnDocumentClick
+            onClose={() => closeInsertHistory()}
+            modal
+            className="insert-popup"
+          >
+            <div className="modal">
+              <div className="header">
+                <h2>Agregar un Nuevo Historial</h2>
               </div>
-            </ModalHeader>
 
-            <ModalBody>
-              <FormGroup>
-                <input
-                  className="form-control"
-                  readOnly
-                  name="history_id"
-                  type="text"
-                  value={data.length + 1}
-                  style={{
-                    display: "none",
-                  }}
-                />
-              </FormGroup>
+              <div className="content">
+                <FormGroup>
+                  <input
+                    className="form-control"
+                    readOnly
+                    name="history_id"
+                    type="text"
+                    value={data.length + 1}
+                    style={{
+                      display: "none",
+                    }}
+                  />
+                </FormGroup>
 
-              <FormGroup>
-                <label>Nombre del Paciente:</label>
-                <input
-                  className="form-control"
-                  name="pacient_name"
-                  type="text"
-                  onChange={handleOnChange}
-                />
-              </FormGroup>
+                <FormGroup>
+                  <label>
+                    Nombre del Paciente: <br />
+                  </label>
+                  <input
+                    className="pacient_name"
+                    name="pacient_name"
+                    type="text"
+                    onChange={handleOnChange}
+                  />
+                </FormGroup>
 
-              <FormGroup>
-                <label>Descripción de la Historia:</label>
-                <textarea
-                  className="form-control"
-                  name="history_description"
-                  type="text"
-                  style={{
-                    width: "100%",
-                    height: "60px !important",
-                    resize: "vertical",
-                  }}
-                  onChange={handleOnChange}
-                />
-              </FormGroup>
-            </ModalBody>
+                <FormGroup>
+                  <label> Descripción de la Historia:</label>
+                  <textarea
+                    className="history_description"
+                    name="history_description"
+                    type="text"
+                    style={{}}
+                    onChange={handleOnChange}
+                  />
+                </FormGroup>
+              </div>
 
-            <ModalFooter>
-              <Button color="primary" onClick={() => createHistory()}>
-                Insertar
-              </Button>
-              <Button
-                className="btn btn-danger"
-                onClick={() => closeInsertHistory()}
-              >
-                Cancelar
-              </Button>
-            </ModalFooter>
-          </Modal>
+              <div className="actions">
+                <Button className="confirm" onClick={() => createHistory()}>
+                  Insertar
+                </Button>
+                <Button className="cancel" onClick={() => closeInsertHistory()}>
+                  Cancelar
+                </Button>
+              </div>
+            </div>
+          </Popup>
 
-          <Modal isOpen={editDataStatus}>
-            <ModalHeader>
-              <div>
-                <h3>
+          {/* PopUp para editar de historia */}
+          <Popup
+            open={editDataStatus}
+            closeOnDocumentClick
+            onClose={() => closeEditHistory()}
+            modal
+          >
+            <div className="modal">
+              <div className="header">
+                <h2>
                   Editar Historial de {selectedRows.map((r) => r.pacient_name)}
-                </h3>
+                </h2>
               </div>
-            </ModalHeader>
 
-            <ModalBody>
-              <FormGroup>
-                <input
-                  className="form-control"
-                  readOnly
-                  name="history_id"
-                  type="text"
-                  value={selectedRows.map((r) => r.id)}
-                  style={{
-                    display: "none",
-                  }}
-                />
-              </FormGroup>
+              <div className="content">
+                <FormGroup>
+                  <input
+                    className="form-control"
+                    readOnly
+                    name="history_id"
+                    type="text"
+                    value={values.id}
+                    style={{
+                      display: "none",
+                    }}
+                  />
+                </FormGroup>
 
-              <FormGroup>
-                <label>Nombre del Paciente:</label>
-                <input
-                  className="form-control"
-                  name="pacient_name"
-                  type="text"
-                  onChange={handleOnChange}
-                  value={selectedRows.map((r) => r.pacient_name)}
-                />
-              </FormGroup>
+                <FormGroup>
+                  <label>
+                    Nombre del Paciente: <br />
+                  </label>
+                  <input
+                    className="pacient_name"
+                    name="pacient_name"
+                    type="text"
+                    onChange={handleOnChange}
+                    value={values.pacient_name}
+                  />
+                </FormGroup>
 
-              <FormGroup>
-                <label>Descripción de la Historia:</label>
-                <textarea
-                  className="form-control"
-                  name="history_description"
-                  type="text"
-                  style={{
-                    width: "100%",
-                    height: "60px !important",
-                    resize: "vertical",
-                  }}
-                  value={selectedRows.map((r) => r.history_description)}
-                  onChange={handleOnChange}
-                />
-              </FormGroup>
-            </ModalBody>
+                <FormGroup>
+                  <label> Descripción de la Historia:</label>
+                  <textarea
+                    className="history_description"
+                    name="history_description"
+                    type="text"
+                    onChange={handleOnChange}
+                    value={values.history_description}
+                  />
+                </FormGroup>
+              </div>
 
-            <ModalFooter>
-              <Button
-                color="primary"
-                onClick={() => confirmEdit(selectedRows.map((r) => r.id))}
-              >
-                Aceptar
-              </Button>
-              <Button
-                className="btn btn-danger"
-                onClick={() => closeEditHistory()}
-              >
-                Cancelar
-              </Button>
-            </ModalFooter>
-          </Modal>
+              <div className="actions">
+                <Button
+                  className="confirm"
+                  onClick={() => confirmEdit(selectedRows.map((r) => r.id)[0])}
+                >
+                  Confirmar
+                </Button>
+                <Button className="cancel" onClick={() => closeEditHistory()}>
+                  Cancelar
+                </Button>
+              </div>
+            </div>
+          </Popup>
         </div>
       </div>
     </div>
