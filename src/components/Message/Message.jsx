@@ -10,8 +10,20 @@ const Message = ({ msg }) => {
         scrollRef.current?.scrollIntoView({ behavior: 'smooth' })
     }, [msg]);
 
+    const messageFrom = () => {
+        if(!!msg) {
+            if(msg.from === user.name) {
+                return 'own'
+            } else {
+                return ''
+            }
+        } else {
+            return ''
+        }
+    }
+
     return(
-        <div className={`message-wrapper ${msg.from === user.name ? 'own' : ''}`} ref={scrollRef}>
+        <div className={`message-wrapper ${messageFrom()}`} ref={scrollRef}>
             <p className={msg.from === user.name ? 'me' : 'other'}>{msg.text}</p>
             <p className="hour-message">{msg.createdAt}</p>
         </div>

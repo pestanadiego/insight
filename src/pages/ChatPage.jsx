@@ -25,18 +25,15 @@ function ChatPage() {
         });
         }, 
         []);
-    
+   
     const selectChatUser = (chatUser) => {
         setChat(chatUser);
         console.log(chatUser);
-        db.collection("chats").doc(chat.id).onSnapshot(snapshot => {
-            let msgs = [];
-            let changes = snapshot.docChanges();
-            changes.forEach(change => {
-                msgs.push(change);
-            })
-            setMsgs(msgs);
-        })
+        db.collection("chats").doc(chatUser.id).onSnapshot((doc) => {
+          const data = doc.data();
+          setMsgs(data.messages);
+        });
+        console.log(msgs);
     };
 
     const handleSubmit = async e => {
@@ -55,10 +52,14 @@ function ChatPage() {
             to: user2,
             createdAt: date.getHours() + ":" + date.getMinutes()
         }
+        console.log('Mensajes antes del submit', chat.messages);
+        console.log('Mensaje', message);
         await db
         .collection("chats")
         .doc(chat.id)
-        .update({ messages: [...chat.messages, message] });
+        .update({ messages: [...msgs, message] });
+        console.log('Mensajes después del submit', chat.messages);
+        
     }
   
   return(

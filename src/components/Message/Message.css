@@ -3,7 +3,7 @@
     padding: 0px 5px;
 }
 
-p {
+.message-wrapper p {
     padding: 10px;
     display: inline-block;
     max-width: 50%;
