@@ -11,6 +11,7 @@ function ChatPage() {
     const [chatUsers, setChatUsers] = useState([]);
     const [chat, setChat] = useState("");
     const [text, setText] = useState("");
+    const [status, setStatus] = useState("");
     const [msgs, setMsgs] = useState([]);
     const user1 = user.name;
 
@@ -28,9 +29,11 @@ function ChatPage() {
    
     const selectChatUser = (chatUser) => {
         setChat(chatUser);
+        setStatus(chatUser.status);
         console.log(chatUser);
         db.collection("chats").doc(chatUser.id).onSnapshot((doc) => {
           const data = doc.data();
+          setStatus(data.status);
           setMsgs(data.messages);
         });
         console.log(msgs);
@@ -52,14 +55,28 @@ function ChatPage() {
             to: user2,
             createdAt: date.getHours() + ":" + date.getMinutes()
         }
-        console.log('Mensajes antes del submit', chat.messages);
-        console.log('Mensaje', message);
         await db
         .collection("chats")
         .doc(chat.id)
         .update({ messages: [...msgs, message] });
-        console.log('Mensajes después del submit', chat.messages);
-        
+    }
+
+    const changeTextButton = (status) => {
+      if(status === 'on') {
+        return 'Terminar chat'
+      } else if(status === 'finished') {
+        return ''
+      } else {
+        return 'Iniciar chat'
+      }
+    }
+
+    const startChat = async () => {
+      if(status === 'pending') {
+        await db.collection("chats").doc(chat.id).update({ status: 'on'});
+      } else if(status === 'on') {
+        await db.collection("chats").doc(chat.id).update({ status: 'finished'});
+      }
     }
   
   return(
@@ -72,11 +89,30 @@ function ChatPage() {
             <>
             <div className="name-user">
               <h3 className="no-chat">{(user.role === "pacient") ? chat.specialistName : chat.pacientName}</h3>
+              {(status === "pending") && (
+                (user.role==="pacient") ? (
+                  <p className="no-chat">Este chat no ha comenzado todavía</p>
+                ) : (
+                  <p className="no-chat">Inicie el chat presionando el botón</p>
+                )
+              )}
+              {(user.role === "specialist") ? (
+                <div className="activate-btn">
+                  <button className={`${status}`} onClick={startChat}>{changeTextButton(status)}</button>
+                </div>
+              ) : (
+                null
+              )}
             </div>
             <div className="messages">
               {msgs.length ? msgs.map((msg, i) => <Message key={i} msg={msg}/>) : null}
             </div>
-            <Chat handleSubmit={handleSubmit} text={text} setText={setText}/>
+            {(status != "pending" && status != "finished") && (
+              <Chat handleSubmit={handleSubmit} text={text} setText={setText}/>
+            )}
+            {(status === "finished") && (
+              <p className="no-chat">Este chat ya fue finalizado</p>
+            )}
             </>
           ) : (
             <h3 className="no-chat">Haga clic en un usuario para iniciar la conversación</h3>

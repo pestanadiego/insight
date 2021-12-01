@@ -1,6 +1,6 @@
 import "./Chat.css";
 
-const Chat = ({ handleSubmit, text, setText }) => {
+const Chat = ({ handleSubmit, text, setText}) => {
     return(
         <form className="message-form" onSubmit={handleSubmit}> 
             <div>
