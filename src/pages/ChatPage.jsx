@@ -125,7 +125,12 @@ function ChatPage() {
               <Chat handleSubmit={handleSubmit} text={text} setText={setText} videoconference={videoconference}/>
             )}
             {(status === "finished") && (
-              <p className="no-chat">Este chat ya fue finalizado</p>
+              <>
+                <p className="no-chat">Este chat ya fue finalizado</p>
+                {(user.role === "pacient") && (
+                  <p className="no-chat">Recuerde darle un rating al especialista en su perfil</p>
+                )}
+              </>
             )}
             </>
           ) : (

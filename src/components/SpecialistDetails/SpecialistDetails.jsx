@@ -1,9 +1,33 @@
 import styles from "./SpecialistDetails.module.css";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 import { useHistory, Link } from "react-router-dom";
 import { db } from "../../utils/firebaseConfig";
 
 function SpecialistDetails({ specialist }) {
+  const { user } = useContext(UserContext);
   const history = useHistory();
+  const [rating, setRating] = useState(false);
+
+  useEffect(() => {
+    // Se ven los chats que tiene el usuario
+    const chatUsersRef = db.collection("chats");
+    chatUsersRef.where('id', 'in', user.chats).get().then((snapshot) => {
+        let chats = [];
+        snapshot.docs.forEach((doc) => {
+            chats.push(doc.data());
+        })
+        for (let i = 0; i < chats.length; i++) {
+          const chat = chats[i];
+          if(chat.status === "finished") {
+            if(chat.specialistName === specialist.name) {
+              setRating(true);
+            }
+          }
+        }
+    });
+    // Se ve si uno de los chats ya fue finalizado
+    }, []);
 
   // Promedio rating
   const average = (rating) => {
@@ -50,6 +74,10 @@ function SpecialistDetails({ specialist }) {
     history.push("/search");
   };
 
+  const giveFeedback = (rating) => {
+    
+  }
+
   return (
     <div className={styles.detailsContainer}>
       <div className={styles.detailsSection}>
@@ -94,6 +122,11 @@ function SpecialistDetails({ specialist }) {
               Agendar cita
             </button>
           </Link>
+          {(rating) && (
+            <button type="button" className={styles.ratingBtn} onClick={giveFeedback}>
+               Rating
+            </button>
+          )}
         </div>
       </div>
     </div>

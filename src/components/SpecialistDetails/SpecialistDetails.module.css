@@ -48,6 +48,17 @@
   margin: 5px;
 }
 
+.ratingBtn {
+  background-color: greenyellow;
+  font-family: "poppins";
+  border-radius: 5px;
+  border: none;
+  color: white;
+  padding: 1em 2.3em;
+  cursor: pointer;
+  margin: 5px; 
+}
+
 .back {
   background-color: var(--main-button-color);
   font-family: "poppins";
