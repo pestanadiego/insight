@@ -13,9 +13,9 @@ import {
 } from "../../utils/firebaseConfig";
 
 function RegisterForm() {
-  const { setUser } = useContext(UserContext);
+  const { getUserByName, getUserByEmail, setUser, createUser } =
+    useContext(UserContext);
   const history = useHistory();
-  const { createUser } = useContext(UserContext);
 
   // Para almacenar los valores del input (c/u de los nuevos renders)
   const [values, setValues] = useState({
@@ -29,6 +29,8 @@ function RegisterForm() {
   const handleGoogleLogin = async () => {
     try {
       const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
+      const loggedUser = await getUserByEmail(response.user.email);
+      setUser(loggedUser);
       history.push("/profile");
     } catch {
       alert("Hubo un error!");
@@ -64,10 +66,19 @@ function RegisterForm() {
   const handleTwitterLogin = async () => {
     try {
       const response = await auth.signInWithPopup(twitterProvider); //Se le envia al proveedor de Twitter
-      setUser({
+      if (response.user.email !== null) {
+        const loggedUser = await getUserByEmail(response.user.email);
+        setUser(loggedUser);
+        history.push("/profile");
+      } else {
+        const loggedUser = await getUserByName(response.user.displayName);
+        setUser(loggedUser);
+        history.push("/profile");
+      }
+      /*setUser({
         name: response.user.displayName,
         email: "null@email.com",
-      });
+      });*/
     } catch {
       console.log("Error");
       alert("Hubo un error!");
