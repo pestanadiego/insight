@@ -104,7 +104,6 @@ export default function UserContextProvider({ children }) {
     <>
       {loading ? (
         <div>
-          <Spinner animation="border" role="status" variant="light" />
           <h1>Loading...</h1>
         </div>
       ) : (
