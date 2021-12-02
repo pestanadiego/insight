@@ -17,6 +17,7 @@ function ChatPage() {
     const user1 = user.name;
 
     useEffect(() => {
+      if(user.chats.length != 0) {
         const chatUsersRef = db.collection("chats");
         chatUsersRef.where('id', 'in', user.chats).get().then((snapshot) => {
             let chatUsers = [];
@@ -25,6 +26,7 @@ function ChatPage() {
             })
             setChatUsers(chatUsers);
         });
+      }
         }, 
         []);
    

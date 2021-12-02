@@ -35,10 +35,10 @@ function LoginForm() {
   const handleGoogleLogin = async () => {
     try {
       const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
-      history.push("/profile");
     } catch {
       alert("Hubo un error!");
     }
+    history.push("/profile");
   };
 
   //Inicio de sesion con Facebook

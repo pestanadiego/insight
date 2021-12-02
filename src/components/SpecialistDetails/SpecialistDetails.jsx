@@ -31,6 +31,7 @@ function SpecialistDetails({ specialist }) {
   useEffect(() => {
     // Se ven los chats que tiene el usuario
     const chatUsersRef = db.collection("chats");
+    if(user.chats.length != 0) {
     chatUsersRef.where('id', 'in', user.chats).get().then((snapshot) => {
         let chats = [];
         snapshot.docs.forEach((doc) => {
@@ -46,12 +47,12 @@ function SpecialistDetails({ specialist }) {
           }
         }
     });
-
+  }
     db.collection("specialists").doc(specialist.uid).onSnapshot((doc) => {
       const data = doc.data();
       setRatings(data.rating);
     });
-
+    
     // Se ve si uno de los chats ya fue finalizado
     }, []);
 
