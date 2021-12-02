@@ -19,6 +19,7 @@ export default function UserContextProvider({ children }) {
       await db.collection("pendings").doc(uid).set(user); // Se guarda en la colección 'pendings'
     } else {
       user.role = "pacient";
+      console.log(user);
       await db.collection("users").doc(uid).set(user); // Se guarda en la colección 'users'
       await db.collection("pacients").doc(uid).set(user); // Se guarda en la colección 'pacients'
     }
@@ -58,6 +59,17 @@ export default function UserContextProvider({ children }) {
 
     return loggedUser;
   };
+  const getUserById = async (id) => {
+    const usersReference = db.collection("users");
+    // Se busca en la base de datos un objeto cuyo parámetro email coincida con el ingresado
+    const snapshot = await usersReference.where("uid", "==", id).get();
+
+    if (!snapshot.size) return null;
+
+    const loggedUser = getFirstElementArrayCollection(snapshot);
+
+    return loggedUser;
+  };
 
   useEffect(() => {
     // Este useEffect permite que la sesión no se caiga cuando se refresque la página
@@ -66,18 +78,54 @@ export default function UserContextProvider({ children }) {
     const unlisten = auth.onAuthStateChanged(async (loggedUser) => {
       if (loggedUser) {
         // Cuando se inicie sesión, se busca el usuario en la base de datos
-        const profile = await getUserByEmail(loggedUser.email);
+        const profile = await getUserById(loggedUser.uid);
         // Si no tienes un perfil creado en la base de datos, se crea y se coloca en el contexto.
         if (!profile) {
+          console.log("Ulitap", profile);
           const pendingProfile = await getUserPending(loggedUser.email);
           if (!pendingProfile) {
-            const newProfile = {
-              name: loggedUser.displayName,
-              email: loggedUser.email,
-              uid: loggedUser.uid,
-              role: loggedUser.role,
-              appointments: [],
-            };
+            let newProfile = "";
+            while (newProfile == "") {
+              if (
+                loggedUser.email == undefined &&
+                loggedUser.phone == undefined &&
+                loggedUser.description == undefined
+              ) {
+                newProfile = {
+                  name: loggedUser.displayName,
+                  email: "",
+                  uid: loggedUser.uid,
+                  role: loggedUser.role,
+                  phone: "",
+                  description: "",
+                  appointments: [],
+                };
+              } else if (
+                loggedUser.phone == undefined &&
+                loggedUser.description == undefined
+              ) {
+                newProfile = {
+                  name: loggedUser.displayName,
+                  email: loggedUser.email,
+                  uid: loggedUser.uid,
+                  role: loggedUser.role,
+                  phone: "",
+                  description: "",
+                  appointments: [],
+                };
+              } else {
+                newProfile = {
+                  name: loggedUser.displayName,
+                  email: loggedUser.email,
+                  uid: loggedUser.uid,
+                  role: loggedUser.role,
+                  phone: loggedUser.phone,
+                  description: loggedUser.description,
+                  appointments: [],
+                };
+              }
+            }
+            console.log(newProfile);
             await createUser(newProfile, loggedUser.uid);
             setUser(newProfile);
           } else {
@@ -85,7 +133,6 @@ export default function UserContextProvider({ children }) {
           }
         } else {
           setUser(profile);
-          console.log("soy usuario", user);
         }
       } else {
         setUser(null);

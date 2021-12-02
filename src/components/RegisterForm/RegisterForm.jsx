@@ -13,7 +13,7 @@ import {
 } from "../../utils/firebaseConfig";
 
 function RegisterForm() {
-  const { setUser } = useContext(UserContext);
+  const { setUser, setLoading } = useContext(UserContext);
   const history = useHistory();
   const { createUser } = useContext(UserContext);
 
@@ -29,6 +29,7 @@ function RegisterForm() {
   const handleGoogleLogin = async () => {
     try {
       const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
+      setLoading(true);
       history.push("/profile");
     } catch {
       alert("Hubo un error!");
@@ -64,10 +65,8 @@ function RegisterForm() {
   const handleTwitterLogin = async () => {
     try {
       const response = await auth.signInWithPopup(twitterProvider); //Se le envia al proveedor de Twitter
-      setUser({
-        name: response.user.displayName,
-        email: "null@email.com",
-      });
+      setLoading(true);
+      history.push("/profile");
     } catch {
       console.log("Error");
       alert("Hubo un error!");

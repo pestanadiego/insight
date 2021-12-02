@@ -18,8 +18,10 @@ function LoginForm() {
     getUserByEmail,
     getUserPending,
     getNoValidUser,
+    user,
     setUser,
     createUser,
+    setLoading,
   } = useContext(UserContext); // Lo que nos permite cambiar el estado
   const history = useHistory(); // Se utiliza para redirigir al usuario
   const [values, setValues] = useState({
@@ -35,6 +37,7 @@ function LoginForm() {
   const handleGoogleLogin = async () => {
     try {
       const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
+      setLoading(true);
       history.push("/profile");
     } catch {
       alert("Hubo un error!");
@@ -49,17 +52,7 @@ function LoginForm() {
         name: response.user.displayName,
         email: response.user.email,
       });
-      // Para que se almacene en la base de datos y no sólo en el módulo de autenticación
-      await createUser(
-        {
-          name: response.user.displayName,
-          email: response.user.email,
-          phone: response.user.phoneNumber,
-          role: "pacient",
-          uid: response.user.uid,
-        },
-        response.user.uid
-      );
+      setLoading(true);
       history.push("/profile");
     } catch (error) {
       alert("Se ha producido un error por favor inténtelo más tarde.");
@@ -70,10 +63,8 @@ function LoginForm() {
   const handleTwitterLogin = async () => {
     try {
       const response = await auth.signInWithPopup(twitterProvider); //Se le envia al proveedor de Twitter
-      setUser({
-        name: response.user.displayName,
-        email: "null@email.com",
-      });
+      setLoading(true);
+      history.push("/profile");
     } catch {
       console.log("Error");
       alert("Hubo un error!");
@@ -84,7 +75,7 @@ function LoginForm() {
     e.preventDefault();
     await auth.signInWithEmailAndPassword(values.email, values.password);
     const loggedUser = await getUserByEmail(values.email);
-    console.log(loggedUser);
+    console.log("Entreee", loggedUser);
     if (!!!loggedUser) {
       const pendingUser = await getUserPending(values.email);
       const noValidUser = await getNoValidUser(values.email);
