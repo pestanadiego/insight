@@ -83,6 +83,7 @@
     background: white;
     height: 6%;
     margin-top: 0%;
+    z-index: 1;
   }
   .message-container {
     height: 90%;
@@ -120,6 +121,7 @@
     background: white;
     height: 6%;
     margin-top: 0%;
+    z-index: 1;
   }
 
   .message-form {
@@ -155,6 +157,7 @@
     background: white;
     height: 6%;
     margin-top: 0%;
+    z-index: 1;
   }
   .message-container {
     height: 90%;
@@ -187,6 +190,7 @@
     background: white;
     height: 6%;
     margin-top: 0%;
+    z-index: 1;
   }
   .message-container {
     height: 90%;
@@ -218,6 +222,7 @@
     background: white;
     height: 6%;
     margin-top: 0%;
+    z-index: 1;
   }
   .message-container {
     height: 90%;
