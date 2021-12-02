@@ -28,11 +28,11 @@
   .appointmentsTableContainer {
     background-color: rgb(255, 255, 255);
     position: absolute;
-    left: 2%;
-    top: 3%;
-    width: 96%;
-    height: 52%;
+    left: 0%;
+    top: 4%;
+    height: 74%;
     border-radius: 10px;
+    width: 100%;
   }
 }
 
@@ -55,10 +55,10 @@
   .appointmentsTableContainer {
     background-color: rgb(255, 255, 255);
     position: absolute;
-    left: 21%;
-    top: 39%;
-    width: 80%;
-    height: 60%;
+    left: 9%;
+    top: 9%;
+    width: 158%;
+    height: 50%;
     border-radius: 10px;
   }
   .data-table {
@@ -75,7 +75,7 @@
     position: absolute;
     left: 3%;
     top: 4%;
-    width: 94%;
+    width: 96%;
     height: 60%;
     border-radius: 10px;
   }
@@ -112,9 +112,9 @@
     background-color: rgb(255, 255, 255);
     position: absolute;
     left: 21%;
-    top: 11%;
-    width: 80%;
-    height: 143%;
+    top: 13%;
+    width: 366%;
+    height: 73%;
     border-radius: 10px;
   }
   .data-table {
