@@ -15,7 +15,7 @@
     display: flex;
   }
   .container {
-    height: 134vh;
+    height: 97vh;
     width: 100%;
   }
 }
@@ -38,7 +38,7 @@
   }
 
   .container {
-    height: 85vh;
+    height: 99vh;
   }
 }
 
@@ -49,7 +49,7 @@
   }
 
   .container {
-    height: 110vh;
+    height: 100vh;
   }
 }
 
@@ -60,7 +60,7 @@
   }
   .container {
     position: absolute;
-    height: 140vh;
+    height: 100vh;
     width: 43vh;
   }
 }

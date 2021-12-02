@@ -2192,11 +2192,7 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.10.2.tgz#0798c03351f0dea1a5a4cabddf26a55a7cbee590"
   integrity sha512-IXf3XA7+XyN7CP9gGh/XB0UxVMlvARGEgGXLubFICsUMGz6Q+DU+i4gGlpOxTjKvXjkJDJC8YdqdKkDj9qZHEQ==
 
-<<<<<<< HEAD
-"@popperjs/core@^2.4.4":
-=======
-"@popperjs/core@^2.6.0":
->>>>>>> 7e2ad4d9946312ef52e456845042ccafed7a2b50
+"@popperjs/core@^2.4.4", "@popperjs/core@^2.6.0":
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.0.tgz#6734f8ebc106a0860dff7f92bf90df193f0935d7"
   integrity sha512-zrsUxjLOKAzdewIDRWy9nsV1GQsKBCWaGwsZQlCgr6/q+vjyZhFgqedLfFBuI9anTPEUT4APq9Mu0SZBTzIcGQ==
@@ -11329,8 +11325,6 @@ reactjs-popup@^2.0.5:
   resolved "https://registry.yarnpkg.com/reactjs-popup/-/reactjs-popup-2.0.5.tgz#588a74966bb126699429d739948e3448d7771eac"
   integrity sha512-b5hv9a6aGsHEHXFAgPO5s1Jw1eSkopueyUVxQewGdLgqk2eW0IVXZrPRpHR629YcgIpC2oxtX8OOZ8a7bQJbxA==
 
-<<<<<<< HEAD
-=======
 reactstrap@^9.0.1:
   version "9.0.1"
   resolved "https://registry.yarnpkg.com/reactstrap/-/reactstrap-9.0.1.tgz#a6b205861f3e83da55063bc04ba1a069e969f21d"
@@ -11343,7 +11337,6 @@ reactstrap@^9.0.1:
     react-popper "^2.2.4"
     react-transition-group "^4.4.2"
 
->>>>>>> 7e2ad4d9946312ef52e456845042ccafed7a2b50
 read-pkg-up@^7.0.1:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/read-pkg-up/-/read-pkg-up-7.0.1.tgz#f3a6135758459733ae2b95638056e1854e7ef507"
