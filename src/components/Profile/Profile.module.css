@@ -4,7 +4,7 @@
   color: var(--main-letters-color);
   width: 80%;
   left: 20%;
-  height: 90vh;
+  height: 115vh;
 }
 
 .profile h1 {
@@ -132,6 +132,13 @@
   }
   .buttonProfile {
     width: 30%;
+  }
+
+  .inputProfile input {
+    width: 80%;
+  }
+  .inputProfile textarea {
+    width: 80%;
   }
 }
 /* Para resolucion de iphone 5 */

@@ -69,7 +69,6 @@ function Appointments() {
     {
       name: "Hora",
       selector: (row) => row.hour,
-      sortable: true,
     },
     {
       name: "Paciente",

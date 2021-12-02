@@ -200,15 +200,18 @@ function PacientHistory() {
     edit.pacient_name = values.pacient_name;
     edit.history_description = values.history_description;
     arr.splice(item - 1, 1, edit);
-    setData(arr);
-    console.log("Soy arr antes de updae", arr);
-    setEditDataStatus(false);
-    updateDb(arr);
-    setValues({
-      id: "",
-      pacient_name: "",
-      history_description: "",
-    });
+    if (values.pacient_name.length < 2) {
+      alert("No puede editar un historial sin el nombre del paciente!");
+    } else {
+      setData(arr);
+      setEditDataStatus(false);
+      updateDb(arr);
+      setValues({
+        id: "",
+        pacient_name: "",
+        history_description: "",
+      });
+    }
   };
 
   const setDefaultValues = (val) => {

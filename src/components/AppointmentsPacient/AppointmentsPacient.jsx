@@ -21,7 +21,6 @@ function AppointmentsPacient() {
     {
       name: "Hora",
       selector: (row) => row.hour,
-      sortable: true,
     },
     {
       name: "Especialista",
@@ -67,7 +66,6 @@ function AppointmentsPacient() {
   };
 
   const getDate = (date) => {
-    console.log("PADNJAKSNS", date);
     return getAppointmentDate(date);
   };
   const getExpandableDate = (date) => {

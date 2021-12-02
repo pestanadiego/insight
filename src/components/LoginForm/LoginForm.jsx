@@ -76,9 +76,6 @@ function LoginForm() {
     e.preventDefault();
     await auth.signInWithEmailAndPassword(values.email, values.password);
     const loggedUser = await getUserByEmail(values.email);
-    console.log("loggingForm", loggedUser.uid);
-
-    console.log("Entreee", loggedUser);
     if (!!!loggedUser) {
       const pendingUser = await getUserPending(values.email);
       const noValidUser = await getNoValidUser(values.email);
