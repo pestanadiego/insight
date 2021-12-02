@@ -47,6 +47,7 @@ export default function UserContextProvider({ children }) {
     return noValidUser;
   };
 
+  // función para buscar usuario por nombre ya que twitter y facebook pueden tener usuarios sin correos
   const getUserByName = async (name) => {
     const usersReference = db.collection("users");
     // Se busca en la base de datos un objeto cuyo parámetro email coincida con el ingresado

@@ -76,11 +76,20 @@ function LoginForm() {
   const handleTwitterLogin = async () => {
     try {
       const response = await auth.signInWithPopup(twitterProvider); //Se le envia al proveedor de Twitter
-      console.log("Usuario twitter: ", response);
-      setUser({
+      //console.log("Usuario twitter: ", response);
+      if (response.user.email !== null) {
+        const loggedUser = await getUserByEmail(response.user.email);
+        setUser(loggedUser);
+        history.push("/profile");
+      } else {
+        const loggedUser = await getUserByName(response.user.displayName);
+        setUser(loggedUser);
+        history.push("/profile");
+      }
+      /*setUser({
         name: response.user.displayName,
         email: "null@email.com",
-      });
+      });*/
     } catch {
       console.log("Error");
       alert("Hubo un error!");
