@@ -99,6 +99,7 @@ function PacientHistory() {
     headRow: {
       style: {
         borderRadius: "10px",
+        fontweight: "bold",
       },
     },
     headCells: {
@@ -133,7 +134,6 @@ function PacientHistory() {
     for (let index = 0; index < data.length; index++) {
       arr.push(data[index]);
     }
-    console.log("antes", items);
     if (arr.length == 1) {
       arr.pop();
     } else if (items.length == 1) {
@@ -146,7 +146,6 @@ function PacientHistory() {
         arr.splice(items[index] - count, 1);
         count += 1;
       }
-      console.log("Sirve coñóó", arr);
     }
     count = 0;
     for (let index = 0; index < arr.length; index++) {
@@ -171,16 +170,19 @@ function PacientHistory() {
     add.id = id;
     add.pacient_name = values.pacient_name;
     add.history_description = values.history_description;
-    console.log("ID DEL PANA", values.id);
-    arr.push(add);
-    setData(arr);
-    updateDb(arr);
-    setInsertDataStatus(false);
-    setValues({
-      id: 0,
-      pacient_name: "",
-      history_description: "",
-    });
+    if (values.pacient_name.length < 2) {
+      alert("No puede crear un historial sin el nombre del paciente!");
+    } else {
+      arr.push(add);
+      setData(arr);
+      updateDb(arr);
+      setInsertDataStatus(false);
+      setValues({
+        id: 0,
+        pacient_name: "",
+        history_description: "",
+      });
+    }
   };
 
   const confirmEdit = (item) => {

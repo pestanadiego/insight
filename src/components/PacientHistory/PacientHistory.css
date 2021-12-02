@@ -1,8 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
 
-.insert-popup-overlay {
-  background-color: black;
+.appointmentsTableContainer {
 }
 
 .modal {
@@ -62,15 +61,14 @@ button:hover {
 }
 .modal > .actions button {
   font-family: "Poppins";
-  padding: 1vh 1vw;
-  margin: 0px 1vw;
+  margin: 0 1.5vw;
 }
 
 .confirm {
   background-color: var(--main-button-color);
   color: white;
   border: none;
-  width: 15%;
+  width: 20%;
   border-radius: 5px;
   padding: 1vh 1vw;
   text-align: center;
@@ -80,7 +78,7 @@ button:hover {
   background-color: white;
   color: var(--main-button-color);
   border: none;
-  width: 15%;
+  width: 20%;
   border-radius: 5px;
   padding: 1vh 1vw;
   text-align: center;
@@ -119,6 +117,7 @@ button:hover {
   border-radius: 5px;
   padding: 1vh 1vw;
   text-align: center;
+  margin-bottom: 2vh;
 }
 
 .actionsContainer {
@@ -128,4 +127,133 @@ button:hover {
   display: flex;
   justify-content: space-around;
   flex-direction: row-reverse;
+}
+
+@media screen and (max-width: 700px) and (min-width: 570px) {
+  .confirm {
+    background-color: var(--main-button-color);
+    color: white;
+    border: none;
+    width: 25%;
+    border-radius: 5px;
+    padding: 1vh 1vw;
+    text-align: center;
+  }
+
+  .cancel {
+    background-color: white;
+    color: var(--main-button-color);
+    border: none;
+    width: 25%;
+    border-radius: 5px;
+    padding: 1vh 1vw;
+    text-align: center;
+    outline: solid 1px var(--main-button-color);
+  }
+}
+
+@media screen and (max-width: 569px) {
+  .confirm {
+    background-color: var(--main-button-color);
+    color: white;
+    border: none;
+    width: 40%;
+    border-radius: 5px;
+    padding: 1vh 1vw;
+    text-align: center;
+  }
+
+  .cancel {
+    background-color: white;
+    color: var(--main-button-color);
+    border: none;
+    width: 47%;
+    border-radius: 5px;
+    padding: 1vh 1vw;
+    text-align: center;
+    outline: solid 1px var(--main-button-color);
+  }
+
+  .modal > .actions {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .modal > .content input {
+    width: 100%;
+    font-family: "Poppins";
+    margin: 1vh 0px 1vh 0;
+    color: var(--main-letters-color);
+    padding: 3px;
+    border: solid 1px var(--main-input-color);
+    border-radius: 5px;
+    height: 7vh;
+    outline: 0;
+  }
+  .modal > .content textarea {
+    width: 100%;
+    font-family: "Poppins";
+    margin: 1vh 0px;
+    color: var(--main-letters-color);
+    padding: 3px;
+    border-color: var(--main-input-color);
+    height: 35vh !important;
+    resize: vertical;
+    border-radius: 5px;
+    outline: 0;
+  }
+}
+
+@media screen and (max-height: 570px) {
+  .modal > .content textarea {
+    width: 100%;
+    font-family: "Poppins";
+    margin: 1vh 0px;
+    color: var(--main-letters-color);
+    padding: 3px;
+    border-color: var(--main-input-color);
+    height: 30vh !important;
+    resize: vertical;
+    border-radius: 5px;
+    outline: 0;
+  }
+}
+@media screen and (width: 540px) {
+  .appointmentsTableContainer {
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    left: 3%;
+    top: 4%;
+    width: 94%;
+    height: 70%;
+    border-radius: 10px;
+  }
+}
+@media screen and (width: 280px) {
+  .appointmentsTableContainer {
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    left: 3%;
+    top: 4%;
+    width: 94%;
+    height: 80%;
+    border-radius: 10px;
+  }
+  .createButtonContainer {
+    display: flex;
+    justify-content: center;
+    width: 110%;
+  }
+}
+
+@media screen and (width: 1024px) and (height: 600px) {
+  .appointmentsTableContainer {
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    left: 21%;
+    top: 11%;
+    width: 80%;
+    height: 150%;
+    border-radius: 10px;
+  }
 }
