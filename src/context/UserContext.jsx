@@ -47,6 +47,18 @@ export default function UserContextProvider({ children }) {
     return noValidUser;
   };
 
+  const getUserByName = async (name) => {
+    const usersReference = db.collection("users");
+    // Se busca en la base de datos un objeto cuyo parámetro email coincida con el ingresado
+    const snapshot = await usersReference.where("name", "==", name).get();
+
+    if (!snapshot.size) return null;
+
+    const loggedUser = getFirstElementArrayCollection(snapshot);
+
+    return loggedUser;
+  };
+
   const getUserByEmail = async (email) => {
     const usersReference = db.collection("users");
     // Se busca en la base de datos un objeto cuyo parámetro email coincida con el ingresado
@@ -113,6 +125,7 @@ export default function UserContextProvider({ children }) {
             loading,
             setLoading,
             createUser,
+            getUserByName,
             getUserByEmail,
             getUserPending,
             getNoValidUser,

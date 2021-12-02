@@ -15,6 +15,7 @@ import twitterIcon from "../../icons/twitter_icon.svg";
 
 function LoginForm() {
   const {
+    getUserByName,
     getUserByEmail,
     getUserPending,
     getNoValidUser,
