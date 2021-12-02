@@ -1,0 +1,23 @@
+.user-wrapper {
+    margin-bottom: 10px;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.sm-screen {
+    display: none;
+}
+
+@media screen and (max-width: 580px) {
+    .user-wrapper {
+        display: none;
+    }
+
+    .sm-screen {
+        display: block;
+        padding: 10px 0;
+        text-align: center;
+        cursor: pointer;
+    }
+}

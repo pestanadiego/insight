@@ -1,8 +1,8 @@
 .dashboard {
   position: fixed;
-  background: #f5f5f7;
+  background: #e8e8eb;
   text-align: center;
-  color: #939393;
+  color: #585656;
   width: 20vw;
   height: 90vh;
   z-index: 1;

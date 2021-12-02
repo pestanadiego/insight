@@ -1,9 +1,16 @@
+body.active-modal {
+  overflow-y: hidden;
+}
+
 .detailsContainer {
   display: flex;
+  position: absolute;
+  left: 20%;
   justify-content: space-evenly;
   justify-content: center;
   background-color: white;
   height: 100vh;
+  width: 79vw;
 }
 
 .detailsSection {
@@ -48,6 +55,44 @@
   margin: 5px;
 }
 
+.ratingBtn {
+  background-color: green;
+  font-family: "poppins";
+  border-radius: 5px;
+  border: none;
+  color: white;
+  padding: 1em 2.3em;
+  cursor: pointer;
+  margin: 5px; 
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.modal p {
+  margin-bottom: 10px;
+}
+
+.modal input[type="range"] {
+  background-color: red;
+}
+
+.modal button {
+  background-color: var(--main-button-color);
+  font-family: "poppins";
+  border-radius: 5px;
+  border: none;
+  color: white;
+  padding: 1em 2.3em;
+  cursor: pointer;
+  margin: 5px;
+}
+
 .back {
   background-color: var(--main-button-color);
   font-family: "poppins";
@@ -57,6 +102,12 @@
   padding: 1em 2.3em;
   cursor: pointer;
   margin: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .detailsButtons {
+    flex-direction: column;
+  }
 }
 
 @media screen and (width: 768px) {

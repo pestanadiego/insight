@@ -112,6 +112,7 @@ export default function UserContextProvider({ children }) {
                   phone: "",
                   description: "",
                   appointments: [],
+                  chats: [],
                 };
               } else if (
                 loggedUser.phone == undefined &&
@@ -125,6 +126,7 @@ export default function UserContextProvider({ children }) {
                   phone: "",
                   description: "",
                   appointments: [],
+                  chats: [],
                 };
               } else {
                 newProfile = {
@@ -135,10 +137,19 @@ export default function UserContextProvider({ children }) {
                   phone: loggedUser.phone,
                   description: loggedUser.description,
                   appointments: [],
+                  chats: [],
                 };
               }
             }
-            console.log(newProfile);
+            // console.log(newProfile);
+            // const newProfile = {
+            //   name: loggedUser.displayName,
+            //   email: loggedUser.email,
+            //   uid: loggedUser.uid,
+            //   role: loggedUser.role,
+            //   appointments: [],
+            //   chats: []
+            // };
             await createUser(newProfile, loggedUser.uid);
             setUser(newProfile);
           } else {

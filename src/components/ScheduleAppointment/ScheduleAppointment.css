@@ -14,16 +14,27 @@
   padding-bottom: 10px;
 }
 
+.moveOnBtn {
+  text-align: center;
+}
+
 .appointmentContainer {
   background-color: white;
   position: absolute;
-  left: 21%;
+  width: 80%;
+  left: 20%;
 }
 
 .appointmentContainer h1 {
   padding-top: 20px;
   color: var(--main-letters-color);
   text-align: center;
+}
+
+.calendar {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .calendar p {
@@ -73,13 +84,17 @@
   color: var(--main-letters-color);
 }
 
+.appointmentContainer .warningText {
+  color: var(--main-letters-color);
+  text-align: center;
+}
+
 .buttonSchedule {
   background-color: var(--main-button-color);
   font-family: "Poppins";
   color: white;
   border: none;
   border-radius: 5px;
-  width: 20%;
   padding: 10px 10px;
   text-align: center;
   font-size: 14px;
@@ -114,7 +129,6 @@
     color: white;
     border: none;
     border-radius: 5px;
-    width: 27%;
     padding: 10px 10px;
     text-align: center;
     font-size: 14px;
@@ -128,6 +142,7 @@
   .appointmentContainer {
     background-color: white;
     position: absolute;
+    width: 100%;
     left: 0%;
     top: 2%;
   }
@@ -138,7 +153,6 @@
     color: white;
     border: none;
     border-radius: 5px;
-    width: 27%;
     padding: 10px 10px;
     text-align: center;
     font-size: 14px;
@@ -151,7 +165,8 @@
   .appointmentContainer {
     background-color: white;
     position: absolute;
-    left: 21%;
+    width: 80%;
+    left: 20%;
     top: 4%;
   }
 
@@ -161,7 +176,6 @@
     color: white;
     border: none;
     border-radius: 5px;
-    width: 27%;
     padding: 10px 10px;
     text-align: center;
     font-size: 14px;
@@ -172,10 +186,11 @@
 
 /* SURFACE DUO */
 
-@media screen and (width: 540px) {
+@media screen and (max-width: 540px) {
   .appointmentContainer {
     background-color: white;
     position: absolute;
+    width: 100%;
     left: 0%;
     top: -3%;
   }
@@ -186,7 +201,6 @@
     color: white;
     border: none;
     border-radius: 5px;
-    width: 27%;
     padding: 10px 10px;
     text-align: center;
     font-size: 14px;
@@ -210,7 +224,6 @@
     color: white;
     border: none;
     border-radius: 5px;
-    width: 27%;
     padding: 10px 10px;
     text-align: center;
     font-size: 14px;

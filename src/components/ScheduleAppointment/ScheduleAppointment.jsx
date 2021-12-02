@@ -229,21 +229,21 @@ function ScheduleAppointment({ specialist }) {
     }
 
     const onError = (data, actions) => {
-      setErrorMessage("Ocurrió un error con tu pago - Te estafamos");
+      setErrorMessage("Ocurrió un error con tu pago");
     };
     return (
-      <PayPalScriptProvider
-        options={{
-          "client-id":
-            "AT6Dn4fEQUUvOjsEipV3XKL8wyPXEzOi17M6YJI1wd4-jtJclBKR_ocy8yTB9eV0hI3rqyQ3-kurfzMM",
-        }}
-      >
-        <PayPalButtons
-          style={{ layout: "horizontal" }}
-          createOrder={(data, actions) => createOrder(data, actions)}
-          onApprove={(data, actions) => onApprove(data, actions)}
-        />
-      </PayPalScriptProvider>
+        <PayPalScriptProvider
+          options={{
+            "client-id":
+              "AT6Dn4fEQUUvOjsEipV3XKL8wyPXEzOi17M6YJI1wd4-jtJclBKR_ocy8yTB9eV0hI3rqyQ3-kurfzMM",
+          }}
+        >
+          <PayPalButtons
+            style={{ layout: "horizontal" }}
+            createOrder={(data, actions) => createOrder(data, actions)}
+            onApprove={(data, actions) => onApprove(data, actions)}
+          />
+        </PayPalScriptProvider>
     );
   }
 
@@ -281,11 +281,8 @@ function ScheduleAppointment({ specialist }) {
     setScheduleData();
   });
 
-  console.log("Appointments", appointments);
-
   const getNewAppointment = (appointments) => {
     let ap = appointments;
-    console.log("HOLA SOY AP", ap);
     // Se crea el appointment que se subirá a Firestore
     const newAppointment = {
       Id: appointments[appointments.length - 1].Id,
@@ -339,28 +336,40 @@ function ScheduleAppointment({ specialist }) {
 
   const successfulPayment = async () => {
     const newAppointmentPacient = getNewAppointment(appointments);
+    //Se crea el chat
+    const chat = await db.collection("chats").add({
+      messages: [],
+      status: "pending",
+      specialistName: specialist.name,
+      pacientName: user.name,
+      id: ''
+    })
+    await db.collection("chats").doc(chat.id).update({id: chat.id});
+
     //Base de datos epecialista
     await db
       .collection("specialists")
       .doc(specialist.uid)
-      .update({ appointments: appointments });
+      .update({ appointments: appointments, chats: [...specialist.chats, chat.id] });
     await db
       .collection("users")
       .doc(specialist.uid)
-      .update({ appointments: appointments });
+      .update({ appointments: appointments, chats: [...specialist.chats, chat.id] });
+
 
     //Base de datos paciente
     await db
       .collection("pacients")
       .doc(user.uid)
-      .update({ appointments: [...user.appointments, newAppointmentPacient] });
+      .update({ appointments: [...user.appointments, newAppointmentPacient], chats: [...user.chats, chat.id] });
     await db
       .collection("users")
       .doc(user.uid)
-      .update({ appointments: [...user.appointments, newAppointmentPacient] });
+      .update({ appointments: [...user.appointments, newAppointmentPacient], chats: [...user.chats, chat.id] });
 
-    //Actualiza el UsexContext
+    //Actualiza el UserContext
     user.appointments.push(newAppointmentPacient);
+    user.chats.push(chat.id);
 
     //Envío de mensajes de confirmación vía correo electrónico
     sendNewAppointment(templatePacientAppointment);
@@ -424,7 +433,7 @@ function ScheduleAppointment({ specialist }) {
               <Inject services={[Day, Week, WorkWeek, Month]} />
             </ScheduleComponent>
 
-            <div>
+            <div className="moveOnBtn">
               <button
                 className="buttonSchedule"
                 type="button"
@@ -434,9 +443,9 @@ function ScheduleAppointment({ specialist }) {
               </button>
             </div>
           </div>
-
+          <div className="paymentContainer">
           {!paymentView ? (
-            <p>Agende una sola cita para poder hacer el pago.</p>
+            <p className="warningText">Agende una sola cita para poder hacer el pago.</p>
           ) : (
             <>
               <h1>Pago</h1>
@@ -476,6 +485,7 @@ function ScheduleAppointment({ specialist }) {
               </div>
             </>
           )}
+          </div>
         </div>
       )}
     </>

@@ -2,9 +2,9 @@
   position: absolute;
   background-color: white;
   color: var(--main-letters-color);
-  width: 75%;
-  left: 23%;
-  height: 125vh;
+  width: 80%;
+  left: 20%;
+  height: 90vh;
 }
 
 .profile h1 {

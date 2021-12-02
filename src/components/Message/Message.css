@@ -1,0 +1,55 @@
+.message-wrapper {
+    margin-top: 5px;
+    padding: 0px 5px;
+}
+
+.message-wrapper p {
+    padding: 10px;
+    display: inline-block;
+    max-width: 50%;
+    text-align: left;
+    border-radius: 5px;
+}
+
+.hour-message {
+    display: inline-block;
+    margin-top: 15px;
+    opacity: 0.5;
+}
+
+.own {
+    text-align: right;
+}
+
+.me {
+    background-color: var(--main-button-color);
+    color: white;
+}
+
+.video {
+    background-color: orange;
+    color: white;
+}
+
+.video a {
+    color:white;
+}
+
+.meet {
+    text-align: center;
+}
+
+.meet p {
+    text-align: center;
+}
+
+.other {
+    background-color: #cfcfcf;
+    color: #666666;
+}
+
+@media screen and (max-width: 770px) {
+    .message-wrapper p {
+        max-width: 75%;
+    }
+}

@@ -1,7 +1,432 @@
-.imgContainer {
-  height: 90vh;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  background-image: url("../images/home_pic.jpg");
+/* SECCIÓN DEL BANNER */
+.banner {
+  position: relative;
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+}
+
+.banner .contenedor {
+  width: 98%;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  color: #fff;
+}
+.bttn {
+  margin-top: 0.6em;
+  display: block;
+  padding: 10px 1rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  background: #fce58e;
+  color: var(--main-bg-color);
+  font-family: "Poppins";
+}
+
+/* ESTILOS PARA  PSICÓLOGOS EN LÍNEA */
+.psico {
+  background-color: #fff;
+}
+.welcome {
+  background: #fff;
+  text-align: center;
+  color: var(--main-letters-color);
+}
+.welcome h2 {
+  color: var(--main-bg-color);
+}
+.items {
+  margin-top: -1em;
+  background: #fff;
+  color: var(--main-letters-color);
+}
+.items h3 {
+  color: var(--main-bg-color);
+}
+.items h3,
+.inline p {
+  text-align: center;
+}
+
+.listService p {
+  text-align: center;
+}
+
+.items article {
+  margin: 15px;
+}
+
+.items img {
+  width: 100%;
+  max-height: 100px;
+}
+/*ESTILOS PARA EL APARTADO DE SERVICIOS*/
+/*
+.listService {
+  width: 100%;
+  margin-top: -0.5em;
+  list-style-image: url("../images/check.svg");
+  color: var(--main-letters-color);
+  background: #fff;
+}*/
+.listService .service {
+  text-align: center;
+
+  font-size: 1.2em;
+  margin-top: -3vh;
+  color: white;
+  background: linear-gradient(60deg, var(--main-bg-color), aqua);
+  animation: BgGradient 10s ease 0s infinite normal none running;
+  background-size: 400% 300%;
+}
+.listService img {
+  width: 100%;
+  height: 100%;
+}
+
+.listService .imgRotar {
+  display: none;
+}
+/*
+.listService lu li {
+  padding: 1em, 0, 1em, 1em;
+  text-align: left;
+}*/
+.listService .cont {
+  padding: 10px 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.listService .list {
+  margin: 1em;
+}
+
+/* ESTILOS PARA PSICÓLOGOS EXPERIMENTADOS ... */
+
+.psico .cont {
+  padding: 10px 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ESTILOS PARA EL APARTADO DE TERAPIA */
+.functionTerapy {
+  width: 100%;
+  margin-top: -1.5em;
+  list-style-image: url("../images/check.svg");
+}
+.functionTerapy img {
+  width: 100%;
+  height: 100%;
+}
+
+.functionTerapy .imgRotar {
+  display: none;
+}
+
+.functionTerapy .cont {
+  padding: 10px 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.functionTerapy .terapi {
+  background: #fff;
+  text-align: center;
+  color: var(--main-letters-color);
+  margin-top: -6%;
+}
+
+.functionTerapy lu li {
+  padding: 1em, 0, 1em, 1em;
+  text-align: left;
+}
+
+.functionTerapy .list {
+  margin: 1em;
+}
+
+/*ESTILOS PARA EL BANNER FINAL =)*/
+
+.bannerFinal {
+  position: relative;
+
+  height: 16%;
+  background: linear-gradient(60deg, var(--main-bg-color), aqua);
+  animation: BgGradient 10s ease 0s infinite normal none running;
+  background-size: 400% 300%;
+  margin-top: -5%;
+}
+
+.bannerFinal img {
+  width: 100%;
+  height: 50vh;
+}
+
+.bannerFinal .contenedor {
+  width: 68%;
+  margin: auto;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  color: white;
+}
+
+/* ESTILOS PARA EL FOOTER */
+footer .piePag {
+  margin-bottom: 2em;
+  color: #fff;
+  text-align: center;
+}
+
+footer .imgRotar {
+  display: none;
+}
+.menuFooter {
+  flex: 1;
+  padding-bottom: 1em;
+  width: 94%;
+}
+
+.menuFooter p {
+  margin-top: 5px;
+  margin-left: 10px;
+  color: #fff;
+  text-align: center;
+}
+
+/* MEDIA PARA LOS ESTILOS EN PANTALLAS DE TABLETS Y MONITORES DE PC*/
+@media (min-width: 768px) {
+  .bttn {
+    font-size: 1em;
+  }
+  .banner {
+    font-size: 1.5em;
+  }
+
+  .listService {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .listService .service {
+    flex: 1;
+  }
+  .listService .imgRotar {
+    display: flex;
+    flex: 1;
+  }
+
+  .functionTerapy {
+    display: flex;
+    flex-wrap: wrap;
+    background: #fff;
+    margin-top: 0vh;
+    margin-bottom: 7vh;
+  }
+  .functionTerapy .terapi {
+    flex: 1;
+    margin-top: 1%;
+  }
+  .functionTerapy .imgRotar {
+    display: flex;
+    flex: 1;
+  }
+
+  .bannerFinal {
+    font-size: 1.5em;
+  }
+
+  footer .piePag {
+    font-size: 1em;
+  }
+  .menuFooter {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 1024px) {
+  .banner {
+    font-size: 2em;
+  }
+  .icons_service {
+    display: flex;
+    justify-content: space-between;
+  }
+  .inline {
+    font-size: 1.2em;
+    background: #fff;
+    margin-top: -3.5vh;
+    height: 19%;
+  }
+  .welcome {
+    margin: 1em;
+  }
+  .items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+  }
+
+  .listService .service {
+    font-size: 1.2em;
+    margin-top: -2.5vh;
+    height: 56vh;
+    padding-top: 9vh;
+    color: white;
+    background: linear-gradient(60deg, var(--main-bg-color), aqua);
+    animation: BgGradient 10s ease 0s infinite normal none running;
+    background-size: 400% 300%;
+  }
+
+  .functionTerapy .terapi {
+    font-size: 1.2em;
+  }
+
+  .bannerFinal {
+    font-size: 2em;
+  }
+
+  footer .piePag {
+    font-size: 1.2em;
+  }
+  footer .cont {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .menuFooter p {
+    margin-right: 8px;
+  }
+  .menuFooter {
+    margin-top: 1.6em;
+    margin-right: 3em;
+    margin-bottom: 1em;
+    text-align: center;
+    justify-content: right;
+    font-size: 1.4em;
+  }
+  footer .imgRotar {
+    display: flex;
+    margin-left: 2em;
+  }
+  #estilos_how {
+    text-align: justify;
+  }
+}
+
+@media (width: 1024px) and (height: 600px) {
+  .banner {
+    font-size: 2em;
+    margin-left: 19%;
+    width: 84%;
+  }
+  .icons_service {
+    display: flex;
+    justify-content: space-between;
+  }
+  .inline {
+    font-size: 1.2em;
+    background: #fff;
+    margin-top: -3.5vh;
+    margin-left: 19%;
+    width: 84%;
+  }
+  .welcome {
+    margin: 1em;
+  }
+  .items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+  }
+
+  .listService .service {
+    font-size: 1.2em;
+    margin-top: -1.5vh;
+  }
+
+  .listService {
+    margin-left: 19%;
+    width: 84%;
+  }
+
+  .functionTerapy {
+    display: flex;
+    flex-wrap: wrap;
+    background: #fff;
+    margin-top: 0.6vh;
+    margin-left: 19%;
+    width: 84%;
+    margin-bottom: 5%;
+  }
+
+  .bannerFinal {
+    font-size: 2em;
+    height: 91%;
+    width: 84%;
+    margin-left: 19%;
+    margin-top: -5%;
+  }
+
+  footer .piePag {
+    font-size: 1.2em;
+  }
+  footer .cont {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .menuFooter p {
+    margin-right: 8px;
+  }
+  .menuFooter {
+    margin-top: 1.6em;
+    margin-right: 3em;
+    margin-bottom: 1em;
+    text-align: center;
+    justify-content: right;
+    font-size: 1.4em;
+  }
+  footer .imgRotar {
+    display: flex;
+    margin-left: 2em;
+  }
+  #estilos_how {
+    text-align: justify;
+  }
+}
+@keyframes BgGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+#imagen_service {
+  height: 70%;
+}
+.icons_service div {
+  height: 20vh;
+}
+#pcontainer {
+  text-align: center;
 }

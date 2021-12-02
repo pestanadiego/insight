@@ -45,16 +45,6 @@ function RegisterForm() {
         email: response.user.email,
       });
       // Para que se almacene en la base de datos y no sólo en el módulo de autenticación
-      await createUser(
-        {
-          name: response.user.displayName,
-          email: response.user.email,
-          phone: "",
-          role: "pacient",
-          uid: response.user.uid,
-        },
-        response.user.uid
-      );
       history.push("/profile");
     } catch (error) {
       alert("Se ha producido un error por favor inténtelo más tarde.");
@@ -95,6 +85,7 @@ function RegisterForm() {
           role: "pacient",
           uid: response.user.uid,
           appointments: [],
+          chats: []
         },
         response.user.uid // Se saca de response el uid
       );

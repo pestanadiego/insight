@@ -15,6 +15,7 @@ import LoadingPage from "./pages/LoadingPage";
 import AppointmentsPage from "./pages/AppointmentsPage";
 import AppointmentsPacientPage from "./pages/AppointmentsPacientPage";
 import ReserveAppointmentPage from "./pages/ReserveAppointmentPage";
+import ChatPage from "./pages/ChatPage";
 import PacientHistoryPage from "./pages/PacientHistoryPage";
 
 function Routes() {
@@ -47,6 +48,7 @@ function Routes() {
       <PrivateRoute exact path="/profile" component={ProfilePage} />
       <PrivateRoute exact path="/admin" component={AdminPage} />
       <PrivateRoute exact path="/appointments" component={AppointmentsPage} />
+      <PrivateRoute exact path="/chat" component={ChatPage} />
       <PrivateRoute
         exact
         path="/pacient_appointments"
