@@ -35,7 +35,12 @@ function LoginForm() {
   const handleGoogleLogin = async () => {
     try {
       const response = await auth.signInWithPopup(googleProvider); // Se le envía el proveedor de Google
-      history.push("/welcome");
+      //console.log("Respuesta de googleProvider", response);
+      //console.log("Email: ", response.user.email);
+      const loggedUser = await getUserByEmail(response.user.email);
+      setUser(loggedUser);
+      //console.log(loggedUser);
+      history.push("/profile");
     } catch {
       alert("Hubo un error!");
     }
@@ -60,7 +65,7 @@ function LoginForm() {
         },
         response.user.uid
       );
-      history.push("/welcome");
+      history.push("/profile");
     } catch (error) {
       alert("Se ha producido un error por favor inténtelo más tarde.");
     }
@@ -70,6 +75,7 @@ function LoginForm() {
   const handleTwitterLogin = async () => {
     try {
       const response = await auth.signInWithPopup(twitterProvider); //Se le envia al proveedor de Twitter
+      console.log("Usuario twitter: ", response);
       setUser({
         name: response.user.displayName,
         email: "null@email.com",
@@ -102,7 +108,7 @@ function LoginForm() {
       if (loggedUser.role === "admin") {
         history.push("/admin");
       } else {
-        history.push("/welcome");
+        history.push("/profile");
       }
     }
   };
