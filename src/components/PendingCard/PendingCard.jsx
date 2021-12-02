@@ -44,6 +44,13 @@ function PendingCard({ id, name, email, phone, credentials }) {
   const handleValidation = async () => {
     const pendingProfile = await getUserPending(email);
     pendingProfile.role = "specialist";
+    pendingProfile.status = "no"; // Status del especialista
+    pendingProfile.appointments = [];
+    pendingProfile.rating = [];
+    pendingProfile.work = [];
+    pendingProfile.hours = [];
+    pendingProfile.speciality = [];
+    pendingProfile.chats = [];
     await db
       .collection("specialists")
       .doc(pendingProfile.uid)

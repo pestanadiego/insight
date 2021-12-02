@@ -172,13 +172,13 @@ function Dashboard() {
               </>
             )}
             <li>
-              <Link to="/profile" className={styles.link}>
+              <Link to="/chat" className={styles.link}>
                 Mensajes
               </Link>
             </li>
             <li id={styles["hidden_d"]}>
               <Link
-                to="/profile"
+                to="/chat"
                 onClick={() => {
                   setImage(false);
                   setPacient(true);

@@ -172,7 +172,6 @@ function ScheduleAppointment({ specialist }) {
   let workingDays = []; //Almacena la información referente a los días de trabajo del especialista
   const numAppointments = specialist.appointments.length;
   const rep = /"/gi;
-  console.log("SOY USUARIO", user);
   const templatePacientAppointment = {
     title: "Su cita se ha agendado con éxito",
     name: user.name,
@@ -270,8 +269,6 @@ function ScheduleAppointment({ specialist }) {
     } else {
       setPaymentView(false);
     }
-    console.log("Probando");
-    console.log(result);
   };
 
   const setScheduleData = () => {
@@ -284,11 +281,8 @@ function ScheduleAppointment({ specialist }) {
     setScheduleData();
   });
 
-  console.log("Appointments", appointments);
-
   const getNewAppointment = (appointments) => {
     let ap = appointments;
-    console.log("HOLA SOY AP", ap);
     // Se crea el appointment que se subirá a Firestore
     const newAppointment = {
       Id: appointments[appointments.length - 1].Id,
@@ -342,28 +336,40 @@ function ScheduleAppointment({ specialist }) {
 
   const successfulPayment = async () => {
     const newAppointmentPacient = getNewAppointment(appointments);
+    //Se crea el chat
+    const chat = await db.collection("chats").add({
+      messages: [],
+      status: "pending",
+      specialistName: specialist.name,
+      pacientName: user.name,
+      id: ''
+    })
+    await db.collection("chats").doc(chat.id).update({id: chat.id});
+
     //Base de datos epecialista
     await db
       .collection("specialists")
       .doc(specialist.uid)
-      .update({ appointments: appointments });
+      .update({ appointments: appointments, chats: [...specialist.chats, chat.id] });
     await db
       .collection("users")
       .doc(specialist.uid)
-      .update({ appointments: appointments });
+      .update({ appointments: appointments, chats: [...specialist.chats, chat.id] });
+
 
     //Base de datos paciente
     await db
       .collection("pacients")
       .doc(user.uid)
-      .update({ appointments: [...user.appointments, newAppointmentPacient] });
+      .update({ appointments: [...user.appointments, newAppointmentPacient], chats: [...user.chats, chat.id] });
     await db
       .collection("users")
       .doc(user.uid)
-      .update({ appointments: [...user.appointments, newAppointmentPacient] });
+      .update({ appointments: [...user.appointments, newAppointmentPacient], chats: [...user.chats, chat.id] });
 
-    //Actualiza el UsexContext
+    //Actualiza el UserContext
     user.appointments.push(newAppointmentPacient);
+    user.chats.push(chat.id);
 
     //Envío de mensajes de confirmación vía correo electrónico
     sendNewAppointment(templatePacientAppointment);

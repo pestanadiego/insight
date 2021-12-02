@@ -15,7 +15,7 @@
     display: flex;
   }
   .container {
-    height: 134vh;
+    height: 97vh;
     width: 100%;
   }
 }
@@ -38,7 +38,7 @@
   }
 
   .container {
-    height: 85vh;
+    height: 99vh;
   }
 }
 
@@ -49,22 +49,10 @@
   }
 
   .container {
-    height: 110vh;
+    height: 100vh;
   }
 }
 
-@media screen and (max-width: 1024px) and (min-width: 769px) {
-  .layout {
-    display: flex;
-  }
-
-  .container {
-    height: 51vh;
-    width: 120%;
-    position: absolute;
-    left: -23%;
-  }
-}
 /* Para resoluciones de GALAXY FOLD*/
 @media screen and (max-width: 280px) {
   .layout {
@@ -72,7 +60,7 @@
   }
   .container {
     position: absolute;
-    height: 140vh;
+    height: 100vh;
     width: 43vh;
   }
 }

@@ -96,6 +96,7 @@ function RegisterForm() {
           role: "pacient",
           uid: response.user.uid,
           appointments: [],
+          chats: []
         },
         response.user.uid // Se saca de response el uid
       );

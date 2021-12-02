@@ -23,7 +23,7 @@ function SpecialistList({ specialists }) {
                     name={specialist.name}
                     speciality={handleSpecialities(specialist.speciality)}
                     email={specialist.email}
-                    feedback={specialist.ratings}
+                    feedback={specialist.rating}
                 />
             ))}
         </div>
