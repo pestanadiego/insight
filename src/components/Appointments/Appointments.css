@@ -60,6 +60,7 @@ td {
     background-color: rgb(255, 255, 255);
     position: absolute;
     left: 0%;
+    width: 100%;
   }
 }
 
@@ -69,6 +70,7 @@ td {
     background-color: rgb(255, 255, 255);
     position: absolute;
     left: 0%;
+    width: 100%;
   }
 }
 
@@ -76,14 +78,15 @@ td {
   .appointmentsContainer {
     background-color: rgb(255, 255, 255);
     position: absolute;
-    left: 23%;
-    height: 150%;
+    left: 5%;
+    height: 53%;
     border-radius: 10px;
+    width: 165%;
   }
   .data-table {
     position: absolute;
-    top: 55vh;
-    width: 100%;
+    top: 60%;
+    height: 20%;
   }
 }
 
@@ -98,9 +101,9 @@ td {
   }
   .data-table {
     position: absolute;
-    width: 70%;
-    top: 60%;
-    left: -1%;
+    top: 35%;
+    width: 95%;
+    height: 16%;
   }
 }
 @media screen and (width: 280px) {
@@ -115,21 +118,23 @@ td {
   .data-table {
     position: absolute;
     width: 70%;
-    top: 60%;
-    left: -1%;
+    top: 50%;
+    height: 23%;
   }
 }
 @media screen and (width: 1024px) and (max-height: 600px) {
   .appointmentsContainer {
     background-color: rgb(255, 255, 255);
     position: absolute;
-    left: 23%;
-    height: 326%;
+    left: 12%;
+    height: 99%;
     border-radius: 10px;
+    width: 370%;
   }
   .data-table {
     position: absolute;
-    top: 120vh;
-    width: 100%;
+    top: 65%;
+    height: 29%;
+    left: 1%;
   }
 }

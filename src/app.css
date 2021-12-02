@@ -64,3 +64,14 @@
     width: 43vh;
   }
 }
+
+@media screen and (width: 1024px) {
+  .layout {
+    display: flex;
+  }
+  .container {
+    position: absolute;
+    height: 100vh;
+    width: 43vh;
+  }
+}
