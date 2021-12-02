@@ -433,7 +433,7 @@ function ScheduleAppointment({ specialist }) {
               <Inject services={[Day, Week, WorkWeek, Month]} />
             </ScheduleComponent>
 
-            <div>
+            <div className="moveOnBtn">
               <button
                 className="buttonSchedule"
                 type="button"
@@ -443,9 +443,9 @@ function ScheduleAppointment({ specialist }) {
               </button>
             </div>
           </div>
-
+          <div className="paymentContainer">
           {!paymentView ? (
-            <p>Agende una sola cita para poder hacer el pago.</p>
+            <p className="warningText">Agende una sola cita para poder hacer el pago.</p>
           ) : (
             <>
               <h1>Pago</h1>
@@ -485,6 +485,7 @@ function ScheduleAppointment({ specialist }) {
               </div>
             </>
           )}
+          </div>
         </div>
       )}
     </>
