@@ -26,21 +26,7 @@ function ChatPage() {
             setChatUsers(chatUsers);
         });
       }
-        }, 
-        []);
-   
-    const selectChatUser = (chatUser) => {
-        setChat(chatUser);
-        setStatus(chatUser.status);
-        console.log(chatUser);
-        db.collection("chats").doc(chatUser.id).onSnapshot((doc) => {
-          const data = doc.data();
-          setStatus(data.status);
-          setMsgs(data.messages);
-        });
-        setChatUsers(chatUsers);
-      });
-  }, []);
+    }, []);
 
   const selectChatUser = (chatUser) => {
     setChat(chatUser);

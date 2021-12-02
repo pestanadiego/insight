@@ -54,7 +54,6 @@ function SpecialistDetails({ specialist }) {
           }
         });
       }
-      
     db.collection("specialists").doc(specialist.uid).onSnapshot((doc) => {
       const data = doc.data();
       setRatings(data.rating);

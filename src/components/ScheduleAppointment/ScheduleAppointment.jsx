@@ -229,21 +229,21 @@ function ScheduleAppointment({ specialist }) {
     }
 
     const onError = (data, actions) => {
-      setErrorMessage("Ocurrió un error con tu pago - Te estafamos");
+      setErrorMessage("Ocurrió un error con tu pago");
     };
     return (
-      <PayPalScriptProvider
-        options={{
-          "client-id":
-            "AT6Dn4fEQUUvOjsEipV3XKL8wyPXEzOi17M6YJI1wd4-jtJclBKR_ocy8yTB9eV0hI3rqyQ3-kurfzMM",
-        }}
-      >
-        <PayPalButtons
-          style={{ layout: "horizontal" }}
-          createOrder={(data, actions) => createOrder(data, actions)}
-          onApprove={(data, actions) => onApprove(data, actions)}
-        />
-      </PayPalScriptProvider>
+        <PayPalScriptProvider
+          options={{
+            "client-id":
+              "AT6Dn4fEQUUvOjsEipV3XKL8wyPXEzOi17M6YJI1wd4-jtJclBKR_ocy8yTB9eV0hI3rqyQ3-kurfzMM",
+          }}
+        >
+          <PayPalButtons
+            style={{ layout: "horizontal" }}
+            createOrder={(data, actions) => createOrder(data, actions)}
+            onApprove={(data, actions) => onApprove(data, actions)}
+          />
+        </PayPalScriptProvider>
     );
   }
 
