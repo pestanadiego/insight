@@ -129,13 +129,13 @@ function Dashboard() {
             {user.role === "specialist" ? (
               <>
                 <li>
-                  <Link to="/profile" className={styles.link}>
+                  <Link to="/pacient_history" className={styles.link}>
                     Pacientes
                   </Link>
                 </li>
                 <li id={styles["hidden_d"]}>
                   <Link
-                    to="/search"
+                    to="/pacient_history"
                     onClick={() => {
                       setImage(true);
                       setPacient(false);

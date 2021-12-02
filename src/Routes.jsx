@@ -16,6 +16,7 @@ import AppointmentsPage from "./pages/AppointmentsPage";
 import AppointmentsPacientPage from "./pages/AppointmentsPacientPage";
 import ReserveAppointmentPage from "./pages/ReserveAppointmentPage";
 import ChatPage from "./pages/ChatPage";
+import PacientHistoryPage from "./pages/PacientHistoryPage";
 
 function Routes() {
   return (
@@ -52,6 +53,11 @@ function Routes() {
         exact
         path="/pacient_appointments"
         component={AppointmentsPacientPage}
+      />
+      <PrivateRoute
+        exact
+        path="/pacient_history"
+        component={PacientHistoryPage}
       />
 
       <Route exact path="/" component={HomePage} />
