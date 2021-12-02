@@ -16,6 +16,7 @@ import twitterIcon from "../../icons/twitter_icon.svg";
 function LoginForm() {
   const {
     getUserByEmail,
+    getUserById,
     getUserPending,
     getNoValidUser,
     user,
@@ -75,6 +76,7 @@ function LoginForm() {
     e.preventDefault();
     await auth.signInWithEmailAndPassword(values.email, values.password);
     const loggedUser = await getUserByEmail(values.email);
+
     console.log("Entreee", loggedUser);
     if (!!!loggedUser) {
       const pendingUser = await getUserPending(values.email);

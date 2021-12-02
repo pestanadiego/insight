@@ -37,6 +37,17 @@ export default function UserContextProvider({ children }) {
     return pendingUser;
   };
 
+  const getUserPendingId = async (id) => {
+    const pendingReference = db.collection("pendings");
+    const snapshot = await pendingReference.where("uid", "==", id).get();
+    if (!snapshot.size) {
+      return null;
+    }
+    const pendingUser = getFirstElementArrayCollection(snapshot);
+
+    return pendingUser;
+  };
+
   const getNoValidUser = async (email) => {
     const noValidReference = db.collection("novalids");
     const snapshot = await noValidReference.where("email", "==", email).get();
@@ -78,11 +89,13 @@ export default function UserContextProvider({ children }) {
     const unlisten = auth.onAuthStateChanged(async (loggedUser) => {
       if (loggedUser) {
         // Cuando se inicie sesión, se busca el usuario en la base de datos
+        console.log(loggedUser.uid);
         const profile = await getUserById(loggedUser.uid);
         // Si no tienes un perfil creado en la base de datos, se crea y se coloca en el contexto.
         if (!profile) {
-          console.log("Ulitap", profile);
-          const pendingProfile = await getUserPending(loggedUser.email);
+          // const pendingProfile = await getUserPending(loggedUser.email);
+          const pendingProfile = await getUserPendingId(loggedUser.uid);
+          console.log("Pending Profile", pendingProfile);
           if (!pendingProfile) {
             let newProfile = "";
             while (newProfile == "") {
