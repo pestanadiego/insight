@@ -36,6 +36,7 @@ function PacientHistory() {
     {
       name: "Paciente",
       selector: (row) => row.pacient_name,
+      sortable: true,
     },
     {
       name: "Descripción de Historia",
